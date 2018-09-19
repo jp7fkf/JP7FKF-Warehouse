@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to JP7FKF-Warehouse's documentation!
+Welcome to JP7FKF-Warehouse!
 ============================================
 
 .. toctree::
@@ -12,6 +12,9 @@ Welcome to JP7FKF-Warehouse's documentation!
 
    201809
    profile
+   unix/ssh
+
+- [日記](201809.md)
 
 Indices and tables
 ==================
