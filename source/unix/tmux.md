@@ -1,12 +1,12 @@
-## tmnux
+# tmux
 
-### attach
+## attach
 ` $ tmux a`
 
-### dettach
+## dettach
 `ctrl+b, d`
 
-### tmux の中でスクロール
+## tmux の中でスクロール
 `ctrl+b, [`
 これで上下キーでスクロールできる．
 抜けるときは`q`

@@ -191,6 +191,7 @@ source_parsers = {
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_style = "css/my_theme.css"
+html_search_language = 'ja'
 
 # github_doc_root = 'https://github.com/rtfd/recommonmark/tree/master/doc/'
 # def setup(app):

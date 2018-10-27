@@ -1,6 +1,10 @@
 # About me
 ## Profile
-
+  - Call Sign (HamRadio)
+    - JP7FKF (JP)
+    - AH0CV (US)
+  - Major
+    - Networking
 ## 資格
 
 ## 論文/発表
