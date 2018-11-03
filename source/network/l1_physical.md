@@ -32,5 +32,56 @@
 ・10GBASE-T：（100m）
 
 - ダイレクトアタッチは10m以下．実質ラック内配線用．
-- シングルモードの光ファイバは略称SMF(Single Mode Fiber)といい、光を伝送するモードフィールド径が約9μm
+- シングルモードの光ファイバは略称SMF(Single Mode Fiber)といい、光を伝送するモードフィールド径が約9μm(7.1μm, 8.5μm)
 - マルチモードファイバはMMF(Multi Mode Fiber)といって、コア径は約50μmまたは62.5μm
+- クラッド径はいずも125μm
+##
+
+## SFP (Small Form-Factor Pluggable)
+  - GBIC(Gigabit Interface Converter)の半分くらいのサイズであることからMini-GBICと呼ばれる．
+  - SFP electrical pin-out
+```
++----+------+-----------+ 
+| Pin | Name | Function |
++----+------+-----------+ 
+| 1 | VeeT | Transmitter ground |
++----+------+-----------+ 
+| 2 | TxFault | Transmitter fault indication |
++----+------+-----------+ 
+| 3 | TxDisable | Optical output disabled when high |
++----+------+-----------+ 
+| 4 | MOD-DEF(2) | Data for serial ID interface |
++----+------+-----------+ 
+| 5 | MOD-DEF(1) | Clock for serial ID interface |
++----+------+-----------+ 
+| 6 | MOD-DEF(0) | Grounded by the module to indicate module presence |
++----+------+-----------+ 
+| 7 | RateSelect | Low selects reduced bandwidth |
++----+------+-----------+ 
+| 8 | LOS | When high, indicates received optical power below worst-case receiver sensitivity |
++----+------+-----------+ 
+| 9 | VeeR | Receiver ground |
++----+------+-----------+ 
+| 10 | VeeR | Receiver ground |
++----+------+-----------+ 
+| 11 | VeeR | Receiver ground |
++----+------+-----------+ 
+| 12 | RD- | Inverted received data |
++----+------+-----------+ 
+| 13 | RD+ | Received data |
++----+------+-----------+ 
+| 14 | VeeR | Receiver ground |
++----+------+-----------+ 
+| 15 | VccR | Receiver power (3.3 V, max. 300 mA) |
++----+------+-----------+ 
+| 16 | VccT | Transmitter power (3.3 V, max. 300 mA) |
++----+------+-----------+ 
+| 17 | VeeT | Transmitter ground |
++----+------+-----------+ 
+| 18 | TD+ | Transmit data |
++----+------+-----------+ 
+| 19 | TD- | Inverted transmit data |
++----+------+-----------+ 
+| 20 | VeeT | Transmitter ground |
++----+------+-----------+ 
+```
