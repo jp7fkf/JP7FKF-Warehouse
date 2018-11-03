@@ -19,7 +19,11 @@ Welcome to JP7FKF-Warehouse!
   unix/tmux
   unix/arp
   unix/ntp
+  unix/dig
+  unix/dns
+  unix/vnc
   unix/sh
+  unix//jenkins
   unix/version
   network/802_11
   network/ipv6
@@ -27,7 +31,10 @@ Welcome to JP7FKF-Warehouse!
   network/l1_physical
   network/bgp
   network/cisco
+  network/alaxala
   network/optical
+  network/renat
+  network/vrrp
   r_lang
   mac_commands
 

@@ -7,4 +7,5 @@
   4. yum info jenkins
   5. yum -y install jenkins
   6. http://<server-ip>:8080 にアクセス
-    
+  7. /var/lib/jenkins/secrets/initialAdminPassword に鍵があるので見て入れる．
+  

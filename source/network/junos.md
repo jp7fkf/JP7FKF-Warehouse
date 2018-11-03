@@ -56,3 +56,11 @@ set routing-options nonstop-routing
 set protocols layer2-control nonstop-bridging
 set system commit synchronize
 ```
+
+### LEDがおかしい．
+```
+show chassis alarms 
+show system alarms 
+show chassis led 
+```
+- 何も考えずに`show chassis` 系と`show system` 系を叩くんだな．
