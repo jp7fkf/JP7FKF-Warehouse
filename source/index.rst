@@ -37,7 +37,8 @@ Welcome to JP7FKF-Warehouse!
   network/vrrp
   r_lang
   mac_commands
-
+  electronics
+  ansible
 
 - [日記](201809.md)
 
