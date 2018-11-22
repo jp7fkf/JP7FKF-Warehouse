@@ -2,3 +2,11 @@
 
 ## macOS command でzipパスワードをつける
 zipcloak hoge.zip
+
+## Go to the Folder in Finder
+- `Commnad + Shift + G`
+- unixで `cd` 打つ感じでパスを入れる感じ．
+- `~/Library/hoge.txt` 的な
+
+## MacでIPv6の有効/無効
+  - sudo networksetup (-setv6off | -setv6automatic) <networkservice(ex.Wi-Fi)>

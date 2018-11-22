@@ -4,6 +4,10 @@
 - デバイスを確認  
   - `nmcli d`
 
+- 必要に応じて
+  - `nmcli connection add type <デバイスタイプ> ifname <ifname名> con-name <接続名>`
+  - ex.) `nmcli connection add type ethernet ifname ens192 con-name ens192`
+
 - インターフェイスを有効化
   - `nmcli c m eth0 connection.autoconnect yes`
 

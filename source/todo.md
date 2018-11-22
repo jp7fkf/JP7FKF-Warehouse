@@ -31,12 +31,16 @@
 ## 資格
   - FE/PE試験を受けたい
   - 救命講習？
-  - 技術士補
-  - Oracle master
-  - CCNP
-  - LPIC(もうとらなくていいか...) -> LinuC?
+  * 技術士補
+  * Oracle master
+  * CCNP
+  * LPIC(もうとらなくていいか...) -> LinuC?
+  * エンベデットシステムスペシャリスト
+  * 情報処理安全確保支援士
   - Cカード
   - GCP資格とる
+  - AWS系資格
+
 
 ### In Progress
   - 秋月USB-DAC付きD球アンプ改造
