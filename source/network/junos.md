@@ -64,3 +64,62 @@ show system alarms
 show chassis led 
 ```
 - 何も考えずに`show chassis` 系と`show system` 系を叩くんだな．
+
+## commit and-quit
+  - commit成功したらそのまま抜けれて便利
+
+## commit commnet <text>
+  - コミットにコメントがつく
+  - `show system commit` とかするときにわかりやすい．
+
+## show system rollback compare <commit1> <commit2>
+  - 1と2の差分を見る．
+
+## configure exclusive
+  - 誰にも編集させないぞ
+
+## load set terminal
+  - set 形式でloadできる．
+
+## load merge terminal
+  - json 形式そのままload
+
+## interface-range
+  ```
+  set interfaces interface-range VLAN100-grp member-range ge-0/0/1 to ge-0/0/11
+  set interfaces interface-range VLAN100-grp unit 0 family ethernet-switching vlan members 100
+  ```
+  - 上記のようにinterfaceをまとめて設定できる．
+  - configにもrangeのまとまりで反映される．
+  ```
+  interfaces {
+    interface-range VLAN100-int {
+        member-range ge-0/0/1 to ge-0/0/11;
+        unit 0 {
+            family ethernet-switching {
+                vlan {
+                    members 100;
+                }
+            }
+        }
+    }
+  }
+    ```
+
+## wildcard range {set | delete} hogehoge [0-5] hugahuga
+  - ex). `$ wildcard range set interfaces ge-0/0/[0-10] unit 0 family ethernet-switching access`
+  - ワイルドかードでいれれて便利．
+  - `!`not でexceptもできる．
+  - `interface-range`との違いは展開されるかどうか．`interface-range`では展開されずにそのままconfigに入るが，これはset形式に展開されて入るので普通にsetで1つ1つのinterfaceに対して設定したのと同じconfigが入ることになる．
+
+## monitor log message
+  - `terminal monitor` です．
+
+## replace pattern <text1> with <text2>
+  - text1 を text2 に置換．
+  - 今の階層以下にしか効かない．
+  - 正規表現も使える．
+
+## rename hoge to huga
+  - その階層のお名前を変える．
+  - 下の階層まで消して作り直したりしなくてよくて便利
