@@ -23,3 +23,28 @@
       分割スリーブ材質: 
         ジルコニアセラミック: 10Gig™ OM3/OM4 マルチモードアダプタ, OS1/OS2 シングルモードアダプタ
         リン青銅: M1 および OM2 マルチモードアダプタ
+
+## 伝送装置
+  - 100Gbps ROADMとSONET／SDH, L2 Aggregation
+  - 100Gbps×C band 88波（8.8Tbps）とかを束ねる
+  - デジタルコヒーレント
+  - DP-QPSK変調
+  - メトロコアから超長距離まで．
+  - つまるところAMP + WDM 的な．
+
+  - [光通信波長帯(T,O,E,S,C,L,U-バンド)とは | ファイバーラボ株式会社](https://www.fiberlabs.co.jp/column/wavelength/)
+  - 光にもバンド名がついている．
+    ```
+    Tバンド(Thousand-band)  1000 ~ 1260 nm
+    Oバンド(Original-band)  1260 ~ 1360 nm
+    Eバンド(Extended-band)  1360 ~ 1460 nm
+    Sバンド(Short-wavelength-band)  1460 ~ 1530 nm
+    Cバンド(Conventional-band)  1530 ~ 1565 nm
+    Lバンド(Long-wavelength-band)   1565 ~ 1625 nm
+    Uバンド(Ultralong-wavelengrh-band)  1625 ~ 1675 nm
+    ```
+
+## ファイバアンプ
+  - Oバンド-PDFA(Praseodymium Doped Fiber Amplifier)
+  - C・Lバンド-EDFA(Erbium Doped optical Fiber Amplifier)
+  - Sバンド-TDFA(Thulium Doped Fiber Amplifier)

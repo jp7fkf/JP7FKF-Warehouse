@@ -13,6 +13,7 @@ Welcome to JP7FKF-Warehouse!
   profile
   dialy/201809
   dialy/201810
+  dialy/201811
   todo
   unix/centos7
   unix/ssh
@@ -25,6 +26,9 @@ Welcome to JP7FKF-Warehouse!
   unix/sh
   unix//jenkins
   unix/version
+  unix/mysql
+  unix/imagemagick
+  unix/unix_basic_commands
   network/802_11
   network/ipv6
   network/junos
@@ -35,6 +39,7 @@ Welcome to JP7FKF-Warehouse!
   network/optical
   network/renat
   network/vrrp
+  network/yamaha
   r_lang
   mac_commands
   electronics

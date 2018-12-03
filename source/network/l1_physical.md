@@ -15,6 +15,27 @@
 - 1000Base-TXは、1ペアで各々500Mの片方向の送信のみ、受信のみを行います。500Mの送信のみ×2ペアで1000Mと500Mの受信のみ×2ペアで1000Mと言う事。
 - https://lan-cables.com/txtigai.html
 
+- [1000BASE-TX か、1000BASE-T か：ネットワークエンジニアになろう！](http://www.smartnetworks.jp/2006/02/1000basetx_1000baset.html)
+  - IEEE802.3ab(1000BASE-T)
+    - ハイブリッド回路（方向性結合き的な）で送受信信号の分離している．
+    - 4ペア間の同期を取るための処理も必要．
+  ```
+            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
+            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
+       <<---+                                             +--->>
+            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
+            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
+  - EIA/TIA-854-A(1000BASE-TX)
+    - ペア間同期とか，信号分離がいらないので安価．
+    - Cheaper Gigabit Ethernet とも呼ばれる．
+
+            +--- TX --------> 500Mbps --> --------- RX ---+
+            +--- TX --------> 500Mbps --> --------- RX ---+
+       <<---+                                             +--->>
+            +--- RX ----- <-- 500Mbps <------------ TX ---+
+            +--- RX ----- <-- 500Mbps <------------ TX ---+
+  ```
+
 
 ## イーサネットの伝送方式まとめ # 2018-08-24 17:08:02 YudaiHashimoto
 - 1Gbps
@@ -35,7 +56,6 @@
 - シングルモードの光ファイバは略称SMF(Single Mode Fiber)といい、光を伝送するモードフィールド径が約9μm(7.1μm, 8.5μm)
 - マルチモードファイバはMMF(Multi Mode Fiber)といって、コア径は約50μmまたは62.5μm
 - クラッド径はいずも125μm
-##
 
 ## SFP (Small Form-Factor Pluggable)
   - GBIC(Gigabit Interface Converter)の半分くらいのサイズであることからMini-GBICと呼ばれる．
@@ -85,3 +105,4 @@
 | 20 | VeeT | Transmitter ground |
 +----+------+-----------+ 
 ```
+

@@ -29,3 +29,13 @@
 
 - システムに問題がなければ、`ntpdate [server address]` で一気に同期することも可能．  
   ntpdateを使用する場合はntpdは停止している必要がある．
+
+## chrony
+- `systemctl start chronyd`
+- `/etc/chrony.conf` にntpd的なconfigを書く．フォーマットはほぼ一緒っぽい．
+- `rtcsync` をconfigファイルに書いておくとハードウェアクロックも同期してくれる．
+- `server <ntp_server> [options]` で参照先サーバ指定．`iburst`オプションで起動直度同期を積極的に行う．
+- `chronyc sources` で`ntp -q`的なやつが観れる．
+
+## hwclock と同期したい(manual)
+- `hwclock --systohc`を叩くと現在のsystem clock がhardware clock(RTC)に同期されるっぽい．

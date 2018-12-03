@@ -2,7 +2,7 @@
 ## 鍵ペアをつくる
 - RSA でビット長4096なやつ
 ```
-ssh-keygen -t rsa -b 4096
+ssh-keygen -t rsa -b 4096 {-C "email@example.com"} //コメントつけたければつける
 ```
 
 
