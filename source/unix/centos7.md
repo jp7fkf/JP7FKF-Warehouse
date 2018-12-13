@@ -13,9 +13,9 @@
 
 - IPアドレス、サブネットマスクを変更  
   - `nmcli c modify eth0 ipv4.addresses 172.16.0.100/24 `  
-※デバイスを確認して「eth0」を変更する
+※デバイスを確認して「eth0」をnmcli 
 
-- デフォルトゲートウェイを設定  
+- デフォルトゲー connectiondnsnmcli c downトウェイを設定  
   - `nmcli c modify eth0 ipv4.gateway 172.16.0.1`
 
 - DNS設定  
@@ -78,3 +78,24 @@
 
 ### 参考
 - [2. カーネルのアップデート(第1章カーネル:基本管理コースII)](https://users.miraclelinux.com/technet/document/linux/training/2_1_2.html)
+
+
+## Chkconfig
+  - ランレベル
+```
+0: システムの停止
+1: シングルユーザモード
+2: マルチユーザモード
+3: マルチユーザモード(コンソールログイン)
+4: 未使用
+5: マルチユーザモード(ディスプレイマネージャ使用)
+6: システム再起動
+```
+  - commands
+```
+chkconfig --add <service_name>
+chkconfig --del <service_name>
+chkconfig --list
+chkconfig --list <service_name>
+chkconfig --level <run_level> <service_name> <on|off>
+```

@@ -13,3 +13,16 @@ RFC3484にはこう書かれている．
 - [CNAME を巡る 2/3 のジレンマ - 鷲ノ巣](https://tech.blog.aerie.jp/entry/2014/09/09/162135)
 
 - [RFC 1912 -  Common DNS Operational and Configuration Errors](https://www.ietf.org/rfc/rfc1912.txt)
+
+## 代表的なdns ソフトウェア
+- Bind
+  - 有名．脆弱性がちょっと多い印象．
+- Power DNS
+  - Web GUIがあり，レコード登録などの取り扱いがやりやすい．
+- Unbound
+  - DNSキャッシュサーバ．コンテンツサーバにはなれない．
+  - DNSキャッシュサーバとしては，BINDを完全に置き換えることができる程度の機能は実装されている．
+- Knot DNS
+  - 権威DNS（コンテンツサーバ）専用
+  - キャッシュサーバ(resolver)として使いたい場合は`Knot DNS resolver` というものもある．
+    - cloudflare(1.1.1.1)で使われているらしい．

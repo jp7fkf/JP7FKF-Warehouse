@@ -34,7 +34,7 @@
 ## スピーカアンプ
   - 
 
-## 電子付加装置
+## 電子負荷装置
   - 制御対象: 定抵抗，定電流，定電力，（定電圧？）制御
   - DAC出力でオペアンプに指令電圧を印加
   - オペアンプはエラーアンプになっており，指令電圧とフィードバック電圧の差を0にするようにFETのゲートに対して電圧を出力．
@@ -46,3 +46,11 @@
     - オシロで測定対象の電源電圧，電流を測定することで電源の特性を見る．
 
 ## ネットワークアナライザ
+
+
+## ヘッドホンアンプ
+  - [プアオーディオはじめました。～ BEHRINGER HA400 がやってきた～ 色白腹黒の気まぐれ帳/ウェブリブログ](https://irojiro-haraguro.at.webry.info/201406/article_1.html)
+  - [メモ帳:BEHRINGER MICROAMP HA400 - livedoor Blog（ブログ）](http://blog.livedoor.jp/r_ten/archives/51933905.html)
+  - [ベリンガーヘッドフォンアンプHA400のオーディオ化改造](https://skeishi.web.fc2.com/audio/kaizou/HA400/HA400.html)
+  - [HA400改造についての注意点：KAZNYANの備忘録](https://s.webry.info/sp/kunekune.at.webry.info/200903/article_5.html)
+  

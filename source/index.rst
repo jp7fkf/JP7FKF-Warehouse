@@ -14,6 +14,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201809
   dialy/201810
   dialy/201811
+  dialy/201812
   todo
   unix/centos7
   unix/ssh
@@ -29,6 +30,9 @@ Welcome to JP7FKF-Warehouse!
   unix/mysql
   unix/imagemagick
   unix/unix_basic_commands
+  unix/radius
+  unix/esxi.md
+  unix/postgresql.md
   network/802_11
   network/ipv6
   network/junos
@@ -40,6 +44,16 @@ Welcome to JP7FKF-Warehouse!
   network/renat
   network/vrrp
   network/yamaha
+  network/vyos
+  network/cumulus.md
+  network/snmp.md
+  network/vpp
+  hobbies/making
+  hobbies/stm32
+  hobbies/css
+  hobbies/javascript.md
+  hobbies/mobile_communication.md
+  hobbies/rails.md
   r_lang
   mac_commands
   electronics

@@ -1,5 +1,7 @@
 # VNC
 
+- [VNC-Server installation on CentOS 7](https://www.howtoforge.com/vnc-server-installation-on-centos-7)
+
 ## install
   - `yum install tigervnc-server`
   - `cp /lib/systemd/system/vncserver@.service /lib/systemd/system/vncserver@:3.service`
@@ -9,3 +11,4 @@
   -  `vncpasswd` コマンドでVNCでのログインユーザにpasswordをつける．
   - `systemctl start vncserver@:3` でVNC Server を起動．
   - あとはつなぐだけ．
+

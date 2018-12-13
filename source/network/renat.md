@@ -1,4 +1,5 @@
-# RENAT install battle (# 2018-10-26 16:40:31 YudaiHashimoto)
+# RENAT
+## RENAT install battle
 ```
 yum -y install centos-release-scl-rh
 yum -y install python27
@@ -22,3 +23,63 @@ mkdir work
 cd work
 git clone https://github.com/bachng2017/RENAT.git renat
 ```
+
+## basic setup
+
+-  $RENAT_PATH/config/device.yaml
+```
+device:
+    hoge1:
+        type: hoge
+        description: hoge1
+        ip: x.x.x.x
+```
+
+-  $RENAT_PATH/config/auth.yaml
+```
+auth:
+    plain-text:
+        default:
+            user: <user-name>
+            pass: <password>
+```
+
+-  $RENAT_PATH/config/template.yaml
+```
+access-template:
+    ssh-host:
+        access: ssh
+        auth: public-key
+        profile: default
+        prompt: \$
+        append:
+        init: unalias -a
+    juniper:
+        access: telnet
+        auth: plain-text
+        profile: default
+        prompt: "(#|>) "
+        append: ' | no-more'
+        init:
+    cisco:
+        access: ssh
+        auth: plain-text
+        profile: default
+        prompt: "*(#|>) "
+        append:
+        init:
+snmp-template:
+       juniper:
+            mib: ./mib-Juniper.json
+            community: public
+            poller: renat
+       cisco:
+            mib: ./mib-Cisco.json
+            community: public
+            poller: renat
+```
+
+
+## python3.6 にしてみた
+  - 相変わらずdecoratorで怒られた
+    - `python3.6 -m pip install decorator` で解決．
