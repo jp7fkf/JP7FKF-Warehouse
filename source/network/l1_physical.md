@@ -106,3 +106,9 @@
 +----+------+-----------+ 
 ```
 
+
+##  クロストーク
+- 近端クロストーク（Near-End Crosstalk, NEXT）
+- パワーサム近端クロストーク（Power Sum NEXT, PS-NEXT）
+- 遠端クロストーク（Far-End Crosstalk, FEXT）
+- 電力和等レベル遠端漏話（Power Sum Equal Level FEXT, PS-ELFEXT）

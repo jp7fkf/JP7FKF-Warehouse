@@ -83,3 +83,43 @@ snmp-template:
 ## python3.6 にしてみた
   - 相変わらずdecoratorで怒られた
     - `python3.6 -m pip install decorator` で解決．
+
+## 問題点
+  - ssh proxy を利用する際に問題がある．
+    - device に下記のように書くとerrorとなる．
+    ```
+        vthunder_proxy:
+        access: ssh
+        auth: plain-text
+        profile: xxx
+        proxy_cmd: "/usr/bin/ssh -l jp7fkf -p xxxxx -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -W %h:%p x.x.x.x"
+        prompt: ".*(#|>)"
+        login_prompt: "Username:"
+        password_prompt: "Password:"
+        append:
+        init:
+    ```
+    - 問題はVChannel.pyのssh connection  部分にある．
+    ```
+      ### SSH
+      if _access == 'ssh':
+          out = ""
+          local_id = self._ssh.open_connection(_ip,alias=name,term_type='vt100',width=w,height=h,timeout=_timeout)
+          # SSH with plaintext
+          if _auth_type == 'plain-text':
+              if _proxy_cmd:
+                  user        = os.environ.get('USER')
+                  home_folder = os.environ.get('HOME')
+                  port = 22
+                  _cmd = _proxy_cmd.replace('%h',_ip).replace('%p',str(port)).replace('%u',user).replace('~',home_folder)
+                  out = self._ssh.login(_auth['user'],_auth['pass'],proxy_cmd=_cmd)
+              else:
+                  _cmd = None
+                  out = self._ssh.login(_auth['user'],_auth['pass'],False)
+    ```
+    - proxy_cmd というargument はそもそもSSHLibraryのloginメソッドに存在しない(# 2018-12-14 現在)．
+    - proxy を自分で実装する必要がある．
+    - ワークアラウンド的対処法としてrenatを実行するホストでsshuttle等をバックグランド実行しておき，renatには通常通りsshを実行させるという手段を取ることができる．
+
+  - port番号指定できない
+    - SSHLibraryのself.current.config.portを指定してやればいいっぽい．

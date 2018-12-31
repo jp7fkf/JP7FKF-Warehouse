@@ -4,7 +4,7 @@
   - port: udp 123
 
 ## Interactive mode
-  - ntpq
+  - `ntpq`
   - ? を打つと使えるコマンドが出る．
   - peers でntpq -p と同様の情報が得られる．
   - 抜けるときは quit/exit.
@@ -39,3 +39,7 @@
 
 ## hwclock と同期したい(manual)
 - `hwclock --systohc`を叩くと現在のsystem clock がhardware clock(RTC)に同期されるっぽい．
+
+## mac でsntp
+- `sudo sntp -sS <host>`
+- ex.) `sudo sntp -sS ntp.nict.jp`

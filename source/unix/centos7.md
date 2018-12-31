@@ -99,3 +99,26 @@ chkconfig --list
 chkconfig --list <service_name>
 chkconfig --level <run_level> <service_name> <on|off>
 ```
+
+
+## kernel update via yum
+```
+  rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+    ※正常なら何も表示されない
+  rpm -Uvh https://www.elrepo.org/elrepo-release-6-8.el6.elrepo.noarch.rpm
+  yum --enablerepo=elrepo-kernel -y install kernel-lt
+  rpm -qa | grep "^kernel" | sort
+  yum --enablerepo=elrepo-kernel -y swap \kernel-headers -- \kernel-lt-headers
+
+
+```
+
+```
+wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kernel-lt-4.4.169-1.el6.elrepo.x86_64.rpm
+wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kernel-lt-devel-4.4.169-1.el6.elrepo.x86_64.rpm
+wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kernel-lt-doc-4.4.169-1.el6.elrepo.noarch.rpm
+wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kernel-lt-headers-4.4.169-1.el6.elrepo.x86_64.rpm
+```
+
+rpm -e --nodeps kernel-headers
+yum list installed "kernel-*"
