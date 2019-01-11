@@ -26,3 +26,26 @@ RFC3484にはこう書かれている．
   - 権威DNS（コンテンツサーバ）専用
   - キャッシュサーバ(resolver)として使いたい場合は`Knot DNS resolver` というものもある．
     - cloudflare(1.1.1.1)で使われているらしい．
+
+## Primary DNSはどっち？
+  - `dig @<server> example.com ns`
+    ```
+      #...
+      #;; ANSWER SECTION:
+      #example.com.   87468 IN  NS  ns2.example.com.
+      #example.com.   87468 IN  NS  ns1.example.com.
+      #...
+    ```
+  - `dig @<server> ns1.example.com soa`
+    ```
+      # example.com.   180 IN  SOA ns1.example.com. hoge.example.com. ...
+    ```
+  - `dig @<server> ns2.example.com soa`
+    ```
+      # example.com.   180 IN  SOA ns1.example.com. hoge.example.com. ...
+    ```
+
+  - この場合，SOAがns1なので，ns1がprimary と機能していると見ることができる．
+  
+## ゾーン転送
+  - `dig @<server> <domain> axfr`

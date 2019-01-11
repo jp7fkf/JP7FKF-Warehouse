@@ -15,6 +15,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201810
   dialy/201811
   dialy/201812
+
   todo
   unix/centos7
   unix/ssh
@@ -33,6 +34,7 @@ Welcome to JP7FKF-Warehouse!
   unix/radius
   unix/esxi.md
   unix/postgresql.md
+  unix/httpd
   network/802_11
   network/ipv6
   network/junos

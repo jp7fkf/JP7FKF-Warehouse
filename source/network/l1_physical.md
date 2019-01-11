@@ -106,7 +106,6 @@
 +----+------+-----------+ 
 ```
 
-
 ##  クロストーク
 - 近端クロストーク（Near-End Crosstalk, NEXT）
 - パワーサム近端クロストーク（Power Sum NEXT, PS-NEXT）
