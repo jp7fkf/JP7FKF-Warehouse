@@ -20,7 +20,10 @@
   - 2016/06, 工事担任者(AI・DD総合種)
   - 2017/03, 電気通信主任技術者（線路）
   - 2017/05, 電気通信主任技術者（伝送交換）
+  - 2017/10  職業訓練指導員(電子科)
+  - 2017/10  FCC, Amateur Radio License(Extra)
   - 2017/12, ネットワークスペシャリスト
+  - 2018/09  .com Master ADVANCE, ADVANCE★★ 取得
   - 2018/10, CCNA Routing and Switching(200-125)
   - 2018/12, 技術士補（電気電子部門）
 
@@ -58,7 +61,11 @@
   - 2017/01  予備自衛官任官(採用), 一等陸曹に任官（技術，通信）
   - 2017/03  電気通信主任技術者（線路）免許取得
   - 2017/05  電気通信主任技術者（伝送交換）免許取得
+  - 2017/10  職業訓練指導員(電子科)免許取得
   - 2017/12  ネットワークスペシャリスト試験 合格(74.8, 80, 80, 69)
+  - 2017/10  FCC, Amateur Radio License(Extra) 取得
+  - 2018/04  Started working at NTT Communications Corp. (SDN, NFV, Test Automation)
+  - 2018/09  .com Master ADVANCE, ADVANCE★★ 取得
   - 2018/10  CCNA Routing and Switching(200-125) 取得
   - 2018/12  技術士補（電気電子部門）
 
@@ -69,7 +76,7 @@
   4. 橋本雄大, 袁巧微, "マイクロ波無線電力伝送用レクテナの製作と無線電力伝送実験," 平成29年度　電気関係学会東北支部連合大会　講演論文集, 2D12, Aug. 2017.
   5. Yudai HASHIMOTO, Qiaowei YUAN, E-WPT Calculator for WPT System and Horn Antenna Prototyped by Using CNC Machine Tool, The 3rd China College Students’ "Internet +" Innovation and 1. Entrepreneurship Competition, Sep. 2017.
   6. 橋本雄大, 袁巧微, "マイクロ波帯無線電力伝送に関する研究," 平成29年度東北地区高等専門学校専攻科産学連携シンポジウム, T17-P2-57, Nov. 2017.
-  7. 山本芳之,新関莉理,橋本雄大,本間尚樹,袁巧微,陳強, "MIMO Full-Duplexシステムにおける180度ハイブリッドを用いた自己干渉抑圧法の実験的検討," 信学技報," 信学技報, AP2017-82 , Aug. 2017.
+  7. 山本芳之,新関莉理,橋本雄大,本間尚樹,袁巧微,陳強, "MIMO Full-Duplexシステムにおける180度ハイブリッドを用いた自己干渉抑圧法の実験的検討," 信学技報, AP2017-82 , Aug. 2017.
   8. 橋本雄大, 袁巧微, 篠原直毅, "マイクロ波送電によるドローンの飛行に関する基礎検討," 信学技報, WPT2017-71, Mar. 2018.
   9. 袁巧微, 新関莉理, 橋本雄大, 山本芳之, 本間尚樹, 陳強, "アンテナと180°ハイブリッド一体化にしたMIMO Full-Duplexシステムの自己干渉抑圧に関する検討," 信学技報, AP2017-187 , Feb. 2018.
   10. 橋本雄大, 袁巧微, 篠原直毅 , "マイクロ波送電によるドローンの飛行に関する基礎検討 ～負荷と入力電力の変動を考慮したレクテナの設計手法～," 信学技報, WPT2017-71 , Mar. 2018.
