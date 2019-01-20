@@ -78,11 +78,16 @@ show chassis led
 ## configure exclusive
   - 誰にも編集させないぞ
 
-## load set terminal
-  - set 形式でloadできる．
+## configのload
+  - `load set terminal`
+    - set 形式でloadできる．
 
-## load merge terminal
-  - json 形式そのままload
+  - `load merge terminal`
+    - json 形式そのままload，既存のやつはmergeされるんだろうな．たぶん．
+
+  - `load override terminal`
+    - json 形式そのままload. 既存のやつをoverrideするんだろうな．たぶん．
+      - だから編集した階層になにか既存configあったら消えちゃうから注意っぽい．
 
 ## interface-range
   ```
@@ -123,3 +128,23 @@ show chassis led
 ## rename hoge to huga
   - その階層のお名前を変える．
   - 下の階層まで消して作り直したりしなくてよくて便利
+
+
+## mpls
+  - http://www.mplsvpn.info/2018/04/using-salt-with-network-devices-part-2_21.html
+
+### disable と deactivateの違い
+  - http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/
+
+## traceoprionsでファイル作ったのを消したい．
+  - 中身だけclear: `clear log <file_name>`
+  - いやファイルごと消したいんだけど: 
+    ```
+      # start shell
+      # rm /var/log/<file_name>
+      # [y/n]
+    ```
+
+## Chassis Clustor でnodeを切り替えたいんだが．
+  - `request routing-engine login node 1`
+  - `root@host-A% rlogin -T node1`

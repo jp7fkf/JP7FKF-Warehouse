@@ -15,6 +15,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201810
   dialy/201811
   dialy/201812
+  dialy/201901
 
   todo
   unix/centos7
