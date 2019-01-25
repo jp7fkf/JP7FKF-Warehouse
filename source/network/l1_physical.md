@@ -111,3 +111,10 @@
 - パワーサム近端クロストーク（Power Sum NEXT, PS-NEXT）
 - 遠端クロストーク（Far-End Crosstalk, FEXT）
 - 電力和等レベル遠端漏話（Power Sum Equal Level FEXT, PS-ELFEXT）
+
+
+## SFPの規格ってどないなっとんねん
+  - SFF-8431 Specifications for Enhanced Small Form Factor Pluggable Module SFP+
+  - https://www.snia.org/technology-communities/sff/specifications
+  - https://www.snia.org/sff
+  - http://www.10gtek.com/templates/wzten/pdf/INF-8074.pdf

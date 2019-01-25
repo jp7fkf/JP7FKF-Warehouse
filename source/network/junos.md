@@ -148,3 +148,13 @@ show chassis led
 ## Chassis Clustor でnodeを切り替えたいんだが．
   - `request routing-engine login node 1`
   - `root@host-A% rlogin -T node1`
+
+## request vmhost reboot
+  - `request system reboot` では最近のcontrol planeがvmに乗っている機器だとhwはrebootしない．上記コマンドではhw(vmhost)ごとrebootする．
+
+##
+show l2vpn forwarding bridge-domain VPLS:VLAN4 mac-address location 0/0/CPU0 | include c496
+
+## 流量を見たくなったら
+  - `monitor interface traffic`
+  - `monitor interface <interface_name>`
