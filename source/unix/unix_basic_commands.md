@@ -94,3 +94,9 @@ passwd <user> でパス変更しておこう
 # bobはaliceとして閲覧コマンドを実行できる
  $ bob ALL=(alice) /bin/ls, /bin/cat
 ```
+
+## ping のTTL
+  - TTLのデフォルト値（だいたい）
+    - Linux：64
+    - Windows：128
+    - Solaris：255

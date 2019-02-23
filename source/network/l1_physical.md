@@ -112,9 +112,19 @@
 - 遠端クロストーク（Far-End Crosstalk, FEXT）
 - 電力和等レベル遠端漏話（Power Sum Equal Level FEXT, PS-ELFEXT）
 
-
 ## SFPの規格ってどないなっとんねん
   - SFF-8431 Specifications for Enhanced Small Form Factor Pluggable Module SFP+
   - https://www.snia.org/technology-communities/sff/specifications
   - https://www.snia.org/sff
   - http://www.10gtek.com/templates/wzten/pdf/INF-8074.pdf
+
+## MTPコネクタ
+  - MPOコネクタの進化版らしい．
+  - MTPはUS Conecの登録商標とのこと．
+  - [MTP コネクタ](https://www.empowerfiber.com/ja/mtp-connector.html)
+  - [MTPコネクタとMPOコネクタ：違いは何ですか？ - sunny3210’s blog](https://sunny3210.hatenablog.com/entry/2018/10/06/152232)
+
+## FlexULC
+  - [FlexULC™付２心ラウンドコード - 製品情報 | 住友電工Optigate](http://www.optigate.jp/products/connector/mpo/2-fulc.html)
+  - ファイバ2芯分が1本の外部被覆にくるまっている．
+  - スペース的にも1/2になるみたい．配線がかさばることが想定されるところに適用するとよさそう．
