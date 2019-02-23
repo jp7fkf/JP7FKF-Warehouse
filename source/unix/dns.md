@@ -49,3 +49,37 @@ RFC3484にはこう書かれている．
   
 ## ゾーン転送
   - `dig @<server> <domain> axfr`
+
+## bind9 build battle
+  - bind9.13らへんをいれたかった．
+  - http://linux-sxs.org/internet_serving/bind9.html
+  ```
+  $ wget https://www.openssl.org/source/openssl-1.0.2q.tar.gz
+  $ tar xvzf openssl-1.0.2q.tar.gz
+  $ cd openssl-1.0.2q/
+  $ perl util/perlpath.pl `which perl` //はいらなかった
+  $ ./config --prefix=/usr --openssldir=/usr/ssl shared
+  $ make
+  $ su
+  $ rpm -q -a | grep openssl | while read line; do rpm -e --nodeps $line; done
+  $ make install
+  $ ldconfig -v
+
+  $ wget ftp://ftp.isc.org/isc/bind9/9.13.2/bind-9.13.2.tar.gz
+  $ tar xvzf bind-9.13.2.tar.gz
+  $ cd bind-9.13.2/
+  $ yum provides *sys/capability.h
+  $ yum install libcap-devel
+  $ ./configure --prefix=/usr --sysconfdir=/etc --enable-threads --localstatedir=/var/state --with-libtool --with-openssl=/usr/
+  $ make
+  $ su
+  $ rpm -q -a | grep '^bind' | while read line; do rpm -e --nodeps $line; done
+  $ ldconfig -v
+  $ groupadd named
+  $ vigr
+  $ chown root:daemon /var/run
+  $ chmod 775 /var/run
+  $ mkdir -p /var/named/pz
+  $ chown -R named:named /var/named
+  $ chmod -R 755 /var/named
+  ```

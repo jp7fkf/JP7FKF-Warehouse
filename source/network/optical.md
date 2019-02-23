@@ -48,3 +48,6 @@
   - Oバンド-PDFA(Praseodymium Doped Fiber Amplifier)
   - C・Lバンド-EDFA(Erbium Doped optical Fiber Amplifier)
   - Sバンド-TDFA(Thulium Doped Fiber Amplifier)
+
+## OM[1234]とか，SRとかERとかSXとか...そろそろちゃんとまとめないといかん．
+  - https://www.tsuko.co.jp/no31_qanda_tb1.html

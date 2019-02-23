@@ -43,3 +43,34 @@
 ## mac でsntp
 - `sudo sntp -sS <host>`
 - ex.) `sudo sntp -sS ntp.nict.jp`
+
+## ntpdateで強制同期
+  - する．
+  - '-d'オプションでdebug．
+  ```
+  -B: slewモードで強制的に時刻を修正．slewモードはadjtime()を使って徐々に時刻を修正．
+  -b: stepモードで強制的に時刻を修正．stepモードはsettimeofday()を使いすぐに時刻を修正．
+  -d: debug mode
+  -q: NTPサーバーに問い合わせのみ行う．
+  -s: 実行結果をsyslogに出力．
+  -v: verbose
+  ```
+
+## ntpdateのdebug
+  - Server dropped: no data
+    - ntpサーバが起きてない，ntpパケットが通ってない．
+  - Server dropped: strata too high
+    - ntpサーバに到達しているが，サーバがまだ利用可能ではない．syncが終わっていない．stratum値が規定外の16になっている．
+  - Server dropped: Leap not in sync
+    - ntpサーバに到達しているが，当該サーバが信頼できない．due to 起動してからの時間が短い/時刻同期を実行している最中である．
+
+## 代表的なntp
+  - ntp.nict.jp
+  - ntp.jst.mfeed.ad.jp
+
+## hw clock
+  - 表示
+    - sudo hwclock
+  - sync
+    - sudo hwclock --systohc
+    - sudo hwclock --hctosys

@@ -129,7 +129,6 @@ show chassis led
   - その階層のお名前を変える．
   - 下の階層まで消して作り直したりしなくてよくて便利
 
-
 ## mpls
   - http://www.mplsvpn.info/2018/04/using-salt-with-network-devices-part-2_21.html
 
@@ -152,9 +151,34 @@ show chassis led
 ## request vmhost reboot
   - `request system reboot` では最近のcontrol planeがvmに乗っている機器だとhwはrebootしない．上記コマンドではhw(vmhost)ごとrebootする．
 
-##
-show l2vpn forwarding bridge-domain VPLS:VLAN4 mac-address location 0/0/CPU0 | include c496
+## VPLSのmacをみる．
+  - `show l2vpn forwarding bridge-domain VPLS:VLAN100 mac-address location 0/0/CPU0 | include c496`
 
 ## 流量を見たくなったら
   - `monitor interface traffic`
   - `monitor interface <interface_name>`
+
+## sessionを消す
+  ```
+  junos> clear security flow session ?
+  Possible completions:
+    <[Enter]>            Execute this command
+    all                  Clear all sessions
+    application          Application protocol name
+    application-firewall  Show application-firewall sessions
+    application-traffic-control  Show application-traffic-control sessions
+    conn-tag             Session connection tag (0..4294967295)
+    destination-port     Destination port (1..65535)
+    destination-prefix   Destination IP prefix or address
+    family               Protocol family
+    idp                  IDP sessions
+    interface            Name of incoming or outgoing interface
+    nat                  Sessions with network address translation
+    protocol             IP protocol number
+    resource-manager     Sessions with resource manager
+    session-identifier   Clear session with specified session identifier
+    source-port          Source port (1..65535)
+    source-prefix        Source IP prefix or address
+    tunnel               Tunnel sessions
+    |                    Pipe through a command
+  ```
