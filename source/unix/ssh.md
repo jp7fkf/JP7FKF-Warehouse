@@ -65,3 +65,7 @@ host *-none
 Host *-out*
    ProxyCommand ssh -W %h:%p gateway
 ```
+
+## permission
+  - `~/.ssh` は`700`
+  - `~/.ssh/authorized_keys` は`644`
