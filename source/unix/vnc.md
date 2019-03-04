@@ -11,4 +11,3 @@
   -  `vncpasswd` コマンドでVNCでのログインユーザにpasswordをつける．
   - `systemctl start vncserver@:3` でVNC Server を起動．
   - あとはつなぐだけ．
-

@@ -119,6 +119,8 @@ wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kern
 wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kernel-lt-doc-4.4.169-1.el6.elrepo.noarch.rpm
 wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kernel-lt-headers-4.4.169-1.el6.elrepo.x86_64.rpm
 ```
-
+```
 rpm -e --nodeps kernel-headers
 yum list installed "kernel-*"
+```
+

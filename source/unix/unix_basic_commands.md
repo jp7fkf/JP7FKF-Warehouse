@@ -76,6 +76,9 @@ vi /etc/sudors
   # %wheel        ALL=(ALL)       ALL
 passwd <user> でパス変更しておこう
 ```
+  - `usermod -aG <GROUPS> <USER> #GROUPSはカンマ区切りで複数指定可`
+  - `gpasswd -a <USER> <GROUP>`
+  - `adduser <USER> <GROUP>`
 
 ## デフォルトshellを変える
   - `chsh -s <path_to_shell> <user_name>`
