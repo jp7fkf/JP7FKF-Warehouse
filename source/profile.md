@@ -6,6 +6,12 @@
     - AH0CV (US)
   - Major
     - Networking, Electronics, Microwave Wireless Power Transfer
+  - SNS etc
+    - [Twitter](https://twitter.com/jp7fkf)
+    - [Hatena Blog](https://jp7fkf.hatenablog.jp/)
+    - [Facebook](https://www.facebook.com/jp7fkf)
+    - [Instagram](https://www.instagram.com/jp7fkf/)
+    - [Linkedin](https://www.linkedin.com/in/yudai-hashimoto-21755464/)
 
 ## 資格等
   - 2011/12  第3級アマチュア無線技士
