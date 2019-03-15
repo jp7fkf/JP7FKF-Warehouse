@@ -103,3 +103,30 @@ passwd <user> でパス変更しておこう
     - Linux：64
     - Windows：128
     - Solaris：255
+
+## httping
+  - httpでpingする感じ．
+  - `httping <address>` で基本的には動く．
+    - headメソッドでリクエストを投げる．
+  - `-G` オプションでGETを投げる．
+  - 他にもプロキシ指定(-x proxyserver:port)したり，タイムアウト(-t)，インターバル(-i)，http status code(-s)，URL指定(-g)などのオプションがある．
+
+## find
+  
+```
+# you can filter out messages to stderr. I prefer to redirect them to stdout like this.
+$ find / -name art  2>&1 | grep -v "Permission denied"
+
+# Explanation:
+# In short, all regular output goes to standard output (stdout). All error messages to standard error (stderr).
+# grep usually finds/prints the specified string, the -v inverts this, so it finds/prints every string that doesn't contain "Permission denied".
+# All of your output from the find command, including error messages usually sent to stderr (file descriptor 2) go now to stdout(file descriptor 1) and then get filtered by the grep command.
+# This assumes you are using the bash/sh shell.
+
+# Under tcsh/csh you would use
+$ find / -name art |& grep ....
+ ```
+
+## 容量の大きいディレクトリtop10
+  - なんのせいでdiskが逼迫しているかわからないときよくある．
+  - `du -m / | sort -nr | head -10`

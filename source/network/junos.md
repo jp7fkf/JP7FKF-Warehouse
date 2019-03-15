@@ -38,7 +38,6 @@ request virtual-chassis reactivate
 request virtual-chassis recycle member-id <id>
 request virtual-chassis renumber member-id <id> new-member-id <id>
 
-
 - vcステータス確認
 show virtual-chassis status
 show virtual-chassis vc-port

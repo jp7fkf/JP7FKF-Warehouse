@@ -459,6 +459,7 @@
   ```
 
   - 結局のところ `sudo pipework --direct-phys eth1 $CONTAINERID 192.168.1.2/24` とかを使うのが一番早い件．さすが．
+    - https://serverfault.com/questions/688483/assign-physical-interface-to-docker-exclusively
     ```
       [jp7fkf@localhost ~]$ sudo sh -x pipework/pipework --direct-phys eth1 39d4 172.16.156.40/24
       + set -e
