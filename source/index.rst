@@ -35,9 +35,10 @@ Welcome to JP7FKF-Warehouse!
   unix/imagemagick
   unix/unix_basic_commands
   unix/radius
-  unix/esxi.md
-  unix/postgresql.md
+  unix/esxi
+  unix/postgresql
   unix/httpd
+  unix/zabbix
   network/802_11
   network/ipv6
   network/junos
@@ -51,21 +52,21 @@ Welcome to JP7FKF-Warehouse!
   network/vrrp
   network/yamaha
   network/vyos
-  network/cumulus.md
-  network/snmp.md
+  network/cumulus
+  network/snmp
   network/vpp
   hobbies/making
+  hobbies/go
   hobbies/stm32
   hobbies/css
-  hobbies/javascript.md
-  hobbies/mobile_communication.md
-  hobbies/rails.md
+  hobbies/javascript
+  hobbies/mobile_communication
+  hobbies/rails
   r_lang
+  settings
   mac_commands
   electronics
   ansible
-
-- [日記](201809.md)
 
 Indices and tables
 ==================
