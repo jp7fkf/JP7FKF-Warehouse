@@ -108,7 +108,7 @@ show chassis led
         }
     }
   }
-    ```
+  ```
 
 ## wildcard range {set | delete} hogehoge [0-5] hugahuga
   - ex). `$ wildcard range set interfaces ge-0/0/[0-10] unit 0 family ethernet-switching access`
