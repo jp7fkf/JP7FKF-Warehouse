@@ -123,4 +123,28 @@ wget --no-check-certificate https://elrepo.org/linux/kernel/el6/x86_64/RPMS/kern
 rpm -e --nodeps kernel-headers
 yum list installed "kernel-*"
 ```
+## motd, issueをかく
+  - これを書いておくと，サーバの役割だとか，みんなに伝えたいことがかけてよい．
+  - motd(message of the day)
+    - `/etc/motd` に書く．
+  - issue
+    - consoleのときの表示は `/etc/issue` に書く
+    - remote loginのときの表示は `/etc/issue.net` に書く．
+  - banner
+    - sshのときのbannerは `/etc/ssh/sshd_conf` のBannerに書く．
 
+## pyenv install
+```
+  yum -y install gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel libffi-devel
+  # python 3.7系をinstallするときは libffi-devel が求められる．
+  curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+
+  vim ~/.bashrc
+  # 下記を記載．
+  # export PATH="~/.pyenv/bin:$PATH"
+  # eval "$(pyenv init -)"
+  # eval "$(pyenv virtualenv-init -)"
+
+  source ~/.bashrc
+  pyenv -v
+```

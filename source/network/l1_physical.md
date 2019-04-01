@@ -1,5 +1,5 @@
 # L1 - Physical Layer
-## 物理層の話 ## 2018-09-04 09:01:41 YudaiHashimoto
+## 物理層の話
   - Gigabit Ethernetは4D-PAM5という変調方式を取っている．
     - 0レベルの他に上下2レベルの信号レベルがある
     → 4-dimentional - 5-level Pulse Amplitude Modulationかと．  
@@ -20,11 +20,11 @@
     - ハイブリッド回路（方向性結合き的な）で送受信信号の分離している．
     - 4ペア間の同期を取るための処理も必要．
   ```
-            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
-            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
+            +--- TX/RX ---- <-- 250Mbps(125MHz/2bit) --> ---- TX/RX ---+
+            +--- TX/RX ---- <-- 250Mbps(125MHz/2bit) --> ---- TX/RX ---+
        <<---+                                             +--->>
-            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
-            +--- TX/RX ---- <-- 250Mbps --> ---- TX/RX ---+
+            +--- TX/RX ---- <-- 250Mbps(125MHz/2bit) --> ---- TX/RX ---+
+            +--- TX/RX ---- <-- 250Mbps(125MHz/2bit) --> ---- TX/RX ---+
   - EIA/TIA-854-A(1000BASE-TX)
     - ペア間同期とか，信号分離がいらないので安価．
     - Cheaper Gigabit Ethernet とも呼ばれる．
@@ -37,7 +37,7 @@
   ```
 
 
-## イーサネットの伝送方式まとめ # 2018-08-24 17:08:02 YudaiHashimoto
+## イーサネットの伝送方式まとめ
 - 1Gbps
   - 光ファイバー
     - 1000BASE-SX：マルチモードケーブル （550m）
@@ -128,3 +128,10 @@
   - [FlexULC™付２心ラウンドコード - 製品情報 | 住友電工Optigate](http://www.optigate.jp/products/connector/mpo/2-fulc.html)
   - ファイバ2芯分が1本の外部被覆にくるまっている．
   - スペース的にも1/2になるみたい．配線がかさばることが想定されるところに適用するとよさそう．
+
+
+## 符号化って，ある意味の圧縮である
+  - xx符号，ハフマンetc...
+
+
+## http://www.net.c.dendai.ac.jp/~nojikawa/03kc082.htm

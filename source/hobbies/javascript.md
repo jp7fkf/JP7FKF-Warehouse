@@ -20,3 +20,10 @@
 ## Simple MDE
   - web にmdエディタを埋め込みたいときに便利
   - [Webサイトにマークダウンエディタを組み込みたい。そうだ！「SimpleMDE」を使おう！ | unitopi - ユニトピ -](http://unitopi.com/markdown-editor/)
+
+## nuxt.js
+  - nuxt.js(nuxt-create-app)
+  - axios + corsでクロスドメイン
+
+## クロスドメインの話
+　- https://dev.classmethod.jp/etc/about-cors/
