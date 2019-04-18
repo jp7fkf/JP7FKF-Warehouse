@@ -181,3 +181,6 @@ show chassis led
     tunnel               Tunnel sessions
     |                    Pipe through a command
   ```
+
+## port checker
+  - https://apps.juniper.net/home/port-checker/

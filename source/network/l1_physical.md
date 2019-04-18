@@ -2,11 +2,11 @@
 ## 物理層の話
   - Gigabit Ethernetは4D-PAM5という変調方式を取っている．
     - 0レベルの他に上下2レベルの信号レベルがある
-    → 4-dimentional - 5-level Pulse Amplitude Modulationかと．  
-    → 4Dは4-wireの意  
-    → 1-wireあたり250Mbps(125Mbaud), 62.5MHzのレート  
-    → シリアルの1Gbps信号を4-wireにパラレル変換している．  
-    →レベル0 はForwaed Error Ditectionにのみ用いられて信号伝送には使わない  
+    → 4-dimentional - 5-level Pulse Amplitude Modulationかと．
+    → 4Dは4-wire(4-Dimentinal)の意
+    → 1-wireあたり250Mbps(125Mbaud), 62.5MHzのレート
+    → シリアルの1Gbps信号を4-wireにパラレル変換している．
+    →レベル0 はForward Error Detectionにのみ用いられて信号伝送には使わない
     - 8B1Q4でシンボルを生成して4D-PAM5で送る感じ
 
 ## 1000base-tと1000base-txの違い
@@ -129,9 +129,101 @@
   - ファイバ2芯分が1本の外部被覆にくるまっている．
   - スペース的にも1/2になるみたい．配線がかさばることが想定されるところに適用するとよさそう．
 
-
 ## 符号化って，ある意味の圧縮である
   - xx符号，ハフマンetc...
 
-
 ## http://www.net.c.dendai.ac.jp/~nojikawa/03kc082.htm
+
+## [Wikipedia - Ethernet Physical Layer](https://en.wikipedia.org/wiki/Ethernet_physical_layer)
+
+## Naming conventions
+Generally, layers are named by their specifications:[8]
+
+10, 100, 1000, 10G, ... – the nominal, usable speed at the top of the physical layer (no suffix = megabit/s, G = gigabit/s), excluding line codes but including other physical layer overhead (preamble, SFD, IPG); some WAN PHYs (W) run at slightly reduced bitrates for compatibility reasons; encoded PHY sublayers usually run at higher bitrates
+BASE, BROAD, PASS – indicates baseband, broadband, or passband signaling respectively
+-T, -S, -L, -E, -Z, -C, -K, -H ... – medium: T = twisted pair, S = 850 nm short wavelength (multi-mode fiber), L = 1300 nm long wavelength (mostly single-mode fiber), E or Z = 1500 nm extra long wavelength (single-mode), B = bidirectional fiber (mostly single-mode) using WDM, P = passive optical (PON), C = copper/twinax, K = backplane, 2 or 5 or 36 = coax with 185/500/3600 m reach (obsolete), F = fiber, various wavelengths, H = plastic optical fiber
+X, R – PCS encoding method (varying with the generation): X for 8b/10b block encoding (4B5B for Fast Ethernet), R for large block encoding (64b/66b)
+1, 2, 4, 10 – for LAN PHYs indicates number of lanes used per link; for WAN PHYs indicates reach in kilometers
+For 10 Mbit/s, no encoding is indicated as all variants use Manchester code. Most twisted pair layers use unique encoding, so most often just -T is used.
+
+The reach, especially for optical connections, is defined as the maximum achievable link length that is guaranteed to work when all channel parameters are met (modal bandwidth, attenuation, insertion losses etc). With better channel parameters, often a longer, stable link length can be achieved. Vice versa, a link with worse channel parameters can also work but only over a shorter distance. Reach and maximum distance have the same meaning.
+
+## Physical Layers
+  - Early implementations
+    - 10Base-2
+    - 10Base-5
+    - 10Broad-36
+  - Fast Ethernet
+    - 100Base-T
+    - 100Base-TX
+  - 1 Gbit/s
+    - 1000Base-T
+    - 1000Base-SR/SX
+    - 1000base-LR/LX
+  - 2.5 and 5 Gbit/s
+  - 10 Gbit/s
+    - 10GBase-SR/SX
+    - 10GBase-LR/LX
+  - 25 Gbit/s
+  - 40 Gbit/s
+  - 50 Gbit/s
+  - 100 Gbit/s
+  -  200 Gbit/s
+  -  400 Gbit/s and beyond
+
+
+## JIS C6802：2011 (IEC 60825-1：2007) p63
+
+### C.2 クラスに関する解説 
+- クラス 1 直接ビーム内観察を長時間行っても，またそのとき，観察用光学器具（ルーペ又は双眼鏡）を用いても安全であるレーザ製品。クラス 1 には，用いるときに危険性のある放射を被ばくすることのないように完全に囲われた高出力レーザ（組込形レーザ製品）も含まれる。可視の光エネルギーを放射するクラス 1 レーザ製品をビーム内観察すると，特に周辺が暗い環境の下では，目がくらむなどの視覚的な影響が依然として生じ得る。クラス 1M 裸眼（光学器具を用いない）で，直接ビーム内観察を長時間行っても安全であるレーザ製品。光学器具（ルーペ又は双眼鏡）を用いて観察すると，次の二つの条件のうちのいずれかで MPE を超え，露光による目の障害が生じる可能性がある。
+a)発散ビームに対して，それを集光する（又は平行にする）ために，光源から 100 mm 以内の位置で光学器具を用いる場合。
+b)条件 3 で規定する測定用の開口直径（表 11 参照）より大きな直径をもつ平行ビームの場合。クラス 1M レーザの波長領域は，光学器具に用いられるほとんどの光学ガラス材料をよく透過するスペクトル領域，302.5 nm∼4 000 nm の間に限られている。可視の光エネルギーを放射するクラス 1M レーザ製品をビーム内観察すると，特に周辺が暗い環境の下では，目がくらむなどの視覚的な影響が依然として生じ得る。
+
+- クラス 2 400 nm∼700 nm の波長範囲の可視光を放出するレーザ製品であって，瞬間的な被ばくのときは安全であるが，意図的にビーム内を凝視すると危険なレーザ製品。0.25 s の時間基準は，クラスの定義に内在している。これは，多少長めであっても，瞬間的な被ばくによって障害が生じるリスクは非常に小さいという推定に基づいている。次のような事項は，合理的に予見し得る条件下で障害の排除に寄与している
+  −  安定させた頭部の瞳孔にビームがアライメントされるとか，目の遠近調節が最悪ケースになっているなどの最悪条件が，意図的でない露光に反映されることはまれである。
+  −  AEL の根拠としている MPE には，本来固有の安全余裕が存在している。
+  −  まぶ（眩）しい光の露光に対しては，人は自然に回避行動をする。
+
+クラス 2 は，クラス 2M とは異なり，光学器具を用いても目に障害が生じるリスクは増加しない。ただし，クラス 2 レーザ製品から得られるビームによって，特に周辺が暗い環境の下では，げん（眩）惑，せん（閃）光盲，残像などの視覚的な影響が生じ得る。これらは，一次的な視力障害又は驚いて反応することを通じて，一般の安全性と間接的に関わっている。このような視力への影響は，機械作業，高所作業，高電圧作業，運転など，安全の確保が肝要となる行動中に発生したときに，注意を払う必要がある。使用者に，ビームをのぞき込まないこと，すなわち，頭を動かしたり又は目を閉じたりすることで，能動的に防御反応をすること，及び連続した意図的なビーム内観察を避けることを，ラベルによって指示する。
+
+- クラス 2M 可視のレーザビームを出射するレーザ製品であって，（光学器具を用いない）裸眼に対してだけ短時間の被ばくが安全なレーザ製品。光学器具（ルーペ又は双眼鏡）を用いて観察すると，次の二つの条件のうちのいずれかで，露光による目の障害が生じる可能性がある。a)発散ビームに対して，それを集光する（又は平行にする）ために，光源から 100 mm 以内の位置で光学器具を用いる場合。b)条件 3 で規定する測定用の開口直径（表 11 参照）より大きな直径をもつ平行ビームの場合。ただし，クラス 2M レーザ製品から得られるビームによって，特に周辺が暗い環境の下では，げん（眩）惑，せん（閃）光盲，残像などの視覚的な影響が生じ得る。これらは，一次的な視力障害又は驚いて反応することを通じて，一般の安全性と間接的に関わっている。このような視力への影響は，機械作業，高所作業，高電圧作業，運転など，安全の確保が肝要となる行動中に発生したときに，注意を払う必要がある。使用者に，ビームをのぞき込まないこと，すなわち，頭を動かしたり又は目を閉じたりすることで，能動的に防御反応をすること，及び連続した意図的なビーム内観察を避けることを，ラベルによって指示する。
+
+- クラス 3R 放射出力のレベルが，直接のビーム内観察条件に対して MPE を超えるものの，AEL がクラス 2 の AEL（可視レーザビームの場合）又はクラス 1 の AEL（不可視レーザビームの場合）の僅か 5 倍であることから，障害が生じるリスクが比較的小さいレーザ製品。目に障害が生じるリスクは露光時間とともに増大し，また意図的に目に露光することは危険である。クラス 3B と比べてリスクが低いので，製造業者への要求事項，管理基準などが緩和されている。リスクは，次のような理由で制限されている。
+  −  ビームが瞳孔にアライメントされているとか，目の遠近調節が最悪ケースになっているなどの最悪条件が，意図的でない露光に反映されることはまれである。
+  −  MPE には，本来固有の安全余裕が存在している。
+  −  可視の放射の場合は，まぶ（眩）しい光の露光に対して人は自然に回避行動をする。また，遠赤外光の場合は，角膜の加熱に対する反応がある。
+ただし，可視波長域のクラス 3R レーザ製品から得られるビームによって，特に周辺が暗い環境の下では，げん（眩）惑，せん（閃）光盲，残像などの視覚的な影響が生じ得る。これらは，一次的な視力障害又は驚いて反応することを通じて，一般の安全性と間接的に関わっている。このような視力への影響は，機械作業，高所作業，高電圧作業，運転など，安全の確保が肝要となる行動中に発生したときに，注意を払う必要がある。クラス 3R レーザは，直接のビーム内観察がありそうにない場合についてだけ用いるのがよい。
+
+- クラス 3B 目へのビーム内露光が生じると（NOHD 内において），偶然による短時間の露光でも，通常危険なレーザ製品。拡散反射光の観察は通常安全である。クラス 3B の AEL 近傍のクラス 3B レーザは，軽度の皮膚障害又は可燃物の点火を引き起こす可能性がある。ただし，これはビームの直径が小さいか，又は集光したときだけに起こり得る。
+  - 注記  拡散反射光の観察でも MPE を超えるような観察条件は，まれではあるが，理論的には存在する。例えば，AEL に近い出力をもつクラス 3B レーザでは，拡散反射面と角膜との距離を 13 cm以下にした観察の場合，可視放射の完全な拡散反射を 10 s 以上にわたって長時間観察した場合には MPE を超える可能性がある。
+
+- クラス 4 ビーム内の観察及び皮膚への露光は危険であり，また拡散反射の観察も危険となる可能性があるレーザ製品。これらのレーザには，しばしば火災の危険性が伴う。
+
+- 用語体系に関する注記 クラス 1M 及びクラス 2M における“M”の由来は，拡大用観察器具（magnifying optical viewing instruments）である。クラス 3R における“R”の由来は，例えば，キースイッチ，ビーム終端器又は減衰器，及びリモートインタロックコネクタを不要とするなど，製造業者及び使用者への要求事項の削減（reduce）又は緩和（relax）である。クラス 3B における“B”は，この規格の旧版である JIS C 6802:2005 が発行される以前の JIS C 6802:1997 及び追補 1:1998 において，現在のクラス 1M 及びクラス 2M に類似する意味をもっていた，クラス 3A というものが存在していたという歴史的な経緯に由来している。これまでの記述において，“危険性がある”と表現したり，又は障害が生じるリスクが高いことに言及した場合，これらの危険性及びリスクは，対応する MPE レベルを超える，レーザ周辺の領域においてだけ存在することに留意する必要がある。裸眼に対する露光の場合は，この領域は NOHD による境界がある。また，平行性の優れたクラス 1M 又はクラス 2M レーザからの放射を双眼鏡又は望遠鏡で観察する場合は，拡張 NOHD（ENOHD）による境界がある。特定のレーザ製品（クラス 3B 及びクラス 4 であっても）においては，その NOHD が極めて短く，装置の設置又は応用によっては，NOHD の外部にいる人に対しては目の保護を必要としない場合があり得る。このような設置の事例としては，製造現場の天井に走査形レーザ又は線状レーザを備えて，下方の作業領域における加工品上に模様又は線を投影するものなどがある。パワーレベル及び走査パターンは，作業領域における露光が平常作業の場合に安全となるよう，MPE 以下に設定できるが，保守及びサービス作業の場合には，特別の配慮が必要である。例えば，使用者がはしごに乗って出射窓を清掃する場合など，近接した場所での露光は危険となる可能性がある。また，走査パターンは安全であっても，ビームが非走査モードに戻ると危険になるかもしれない。さらに，クラス 4 レーザ製品においては，拡散反射についてもそれらには NOHD（この NOHD の領域はかなり狭いが）が付随する。特定のレーザ及び応用に付随する危険の特性を評価することは，リスクアセスメントの一部である。クラス分けの試験は，幾分“最悪ケース”を考慮して設計されており，合理的に予見し得る最悪の状態においても，下位のクラスの製品（例えば，クラス 1）が目又は皮膚への危険を生じないことを保証するように制限している。その結果，危険になり得るのは最悪状態のときだけであるので，クラス 3B 又はクラス 4 製品であっても，意図した使用及び通常の運転の場合は安全とみなせるように設計できる。例えば，製品が，保護きょう体（IEC 60825-4 に準拠したもの）を備えた実用上安全なものであっても，次のような理由でクラス 1 の組込形レーザ製品にならない場合がある。
+  −  きょう体が，この規格に準拠した長時間の試験を満たしていない（一方，IEC 60825-4 に準拠した機械としては，より短い評価時間を用いることができる。）。
+  −  製品には天蓋が装備されていない。ただし，ガードの上側には人が存在しないという環境では安全とみなせる
+  −  “歩行”立入りの自動検出手段を備えていない（ただし，管理された環境では，きょう体の内部に人が存在しているときのドアの閉鎖を防ぐために，個人別の錠を設けるという組織的安全対策によって代替することができる。これは，クラス分けを変えるものではないが，使用者に対して所望のレベルの安全性を達成する手順を例示している。）。クラス 3B 及びクラス 4 レーザ製品に付随する危険がきょう体内だけに制限されている場合は，組織による安全対策だけで十分であるかもしれない。同様に，天蓋のないレーザシステム又は長時間故障が持続するとガードが焼けて穴があいてしまうような状況においても，組織による安全対策だけで十分なことがある。
+
+クラス 3B 及びクラス 4 であっても，付随する危険が特殊な状況下だけに生じるような別の事例がある。例えば，低出力レベルのレーザ治療に用いられる発散角の大きな光源に，コリメートレンズのような附属品が適用されることを前提としてクラス分けされている場合を想定する。附属品のレンズを装着した場合，レンズによって潜在的に危険な平行ビームが生じるため，この製品はクラス 3B とクラス分けされることがある。ただし，附属品のレンズを取り外した状態では発散角の大きなビームとなり，安全となり得る（すなわち，目への露光は MPE 以下となる。）。この場合，危険な領域は，レーザに附属品が装着された場合にだけ存在する。
+
+## 物理側を理解する
+  - わかりやすい
+    - [http://grouper.ieee.org/groups/802/3/tutorial/march98/mick_170398.pdf](http://grouper.ieee.org/groups/802/3/tutorial/march98/mick_170398.pdf)
+
+  - https://www.fiberlabs.co.jp/column/about-ld/
+    - レーザの話
+    - http://www.elec.chubu.ac.jp/kuzuya-Lab/laser-j.htm
+  - https://jpn.nec.com/techrep/journal/g15/n03/pdf/150315.pdf
+    - デジコヒ
+    - どこまで来ているのか気になる．トランシーバ，実用事例
+  - https://en.wikipedia.org/wiki/Ethernet_physical_layer
+  - http://kulgov.su/802.3-2008_section3.pdf
+  - https://www.jstage.jst.go.jp/article/lsj/37/3/37_194/_pdf
+  - http://www.ntt.co.jp/journal/0607/files/jn200607058.pdf
+  - http://www.oitda.or.jp/main/data/cocs.pdf
+  - ROADMの話
+  - 実は違うRJ45と8P8C
+    - https://jp.flukenetworks.com/blog/cabling-chronicles/history-rj45-case-mistaken-identity
+  - http://www.cqpub.co.jp/interface/toku/200109/toku1_3.htm
+  - http://www.ntt.co.jp/journal/1303/files/jn201303042.pdf
+  - http://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/catv_system/pdf/070315_1_sa1_4.pdf
