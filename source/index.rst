@@ -21,17 +21,27 @@ Welcome to JP7FKF-Warehouse!
   dialy/201904
 
   todo
+  programming/sh
+  programming/go
+  programming/css
+  programming/javascript
+  programming/rails
+  programming/r_lang
+  tech/jenkins
+  tech/docker
+  tech/renat
+  tech/mac_commands
+  tech/ansible
+  tech/zabbix
+  tech/eveng
   unix/centos7
+  unix/vim
   unix/ssh
   unix/tmux
-  unix/arp
   unix/ntp
   unix/dig
   unix/dns
   unix/vnc
-  unix/sh
-  unix//jenkins
-  unix/docker
   unix/version
   unix/mysql
   unix/imagemagick
@@ -40,7 +50,8 @@ Welcome to JP7FKF-Warehouse!
   unix/esxi
   unix/postgresql
   unix/httpd
-  unix/zabbix
+  network/L2.md
+  network/arp
   network/802_11
   network/ipv6
   network/junos
@@ -50,7 +61,6 @@ Welcome to JP7FKF-Warehouse!
   network/cisco
   network/alaxala
   network/optical
-  network/renat
   network/vrrp
   network/yamaha
   network/vyos
@@ -58,17 +68,10 @@ Welcome to JP7FKF-Warehouse!
   network/snmp
   network/vpp
   hobbies/making
-  hobbies/go
   hobbies/stm32
-  hobbies/css
-  hobbies/javascript
   hobbies/mobile_communication
-  hobbies/rails
-  r_lang
   settings
-  mac_commands
-  electronics
-  ansible
+  electronics/electronics
 
 Indices and tables
 ==================

@@ -56,3 +56,8 @@
   - BGP Advertise Best External
   - BGP add-path
   - BGP Diverse Path
+
+## LoでBGPを張る
+  - https://webcache.googleusercontent.com/search?q=cache:Z0j64jPkSo8J:https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/13751-23.html+&cd=11&hl=en&ct=clnk&gl=jp
+  - loを用いてebgp neighbor を構成するときにebgp-multihopは本当に必要か？
+    - https://community.cisco.com/t5/routing/ebgp-multihop-command-only-applies-to-loopbacks/td-p/2030331
