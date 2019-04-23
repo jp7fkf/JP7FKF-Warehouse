@@ -83,7 +83,7 @@
   - 2016/09  2016 World E.V. Challenge in SUGO
     -  仙台高専からSEV-K'16, SEV-U'16のマシンで参加しました．私は主としてメカニックに従事．何でも屋でした．
   - 2016/09  IEICE 通信ソサイエティ WPT研究会 ワイヤレス結合器コンテストでGHz帯部門において最高kQ積賞を受賞しました．
-    - 3DプリンタとCNC装置を用いてPLA樹脂と銅張基盤を用いてホーンアンテナを製作しました．
+    - 3DプリンタとCNC装置を用いてPLA樹脂と銅張基板を用いてホーンアンテナを製作しました．
   - 2016/10  ブラジルIEEE中南米ロボットコンテストに参加
     - ブラジルのRecife市で開催されたロボコンに参加しました．世界遺産の街オリンダも訪れました．
   - 2017/01  予備自衛官任官(採用), 一等陸曹に任官（技術，通信）
@@ -115,8 +115,10 @@
   10. Yudai Hashimoto, Qiaowei YUAN, Takumi Aoki, The Fundamental Experiment of Microwave Wireless Power Transmission to UAV,  Asian Wireless Power Transfer Workshop (AWPT2018), Nov. 2018.
   11. Yudai Hashimoto, Qiaowei YUAN, Takumi Aoki, Drone Driven by Microwave, 2018 Asia-Pacific Microwave Conference (APMC2018), AP2017-187, Nov. 2018. 
 
+## 自分向け
+  -  [toggle](https://toggl.com/app/timer)
+
 ## test
-  [API Reference](201809.md)
   - 数式 / インライン数式
   マークダウン記法
   ```
