@@ -10,26 +10,45 @@
     - `virsh list --all` (すべて)
 
   - ネットワーク一覧
-    - virsh net-list (稼働中のみ)
-    - virsh net-list --all (すべて)
+    - `virsh net-list` (稼働中のみ)
+    - `virsh net-list --all` (すべて)
 
-  - リソースの利用状況を見たい
+  - リソースの利用状況
     - `virt-top`
+
+  - vcpu
+    - `virsh vcpuinfo <name>`
+
+  - dominfo
+    - `virsh dominfo <name>`
 
 ### Actions
   - VMを起動
-    - `virsh start [name]`
+    - `virsh start <name>`
   - VMを停止
-    - `virsh stop [name]`
+    - `virsh stop <name>`
   - VMを強制停止
-    - `virsh destroy [name]`
+    - `virsh destroy <name>`
   - VMを一時停止
-    - `virsh suspend [name]`
+    - `virsh suspend <name>`
   - VMを再起動
-    - `virsh reboot [name]`
+    - `virsh reboot <name>`
   - コンソール接続
-    `virsh console [name]`
+    `virsh console <name>`
       - `ctrl + ]` で抜ける
+  - CPU変更(次回以降の起動時から有効)
+    - `virsh setvcpus <name> <new_cpunum> --config --maximum`
+  - MEMサイズ変更(次回以降の起動時から有効)
+    - `virsh setmem <name> <new_memsize> --config`
+  - 構成情報変更(VM停止して実施)
+    - `virsh edit <name>`
+      - ex.)
+      ```
+      (snip.)
+       memory unit='KiB'2097152/memory
+       currentMemory unit='KiB'2097152/currentMemory
+      (snip.)
+      ```
 
 ### VM Operations
   - 通常のインストール手順
@@ -39,17 +58,17 @@
     3. OSのインストール
     ```
     1. イメージの作成
-      - `qemu-img create -f qcow2 [image_name] [size]`
+      - `qemu-img create -f qcow2 <image_name> <size>`
         - `例) qemu-img create -f qcow2 example.img 20G`
 
     2. インストールの実行
       ```
       virt-install \
       --connect qemu:///system \
-      --name=[ドメイン名] \
-      --ram=[メモリ:単位はメガ] \
-      --disk path=[作成したイメージファイルのパス] \
-      --vcpus=[CPUの割り当て数] \
+      --name=<ドメイン名> \
+      --ram=<メモリ:単位はメガ> \
+      --disk path=<作成したイメージファイルのパス> \
+      --vcpus=<CPUの割り当て数> \
       --os-type=linux \
       --os-variant=rhel6 \
       --network bridge=br0 \
@@ -65,23 +84,23 @@
   - VMをコピーする
     ```
     virt-clone \
-    --original [origin_name] \
-    --name [new_name] \
-    --file [new_path]
+    --original <origin_name> \
+    --name <new_name> \
+    --file <new_path>
     ```
 
   - VMを削除
-    - `virt undefine [guest_name]`
+    - `virt undefine <guest_name>`
 
   - VMの設定変更
     - xmlを編集
-      - `virsh edit [name]`
+      - `virsh edit <name>`
     - xmlの内容を適用
-      - `virsh define [path_to_xml]`
+      - `virsh define <path_to_xml>`
       - 設定の流れとしてはedit->define．CPUやメモリの変更は要再起動。
 
   - 動的にネットワークインターフェースを追加
-    - `virsh atatch-interface [name] [int_type] [int_src]`
+    - `virsh atatch-interface <name> <int_type> <int_src>`
     - `例) virsh attach-interface example bridge virbr1`
 
   - ネットワーク設定
@@ -94,28 +113,28 @@
       <bridge name="virbr1" stp='on' delay='0'/>
       </network>
       ```
-      - 適用
-        - `virsh net-create network-name.xml`
-          - 作成したネットワークをVMで利用する時はVMのxmlに設定してインターフェースを追加するなり再起動するなりすればOK。
+    - 適用
+      - `virsh net-create network-name.xml`
+        - 作成したネットワークをVMで利用する時はVMのxmlに設定してインターフェースを追加するなり再起動するなりすればOK。
 
   - スナップショット関連
     - スナップショットを作成
-      - `virsh snapshot-create-as [name] [snapshot_name] [descriptions]`
+      - `virsh snapshot-create-as <name> <snapshot_name> <descriptions>`
         `例) virsh snapshot-create-as examle examle-snap "desc"`
       - 作成中はVMが一時停止する
 
     - スナップショットを確認
-      - `virsh snapshot-list [name]`
+      - `virsh snapshot-list <name>`
 
     - スナップショットから復元
-      - `virsh snapshot-revert [name] [snapshot_name]`
+      - `virsh snapshot-revert <name> <snapshot_name>`
       - VM稼働中に実行すると復元後リブートする．停止中に実施するのがよいらしい．
 
     - スナップショットの削除
-      - `virsh snapshot-delete [name] [snapshot_name]`
+      - `virsh snapshot-delete <name> <snapshot_name>`
 
     - 無停止でスナップショットを作成
-      - `virsh snapshot-create-as [name] [snapshot_name] [descriptions] --disk-only --atomic`
+      - `virsh snapshot-create-as <name> <snapshot_name> <descriptions> --disk-only --atomic`
       - under development
 
 ## Reference

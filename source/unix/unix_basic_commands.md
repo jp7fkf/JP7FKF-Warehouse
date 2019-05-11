@@ -76,14 +76,14 @@ vi /etc/sudors
   # %wheel        ALL=(ALL)       ALL
 passwd <user> でパス変更しておこう
 ```
-  - `usermod -aG <GROUPS> <USER> #GROUPSはカンマ区切りで複数指定可`
-  - `gpasswd -a <USER> <GROUP>`
-  - `adduser <USER> <GROUP>`
+- `usermod -aG <GROUPS> <USER> #GROUPSはカンマ区切りで複数指定可`
+- `gpasswd -a <USER> <GROUP>`
+- `adduser <USER> <GROUP>`
 
 ## デフォルトshellを変える
-  - `chsh -s <path_to_shell> <user_name>`
-  - もしくは `/etc/passwd`の該当ユーザの末尾に`<path_to_shell>`を追加
-  - `cat /etc/shells`で使えるshell一覧
+- `chsh -s <path_to_shell> <user_name>`
+- もしくは `/etc/passwd`の該当ユーザの末尾に`<path_to_shell>`を追加
+- `cat /etc/shells`で使えるshell一覧
 
 ## sudors
 ```
@@ -99,19 +99,23 @@ passwd <user> でパス変更しておこう
 ```
 
 ## ping のTTL
-  - TTLのデフォルト値（だいたい）
-    - Linux：64
-    - Windows：128
-    - Solaris：255
+- TTLのデフォルト値（だいたい）
+  - Linux：64
+  - Windows：128
+  - Solaris：255
 
 ## httping
-  - httpでpingする感じ．
-  - `httping <address>` で基本的には動く．
-    - headメソッドでリクエストを投げる．
-  - `-G` オプションでGETを投げる．
-  - 他にもプロキシ指定(-x proxyserver:port)したり，タイムアウト(-t)，インターバル(-i)，http status code(-s)，URL指定(-g)などのオプションがある．
+- httpでpingする感じ．
+- `httping <address>` で基本的には動く．
+  - headメソッドでリクエストを投げる．
+- `-G` オプションでGETを投げる．
+- 他にもプロキシ指定(-x proxyserver:port)したり，タイムアウト(-t)，インターバル(-i)，http status code(-s)，URL指定(-g)などのオプションがある．
+
+## grep
+- `grep -r <search_str> <search_dir_1> <search_dir_2>...`
 
 ## find
+- `find <search_dir> -name <file_name>`
   
 ```
 # you can filter out messages to stderr. I prefer to redirect them to stdout like this.
