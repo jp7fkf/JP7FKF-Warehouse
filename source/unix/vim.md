@@ -20,4 +20,16 @@
   2. `shift + i`: and input comment chars.
   3. `esc`
 
-## 
+## 文字コード
+- check vim env encoding
+  - `:set enc?`
+- check file encoding
+  - `:set fenc?`
+- set encoding and save
+  - `:set fenc=<encoding>`
+- vimrcにこれ書いておくと良さそう
+  ```
+  set encoding=utf-8
+  set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+  set fileformats=unix,dos,mac
+  ```

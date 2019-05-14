@@ -132,5 +132,9 @@ $ find / -name art |& grep ....
  ```
 
 ## 容量の大きいディレクトリtop10
-  - なんのせいでdiskが逼迫しているかわからないときよくある．
-  - `du -m / | sort -nr | head -10`
+- なんのせいでdiskが逼迫しているかわからないときよくある．
+- `du -m / | sort -nr | head -10`
+
+## シンボリックリンク
+- `ln -s <origin> <link_name(optional)>`
+- `unlink <link_name>`
