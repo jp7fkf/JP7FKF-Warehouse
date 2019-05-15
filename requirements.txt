@@ -1,0 +1,6 @@
+CommonMark == 0.5.4
+docutils == 0.14
+recommonmark == 0.4.0
+Sphinx == 1.7.9
+sphinx-rtd-theme == 0.4.3
+sphinxcontrib-websupport == 1.1.0

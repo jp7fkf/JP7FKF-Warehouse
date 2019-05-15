@@ -94,3 +94,9 @@ rails db:migrate
         end
       end
     ```
+
+## f.selectにclassを
+- option(:include_blankや:prompt)は第3引数に設定し，html_options(classやstyle)は第4引数に設定する．
+  - reference見ろって話．
+- ex.) `f.select :person_id,Person.all.collect { |p| [ p.name, p.id ] }, {}, {class: 'form-control'}`
+- https://qiita.com/nakanoyoshiki/items/e87a6238f8febbeb208a

@@ -45,9 +45,10 @@
 - 
 
 ## yum
-  - `$ yum list`: インストール可能 || インストール済みパッケージ を表示
-
-  - `$ yum list installed` : インストール済みパッケージを表示
+  - `yum list`: インストール可能 || インストール済みパッケージ を表示
+  - `yum list installed` : インストール済みパッケージを表示
+  - `yum --showduplicates search <package_name>`: 重複も含めてinstall可能なpackageを取得．
+    - ここで得られたバージョン等を含めて`yum install`することでバージョンを指定してinstallが可能．
 
 ## rpm
   - `$ rpm -i`: インストール
