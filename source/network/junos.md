@@ -280,3 +280,10 @@ Possible completions:
 - vt: Virtual loopback tunnel interface.
 - xe: 10-Gigabit Ethernet interface. Some older 10-Gigabit Ethernet interfaces use the ge media type (rather than xe) to identify the physical part of the network device.
 - xt: Logical interface for Protected System Domains to establish a Layer 2 tunnel connection.
+
+## deactivate vs disable in JUNOS
+  - disable: admin-down．config自体は生きている．
+  - deactivate: configがdeactivateされると思えば良い．入っていない状態となる．factory defaultがadmin-upならifはadmin-upになる．
+  - たとえばSFPからの光を出したくない場合はdisableにするべきか．deacだとadmin-upなので光は出してしまうことになる．ただ，configを入れなければならないのはちょっとな...．
+    - JUNOS，factory defaultがadmin-upということはSFPさした瞬間に(configが入っていなくても)光が出てくるということなんだよね．うーん．
+  - ref: http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/

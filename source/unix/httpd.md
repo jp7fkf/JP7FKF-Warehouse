@@ -121,7 +121,7 @@ jp7fkf.dev has address x.x.x.x
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator webroot, Installer None
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
-cancel): mail@example.com
+cancel): mail@jp7fkf.dev
 Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -349,5 +349,20 @@ Running post-hook command: systemctl restart h2o
 
     - `journalctl -x -u certbot` とかでログをみてみるとか
 
+## Let's EncryptなError
+```
+Attempting to renew cert (jp7fkf.dev) from /etc/letsencrypt/renewal/jp7fkf.dev.conf produced an unexpected error: Missing command line flag or config entry for this setting:
+Input the webroot for jp7fkf.dev:. Skipping.
+All renewal attempts failed. The following certs could not be renewed:
+```
+的な感じに言われる．
+-  /etc/letsencrypt/renewal/jp7fkf.dev.conf に下記の記載がなかったりする．
+```
+  [[webroot_map]]
+jp7fkf.dev = /path/to/document/root
+www.jp7fkf.dev = /path/to/document/root
+```
+これがいつのまにか消えてたりするらしいので注意．
+
 ## SSL Server Testとか
-  - https://blog.yuu26.com/entry/20180618/1529333962
+- https://blog.yuu26.com/entry/20180618/1529333962

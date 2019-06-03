@@ -149,3 +149,61 @@ yum list installed "kernel-*"
   source ~/.bashrc
   pyenv -v
 ```
+
+
+## /boot 配下が100%で何もできない件
+- /boot配下にゴミが残っていていっぱいになっているとapt installとかができなくなる．
+```
+user@centos:~$ sudo apt-get autoremove
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています
+状態情報を読み取っています... 完了
+これらを直すためには 'apt-get -f install' を実行する必要があるかもしれません。
+以下のパッケージには満たせない依存関係があります:
+ linux-image-extra-4.4.0-141-generic : 依存: linux-image-4.4.0-141-generic しかし、インストールされていません
+ linux-image-generic : 依存: linux-image-4.4.0-141-generic しかし、インストールされていません
+E: 未解決の依存関係があります。-f オプションを試してください。
+
+user@centos:~$ sudo apt-get purge linux-image-3.16.0-30-generic
+パッケージリストを読み込んでいます... 完了
+依存関係ツリーを作成しています
+状態情報を読み取っています... 完了
+以下の問題を解決するために 'apt-get -f install' を実行する必要があるかもしれません:
+以下のパッケージには満たせない依存関係があります:
+ linux-image-extra-3.16.0-30-generic : 依存: linux-image-3.16.0-30-generic しかし、インストールされようとしていません
+ linux-image-extra-4.4.0-141-generic : 依存: linux-image-4.4.0-141-generic しかし、インストールされようとしていません
+ linux-image-generic : 依存: linux-image-4.4.0-141-generic しかし、インストールされようとしていません
+E: 未解決の依存関係です。'apt-get -f install' を実行してみてください (または解法を明示してください)。
+
+user@centos:~$ df
+Filesystem                     1K-blocks     Used Available Use% Mounted on
+udev                            24686352        0  24686352   0% /dev
+tmpfs                            4941256     9256   4932000   1% /run
+/dev/mapper/centos-hoge--vg-root 526432040 59621920 440045832  12% /
+tmpfs                           24706264        0  24706264   0% /dev/shm
+tmpfs                               5120        0      5120   0% /run/lock
+tmpfs                           24706264        0  24706264   0% /sys/fs/cgroup
+/dev/sda1                         240972   228913         0 100% /boot
+cgmfs                                100        0       100   0% /run/cgmanager/fs
+tmpfs                            4941256        0   4941256   0% /run/user/1001
+```
+- この時点で`apt-get -f install`しても`/boot`が足りてないせいで正常終了しない．
+- というわけで/boot配下を掃除する．
+  - https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
+    - ``sudo dpkg --list 'linux-image*'|awk '{ if ($1=="ii") print $2}'|grep -v `uname -r``
+      - すると
+      ```user@centos:~$ sudo dpkg --list 'linux-image*'|awk '{ if ($1=="ii") print $2}'|grep -v `uname -r`
+      [sudo] password for user:
+      linux-image-3.16.0-30-generic
+      linux-image-4.4.0-130-generic
+      linux-image-4.4.0-133-generic
+      linux-image-extra-3.16.0-30-generic
+      linux-image-extra-4.4.0-130-generic
+      linux-image-extra-4.4.0-133-generic
+      ```
+    - `sudo rm -rf /boot/{消したいimage}`
+    - `sudo apt-get -f install`
+    - `sudo apt-get autoremove`
+    - これで`df`するととりあえずavailableは増えていると思われるので，あとはなんとかなる．
+    - `sudo update-grub`
+    - `sudo apt-get update`

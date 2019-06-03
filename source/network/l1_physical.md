@@ -227,3 +227,32 @@ b)条件 3 で規定する測定用の開口直径（表 11 参照）より大�
   - http://www.cqpub.co.jp/interface/toku/200109/toku1_3.htm
   - http://www.ntt.co.jp/journal/1303/files/jn201303042.pdf
   - http://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/catv_system/pdf/070315_1_sa1_4.pdf
+
+## 各TYPEファイバー構造の比較
+- 一例として
+```eval_rst
+.. list-table:: Optical Fibre Structures
+    :header-rows: 1
+    :widths: 10, 10, 10
+
+    * - Fibre
+      - Core
+      - Crud
+    * - 全石英
+      - 石英
+      - 石英
+    * - PCF
+      - 石英
+      - シリコン
+    * - HPCF
+      - 石英
+      - フッ素系ポリマ
+    * - POF
+      - PMMA(ポリメタクリル酸メチル)
+      - フッ素含有重合体
+```
+
+## ネットワークの知識として
+  - ethernetのutpの電圧ってよくわからんなよく考えると．
+  - ethernet以外のatm系の規格とかもまとめておくべきだようなと思う．
+  - https://www.iol.unh.edu/sites/default/files/knowledgebase/ge/1000tcable.pdf
