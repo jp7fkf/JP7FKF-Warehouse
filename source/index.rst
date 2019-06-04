@@ -20,6 +20,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201903
   dialy/201904
   dialy/201905
+  dialy/201906
 
   todo
   programming/sh
@@ -35,6 +36,7 @@ Welcome to JP7FKF-Warehouse!
   tech/ansible
   tech/zabbix
   tech/eveng
+  tech/sphinx
   unix/centos7
   unix/vim
   unix/ssh

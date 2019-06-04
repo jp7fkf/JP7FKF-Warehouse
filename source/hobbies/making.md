@@ -54,3 +54,5 @@
   - [ベリンガーヘッドフォンアンプHA400のオーディオ化改造](https://skeishi.web.fc2.com/audio/kaizou/HA400/HA400.html)
   - [HA400改造についての注意点：KAZNYANの備忘録](https://s.webry.info/sp/kunekune.at.webry.info/200903/article_5.html)
   
+## やっぱbt console需要あると
+- RN4020?
