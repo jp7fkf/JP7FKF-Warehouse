@@ -39,6 +39,8 @@ Welcome to JP7FKF-Warehouse!
   tech/eveng
   tech/sphinx
   tech/elastic_stack.md
+  tech/gatling
+  tech/itamae
   unix/iptables.md
   unix/namespace.md
   unix/nmap.md

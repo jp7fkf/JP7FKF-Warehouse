@@ -174,13 +174,15 @@ passwd <user> でパス変更しておこう
 
 - `$ git config --global core.excludesfile ~/.gitignore_global`
 
-``` .gitconfig
+```
+## .gitconfig
 [core]
     excludesfile = /Users/<username>/.gitignore_global
 ```
 
 - .gitignore_global に .DS_Store を追加する
-``` .gitignore_global
+``` 
+## .gitignore_global
 .DS_Store
 ```
 
