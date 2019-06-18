@@ -1,5 +1,11 @@
 # go
 
+## tutorial
+- [Go言語の初心者が見ると幸せになれる場所　#golang - Qiita](https://qiita.com/tenntenn/items/0e33a4959250d1a55045)
+- [Goはどのようにしてweb作業を行うか · Build web application with Golang](https://astaxie.gitbooks.io/build-web-application-with-golang/content/ja/03.3.html)
+- [さあGoを始めよう！環境構築，”Hello World”から簡単なバックエンドサーバーまで | POSTD](https://postd.cc/how-i-start-go/)
+- [GolangのGin/bindataでシングルバイナリを試してみた(+React) - Qiita](https://qiita.com/wadahiro/items/4173788d54f028936723) // すごい．
+
 ## commands
   - 実行
     - 基本的には、`go run hoge.go`
@@ -193,3 +199,16 @@ Additional help topics:
 
 Use "go help <topic>" for more information about that topic.
 ```
+
+## [godoc](https://godoc.org/)
+
+
+## pidをつくる
+- https://qiita.com/catatsuy/items/a485066ca9d4115dd213
+
+## go-cache
+- http://tech-savvy.hatenablog.com/entry/go-cache
+- https://patrickmn.com/projects/go-cache/
+
+## uuid
+- https://github.com/google/uuid

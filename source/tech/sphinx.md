@@ -69,3 +69,35 @@ Item 1   | Item 2
     | Item 2",Item 3,Item 4
 ```
 - ref.) http://saponote.hatenablog.com/entry/2017/11/24/214309
+
+## images
+````
+```eval_rst
+.. image:: ../img/sphinx.png
+   :scale: 40%
+   :height: 100px
+   :width: 200px
+   :align: left
+```
+````
+
+- 例
+```eval_rst
+.. image:: ../resources/images/kaminoku.png
+```
+```eval_rst
+.. image:: ../resources/images/simonoku.png
+```
+
+キャプションつけたいときはfigureが便利（なはず？）
+````
+```eval_rst
+.. figure:: ファイル名
+   :scale: 40%
+   :alt: Alternate Text (キャプションじゃないよ)
+
+   一行あけてここに書いたものがキャプションになります。
+```
+````
+- https://sphinx-users.jp/reverse-dict/images/caption.html
+  - ただしcssかいておかないと意味なさそう...

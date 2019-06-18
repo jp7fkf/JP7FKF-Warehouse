@@ -458,237 +458,250 @@
       brctl addif br0 $NIC_NAME
   ```
 
-  - 結局のところ `sudo pipework --direct-phys eth1 $CONTAINERID 192.168.1.2/24` とかを使うのが一番早い件．さすが．
-    - https://serverfault.com/questions/688483/assign-physical-interface-to-docker-exclusively
-    ```
-      [jp7fkf@localhost ~]$ sudo sh -x pipework/pipework --direct-phys eth1 39d4 172.16.156.40/24
-      + set -e
-      + case "$1" in
-      + DIRECT_PHYS=1
-      + shift
-      + IFNAME=eth1
-      + CONTAINER_IFNAME=
-      + '[' 39d4 = -i ']'
-      + '[' 39d4 = -l ']'
-      + FAMILY_FLAG=-4
-      + '[' 39d4 = -a ']'
-      + GUESTNAME=39d4
-      + IPADDR=172.16.156.40/24
-      + MACADDR=
-      + case "$MACADDR" in
-      + VLAN=
-      + case "$MACADDR" in
-      + '[' 172.16.156.40/24 ']'
-      + '[' -z '' ']'
-      + '[' -d /sys/class/net/eth1 ']'
-      + '[' -d /sys/class/net/eth1/bridge ']'
-      + installed ovs-vsctl
-      + command -v ovs-vsctl
-      ++ cat /sys/class/net/eth1/type
-      + '[' 1 -eq 32 ']'
-      + IFTYPE=phys
-      + CONTAINER_IFNAME=eth1
-      + '[' '' ']'
-      + '[' phys = bridge ']'
-      + '[' phys = ipoib ']'
-      + read _ mnt fstype options _
-      + '[' rootfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' sysfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' proc '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' devtmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' securityfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' tmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' devpts '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' tmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' tmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + grep -qw devices
-      + echo rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd
-      + continue
-      + read _ mnt fstype options _
-      + '[' pstore '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + echo rw,nosuid,nodev,noexec,relatime,cpuacct,cpu
-      + grep -qw devices
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + grep -qw devices
-      + echo rw,nosuid,nodev,noexec,relatime,pids
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + echo rw,nosuid,nodev,noexec,relatime,freezer
-      + grep -qw devices
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + grep -qw devices
-      + echo rw,nosuid,nodev,noexec,relatime,cpuset
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + echo rw,nosuid,nodev,noexec,relatime,memory
-      + grep -qw devices
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + grep -qw devices
-      + echo rw,nosuid,nodev,noexec,relatime,hugetlb
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + echo rw,nosuid,nodev,noexec,relatime,perf_event
-      + grep -qw devices
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + grep -qw devices
-      + echo rw,nosuid,nodev,noexec,relatime,net_prio,net_cls
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + echo rw,nosuid,nodev,noexec,relatime,blkio
-      + grep -qw devices
-      + continue
-      + read _ mnt fstype options _
-      + '[' cgroup '!=' cgroup ']'
-      + grep -qw devices
-      + echo rw,nosuid,nodev,noexec,relatime,devices
-      + CGROUPMNT=/sys/fs/cgroup/devices
-      + read _ mnt fstype options _
-      + '[' configfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' xfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' mqueue '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' debugfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' hugetlbfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' xfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' autofs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' overlay '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' tmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' proc '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' tmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' overlay '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' tmpfs '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' proc '!=' cgroup ']'
-      + continue
-      + read _ mnt fstype options _
-      + '[' /sys/fs/cgroup/devices ']'
-      ++ find /sys/fs/cgroup/devices -name 39d4
-      ++ wc -l
-      + N=0
-      + case "$N" in
-      + installed docker
-      + command -v docker
-      + RETRIES=3
-      + '[' 3 -gt 0 ']'
-      ++ docker inspect '--format={{ .State.Pid }}' 39d4
-      + DOCKERPID=29121
-      ++ docker inspect '--format={{ .ID }}' 39d4
-      + DOCKERCID=39d4a4146861624830f60bd15f07c61215ee7cd10af3063e543b48baeedbxxxx
-      ++ docker inspect '--format={{ .Name }}' 39d4
-      + DOCKERCNAME=/hoge
-      + '[' 29121 '!=' 0 ']'
-      + break
-      + '[' 29121 = 0 ']'
-      + '[' 29121 = '<no value>' ']'
-      + '[' phys '!=' route ']'
-      + '[' phys '!=' rule ']'
-      + '[' phys '!=' tc ']'
-      + case "$IPADDR" in
-      + :
-      + '[' '' ']'
-      + '[' 29121 ']'
-      + NSPID=29121
-      + '[' phys = phys ']'
-      + '[' '' ']'
-      + '[' '!' -d /var/run/netns ']'
-      + rm -f /var/run/netns/29121
-      + ln -s /proc/29121/ns/net /var/run/netns/29121
-      + '[' phys = bridge ']'
-      + '[' phys '!=' route ']'
-      + '[' phys '!=' dummy ']'
-      + '[' phys '!=' rule ']'
-      + '[' phys '!=' tc ']'
-      ++ ip link show eth1
-      ++ awk '{print $5}'
-      + MTU=1500
-      + '[' phys = bridge ']'
-      + '[' phys = phys ']'
-      + '[' '' ']'
-      + '[' '!' -z 1 ']'
-      + GUEST_IFNAME=eth1
-      + ip link set eth1 up
-      + '[' phys = ipoib ']'
-      + '[' phys = dummy ']'
-      + '[' phys = route ']'
-      + '[' phys = rule ']'
-      + '[' phys = tc ']'
-      + ip link set eth1 netns 29121
-      + ip netns exec 29121 ip link set eth1 name eth1
-      + '[' '' ']'
-      + case "$DHCP_CLIENT" in
-      + installed ipcalc
-      + command -v ipcalc
-      ++ ipcalc -b 172.16.156.40/24
-      + eval BROADCAST=172.16.156.255
-      ++ BROADCAST=172.16.156.255
-      + ip netns exec 29121 ip -4 addr add 172.16.156.40/24 brd 172.16.156.255 dev eth1
-      + '[' '' ']'
-      + ip netns exec 29121 ip -4 link set eth1 up
-      + '[' '' ']'
-      + installed arping
-      + command -v arping
-      ++ echo 172.16.156.40/24
-      ++ cut -d/ -f1
-      + IPADDR=172.16.156.40
-      + ip netns exec 29121 arping -c 1 -A -I eth1 172.16.156.40
-      + rm -f /var/run/netns/29121
-      [jp7fkf@localhost ~]$
-    ````
+### [pypework](https://github.com/jpetazzo/pipework/blob/master/pipework)
+- dockerにhostのinterfaceを直接生やせたりいろいろできる．
+- https://www.skyarch.net/blog/?p=6719
+- 結局のところ `sudo pipework --direct-phys eth1 $CONTAINERID 192.168.1.2/24` とかを使うのが一番早い件．さすが．
+  - https://serverfault.com/questions/688483/assign-physical-interface-to-docker-exclusively
+  ```
+    [jp7fkf@localhost ~]$ sudo sh -x pipework/pipework --direct-phys eth1 39d4 172.16.156.40/24
+    + set -e
+    + case "$1" in
+    + DIRECT_PHYS=1
+    + shift
+    + IFNAME=eth1
+    + CONTAINER_IFNAME=
+    + '[' 39d4 = -i ']'
+    + '[' 39d4 = -l ']'
+    + FAMILY_FLAG=-4
+    + '[' 39d4 = -a ']'
+    + GUESTNAME=39d4
+    + IPADDR=172.16.156.40/24
+    + MACADDR=
+    + case "$MACADDR" in
+    + VLAN=
+    + case "$MACADDR" in
+    + '[' 172.16.156.40/24 ']'
+    + '[' -z '' ']'
+    + '[' -d /sys/class/net/eth1 ']'
+    + '[' -d /sys/class/net/eth1/bridge ']'
+    + installed ovs-vsctl
+    + command -v ovs-vsctl
+    ++ cat /sys/class/net/eth1/type
+    + '[' 1 -eq 32 ']'
+    + IFTYPE=phys
+    + CONTAINER_IFNAME=eth1
+    + '[' '' ']'
+    + '[' phys = bridge ']'
+    + '[' phys = ipoib ']'
+    + read _ mnt fstype options _
+    + '[' rootfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' sysfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' proc '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' devtmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' securityfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' tmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' devpts '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' tmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' tmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + grep -qw devices
+    + echo rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd
+    + continue
+    + read _ mnt fstype options _
+    + '[' pstore '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + echo rw,nosuid,nodev,noexec,relatime,cpuacct,cpu
+    + grep -qw devices
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + grep -qw devices
+    + echo rw,nosuid,nodev,noexec,relatime,pids
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + echo rw,nosuid,nodev,noexec,relatime,freezer
+    + grep -qw devices
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + grep -qw devices
+    + echo rw,nosuid,nodev,noexec,relatime,cpuset
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + echo rw,nosuid,nodev,noexec,relatime,memory
+    + grep -qw devices
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + grep -qw devices
+    + echo rw,nosuid,nodev,noexec,relatime,hugetlb
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + echo rw,nosuid,nodev,noexec,relatime,perf_event
+    + grep -qw devices
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + grep -qw devices
+    + echo rw,nosuid,nodev,noexec,relatime,net_prio,net_cls
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + echo rw,nosuid,nodev,noexec,relatime,blkio
+    + grep -qw devices
+    + continue
+    + read _ mnt fstype options _
+    + '[' cgroup '!=' cgroup ']'
+    + grep -qw devices
+    + echo rw,nosuid,nodev,noexec,relatime,devices
+    + CGROUPMNT=/sys/fs/cgroup/devices
+    + read _ mnt fstype options _
+    + '[' configfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' xfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' mqueue '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' debugfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' hugetlbfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' xfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' autofs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' overlay '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' tmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' proc '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' tmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' overlay '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' tmpfs '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' proc '!=' cgroup ']'
+    + continue
+    + read _ mnt fstype options _
+    + '[' /sys/fs/cgroup/devices ']'
+    ++ find /sys/fs/cgroup/devices -name 39d4
+    ++ wc -l
+    + N=0
+    + case "$N" in
+    + installed docker
+    + command -v docker
+    + RETRIES=3
+    + '[' 3 -gt 0 ']'
+    ++ docker inspect '--format={{ .State.Pid }}' 39d4
+    + DOCKERPID=29121
+    ++ docker inspect '--format={{ .ID }}' 39d4
+    + DOCKERCID=39d4a4146861624830f60bd15f07c61215ee7cd10af3063e543b48baeedbxxxx
+    ++ docker inspect '--format={{ .Name }}' 39d4
+    + DOCKERCNAME=/hoge
+    + '[' 29121 '!=' 0 ']'
+    + break
+    + '[' 29121 = 0 ']'
+    + '[' 29121 = '<no value>' ']'
+    + '[' phys '!=' route ']'
+    + '[' phys '!=' rule ']'
+    + '[' phys '!=' tc ']'
+    + case "$IPADDR" in
+    + :
+    + '[' '' ']'
+    + '[' 29121 ']'
+    + NSPID=29121
+    + '[' phys = phys ']'
+    + '[' '' ']'
+    + '[' '!' -d /var/run/netns ']'
+    + rm -f /var/run/netns/29121
+    + ln -s /proc/29121/ns/net /var/run/netns/29121
+    + '[' phys = bridge ']'
+    + '[' phys '!=' route ']'
+    + '[' phys '!=' dummy ']'
+    + '[' phys '!=' rule ']'
+    + '[' phys '!=' tc ']'
+    ++ ip link show eth1
+    ++ awk '{print $5}'
+    + MTU=1500
+    + '[' phys = bridge ']'
+    + '[' phys = phys ']'
+    + '[' '' ']'
+    + '[' '!' -z 1 ']'
+    + GUEST_IFNAME=eth1
+    + ip link set eth1 up
+    + '[' phys = ipoib ']'
+    + '[' phys = dummy ']'
+    + '[' phys = route ']'
+    + '[' phys = rule ']'
+    + '[' phys = tc ']'
+    + ip link set eth1 netns 29121
+    + ip netns exec 29121 ip link set eth1 name eth1
+    + '[' '' ']'
+    + case "$DHCP_CLIENT" in
+    + installed ipcalc
+    + command -v ipcalc
+    ++ ipcalc -b 172.16.156.40/24
+    + eval BROADCAST=172.16.156.255
+    ++ BROADCAST=172.16.156.255
+    + ip netns exec 29121 ip -4 addr add 172.16.156.40/24 brd 172.16.156.255 dev eth1
+    + '[' '' ']'
+    + ip netns exec 29121 ip -4 link set eth1 up
+    + '[' '' ']'
+    + installed arping
+    + command -v arping
+    ++ echo 172.16.156.40/24
+    ++ cut -d/ -f1
+    + IPADDR=172.16.156.40
+    + ip netns exec 29121 arping -c 1 -A -I eth1 172.16.156.40
+    + rm -f /var/run/netns/29121
+    [jp7fkf@localhost ~]$
+  ````
+
+## docker で ip route add できないんだが！
+- `--privileged` つけろ．アホ．
+
+## docker networkとnetns
+- [Dockerのネットワーク管理とnetnsの関係 - めもめも](http://enakai00.hatenablog.com/entry/20140424/1398321672)
+- [Dockerを支える技術 - SlideShare](https://www.slideshare.net/enakai/docker-34668707)
+
+## docker lint
+- https://qiita.com/ryuichi1208/items/d49f3f6ba39c88899049

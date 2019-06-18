@@ -70,3 +70,10 @@
   set system syslog global facility protocols level 'debug'
   set system time-zone 'UTC'
 ```
+
+## on docker
+- https://www.higebu.com/blog/2018/03/19/docker-on-vyos-1.2/#.XQBFr2_7TAL
+
+## vxlan on vyos
+- https://jedipunkz.github.io/blog/2014/12/16/vyos-vxlan/
+- https://www.slideshare.net/upaa/vyos-users-meeting-2-vyosvxlan

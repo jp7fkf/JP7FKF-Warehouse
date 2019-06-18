@@ -7,6 +7,7 @@
   - Major
     - Networking, Electronics, Microwave Wireless Power Transfer
   - SNS etc
+    - [Github](https://github.com/jp7fkf)
     - [Twitter](https://twitter.com/jp7fkf)
     - [Hatena Blog](https://jp7fkf.hatenablog.jp/)
     - [Facebook](https://www.facebook.com/jp7fkf)
