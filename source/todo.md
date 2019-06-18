@@ -82,6 +82,7 @@
     - 証券アナリスト
     - 統計検定1級
     - 医療情報技師検定試験
+    - comptia?(https://www.comptia.jp/cert_about/samplequestion/comptia_ctt/tk0-201_answer.html)
 
 ## 本を読む
   - [全てのプログラマが読むべき本 まとめ - 5/75 ページ](http://cielquis.net/programming-books/5.html)

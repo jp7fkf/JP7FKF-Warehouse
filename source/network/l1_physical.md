@@ -253,6 +253,40 @@ b)条件 3 で規定する測定用の開口直径（表 11 参照）より大�
 ```
 
 ## ネットワークの知識として
-  - ethernetのutpの電圧ってよくわからんなよく考えると．
-  - ethernet以外のatm系の規格とかもまとめておくべきだようなと思う．
-  - https://www.iol.unh.edu/sites/default/files/knowledgebase/ge/1000tcable.pdf
+- ethernetのutpの電圧ってよくわからんなよく考えると．
+- ethernet以外のatm系の規格とかもまとめておくべきだようなと思う．
+- https://www.iol.unh.edu/sites/default/files/knowledgebase/ge/1000tcable.pdf
+
+## ISO/IEC_11801
+```
+Classes and categories
+
+This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed.
+Find sources: "ISO/IEC 11801" – news · newspapers · books · scholar · JSTOR (January 2019) (Learn how and when to remove this template message)
+The standard defines several link/channel classes and cabling categories of twisted-pair copper interconnects, which differ in the maximum frequency for which a certain channel performance is required:
+
+Class A: link/channel up to 100 kHz using Category 1 cable/connectors
+Class B: link/channel up to 1 MHz using Category 2 cable/connectors
+Class C: link/channel up to 16 MHz using Category 3 cable/connectors
+Class D: link/channel up to 100 MHz using Category 5e cable/connectors
+Class E: link/channel up to 250 MHz using Category 6 cable/connectors
+Class EA: link/channel up to 500 MHz using Category 6A cable/connectors (Amendment 1 and 2 to ISO/IEC 11801, 2nd Ed.)
+Class F: link/channel up to 600 MHz using Category 7 cable/connectors
+Class FA: link/channel up to 1000 MHz using Category 7A cable/connectors (Amendment 1 and 2 to ISO/IEC 11801, 2nd Ed.)
+Class I: link/channel up to 2000 MHz using Category 8.1 cable/connectors (specification under development)
+Class II: link/channel up to 2000 MHz using Category 8.2 cable/connectors (specification under development)
+The standard link impedance is 100 Ω (The older 1995 version of the standard also permitted 120 Ω and 150 Ω in Classes A−C, but this was removed from the 2002 edition).
+
+The standard defines several classes of optical fiber interconnect:
+
+OM1: Multimode fiber type 62.5 µm core; minimum modal bandwidth of 200 MHz·km at 850 nm
+OM2: Multimode fiber type 50 µm core; minimum modal bandwidth of 500 MHz·km at 850 nm
+OM3: Multimode fiber type 50 µm core; minimum modal bandwidth of 2000 MHz·km at 850 nm
+OM4: Multimode fiber type 50 µm core; minimum modal bandwidth of 4700 MHz·km at 850 nm
+OM5: Multimode fiber type 50 µm core; minimum modal bandwidth of 4700 MHz·km at 850 nm and 2470 MHz·km at 953 nm
+OS1: Single-mode fiber type 1 dB/km attenuation at 1310 and 1550 nm
+OS1a: Single-mode fiber type 1 dB/km attenuation at 1310, 1383, and 1550 nm
+OS2: Single-mode fiber type 0.4 dB/km attenuation at 1310, 1383, and 1550 nm
+(https://en.wikipedia.org/wiki/ISO/IEC_11801)
+(https://serverfault.com/questions/776452/what-is-th-difference-between-f-utp-f-ftp-and-ftp)
+```

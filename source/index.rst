@@ -27,6 +27,7 @@ Welcome to JP7FKF-Warehouse!
   programming/css
   programming/javascript
   programming/rails
+  programming/python.md
   programming/r_lang
   tech/jenkins
   tech/docker
@@ -35,6 +36,10 @@ Welcome to JP7FKF-Warehouse!
   tech/ansible
   tech/zabbix
   tech/eveng
+  tech/elastic_stack.md
+  unix/iptables.md
+  unix/namespace.md
+  unix/nmap.md
   unix/centos7
   unix/vim
   unix/ssh
@@ -46,6 +51,7 @@ Welcome to JP7FKF-Warehouse!
   unix/vnc
   unix/version
   unix/mysql
+  unix/nmap
   unix/imagemagick
   unix/unix_basic_commands
   unix/radius
@@ -69,6 +75,7 @@ Welcome to JP7FKF-Warehouse!
   network/cumulus
   network/snmp
   network/vpp
+  network/segment_routing.md
   hobbies/making
   hobbies/stm32
   hobbies/mobile_communication

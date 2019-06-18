@@ -120,3 +120,7 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
 - Te: TenGigE
 - Ge: GigabitE
 - Fe: FastE
+
+## よく使うcommand
+### BGP系
+  - `show ip bgp neighbors <neighbor-address> advertised-routes`
