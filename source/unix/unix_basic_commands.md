@@ -168,7 +168,7 @@ passwd <user> でパス変更しておこう
   - ``alias gitcmtnow='git commit -m "`date "+%Y-%m-%d %H:%M:%S"`"'``
   - 脳死してcommitしたいときに便利．zshrcやらbashrcに書いておこう．脳死しよう．
 
-### git ignoreをglobalにかく
+### gitignoreをglobalにかく
 1. `~/.gitconig` にexcludersfileを書く．
 2. 上記で書いたexcludersfileにgitignoreを書く．
 
@@ -181,7 +181,7 @@ passwd <user> でパス変更しておこう
 ```
 
 - .gitignore_global に .DS_Store を追加する
-``` 
+```
 ## .gitignore_global
 .DS_Store
 ```
