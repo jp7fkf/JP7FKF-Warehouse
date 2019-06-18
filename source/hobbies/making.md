@@ -1,11 +1,9 @@
 # Making
 
-
 ## 天体望遠鏡
 
 ## SWRメータ
   - TODO: 電源SW交換
-
 
 ## アンテナアナライザ
   - 基本的に下記の記事を参考にさせてもらう．本当によくまとめられていて大変ありがたい．
@@ -47,7 +45,6 @@
 
 ## ネットワークアナライザ
 
-
 ## ヘッドホンアンプ
   - [プアオーディオはじめました。～ BEHRINGER HA400 がやってきた～ 色白腹黒の気まぐれ帳/ウェブリブログ](https://irojiro-haraguro.at.webry.info/201406/article_1.html)
   - [メモ帳:BEHRINGER MICROAMP HA400 - livedoor Blog（ブログ）](http://blog.livedoor.jp/r_ten/archives/51933905.html)
@@ -55,4 +52,6 @@
   - [HA400改造についての注意点：KAZNYANの備忘録](https://s.webry.info/sp/kunekune.at.webry.info/200903/article_5.html)
   
 ## やっぱbt console需要あると
-- RN4020?
+- RN4020では無理．BT Classis使う．
+
+### etc
