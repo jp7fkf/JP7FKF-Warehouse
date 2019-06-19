@@ -62,6 +62,7 @@
   - 一総通
   - 潜水士
   - Xray作業主任
+  - 簿記3級
   - FE/PE試験を受けたい
   - 救命講習？
   - Oracle master
@@ -100,3 +101,6 @@
   - 上級部員が把握しておくべきこと
   - コンテスト参加の流れ
 - QSLカードOCR
+- kyuko_cal をlambda化できる気が
+  - つーかkyuko-calのpromotionしたほうがいいんじゃ．
+- 

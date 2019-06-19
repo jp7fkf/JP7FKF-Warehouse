@@ -26,3 +26,22 @@
       - もうひとつのやりかたとして，実行内容でリモートコマンドの実行とする手がある．
 
   - https://github.com/ericoc/zabbix-slack-alertscript
+
+## 時刻監視
+- https://qiita.com/miyahang55/items/9d1f99e9549143cdc8de
+- zabのアイテムとして下記を登録．
+```
+項目  値
+名前  お好みで
+タイプ zabbixエージェント
+キー  system.localtime
+データ型  数値（整数）
+更新間隔  お好みで
+```
+- zabのトリガとして必要に応じて下記を登録
+```
+項目  値
+名前  お好みで
+条件式 {<template_name>:system.localtime.fuzzytime(<diff_threshold>)}=0
+深刻度 警告（お好みで）
+```

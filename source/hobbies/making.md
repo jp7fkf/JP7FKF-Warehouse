@@ -59,6 +59,9 @@
 - [メモ帳:BEHRINGER MICROAMP HA400 - livedoor Blog（ブログ）](http://blog.livedoor.jp/r_ten/archives/51933905.html)
 - [ベリンガーヘッドフォンアンプHA400のオーディオ化改造](https://skeishi.web.fc2.com/audio/kaizou/HA400/HA400.html)
 - [HA400改造についての注意点：KAZNYANの備忘録](https://s.webry.info/sp/kunekune.at.webry.info/200903/article_5.html)
-  
+- rest apiで制御できるシグナルタワーをだな．
+  - って，完全にCrystal Signal Piである...．あれをPi使わずにESP32とかでやりたいだけである．
+- tdr 、じっくりとCCCV電源、信号処理
+
 ## cw freak web ver
 - があるとよさそう
