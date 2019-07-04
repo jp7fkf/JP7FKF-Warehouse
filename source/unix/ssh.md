@@ -48,6 +48,8 @@ Host proxy_target
 ## agent transfer
  - https://qiita.com/ymd_/items/5eb833ad757bd8b3e6c3
  - https://qiita.com/isaoshimizu/items/84ac5a0b1d42b9d355cf
+ - sshに`-A`オプションをつけるのが一番手っ取り早い．
+ - `ForwardAgent yes` を`/etc/ssh/sshd_config` or `~/.ssh/config` とかに書く．
 
 ## ワイルドカードを使う
 ```
