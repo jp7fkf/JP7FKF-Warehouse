@@ -55,6 +55,11 @@ set routing-options nonstop-routing
 set protocols layer2-control nonstop-bridging
 set system commit synchronize
 ```
+- `set virtual-chassis no-split-detection`
+  - http://blog.sidetech.jp/2014/12/05/182257
+  - split-brain, split-master にならないようにする．
+    - たとえばipaddr重複とかしてたときによろしくない．(ex. irbとか)
+  - https://www.juniper.net/documentation/en_US/junos/topics/concept/virtual-chassis-ex4200-split-merge.html
 
 ### LEDがおかしい．
 ```
