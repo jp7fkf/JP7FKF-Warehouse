@@ -61,3 +61,12 @@
   - https://webcache.googleusercontent.com/search?q=cache:Z0j64jPkSo8J:https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/13751-23.html+&cd=11&hl=en&ct=clnk&gl=jp
   - loを用いてebgp neighbor を構成するときにebgp-multihopは本当に必要か？
     - https://community.cisco.com/t5/routing/ebgp-multihop-command-only-applies-to-loopbacks/td-p/2030331
+
+## private as num
+- [RFC6996](https://tools.ietf.org/html/rfc6996)
+  - 16bit/2bytes ASN
+    - range: 64512 - 65534
+    - 1023 ASNs
+  - 32bit/4bytes ASN
+    - range: 4200000000 - 4294967294
+    - 94,967,295 ASNs

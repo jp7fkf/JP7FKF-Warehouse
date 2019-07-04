@@ -290,3 +290,47 @@ OS2: Single-mode fiber type 0.4 dB/km attenuation at 1310, 1383, and 1550 nm
 (https://en.wikipedia.org/wiki/ISO/IEC_11801)
 (https://serverfault.com/questions/776452/what-is-th-difference-between-f-utp-f-ftp-and-ftp)
 ```
+
+
+## memo
+
+10, 100, 1000, 10G, ... – the nominal, usable speed at the top of the physical layer (no suffix = megabit/s, G = gigabit/s), excluding line codes but including other physical layer overhead (preamble, SFD, IPG); some WAN PHYs (W) run at slightly reduced bitrates for compatibility reasons; encoded PHY sublayers usually run at higher bitrates
+
+BASE, BROAD, PASS – indicates baseband, broadband, or passband signaling respectively
+-T, -S, -L, -E, -Z, -C, -K, -H ... – medium: T = twisted pair, S = 850 nm short wavelength (multi-mode fiber), L = 1300 nm long wavelength (mostly single-mode fiber), E or Z = 1500 nm extra long wavelength (single-mode), B = bidirectional fiber (mostly single-mode) using WDM, P = passive optical (PON), C = copper/twinax, K = backplane, 2 or 5 or 36 = coax with 185/500/3600 m reach (obsolete), F = fiber, various wavelengths, H = plastic optical fiber
+
+X, R – PCS encoding method (varying with the generation): X for 8b/10b block encoding (4B5B for Fast Ethernet), R for large block encoding (64b/66b)
+1, 2, 4, 10 – for LAN PHYs indicates number of lanes used per link; for WAN PHYs indicates reach in kilometers
+For 10 Mbit/s, no encoding is indicated as all variants use Manchester code. Most twisted pair layers use unique encoding, so most often just -T is used.
+
+The reach, especially for optical connections, is defined as the maximum achievable link length that is guaranteed to work when all channel parameters are met (modal bandwidth, attenuation, insertion losses etc). With better channel parameters, often a longer, stable link length can be achieved. Vice versa, a link with worse channel parameters can also work but only over a shorter distance. Reach and maximum distance have the same meaning.
+
+
+一般に、レイヤはそれらの仕様によって命名されます：[8]
+
+10、100、1000、10G、...  - 物理層の最上位での公称の使用可能速度（サフィックスなし=メガビット/秒、G =ギガビット/秒）。ただし、回線コードは除くが、他の物理層オーバーヘッドを含みます（プリアンブル）。 、ＳＦＤ、ＩＰＧ）。一部のWAN PHY（W）は、互換性のためにわずかに低いビットレートで動作します。エンコードされたPHYサブレイヤは通常、より高いビットレートで動作します。
+
+BASE、BROAD、PASS  - それぞれベースバンド、ブロードバンド、またはパスバンドシグナリングを示します
+
+-T、-S、-L、-E、-Z、-C、-K、-H ...  - 中：T =ツイストペア、S = 850 nm短波長（マルチモードファイバ）、L = 1300長波長nm（主にシングルモードファイバ）、EまたはZ = 1500 nm超長波長（シングルモード）、B = WDMを使用した双方向ファイバ（主にシングルモード）、P =パッシブ光（PON）、C =銅/ twinax、K =バックプレーン、2または5または36 = 185/500/3600 mリーチの同軸（廃止）、F =ファイバ、さまざまな波長、H =プラスチック光ファイバ
+
+X、R  -  PCS符号化方式（世代によって異なる）：8b / 10bブロック符号化の場合はX（ファストイーサネットの場合は4B5B）、ラージブロック符号化の場合はR（64b / 66b）
+1、2、4、10  -  LAN PHYの場合、リンクごとに使用されるレーン数を示します。 WAN PHYの場合、リーチはキロメートルで表示
+10 Mbit / sの場合、すべての亜種がマンチェスターコードを使用するため、エンコードは示されません。ほとんどのツイストペアレイヤは固有のエンコーディングを使用しているため、ほとんどの場合-Tだけが使用されます。
+
+特に光接続の場合、到達範囲は、すべてのチャネルパラメータ（モード帯域幅、減衰、挿入損失など）が満たされたときに機能することが保証されている、達成可能な最大リンク長として定義されます。より良いチャネルパラメータを用いると、しばしばより長く、安定したリンク長を達成することができる。逆に、より悪いチャネルパラメータを持つリンクも機能しますが、より短い距離でのみ可能です。到達距離と最大距離は同じ意味を持ちます。
+
+
+ベースバンド変調
+10BASExではマンチェスターコードが用いられた。マンチェスターコードは、各ビットを示す信号の中央で常に Lo→Hi や Hi→Lo に信号レベルが変化することで伝送の基準となるクロック信号をデータ信号に重ねて送ることができた。100BASE-TXではMLT-3、1000BASE-Tでは4D-PAM5など、それぞれ適した変調が用いられる。（以下参照）
+（引用元）http://www.aim-ele.co.jp/tech/metal-tech6/
+
+100Base-TXは、MLT-3と呼ばれるコード変換方式を採用しています。MLT-3は1クロック・サイクル(125MHz,サイクル時間:8n秒)で、3レベルの電圧を使い1ビット(2値)情報を伝送することができます。しかし、データ4ビットをケーブル上に送信する段階で5ビットに変換し、逆にケーブル上を流れる5ビットデータを受信すると4ビットに変換する4B/5B変換を行っているため、実際の伝送速度は125Mビット/秒の4 /5である100Mビット/秒になります。
+
+これに対し、1000Base-Tは4D-PAM5は1クロック・サイクル (125MHz,サイクル時間:8n秒)で、5レベルの電圧を使い2ビット(4値)情報を伝送することにより、1ペアで2倍の250Mビット/秒のデータを伝送することができます。さらに4ペア全てを使うことで、4倍の(250Mビット/秒 × 4本)1000M(1G)ビット/秒の伝送を実現することができます。
+
+1000Base-TXは1000Base-Tと同様4D- PAM5方式ですが、ベースバンド・クロックの周波数が2倍（250MHｚ、サイクル時間:4n秒）になり、1ペアで500Mビット／秒のデータを伝送することができます。さらに2ペアを送信、残る2ペアを受信に使うことで、2倍の（500Mビット/秒 × 2本) 1000M（1G）ビット/秒の伝送を実現することができます。
+
+1000Base-Tは4ペア全てで送受信を行うため、送受信の回路が複雑になりシステムのコストが高かったため、もっと安価なシステムの開発を目的として新たに1000Base-TXが規格化されました。しかし、ベースバンドが2倍となりケーブルは高周波数特性のカテゴリー６が必要となっています。
+
+ Tomlinson-Harashima Precoded (THP) version of pulse-amplitude modulation with 16 discrete levels. (PAM-16),

@@ -53,6 +53,11 @@ $ sudo service <service_name> restart
   - `for a in `seq 1 254`; do ping -c 1 -w 1 10.0.255.$a > /dev/null && arp -a 10.0.255.$a | grep ether; done`
     - 便利なワンライナー．wrap/aliasしてもいいかも．
 
+## ブロードキャストping
+- `netdiscover -r <netaddr/mask>`
+- `for a in `seq 1 254`; do ping -c 1 -w 1 192.168.1.$a > /dev/null && arp -a 192.168.1.$a | grep ether; done`
+- `nmap -sP <netaddr/mask>`
+
 ## curlでproxy経由する
   - `curl -x <proxy>:<port> -L http://example.com`
 

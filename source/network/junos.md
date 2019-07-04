@@ -287,3 +287,153 @@ Possible completions:
   - たとえばSFPからの光を出したくない場合はdisableにするべきか．deacだとadmin-upなので光は出してしまうことになる．ただ，configを入れなければならないのはちょっとな...．
     - JUNOS，factory defaultがadmin-upということはSFPさした瞬間に(configが入っていなくても)光が出てくるということなんだよね．うーん．
   - ref: http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/
+
+## junos chassis clustor
+- clustor id: 同じl2 domainに複数のclustor id は混在できない．clustor id は1-15まで．同じl2には15clustor参加できる．
+  - rethのmacにclustor idが入る．
+- node id: 0 or 1．
+- クラスタ解除時は，operation modeでclustorを解除しなければならない．
+- clustor idとnode idはEPROMに保存される．
+
+### ノード固有のコンフィグ
+- 基本クラスタ内では，同じコンフィグレーションを保持しつづける．
+  - コンフィグは，原則，Primary側で実施する．
+- コンフィグのnode 独自区分は，ノード番号(EPROMに保存)により示される．
+  - どのノードがどのグループ所属するなどを定義するためには，JUNOSグループ機能を利用する．
+- ノード固有のコンフィグには，以下が含まれる．
+  - fxp0のコンフィグ:マネージメントポート
+  - システム名(ホストネーム)
+  - バックアップルータIPアドレス
+
+### Cluster IDとNode IDの設定
+- オペレーションモードにて，以下コマンドを設定します。
+- `プライマリーノード<node 0>`
+  – `lab@srx-1> set chassis cluster cluster-id 1 node 0 [reboot]`
+- `セカンダリーノード<node 1>`
+  – `lab@srx-1 > set chassis cluster cluster-id 1 node 1 [reboot]`
+- これらの情報はEPROMに保存される．設定を反映させるには，リブートが必要．
+  – `lab@srx-1> request system reboot`
+- クラスタモードを無効化するには，`cluster-id 0`または，`disable`を設定し，リブートが必要．
+  – `lab@srx-1 > set chassis cluster disable reboot`
+  – `lab@srx-1 > set chassis cluster-id 0 node 0 reboot`
+
+### manual failover
+- `request chassis cluster failover redundancygroup 1 node 0`
+- manual がyesになる．これだと自動failover しないっぽい．
+```
+network@test_primary> show chassis cluster status
+Monitor Failure codes:
+    CS  Cold Sync monitoring        FL  Fabric Connection monitoring
+    GR  GRES monitoring             HW  Hardware monitoring
+    IF  Interface monitoring        IP  IP monitoring
+    LB  Loopback monitoring         MB  Mbuf monitoring
+    NH  Nexthop monitoring          NP  NPC monitoring
+    SP  SPU monitoring              SM  Schedule monitoring
+    CF  Config Sync monitoring
+
+Cluster ID: 71
+Node   Priority Status               Preempt Manual   Monitor-failures
+
+Redundancy group: 0 , Failover count: 1
+node0  255      primary              no      yes      None
+node1  50       secondary-hold       no      yes      None
+
+Redundancy group: 1 , Failover count: 1
+node0  100      primary              yes     no       None
+node1  50       secondary            yes     no       None
+```
+- `request chassis cluster failover reset redundancy-group 0`
+```
+network@test_primary> show chassis cluster status
+Monitor Failure codes:
+    CS  Cold Sync monitoring        FL  Fabric Connection monitoring
+    GR  GRES monitoring             HW  Hardware monitoring
+    IF  Interface monitoring        IP  IP monitoring
+    LB  Loopback monitoring         MB  Mbuf monitoring
+    NH  Nexthop monitoring          NP  NPC monitoring
+    SP  SPU monitoring              SM  Schedule monitoring
+    CF  Config Sync monitoring
+
+Cluster ID: 71
+Node   Priority Status               Preempt Manual   Monitor-failures
+
+Redundancy group: 0 , Failover count: 1
+node0  100      primary              no      no       None
+node1  50       secondary-hold       no      no       None
+
+Redundancy group: 1 , Failover count: 1
+node0  100      primary              yes     no       None
+node1  50       secondary            yes     no       None
+```
+
+### preemptしたいとき
+  - `set chassis cluster redundancy-group 1 preempt`
+
+### commands
+- `show chassis cluster interface`
+- `show chassis cluster status`
+- `show chassis cluster statistics`
+- `show chassis cluster control-plane statistics`
+- `show chassis cluster data-plane statistics`
+- `request routing-engine login node 0`
+- `set chassis cluster control-link-recovery`: control-linkのauto recovery．これいれないとコントロールリンク復帰してもsecondary rebootせねばならない．
+- `set chassis cluster redundancy-group 0 hold-down-interval 420`
+- `set chassis cluster redundancy-group 1 preempt delay 300 limit 10 period 600`
+
+- TODO: RTO(Run Time Object)メッセージについて調べてまとめる．
+  - RTOって要するにsession情報とかをHA機器間でやり取りするメッセージだ．
+  - コンフィグ情報, 動的に生成されるTCP/UDPセッション，IPsecのSA，ARPテーブル，DNSキャッシュ，DHCPの割り当て情報などの動的に生成される情報をRTOと呼ぶ．
+
+## srxのdhcpにoptionをぶっこむ
+- たとえば時刻系
+  - Option 042 refers to NTP (RFC 1769)
+  - Option 004 refers to TIME/ITP (RFC 868)
+  - `set access address-assignment pool pool_1 family inet dhcp-attributes option 42 array ip-address xxx.xxx.xxx.xxx`
+
+## junos config parser
+- junoser
+  - https://github.com/codeout/junoser
+  - https://codeout.hatenablog.com/entry/2017/10/26/210810
+
+### juniper exのLAG
+- Static Link Aggregation: Trunk
+- Dynamic Aggregation: LACP
+
+- Trunkの設定
+  - set chassis aggregated-devices ethernet device-count 1
+    - junosはaeのindexをここを参照して作ってる？要調査．
+  - set interfaces ae0 unit 0 family ethernet-switching
+  - set interfaces ge-0/0/1 ether-options 802.3ad ae0
+    - unit 配下は必要ない．
+  - set interfaces ge-0/0/2 ether-options 802.3ad ae0
+  - set interfaces ae0 unit 0 family ethernet-switching port-mode access
+  - set interfaces ae0 unit 0 family ethernet-switching vlan members vlanxxxx
+    - 後は普通のinterfaceと同様に扱う．
+
+- TODO: なにがちがうんだっけ．
+
+## tunnel services
+- `set chassis fpc slot-number pic number tunnel-services bandwidth <bandwidth>`
+  - greとかipipとかで終端した時の帯域っぽい．
+
+## ping
+- junos
+  - `ping <neighbor_ip> ttl 1 rapid do-not-fragment count 2000 size 1472`
+  - v6のときmtuからいくつ引くんだっけ．
+
+## junos bgp
+- `add-path`
+  - add-pathはbgpのactive経路以外もadvertiseしたい/receiveしたいときに使う．
+- `advertise-inactive`
+  - advertise-inactiveはbgp経路がactive経路(best)じゃなくてもadveertiseする．
+- `remove-private`
+  - remove-privateはebgpにadvertiseするとき，as-pathからprivate-as numをremoveして広告する．
+  - ASパスの左端（ASパスが最後に追加された場所）のプライベートASパスから削除される．
+  - 最初の非プライベートASまたはピアのプライベートASが見つかると、プライベートASの検索を停止する．
+  - ASパスに外部BGP（EBGP）ネイバーのAS番号が含まれている場合、BGPはプライベートAS番号を削除しない．
+- `as-override`
+  - advertiseする際にas-pathにneighbor-ASが
+  含まれる場合に自ASにoverrideしてadvertiseする．
+  - VRFを切った MP-BGP/MPLS VPN等で多用される（CEが同一AS-numを持つため）．
+  どうやら直前のas-path以外も，かぶってさえいれば自AS numに書き換えるようだ．
+    - https://www.sash.jp/vpn-mpls-vpn-as-override

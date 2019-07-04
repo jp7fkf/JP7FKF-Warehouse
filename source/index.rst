@@ -21,6 +21,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201904
   dialy/201905
   dialy/201906
+  dialy/201907
 
   todo
   programming/sh
@@ -82,6 +83,7 @@ Welcome to JP7FKF-Warehouse!
   network/segment_routing.md
   hobbies/making
   hobbies/stm32
+  hobbies/hamradio
   hobbies/mobile_communication
   settings
   electronics/electronics

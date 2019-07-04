@@ -1,36 +1,38 @@
 # tmux
 
 ## 新規セッション開始
-tmux
+- `tmux`
 
 ## attach
-` $ tmux a`
+- `tmux a`
 
 ## dettach
-`ctrl+b, d`
+- `ctrl+b, d`
 
 ## tmux の中でスクロール
-`ctrl+b, [`
-これで上下キーでスクロールできる．
-抜けるときは`q`
+- `ctrl+b, [`
+- これで上下キーでスクロールできる．
+- 抜けるときは`q`
 
 ## 名前をつけて新規セッション
-`tmux new -s <session_name>`
+- `tmux new -s <session_name>`
 
 ## セッションの一覧表示
-`tmux ls`
+- `tmux ls`
 
 ## 接続クライアントの一覧表示
-`tmux lsc`
+- `tmux lsc`
 
-## セッションを再開 -t <session_name>でセッション指定
-`tmux a`
+## セッションを再開
+- `tmux a`
+- `-t <session_name>` でセッション指定
 
-## セッションを終了 -t <session_name>セッション指定
-`tmux kill-session`
+## セッションを終了
+- `tmux kill-session`
+- `-t <session_name>` でセッション指定
 
 ## tmux全体を終了
-`tmux kill-server`
+- `tmux kill-server`
 
 ## 基本操作
 ```
@@ -85,12 +87,12 @@ t            ペインに時計を表示
 ※viモードで無い場合は、設定ファイルに set-window-option -g mode-keys vi を追加
 ```
 
-- 基本
-  - tmuxの設定は ~/.tmux.conf か /etc/tmux.conf に記述する
-  - set-option, set-window-option, bind-key コマンドを使って設定
-  - set, setw, bind 等は上記コマンドの省略形
+## 基本
+- tmuxの設定は ~/.tmux.conf か /etc/tmux.conf に記述する
+- set-option, set-window-option, bind-key コマンドを使って設定
+- set, setw, bind 等は上記コマンドの省略形
 
-- マウス操作を有効にする
+## マウス操作を有効にする
 ```
 #マウス操作を有効にする
 set-option -g mouse on
@@ -104,13 +106,14 @@ bind-key -n WheelDownPane select-pane -t= \; send-keys -M
 また minttyの場合はShift押下中に左クリック範囲選択でコピー、右クリックでペースト(Options｜Mouseで変更)、Altも同時押下で矩形選択が出来る
 ```
 
-- プレフィックスキーを Ctrl + b から Ctrl + g に変更
+##  プレフィックスキーを Ctrl + b から Ctrl + g に変更
 ```
 set-option -g prefix C-g
 unbind-key C-b
 bind-key C-g send-prefix
 ```
-- ターミナル起動時にtmuxを自動実行
+
+## ターミナル起動時にtmuxを自動実行
 ```
 ~/.bash_profile
 # 初回シェル時のみ tmux実行
