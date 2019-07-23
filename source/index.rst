@@ -81,6 +81,7 @@ Welcome to JP7FKF-Warehouse!
   network/snmp
   network/vpp
   network/segment_routing.md
+  hobbies/places
   hobbies/making
   hobbies/stm32
   hobbies/hamradio
