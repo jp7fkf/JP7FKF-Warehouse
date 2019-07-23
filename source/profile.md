@@ -36,7 +36,7 @@
   - 2018/10  CCNA Routing and Switching(200-125)
   - 2018/12  技術士補（電気電子部門）
   - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credential.net/2tb0by0q)
-
+  - 2019/06  情報処理安全確保支援士試験
   - TOEICは最高でも700ptsに満たない程度です．
 
 ## Life Events
@@ -104,6 +104,7 @@
   - 2018/10  CCNA Routing and Switching(200-125) 取得
   - 2018/12  技術士補（電気電子部門）
   - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credential.net/2tb0by0q)
+  - 2019/06  情報処理安全確保支援士試験　合格
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.

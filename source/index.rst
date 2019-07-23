@@ -42,6 +42,7 @@ Welcome to JP7FKF-Warehouse!
   tech/elastic_stack.md
   tech/gatling
   tech/itamae
+  tech/monitoring
   unix/iptables.md
   unix/namespace.md
   unix/nmap.md
@@ -63,6 +64,7 @@ Welcome to JP7FKF-Warehouse!
   unix/esxi
   unix/postgresql
   unix/httpd
+  unix/ubuntu
   network/L2.md
   network/arp
   network/802_11

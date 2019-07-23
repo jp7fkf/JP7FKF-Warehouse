@@ -207,3 +207,26 @@ tmpfs                            4941256        0   4941256   0% /run/user/1001
     - これで`df`するととりあえずavailableは増えていると思われるので，あとはなんとかなる．
     - `sudo update-grub`
     - `sudo apt-get update`
+
+## yumとrpmって競合するん？
+- 基本的にしないっぽい．yumは依存性解決とかをやってくれているだけで，中ではrpm叩いてるらしい．
+
+## yum とかrpmでURL指定でinstallする
+- https://qiita.com/kazinoue/items/d432b858c71618a1c15e
+- `sudo rpm -[i,U]vh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm`
+- `sudo yum install http://ftp.riken.jp/Linux/centos/7.5.1804/updates/x86_64/Packages/gcc-4.8.5-28.el7_5.1.x86_64.rpm`
+
+## yumでダウンロードされたファイル
+- `/var/cache/yum/base/packages/`
+  - 基本的にここにあるっぽい． `sudo yum clean` したら消えるんだろうか．
+
+## `df` でみるといっぱいなのに `/` 配下にはそんなにない．
+- `/tmp`とかが別パーティでマウントされてたりすると．．．
+- `sudo lsof / | sort -k7 -nr | head -1` するといちばんやべーのがでてくる．
+
+## yum install/update したあとにprocess/service/system restartが必要なのか？
+- `needs-restarting` コマンドというのがある．
+- `needs-restarting`: リスタートすべきプロセスが出る．
+- `needs-restarting -s`: リスタートすべきサービスが出る．
+- `needs-restarting -r`: システムリスタートが必要かをみる．
+- これは`yum-utils`パッケージに入ってる．
