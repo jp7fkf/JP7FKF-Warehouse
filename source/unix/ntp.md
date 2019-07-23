@@ -136,6 +136,7 @@ Connection to 192.168.1.1 closed.
 [root@hostA]# cat /sys/devices/system/clocksource/clocksource0/current_clocksource
 hpet
 ```
+- ref.) https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-configuring_clock_sources
 - TODO: clock sourceの違い
 
 ## ref
