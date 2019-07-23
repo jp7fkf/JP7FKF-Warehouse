@@ -246,3 +246,164 @@ passwd <user> でパス変更しておこう
 other  The  watch  will  propagate  command exit status as child
        exit status.
 ```
+
+## FTP
+- `open <ip/name>`
+- `cd`, `ls`, `mkdir`, etc...
+- `put`, `get`
+- `mput`, `mget`
+  - ex. `mget *.jpg`
+- `asc`: asciimode, `bin`: binarymode
+- `close`
+```
+[jp7fkf@lab1]$ ftp
+ftp> open ftp.riken.jp
+Connected to ftp.riken.jp (134.160.38.1).
+220 ::ffff:134.160.38.1 FTP server ready
+Name (ftp.riken.jp:jp7fkf): anonymous
+331 Anonymous login ok, send your complete email address as your password
+Password:
+230-******************************************************
+ ftp.riken.jp is an unsupported ftp/http/https/rsync
+ service of RIKEN Nishina Center for research support.
+ Use entirely at your own risk - no warranty
+ is expressed or implied.
+ Complaints and questions should be sent to
+ ftp-admin a.t. ftp.riken.jp
+ ******************************************************
+230 Anonymous access granted, restrictions apply
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (134,160,38,1,131,149).
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   4 root     root         4096 Apr  8  2013 cernlib
+lrwxrwxrwx   1 root     root           11 Aug 28  2014 CTAN -> tex-archive
+drwxr-xr-x   8 archive  archive      4096 Jul 14 12:15 FreeBSD
+drwxr-xr-x   9 root     root         4096 Nov 19  2014 GNU
+-rw-r--r--   1 root     root          700 May 16 03:37 HEADER.html
+drwxr-xr-x  12 root     root         4096 Feb 21  2015 iris
+drwxr-xr-x   3 root     root           17 Jul  7  2008 lang
+drwxr-xr-x   3 root     root           16 Dec 27  2010 Lecture
+drwxr-xr-x  35 root     root         4096 Jun  3 05:14 Linux
+drwx------   6 root     root           69 Aug  7  2014 misc
+drwxr-xr-x  15 root     root         4096 Jun 14  2018 net
+drwxr-xr-x  20 archive  archive      4096 Jul 17 00:27 NetBSD
+drwxr-xr-x   4 root     root           33 Sep  9  2015 office
+drwxr-xr-x  15 archive  archive      4096 Jul 17 03:15 OpenBSD
+drwxr-xr-x   5 root     root           53 Jul  5  2013 pc
+drwxr-xr-x   2 root     root         4096 Oct 31  2018 pub
+drwxrwxr-x  12 archive  archive      4096 Jul 16 21:15 sagemath
+drwxr-xr-x  18 archive  archive      4096 Jul 16 23:14 tex-archive
+d---------   2 root     root            6 Jan 31  2018 uploads
+-rw-r--r--   1 root     root          224 Jan 31  2018 welcome.msg
+drwxrwxr-x  10 archive  archive      4096 Jul  2 21:15 X11
+226 Transfer complete
+ftp> cd FreeBSD
+250-ISO images of FreeBSD releases may be found in the releases/ISO-IMAGES
+ directory.  For independent files and tarballs, see individual
+ releases/${machine}/${machine_arch} directories.  For example,
+ releases/amd64/amd64 and releases/powerpc/powerpc64.
+250 CWD command successful
+ftp> ls
+227 Entering Passive Mode (134,160,38,1,136,63).
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   9 archive  archive      4096 Jul 14 12:15 development
+-rw-r--r--   1 archive  archive      2269 Jul 13 10:00 dir.sizes
+drwxr-xr-x  28 archive  archive      4096 Nov 12  2017 doc
+drwxr-xr-x   5 archive  archive        56 Nov 12  2017 ports
+-rw-r--r--   1 archive  archive      4259 May  7  2015 README.TXT
+drwxr-xr-x  10 archive  archive      4096 Jul 14 12:17 releases
+drwxr-xr-x  10 archive  archive      4096 Nov  9  2018 snapshots
+-rw-r--r--   1 archive  archive        35 Jul 14 09:15 TIMESTAMP
+226 Transfer complete
+ftp> cd deve
+550 deve: No such file or directory
+ftp> cd development
+250 CWD command successful
+ftp> ls
+227 Entering Passive Mode (134,160,38,1,158,89).
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   2 archive  archive        47 Nov 12  2017 CSRG
+drwxr-xr-x   2 archive  archive        27 Jan  5  2018 CTM
+drwxr-xr-x   3 archive  archive      4096 Nov 12  2017 CVS-archive
+drwxr-xr-x   4 archive  archive        62 Nov 12  2017 CVSup
+drwxr-xr-x   2 archive  archive        90 Nov 12  2017 gnats-archive
+drwxr-xr-x   2 archive  archive      4096 Oct 20  2018 subversion
+drwxr-xr-x   2 archive  archive      4096 Jul 14 12:15 tarballs
+-rw-r--r--   1 archive  archive        35 Jul 14 09:15 TIMESTAMP
+226 Transfer complete
+ftp> cd tarballs
+250 CWD command successful
+ftp>
+ftp> ls
+227 Entering Passive Mode (134,160,38,1,150,80).
+150 Opening ASCII mode data connection for file list
+-rw-r--r--   1 archive  archive  97028667 Jul 14 01:01 doc_current.tar.gz
+-rw-r--r--   1 archive  archive  58952447 Jul 14 01:21 ports_current.tar.gz
+-rw-r--r--   1 archive  archive  253262428 Jul 14 01:31 src_current.tar.gz
+-rw-r--r--   1 archive  archive  202838063 Jul 13 01:36 src_stable_10.tar.gz
+-rw-r--r--   1 archive  archive  246360289 Jul 14 01:39 src_stable_11.tar.gz
+-rw-r--r--   1 archive  archive  28389329 Nov 10  2016 src_stable_2.0.5.tar.gz
+-rw-r--r--   1 archive  archive  30007804 Nov 10  2016 src_stable_2.1.tar.gz
+-rw-r--r--   1 archive  archive  38802445 Nov 10  2016 src_stable_2.2.tar.gz
+-rw-r--r--   1 archive  archive  53130095 Nov 10  2016 src_stable_3.tar.gz
+-rw-r--r--   1 archive  archive  83185063 Nov 10  2016 src_stable_4.tar.gz
+-rw-r--r--   1 archive  archive  97265038 Nov 10  2016 src_stable_5.tar.gz
+-rw-r--r--   1 archive  archive  100357754 Nov 10  2016 src_stable_6.tar.gz
+-rw-r--r--   1 archive  archive  115919712 Aug 27  2018 src_stable_7.tar.gz
+-rw-r--r--   1 archive  archive  124838527 Dec 27  2018 src_stable_8.tar.gz
+-rw-r--r--   1 archive  archive  169774261 Jun 12 01:05 src_stable_9.tar.gz
+226 Transfer complete
+ftp> cd
+(remote-directory)
+usage: cd remote-directory
+ftp> cd ..
+250 CWD command successful
+ftp> ls
+227 Entering Passive Mode (134,160,38,1,167,42).
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   2 archive  archive        47 Nov 12  2017 CSRG
+drwxr-xr-x   2 archive  archive        27 Jan  5  2018 CTM
+drwxr-xr-x   3 archive  archive      4096 Nov 12  2017 CVS-archive
+drwxr-xr-x   4 archive  archive        62 Nov 12  2017 CVSup
+drwxr-xr-x   2 archive  archive        90 Nov 12  2017 gnats-archive
+drwxr-xr-x   2 archive  archive      4096 Oct 20  2018 subversion
+drwxr-xr-x   2 archive  archive      4096 Jul 14 12:15 tarballs
+-rw-r--r--   1 archive  archive        35 Jul 14 09:15 TIMESTAMP
+226 Transfer complete
+ftp> cd ..
+250-ISO images of FreeBSD releases may be found in the releases/ISO-IMAGES
+ directory.  For independent files and tarballs, see individual
+ releases/${machine}/${machine_arch} directories.  For example,
+ releases/amd64/amd64 and releases/powerpc/powerpc64.
+250 CWD command successful
+ftp>
+ftp> ls
+227 Entering Passive Mode (134,160,38,1,163,208).
+150 Opening ASCII mode data connection for file list
+drwxr-xr-x   9 archive  archive      4096 Jul 14 12:15 development
+-rw-r--r--   1 archive  archive      2269 Jul 13 10:00 dir.sizes
+drwxr-xr-x  28 archive  archive      4096 Nov 12  2017 doc
+drwxr-xr-x   5 archive  archive        56 Nov 12  2017 ports
+-rw-r--r--   1 archive  archive      4259 May  7  2015 README.TXT
+drwxr-xr-x  10 archive  archive      4096 Jul 14 12:17 releases
+drwxr-xr-x  10 archive  archive      4096 Nov  9  2018 snapshots
+-rw-r--r--   1 archive  archive        35 Jul 14 09:15 TIMESTAMP
+226 Transfer complete
+ftp> get README.TXT
+local: README.TXT remote: README.TXT
+227 Entering Passive Mode (134,160,38,1,139,90).
+150 Opening BINARY mode data connection for README.TXT (4259 bytes)
+226 Transfer complete
+4259 bytes received in 0.0137 secs (311.17 Kbytes/sec)
+ftp> asc
+200 Type set to A
+ftp> bin
+200 Type set to I
+ftp> close
+221 Goodbye.
+ftp> quit
+[jp7fkf@lab1]$ ls
+ README.TXT
+```

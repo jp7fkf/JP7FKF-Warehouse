@@ -45,3 +45,8 @@ script of the same name. We found the following "config" scripts:
 % brew doctor
 Your system is ready to brew.
 ```
+
+## diskutil
+- `diskutil list`
+- `diskutil unMountDisk <path_to_disk>`
+- `diskutil eraseDisk HFS+ Untitled <path_to_disk>`
