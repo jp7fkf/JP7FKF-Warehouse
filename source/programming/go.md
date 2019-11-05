@@ -226,5 +226,4 @@ Use "go help <topic>" for more information about that topic.
   - timeoutがping run全体のtimeoutとなっているため，icmp 1packetがtimeoutしたときに`Request timeout for icmp_seq 0` 的なmessageが出ない．
   - [sparrc/go-ping: ICMP Ping library for Go](https://github.com/sparrc/go-ping)
 - digineo/goping
-  - 
   - [digineo/go-ping: A simple ping library using ICMP echo requests.](https://github.com/digineo/go-ping)
