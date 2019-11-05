@@ -121,3 +121,19 @@ if [ $SHLVL = 1 ]; then
   tmux
 fi
 ```
+
+## tmux.conf
+```
+# pane layout
+bind-key -n M-1 select-layout main-horizontal
+bind-key -n M-2 select-layout main-vertical
+bind-key -n M-3 select-layout tiled
+bind-key -n M-4 select-layout even-horizontal
+bind-key -n M-5 select-layout even-vertical
+
+# pane size
+bind-key -n M-Up resize-pane -U 5
+bind-key -n M-Down resize-pane -D 5
+bind-key -n M-Left resize-pane -L 5
+bind-key -n M-Right resize-pane -R 5
+```

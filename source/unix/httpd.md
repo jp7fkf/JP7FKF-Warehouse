@@ -54,6 +54,45 @@
       - `openssl rsa -in cert.key -out cert.key` してpassphraseを入力してpassphraseを削除した秘密鍵ファイルにしてやる．
         - 念の為バックアップを取ったほうがいいと思う．
 
+### nginxでリバプロ
+- https://qiita.com/HeRo/items/7063b86b5e8a2efde0f4
+
+- httpをhttpsにリダイレクト
+```
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443;
+    ssl on;
+    # ...
+}
+```
+- websocketいれるとき下記いれないとだめっぽい．
+```
+proxy_http_version  1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection "upgrade";
+proxy_set_header Host $http_host;
+proxy_set_header X-Real-IP $remote_addr;
+```
+
+- オレオレSSL証明書
+  - https://dogmap.jp/2011/05/10/nginx-ssl/
+
+- basic認証をつける
+  - https://qiita.com/kotarella1110/items/be76b17cdbe61ff7b5ca
+
+- sni
+  - https://qiita.com/sawanoboly/items/5fd06f4787853c756122
+
+- SANs, 2way
+  - 1つの証明書で複数のcommon nameに対応
+  - http://memories.zal.jp/WP/blog/20180716_2979.html
+
 ## h2o
   - h2oをcentos7にいれる
     - https://github.com/tatsushid/h2o-rpm を参考にyumでいれる．
@@ -366,3 +405,28 @@ www.jp7fkf.dev = /path/to/document/root
 
 ## SSL Server Testとか
 - https://blog.yuu26.com/entry/20180618/1529333962
+
+## apache2 (ubuntu18?)
+### apache2でdocument rootをredirectする．
+- たとえば `http:x.x.x.x/` を `http:x.x.x.x/git/` にリダイレクトしたければ，virtual hostなどに下記を書く．
+- `RedirectMatch ^/$ /git/` 
+
+### `/etc/apache2/*-enabled` と `/etc/apache2/*-avaialable`
+- Q. なぜフォルダが2つあるのか(available, enabled)
+  - A. 利用する/しないを分けるため．
+- availableには利用しないがファイル自体はdumpできる．
+- そうすると下記のようなコマンドで即座にenable可能．
+- これらのコマンドは`/etc/apache2/*-enabled`に`/etc/apache2/*-available`へのシンボリックリンクを生成する．
+```
+# /etc/apache2/sites-avalable における適用と削除
+a2ensite <filename>
+a2dissite　<filename>
+
+# /etc/apache2/mods-avalable における適用と削除
+a2enmod <filename>
+a2dismod <filename>
+
+# /etc/apache2/conf-avalable における適用と削除
+a2enconf <filename>
+a2disconf <filename>
+```

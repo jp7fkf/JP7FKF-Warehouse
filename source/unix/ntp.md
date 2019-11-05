@@ -142,11 +142,26 @@ hpet
 ## ref
 - http://yeh.jp/blog/ntpq-p/
 
-
 ## memo
 spike_detect 
 clock_step
 freq_mode
 no_sys_peer
-
 sudo chronyc makestep
+
+
+## NTPとPTPの違いとか
+- NTPはUTC(Coordinated Universal Time)基準だが，PTPはTAI(国際原子時)に基づいて時刻配信を行う．
+```
+国際原子時（こくさいげんしじ、フランス語: Temps Atomique International、略語：TAI、ドイツ語: Internationale Atomzeit、英語: International Atomic Time）は、現在国際的に規定・管理される原子時（原子時計によって定義される高精度で安定した時刻系）である。地球表面（ジオイド面）上の座標時の実現と位置付けられる。
+
+国際単位系 (SI) では、「秒はセシウム133の原子の基底状態の二つの超微細準位の間の遷移に対応する放射の周期の9 192 631 770倍の継続時間である。」と定義されている[1]。
+```
+- `https://en.wikipedia.org/wiki/International_Atomic_Time`
+
+```
+Precision Time Protocol (PTP) は比較的新しいプロトコルであり，利用環境をLANに制限することで高精度な時刻同期を得るために作られました．PTPの仕様は IEEE-1588 として定められています． PTP では Grandmaster （GMC グランドマスタークロック， マスター）が高精度な時刻の配信を行い， スレーブが時刻を受け取ります．どのマスターをGMCとするかは，GMCA と呼ぶマスタークロック選出アルゴリズムで自動的に決定します．
+
+PTP ではネットワークインターフェースチップのMACやPHYに実装されたハードウェアタイムスタンプ機能を使い，マイクロ秒RMS以下のタイムスタンプ精度を実現します． また誤差の要因であるネットワークの伝搬遅延を検出して補正する仕掛けを持ちます．Version 1では大規模な展開を行うためにセグメントを区切るBoundary Clock (BC)が用意されました． 現在標準とされ，EndRun製品がサポートする Version 2 では遅延管理機能を持つスイッチングハブ Transparent Clock (TC) が用意され，より柔軟で精度の高い展開が可能になりました．PTP の時刻同期精度は グランドマスタークロックやスレーブクロックのタイムスタンプ精度だけで決まるのではなく，ネットワークのトポロジー，例えばスイッチ， BC， TC やスレーブの同期能力が影響を与えます． Sonoma を含む、現在主流の PTP ハードウェアタイムスタンプをサポートする製品で構成するトポロジーは <100ns の同期も可能になっています． PTP の動作説明については，このEndRun 1588/PTP白書も参照ください．
+```
+- ref: https://www.shoshin.co.jp/c/endrun/1588ptp.html

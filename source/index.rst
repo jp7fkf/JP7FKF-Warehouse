@@ -52,6 +52,7 @@ Welcome to JP7FKF-Warehouse!
   unix/virsh
   unix/tmux
   unix/ntp
+  unix/dhcp
   unix/dig
   unix/dns
   unix/vnc

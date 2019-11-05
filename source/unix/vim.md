@@ -33,3 +33,78 @@
   set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
   set fileformats=unix,dos,mac
   ```
+
+
+## vimrc one example
+```
+"===== regular =====
+set nocompatible
+set autoindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set showmatch
+set smartcase
+set smartindent
+set smarttab
+set nowrapscan
+set title
+set hlsearch
+set cursorline
+set wildmenu
+set encoding=utf-8
+let $LANG = "en_US.utf-8"
+set clipboard+=unnamed
+set backspace=indent,eol,start
+
+inoremap {} {}<LEFT>
+inoremap [] []<LEFT>
+inoremap () ()<LEFT>
+inoremap "" ""<LEFT>
+inoremap '' ''<LEFT>
+
+nnoremap <Esc><Esc> :<C-u>set nohlsearch<Return>
+
+" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufNewFile,BufRead *.{yang} set filetype=yang
+
+"===== gtags =====
+map <C-g> :Gtags
+map <C-i> :Gtags -f %<CR>
+map <C-j> :GtagsCursor<CR>
+map <C-n> :cn<CR>
+map <C-p> :cp<CR>
+
+"===== dein.vim =====
+if &compatible
+  set nocompatible
+endif
+
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+syntax enable
+
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state(expand('~/.vim/dein'))
+    call dein#begin(expand('~/.vim/dein'))
+
+    let g:dein_dir = expand('~/.vim/dein')
+    let s:toml = g:dein_dir . '/dein.toml'
+    let s:lazy_toml = g:dein_dir . '/dein_lazy.toml'
+
+    call dein#load_toml(s:toml, {'lazy': 0})
+    call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+    call dein#end()
+    call dein#save_state()
+endif
+
+if dein#check_install()
+    call dein#install()
+endif
+
+filetype plugin indent on
+```

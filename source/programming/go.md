@@ -212,3 +212,19 @@ Use "go help <topic>" for more information about that topic.
 
 ## uuid
 - https://github.com/google/uuid
+
+## misc/tips
+- [【Go】structにデフォルトの値を設定したい - /dev/null](http://gitpub.hatenablog.com/entry/2015/01/24/213223)
+- [Structs Instead of Classes - Object Oriented Programming in Golang](https://golangbot.com/structs-instead-of-classes/)
+
+### goのping実装
+- fastping
+  - mutex利用している．
+  - 1packet送って受信後もmainloopは抜けているがgoroutineが動き続けてrecvICMPし続けて無駄に終了まで時間がかかってうざい．
+  - [tatsushid/go-fastping: ICMP ping library for Go inspired by AnyEvent::FastPing Perl module](https://github.com/tatsushid/go-fastping)
+- sparrc/go-ping
+  - timeoutがping run全体のtimeoutとなっているため，icmp 1packetがtimeoutしたときに`Request timeout for icmp_seq 0` 的なmessageが出ない．
+  - [sparrc/go-ping: ICMP Ping library for Go](https://github.com/sparrc/go-ping)
+- digineo/goping
+  - 
+  - [digineo/go-ping: A simple ping library using ICMP echo requests.](https://github.com/digineo/go-ping)

@@ -9,3 +9,5 @@
 
 ## vpp
 - https://wiki.fd.io/view/VPP/Setting_Up_Your_Dev_Environment
+
+- srv6 OAM...

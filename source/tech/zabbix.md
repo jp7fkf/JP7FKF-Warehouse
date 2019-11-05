@@ -45,3 +45,89 @@
 条件式 {<template_name>:system.localtime.fuzzytime(<diff_threshold>)}=0
 深刻度 警告（お好みで）
 ```
+
+## zabbix-agentにスクリプトを叩かせる．
+- 下記のような単純な構成のときに，zabbix-agentdに任意のシェルスクリプトを配置して，zabbix-serverで結果を取得したい．
+```
+  +------------+
+  |  zabbix    |
+  |   server   |
+  +------------+
+        |
+        |
+  +------------+
+  | (zabbix    |
+  |   proxy)   |
+  +------------+
+        |
+        |
+  +------------+
+  |  zabbix    |
+  |   agentd   |
+  +------------+
+```
+1. `/var/lib/zabbix/bin/` 配下に実行したいスクリプトを配置する．(別に，ここ配下ではなくてもよい．userparamを書くときにパスを記載する．)
+  - ex.) `ntpcheck.sh`
+  ```
+  #!/bin/sh
+  /usr/sbin/ntpdate -q $1 >/dev/null ; echo $?
+  ```
+  - own,permissionはzabbix:zabbix(0755)程度にしておくとよさそう．
+1. `/etc/zabbix/zabbix_agentd.d/` 配下にUserparamファイルを作成する．
+  - 用いる機能別にファイルを分けると管理が容易だと考えられる．
+  - ex.) `/etc/zabbix/zabbix_agentd.d/proxydns.conf`
+  ```
+  UserParameter=script.ntpcheck,HOME=/var/lib/zabbix /var/lib/zabbix/bin/ntpcheck.sh
+  ```
+  - ここで指定した `UserParameter=script.ntpcheck` がzabbix-serverでitem登録する際のkeyとなる．
+  - あとは通常通り，zabbixにてitem登録を実施する．
+  - ex.)
+  ```
+  Name: Proxy DNS
+  Type: Zabbix Agent
+  Key: script.ntpcheck
+  ...
+  ```
+- ref.) https://kimoota.wiki.fc2.com/wiki/zabbix%2F%E7%8B%AC%E8%87%AA%E7%9B%A3%E8%A6%96%E3%81%AE%E8%A8%AD%E5%AE%9A
+
+## zabbix install battle
+```
+wget https://repo.zabbix.com/zabbix/4.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_4.2-1+bionic_all.deb
+dpkg -i zabbix-release_4.2-1+bionic_all.deb
+apt update
+
+zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -uzabbix -p zabbix
+
+
+# vi /etc/zabbix/zabbix_server.conf
+DBHost=localhost
+DBName=zabbix
+DBUser=zabbix
+DBPassword=<password>
+
+php_value max_execution_time 300
+php_value memory_limit 128M
+php_value post_max_size 16M
+php_value upload_max_filesize 2M
+php_value max_input_time 300
+php_value max_input_vars 10000
+php_value always_populate_raw_post_data -1
+# php_value date.timezone Europe/Riga
+Now you are ready to proceed with frontend installation steps which will allow you to access your newly installed Zabbix.
+
+Note that a Zabbix proxy does not have a frontend; it communicates with Zabbix server only.
+
+Agent installation
+To install the agent, run
+
+# apt install zabbix-agent
+
+tcp/10050 port あけるとか．
+
+https://www.zabbix.com/documentation/4.2/manual/installation/install_from_packages/debian_ubuntu
+https://qiita.com/hirotaka-tajiri/items/fa8a6dbaf1ddf1b59cdd
+```
+
+## zabbix templates
+- https://share.zabbix.com/network_devices/juniper
+- https://share.zabbix.com/network_devices/cisco

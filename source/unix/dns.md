@@ -186,3 +186,55 @@ RFC3484にはこう書かれている．
     - `:set paste` を打ってから入力
   - alコマンド
     - `:al` して貼り付け
+
+
+## unbound
+
+## unbound install battle on ubuntu18.04
+- 2019/07現在下記のパッケージがある．(1.6.7)
+```
+jp7fkf@lab1:~$ sudo apt list -a | grep unbound
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+libghc-unbounded-delays-dev/bionic 0.1.1.0-1 amd64
+libghc-unbounded-delays-doc/bionic 0.1.1.0-1 all
+libghc-unbounded-delays-prof/bionic 0.1.1.0-1 amd64
+libunbound-dev/bionic-updates 1.6.7-1ubuntu2.2 amd64
+libunbound-dev/bionic-security 1.6.7-1ubuntu2.1 amd64
+libunbound-dev/bionic 1.6.7-1ubuntu2 amd64
+libunbound2/bionic-updates 1.6.7-1ubuntu2.2 amd64
+libunbound2/bionic-security 1.6.7-1ubuntu2.1 amd64
+libunbound2/bionic 1.6.7-1ubuntu2 amd64
+python-unbound/bionic-updates 1.6.7-1ubuntu2.2 amd64
+python-unbound/bionic-security 1.6.7-1ubuntu2.1 amd64
+python-unbound/bionic 1.6.7-1ubuntu2 amd64
+python3-unbound/bionic-updates 1.6.7-1ubuntu2.2 amd64
+python3-unbound/bionic-security 1.6.7-1ubuntu2.1 amd64
+python3-unbound/bionic 1.6.7-1ubuntu2 amd64
+unbound/bionic-updates 1.6.7-1ubuntu2.2 amd64
+unbound/bionic-security 1.6.7-1ubuntu2.1 amd64
+unbound/bionic 1.6.7-1ubuntu2 amd64
+unbound-anchor/bionic-updates 1.6.7-1ubuntu2.2 amd64
+unbound-anchor/bionic-security 1.6.7-1ubuntu2.1 amd64
+unbound-anchor/bionic 1.6.7-1ubuntu2 amd64
+unbound-host/bionic-updates 1.6.7-1ubuntu2.2 amd64
+unbound-host/bionic-security 1.6.7-1ubuntu2.1 amd64
+unbound-host/bionic 1.6.7-1ubuntu2 amd64
+```
+
+## Unbound DNS monitoring
+- https://nlnetlabs.nl/documentation/unbound/howto-statistics/
+- https://github.com/jeftedelima/Unbound-DNS
+
+## unbound config examples
+- https://unbound.jp/unbound/unbound-conf/
+
+## optimization
+- [NLnet Labs Documentation - Unbound - Howto Optimise](https://nlnetlabs.nl/documentation/unbound/howto-optimise/)
+
+## dnsperf
+- https://gist.github.com/i0rek/369a6bcd172e214fd791
+- https://yutarommx.com/?p=318
+- https://www.dns-oarc.net/tools/dnsperf
+- https://kinneko.hatenadiary.org/entry/20161220/p1

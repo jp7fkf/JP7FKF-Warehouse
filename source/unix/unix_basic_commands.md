@@ -407,3 +407,58 @@ ftp> quit
 [jp7fkf@lab1]$ ls
  README.TXT
 ```
+
+## lsof
+- プロセスが開いているファイルらを表示する．
+
+### options
+- `-P`: ポート番号をサービス名に変換しない
+- `-c`: プロセス名を指定
+- `-i`: ネットワークソケットファイルを指定
+- `-n`: IPアドレスを表示（名前解決しない）
+- `-p`: プロセスIDを指定
+- `-u`: ユーザー名を指定
+
+### examples
+- `lsof -i:80`: 80番ポートのappsを表示する．
+- `lsof -i`: ネットワークソケットファイル全部見る．
+
+## systemd
+- systemdのファイルを参照したい
+- `systemctl cat <service_name>` する．
+```
+jp7fkf@lab1:~$ systemctl cat zabbix-server.service
+# /lib/systemd/system/zabbix-server.service
+[Unit]
+Description=Zabbix Server
+After=syslog.target
+After=network.target
+
+[Service]
+Environment="CONFFILE=/etc/zabbix/zabbix_server.conf"
+EnvironmentFile=-/etc/default/zabbix-server
+Type=forking
+Restart=on-failure
+PIDFile=/run/zabbix/zabbix_server.pid
+KillMode=control-group
+ExecStart=/usr/sbin/zabbix_server -c $CONFFILE
+ExecStop=/bin/kill -SIGTERM $MAINPID
+RestartSec=10s
+TimeoutSec=infinity
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## fallocate
+- ddとかの代わりにdummyファイル生成するときに便利
+  - `fallocate -l <filesize(ex: 1G, 1M, 1K)> <filename>`
+- 実際にファイル生成はされておらず，ディスク領域の予約のみを行うため実際にファイルに書き込むddコマンドよりも時間がかからない．
+
+## ddコマンド
+- dataset difinition
+- データをブロック単位で転送したり，dummyファイルを作ったりできる．
+- `dd if=/dev/cdrom of=install.iso`
+  - cdromの内容を直接iso化する．
+- `dd bs=1K count=100 if=/dev/zero of=dummy`
+  - 1K x 100 = 100Kバイトのファイル生成できる．

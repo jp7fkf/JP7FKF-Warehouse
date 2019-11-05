@@ -442,3 +442,6 @@ node1  50       secondary            yes     no       None
   - VRFを切った MP-BGP/MPLS VPN等で多用される（CEが同一AS-numを持つため）．
   どうやら直前のas-path以外も，かぶってさえいれば自AS numに書き換えるようだ．
     - https://www.sash.jp/vpn-mpls-vpn-as-override
+
+## algの動作がわからん．
+- application level gateway. nat処理等を実施する場合にパケットヘッダのみの変換では十分でないアプリケーション等がある場合，そのアプリケーションのペイロードデータに対しても変換を行う機能っぽい．

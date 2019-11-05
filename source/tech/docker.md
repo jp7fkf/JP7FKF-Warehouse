@@ -708,3 +708,37 @@
 
 ## コンテナ技術入門  
 - https://employment.en-japan.com/engineerhub/entry/2019/02/05/103000
+
+
+## docker installation on ubuntu18.04
+```
+sudo apt-get install -y     apt-transport-https     ca-certificates     curl
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+uname -a
+sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"
+sudo apt update
+sudo apt install -y docker-ce
+sudo docker ps -a
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER //executable docker command without sudo
+```
+
+## Buildkitを有効にする
+手法1. 環境変数に書く
+```
+$ export DOCKER_BUILDKIT=1
+```
+手法2. 設定ファイルを書く
+`/etc/docker/daemon.json`，もしくはDocker for Macの場合は,`Preferences>Daemon>Advanced` 下記を記述する．
+```
+{
+  "features": {
+    "buildkit": true
+  }
+}
+```

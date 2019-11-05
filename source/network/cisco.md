@@ -114,7 +114,7 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
 - BE: Bundle Ether
 - Lo: loopback
 - Nu0: Null0 interface
-- ti0:  tunnel-ip, GREとか終端するのかな．
+- Ti0:  tunnel-ip, GREとか終端するのかな．
 - Mg0/RSP0/CPU0/x: MgmtEth, management, RSP(Router Switch Processor)とCPU，if-numが後ろにつく． `rack/slot/module/port`のcomventionで，この場合0rack, RSP0slot, CPU0module, 0portを意味する．
 - Hu: HundredGigE
 - Te: TenGigE
@@ -122,5 +122,64 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
 - Fe: FastE
 
 ## よく使うcommand
-### BGP系
-  - `show ip bgp neighbors <neighbor-address> advertised-routes`
+### IOS
+#### BGP系
+- `show ip bgp neighbors <neighbor-address> advertised-routes`
+
+### Common
+- startup-configとruning-configのdiffみたいとき．
+  - - `show archive config differences`
+
+- ciscoでtraceroute をとめる
+  - `Ctrl-Shift-6`
+
+## Firmware Update
+-  cisco sw firm up
+```
+- show env: show hardware, show ver
+- download firmware
+- copy firm to device
+- md5 check: veryfy /md5 <file_path>
+- show boot system
+- conf t: boot system <file_path>
+- write mem
+- reload
+- show ver
+```
+
+- cisco ap CAPWAP -> autohnomous mode AIR-CAP1702I-Q-K9
+```
+- get ios image
+- copy ios image to ap
+- login via console
+- `debug capwap console cli`
+- `debug capwap client no-reload`
+- `archive download-sw /create-space /overwrite tftp:<path_to_file>`
+- dir flashとかshow flash, show bootして確認．
+- `reload`
+```
+- ref: [Upgrade Firmware on a Switch through the Command Line Interface (CLI) - Cisco](https://www.cisco.com/c/en/us/support/docs/smb/switches/cisco-550x-series-stackable-managed-switches/smb5566-upgrade-firmware-on-a-switch-through-the-command-line-interf.html)
+- ref: [7 Steps to Upgrade IOS Image on Cisco Catalyst Switch or Router](https://www.thegeekstuff.com/2011/06/upgrade-cisco-ios-image/)
+
+## cisco のprivilege level
+- 0-15の16段階．
+- 0: user mode
+- 15: privileged mode(enable/conf t)
+- custom privilege::
+```
+privilege configure level 15 ip dhcp pool
+privilege configure level 15 ip dhcp
+privilege configure level 15 ip
+privilege exec level 1 show running-config ip dhcp pool
+privilege exec level 1 show running-config ip dhcp
+privilege exec level 1 show running-config ip
+privilege exec level 15 show running-config
+privilege exec level 1 show
+```
+的な感じにprivilege levelを指定することができる．
+`username <username> privilege <priv_level_num> password <password>`
+のprivilegeと紐づく．当たり前だけど．
+
+## cisco wlc snmp monitoring tips
+- https://gist.github.com/tajibot/a5456f8187ca2c8c3328
+- https://github.com/B4ckF0rw4rd/Zabbix-Templates/blob/Zabbix3/Template-Cisco-WLC-Discovery/Template%20Cisco%20WLC%20Discovery.xml
