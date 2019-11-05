@@ -22,6 +22,9 @@ Welcome to JP7FKF-Warehouse!
   dialy/201905
   dialy/201906
   dialy/201907
+  dialy/201908
+  dialy/201909
+  dialy/201910
 
   todo
   programming/sh
@@ -29,7 +32,7 @@ Welcome to JP7FKF-Warehouse!
   programming/css
   programming/javascript
   programming/rails
-  programming/python.md
+  programming/python
   programming/r_lang
   tech/jenkins
   tech/docker
@@ -39,13 +42,15 @@ Welcome to JP7FKF-Warehouse!
   tech/zabbix
   tech/eveng
   tech/sphinx
-  tech/elastic_stack.md
+  tech/elastic_stack
   tech/gatling
   tech/itamae
   tech/monitoring
-  unix/iptables.md
-  unix/namespace.md
-  unix/nmap.md
+  tech/git
+  tech/ldap
+  unix/iptables
+  unix/namespace
+  unix/nmap
   unix/centos7
   unix/vim
   unix/ssh
@@ -66,7 +71,7 @@ Welcome to JP7FKF-Warehouse!
   unix/postgresql
   unix/httpd
   unix/ubuntu
-  network/L2.md
+  network/L2
   network/arp
   network/802_11
   network/ipv6
@@ -83,12 +88,18 @@ Welcome to JP7FKF-Warehouse!
   network/cumulus
   network/snmp
   network/vpp
-  network/segment_routing.md
+  network/segment_routing
+  network/lag
+  network/poe
+  network/prometheus
+  network/wireless
+  network/eventnetwork
   hobbies/places
   hobbies/making
   hobbies/stm32
   hobbies/hamradio
   hobbies/mobile_communication
+  hobbies/camp
   settings
   electronics/electronics
 
