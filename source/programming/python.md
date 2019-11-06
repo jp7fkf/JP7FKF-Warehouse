@@ -4,7 +4,6 @@
 - yaml validation
   - https://stackoverflow.com/questions/3262569/validating-a-yaml-document-in-python
 
-
 ## netaddr
 ### ip範囲からCIDRを求める
 - `netaddr.iprange_to_cidrs` が便利
@@ -37,3 +36,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 ['192.168.1.0/25', '192.168.100.128/25']
 >>>
 ```
+
+## aplayを使ってpythonでsound 再生をする
+- os.popen('aplay --device=plughw:CARD=PCH,DEV=7 /home/jp7fkf/nc106374.wav')

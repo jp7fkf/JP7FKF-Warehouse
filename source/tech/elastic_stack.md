@@ -211,3 +211,9 @@ output{
   - elasticsearchの既存indexからリースログを引くクエリを指定してinputとしている．
   - kibana等で可視化したい場合はoutputを別indexとしてelasticsearchに投げることでkibanaでも扱えるようになる．
     - この手法をとるとouiフィールドがあるindexと無いindexでほぼ同様の情報が2つdupで保存されてしまうことに注意する．
+
+## elk install battle
+- https://www.n-novice.com/entry/2018/02/22/214421#logstash%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB
+
+## logstash x grok
+- https://qiita.com/tuneyukkie/items/75cbb4d44f901fec2188

@@ -183,3 +183,6 @@ privilege exec level 1 show
 ## cisco wlc snmp monitoring tips
 - https://gist.github.com/tajibot/a5456f8187ca2c8c3328
 - https://github.com/B4ckF0rw4rd/Zabbix-Templates/blob/Zabbix3/Template-Cisco-WLC-Discovery/Template%20Cisco%20WLC%20Discovery.xml
+
+## VPLSのmacをみる．(IOS-XR)
+- `show l2vpn forwarding bridge-domain VPLS:VLAN100 mac-address location 0/0/CPU0 | include c496`

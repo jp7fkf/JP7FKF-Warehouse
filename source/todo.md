@@ -3,6 +3,33 @@
 
 ## Make
   - 光ピロピロ，普通のピロピロ．トーンプローブ．イベント会場で紐の行き先がわからなくなる．
+    - [Pro3000™ Tone and Probe Series | Fluke Networks](https://jp.flukenetworks.com/datacom-cabling/installation-tools/Pro3000-Analog-Tone-and-Probe)
+      - だいたい下記．
+      ```
+      Pro3000 アナログ式トーナーの仕様
+
+      ユーザー・インターフェース
+        継続またはトーン・モードを選択するスライド・スイッチ
+        SOLID、ALT、OFF を選択する押しボタン・スイッチ
+
+      連続周波数: 1000 Hz 公称値
+      交互周波数: 1000/1500 Hz 公称値
+      過電圧保護: トーナー / 極性モードで60 Vdc
+      トーン・モードでの出力パワー: 600 Ω にて 8 dBm
+      導通モードの出力電圧レベル: 新しいバッテリーで8 Vdc
+      バッテリー: 9V アルカリ
+      ```
+      - [signal - How does a cable tone-and-probe kit work? - Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/questions/144267/how-does-a-cable-tone-and-probe-kit-work)
+      - 仕組み的には上記っぽい．
+      - 
+    - [VisiFault™ 可視光源 - 光ケーブル導通テスター | フルーク・ネットワークス](https://jp.flukenetworks.com/datacom-cabling/fiber-testing/VisiFault-Visual-Fault-Locator)
+      - だいたい下記くらいのspecificationっぽい．レンズで十分集光してfibreの中に突っ込まないとダメそう．
+        ```
+        波長: 650 nm （可視波長）
+        レーザーの安全等級: クラスII
+        出力: < 1.3 mW
+        出力モード: 連続（一定）およびフラッシュ（2 ～ 3Hz パルス）
+        ```
   - 電源をモニタリングする何か．電源品質，電圧電流がwebでグラフ化できるとか．周波数とかも．
   - 望遠鏡
   - カンバン方式なブレインストーミングツール

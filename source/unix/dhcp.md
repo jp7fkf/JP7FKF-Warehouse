@@ -131,3 +131,9 @@ $ kea-admin lease-init mysql -u database-user -p database-password -n database-n
 ## [dhtest](https://github.com/saravana815/dhtest)
 - https://github.com/saravana815/dhtest
 - https://sargandh.wordpress.com/2012/02/23/linux-dhcp-client-simulation-tool/
+
+## kea-anterius: kea dhcp GUI dashboard
+- https://github.com/isc-projects/kea-anterius
+
+## kea performance optimization
+- https://kb.isc.org/docs/kea-performance-optimization

@@ -227,3 +227,16 @@ Use "go help <topic>" for more information about that topic.
   - [sparrc/go-ping: ICMP Ping library for Go](https://github.com/sparrc/go-ping)
 - digineo/goping
   - [digineo/go-ping: A simple ping library using ICMP echo requests.](https://github.com/digineo/go-ping)
+
+## goでgradeful shutdown
+- コンテナとかでpod落としたかったりrolling updateするときといかにはこういうことができるようにしておかないとダメだなと思う
+- https://qiita.com/t2y/items/acd86fe24a25e996dbda
+- https://christina04.hatenablog.com/entry/go-graceful-shutdown
+
+## goでssh
+- https://medium.com/@Vasya4k/go-and-ssh-for-network-devices-128937852ccb
+- goでraicid/oxidized的な何かを実装してみたい気もする
+
+## Play Sound by Golang
+  - https://github.com/faiface/beep
+  - https://github.com/hajimehoshi/oto

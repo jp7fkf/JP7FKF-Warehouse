@@ -155,9 +155,6 @@ interfaces {
 ## request vmhost reboot
 - `request system reboot` では最近のcontrol planeがvmに乗っている機器だとhwはrebootしない．上記コマンドではhw(vmhost)ごとrebootする．
 
-## VPLSのmacをみる．
-- `show l2vpn forwarding bridge-domain VPLS:VLAN100 mac-address location 0/0/CPU0 | include c496`
-
 ## 流量を見たくなったら
 - `monitor interface traffic`
 - `monitor interface <interface_name>`
@@ -445,3 +442,10 @@ node1  50       secondary            yes     no       None
 
 ## algの動作がわからん．
 - application level gateway. nat処理等を実施する場合にパケットヘッダのみの変換では十分でないアプリケーション等がある場合，そのアプリケーションのペイロードデータに対しても変換を行う機能っぽい．
+
+## junos のstorm-control
+- [Understanding Storm Control - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/concept/rate-limiting-storm-control-understanding.html)
+  - bandwidth-levelになったら bumだけ切ってくれるっぽい．明示的にaction, shutとかlogとかしなくてもbumだけPolicingしてくれるっぽい．デフォでloggingされる．action-shutはデフォでしない．
+
+## junosのvcにおけるmeの扱い
+- https://kb.juniper.net/InfoCenter/index?page=content&id=KB25724&actp=METADATA
