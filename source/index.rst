@@ -72,6 +72,7 @@ Welcome to JP7FKF-Warehouse!
   unix/postgresql
   unix/httpd
   unix/ubuntu
+  unix/syslog
   network/L2
   network/arp
   network/802_11
