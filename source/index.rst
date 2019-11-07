@@ -25,6 +25,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201908
   dialy/201909
   dialy/201910
+  dialy/201911
 
   todo
   programming/sh
