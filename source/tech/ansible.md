@@ -23,69 +23,67 @@
 
 
 ## `ansible.cfg` の書き方tips
-  - 探し方
-    - current dir.のansible.cfg
-    - ENVのANSIBLE_CONFIG or ~/ansible.cfg
-    - /etc/ansible/ansible.cfg
+- 探し方
+  - current dir.のansible.cfg
+  - ENVのANSIBLE_CONFIG or ~/ansible.cfg
+  - /etc/ansible/ansible.cfg
 
-  - セクション
-    - [defaults]
-    - [ssh_connection]
-
-  - [ssh_connection]
-    これはsshの引数としてそのまま与えられると思えばよい．
-    ```
-    [ssh_connection]
-
-                #実行ディレクトリの<ssh_config>を読む．(defaultだと~/.ssh/configを読むのではなかろうか．たぶん．)
-    ssh_args =  -F ssh_config
-                # ~/.ssh/known_hosts に存在しないときに確認なしで続行(yes扱い)．
-                -o StrictHostKeyChecking=no
-                # compare matchするknown_hostsファイルを指定しない．
-                -o UserKnownHostsFile=/dev/null
-    ```
+- セクション
   - [defaults]
-    ```
-    [defaults]
-    # ssh_connection でいうStrictHostKeyCheckingと同等．ただしすでに~/ssh/known_hostsにあるホストとのcompare matchはするので注意．
-    host_key_checking = False
-    ```
+  - [ssh_connection]
+
+- [ssh_connection]
+  これはsshの引数としてそのまま与えられると思えばよい．
+  ```
+  [ssh_connection]
+
+              #実行ディレクトリの<ssh_config>を読む．(defaultだと~/.ssh/configを読むのではなかろうか．たぶん．)
+  ssh_args =  -F ssh_config
+              # ~/.ssh/known_hosts に存在しないときに確認なしで続行(yes扱い)．
+              -o StrictHostKeyChecking=no
+              # compare matchするknown_hostsファイルを指定しない．
+              -o UserKnownHostsFile=/dev/null
+  ```
+- [defaults]
+  ```
+  [defaults]
+  # ssh_connection でいうStrictHostKeyCheckingと同等．ただしすでに~/ssh/known_hostsにあるホストとのcompare matchはするので注意．
+  host_key_checking = False
+  ```
 
 ## inventory ファイルの書き方tips
-
-  - ssh 接続するときの情報を指定する．
-  ```
-  [all:vars]
-  ansible_ssh_port=22
-  ansible_ssh_user=ansible
-  ansible_ssh_pass=p@ssW0rd
-  ansible_sudo_pass=p@ssW0rd
-  ```
+- ssh 接続するときの情報を指定する．
+```
+[all:vars]
+ansible_ssh_port=22
+ansible_ssh_user=ansible
+ansible_ssh_pass=p@ssW0rd
+ansible_sudo_pass=p@ssW0rd
+```
 
 ## ansible-playbookの書き方tips
 
 ### ファイルを削除する．
-  - ref): [[Ansible] file モジュールの基本的な使い方（ファイルやディレクトリの操作） - てくなべ (tekunabe)](https://tekunabe.hatenablog.jp/entry/2019/03/03/ansible_file_intro)
-  - 
-    ```
-    tasks:
-    - file:
-        path: /etc/foo.conf
-        state: absent
-    ```
+- ref): [[Ansible] file モジュールの基本的な使い方（ファイルやディレクトリの操作） - てくなべ (tekunabe)](https://tekunabe.hatenablog.jp/entry/2019/03/03/ansible_file_intro)
+
+```
+tasks:
+- file:
+    path: /etc/foo.conf
+    state: absent
+```
 
 ### shとかを実行
-  - 
-    ```
-    tasks:
-    - name: execute hoge.sh
-      command: "/root/script/hoge.sh"
-    ```
+```
+tasks:
+- name: execute hoge.sh
+  command: "/root/script/hoge.sh"
+```
 
 ## install battle
-  - CentOS7
-    ```
-    [root@master1 ~]# yum -y install epel-release
-    [root@master1 ~]# yum -y install ansible
-    [root@master1 ~]# yum -y install openssh
-    ```
+- CentOS7
+  ```
+  [root@master1 ~]# yum -y install epel-release
+  [root@master1 ~]# yum -y install ansible
+  [root@master1 ~]# yum -y install openssh
+  ```

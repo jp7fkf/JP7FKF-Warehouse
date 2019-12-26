@@ -42,7 +42,6 @@
 ※ifcfg-eth0はデバイスで確認する。  
 
 ## network-script/ifcfgを直接編集する方式．
-- 
 
 ## yum
   - `yum list`: インストール可能 || インストール済みパッケージ を表示

@@ -210,7 +210,6 @@ passwd <user> でパス変更しておこう
   - `-o, --timers`: show network timers
   - `-e, --extend`: show extended information
   - `-l, --listening`: show listening sockets
-  - 
 
 ## wc
 - word count

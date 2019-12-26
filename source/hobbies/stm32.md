@@ -4,4 +4,3 @@
 - ちゃんとpullup/downしておかないとハマる
 
 ## sprintfとかでfloatを使うとき
-- 
