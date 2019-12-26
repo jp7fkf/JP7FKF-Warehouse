@@ -13,7 +13,7 @@
   - 救急箱，止血帯等の用意，必要に応じてOS1のような熱中症対策，AED設置場所の確認が必要だと考えられる．
 
 ## その他
-- https://www.janog.gr.jp/meeting/janog31/LA.html
+- [JANOG Meeting本会議場ネットワークの作り方 | JANOG31 Meeting](https://www.janog.gr.jp/meeting/janog31/LA.html)
 
 
 ## イベントネットワークにおける監視

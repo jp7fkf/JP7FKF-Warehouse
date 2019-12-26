@@ -1,5 +1,8 @@
 # BGP
 
+## RFC
+- [RFC 4271 - A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
+
 ## BGPのtips
 
 ### iBGPはスプリットホライズンが効いている．
@@ -51,6 +54,20 @@
   　Optional transitive（ オプション通知 ） 　全てのBGPルータで識別できない可能性があるが、BGPネイバーへは通知する
   　Optional non-transitive（オプション非通知）  　全てのBGPルータで識別できない可能性があり、BGPネイバーへは通知しない
 ```
+- ref: [RFC 4271 - A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
+```
+  5.  Path Attributes
+
+   This section discusses the path attributes of the UPDATE message.
+
+   Path attributes fall into four separate categories:
+
+         1. Well-known mandatory.
+         2. Well-known discretionary.
+         3. Optional transitive.
+         4. Optional non-transitive.
+```
+
 ## BGPってベストパスしかIBGPに入れないんだよね？バックアップパスは？
 バックアップパスを広告する方法は存在する．
   - BGP Advertise Best External
@@ -58,9 +75,9 @@
   - BGP Diverse Path
 
 ## LoでBGPを張る
-  - https://webcache.googleusercontent.com/search?q=cache:Z0j64jPkSo8J:https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/13751-23.html+&cd=11&hl=en&ct=clnk&gl=jp
+  - [Sample Configuration for iBGP and eBGP With or Without a Loopback Address - Cisco](https://webcache.googleusercontent.com/search?q=cache:Z0j64jPkSo8J:https://www.cisco.com/c/en/us/support/docs/ip/border-gateway-protocol-bgp/13751-23.html+&cd=11&hl=en&ct=clnk&gl=jp)
   - loを用いてebgp neighbor を構成するときにebgp-multihopは本当に必要か？
-    - https://community.cisco.com/t5/routing/ebgp-multihop-command-only-applies-to-loopbacks/td-p/2030331
+    - [Solved: ebgp multihop command only applies to l... - Cisco Community](https://community.cisco.com/t5/routing/ebgp-multihop-command-only-applies-to-loopbacks/td-p/2030331)
 
 ## private as num
 - [RFC6996](https://tools.ietf.org/html/rfc6996)

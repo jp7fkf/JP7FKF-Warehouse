@@ -37,3 +37,16 @@ fi
 - back quartを使う or `$()` を使う．
 - `` FILE=`find *` ``
 - `FILE=$(find *)`
+
+## set
+- `e`, `x`, をよしなに`+`,`-`すると便利
+- `set -x`
+  - Print shell command before execute it. This feature help programmers to track their shell script.
+
+- `set -e`
+  - If the return code of one command is not 0 and the caller does not check it, the shell script will exit. This feature make shell script robust.
+  - set -e and set -x often appear at the head of shell script:
+
+- also we can do it as follows
+  - `sh -xe shell_script.sh`
+- Reference: http://julio.meroh.net/2010/01/set-e-and-set-x.html

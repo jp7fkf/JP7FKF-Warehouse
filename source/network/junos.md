@@ -449,3 +449,6 @@ node1  50       secondary            yes     no       None
 
 ## junosのvcにおけるmeの扱い
 - https://kb.juniper.net/InfoCenter/index?page=content&id=KB25724&actp=METADATA
+
+## srx high-availability
+- [7. High Availability - Juniper SRX Series [Book]](https://www.oreilly.com/library/view/juniper-srx-series/9781449339029/ch07.html)

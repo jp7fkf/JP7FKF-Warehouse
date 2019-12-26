@@ -81,3 +81,19 @@
 ## cw freak web ver
 - があるとよさそう
 
+## Replicator 2x
+- Shuhei Udaさんのところがよくまとめられていて大変参考になる
+  - https://www.syuheiuda.com/?p=1775
+  - https://www.syuheiuda.com/?s=replicator
+- MakerBot MakerWare は201911現在discon.
+- 201911現在，softwareとしてはMakerbot Printが存在するが，これだとdual ext.が使えない．
+  - dual ext. 出力したい場合は，MakerBot Desktopを使うといい．
+  - https://support.makerbot.com/learn/makerbot-desktop-software/installation-and-setup/installing-makerbot-desktop_11222
+  - 無論2xも対応している．deviceから選択する．
+
+### 3D Printingの条件
+すくなくとも手持ちのReplicator 2xで良さげだと思われるパラメータを記載する．
+- ABS:: head:230℃, heatbed: 110℃
+- PLA:: ??
+
+- 積層ピッチは0.2mmがきれいでよい

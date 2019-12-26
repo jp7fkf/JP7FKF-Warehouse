@@ -15,6 +15,9 @@
 - [Fluentd](https://www.fluentd.org/)
 - [swatch](https://sourceforge.net/projects/swatch/)
 - [graylog](https://www.graylog.org/)
+  - [Graylog2/graylog2-server: Free and open source log management](https://github.com/Graylog2/graylog2-server)
+  - 裏側elasticsearchでいけるのでよさそう．
+  - logを受けるフロントとGUI，アラートがセットになっている．受けたログは裏のelasticsearchにながす．
 - [rsyslog](https://www.rsyslog.com/)
 - [Splunk](https://www.splunk.com/)
 
@@ -48,4 +51,4 @@
 - [Xymon](http://xymon.sourceforge.net/)
 
 ## ref
-- https://www.designet.co.jp/ossinfo/selection/monitoring-server.html
+- [OSSのおすすめ監視サーバ・監視ツール比較17選 | OSSでのシステム構築・デージーネット](https://www.designet.co.jp/ossinfo/selection/monitoring-server.html)

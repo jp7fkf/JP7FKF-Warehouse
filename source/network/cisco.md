@@ -1,7 +1,7 @@
 # Cisco commands
 
 ## ios
-- https://www.cisco.com/public/library/iosplanner/reldesignation.html
+- [Cisco Software](https://www.cisco.com/public/library/iosplanner/reldesignation.html)
 
 ## username password の数字の意味
 username 'hoge' password 0 'pass' -> この0の意味はなんなのか？
@@ -181,8 +181,23 @@ privilege exec level 1 show
 のprivilegeと紐づく．当たり前だけど．
 
 ## cisco wlc snmp monitoring tips
-- https://gist.github.com/tajibot/a5456f8187ca2c8c3328
-- https://github.com/B4ckF0rw4rd/Zabbix-Templates/blob/Zabbix3/Template-Cisco-WLC-Discovery/Template%20Cisco%20WLC%20Discovery.xml
+- [WLCのアソシエート数登録 · GitHub](https://gist.github.com/tajibot/a5456f8187ca2c8c3328)
+- [Zabbix-Templates/Template Cisco WLC Discovery.xml at Zabbix3 · B4ckF0rw4rd/Zabbix-Templates · GitHub](https://github.com/B4ckF0rw4rd/Zabbix-Templates/blob/Zabbix3/Template-Cisco-WLC-Discovery/Template%20Cisco%20WLC%20Discovery.xml)
 
 ## VPLSのmacをみる．(IOS-XR)
 - `show l2vpn forwarding bridge-domain VPLS:VLAN100 mac-address location 0/0/CPU0 | include c496`
+
+## show interfaces summary
+- legend
+  ```
+  *: interface is up
+  IHQ: pkts in input hold queue
+  IQD: pkts dropped from input queue
+  OHQ: pkts in output hold queue
+  OQD: pkts dropped from output queue
+  RXBS: rx rate (bits/sec)
+  RXPS: rx rate (pkts/sec)
+  TXBS: tx rate (bits/sec)
+  TXPS: tx rate (pkts/sec)
+  TRTL: throttle count
+  ```

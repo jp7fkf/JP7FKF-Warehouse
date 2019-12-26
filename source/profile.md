@@ -32,6 +32,7 @@
   - 2017/10  職業訓練指導員(電子科)
   - 2017/10  FCC, Amateur Radio License(Extra)
   - 2017/12  ネットワークスペシャリスト
+  - 2017/12  普通自動二輪
   - 2018/09  .com Master ADVANCE, ADVANCE★★ 取得
   - 2018/10  CCNA Routing and Switching(200-125)
   - 2018/12  技術士補（電気電子部門）
@@ -97,6 +98,7 @@
     - SEV-U'17 のマシンで参加．メカニック．何でも屋．
   - 2017/10  職業訓練指導員(電子科)免許取得
   - 2017/12  ネットワークスペシャリスト試験 合格(74.8, 80, 80, 69)
+  - 2017/12  普通自動二輪 取得
   - 2017/10  FCC, Amateur Radio License(Extra) 取得
   - 2018/03  東京に移住
   - 2018/04  Started working at NTT Communications Corp. (SDN, NFV, Test Automation)

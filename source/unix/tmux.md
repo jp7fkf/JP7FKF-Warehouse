@@ -137,3 +137,9 @@ bind-key -n M-Down resize-pane -D 5
 bind-key -n M-Left resize-pane -L 5
 bind-key -n M-Right resize-pane -R 5
 ```
+
+## tmux paneの表示をcaptureする
+- `tmux capture-pane -J -p -t %<pane_id> > file.txt`
+  - pane-id は該当のtmux paneの中で `echo $TMUX_PANE` するとわかる．
+  - その時点の出力がtext形式でoutputする．
+- 画像でcaptureしたいときは...?

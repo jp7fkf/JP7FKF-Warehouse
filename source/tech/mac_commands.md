@@ -50,3 +50,7 @@ Your system is ready to brew.
 - `diskutil list`
 - `diskutil unMountDisk <path_to_disk>`
 - `diskutil eraseDisk HFS+ Untitled <path_to_disk>`
+
+## macosでDHCP (cache)をrenew/release する．
+  - `sudo ipconfig set <if_name> DHCP`
+  - http://osxdaily.com/2015/07/30/release-renew-dhcp-command-line-ipconfig/

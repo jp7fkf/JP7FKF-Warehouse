@@ -20,3 +20,12 @@ sudo chown 65534:65534 /opt/prometheus/data
 - https://kazuhira-r.hatenablog.com/entry/2019/02/11/205455
 - https://ngyuki.hatenablog.com/entry/2017/11/14/203554
 - [Comparison to alternatives | Prometheus](https://prometheus.io/docs/introduction/comparison/)
+
+## grafana
+- scripted dashboardでdashboardをcodeで管理するのがあたまよさそう．
+
+## loki
+- https://grafana.com/oss/loki/
+- canaryの仕組みは参考になる．ログ収集のシステムがこわれてないか監視することは大切．サービス監視の一種として見て取れる．
+- 現時点(201912)では，prometheusのアーキテクチャが容易に導入できるようにconteinerizedされたサービスには比較的導入が容易そうであり，この場合はmetricsで収集したデータから，気になる箇所のログを見たいときに同一の時刻範囲，labelがつけられたログに飛べるので便利そうである．
+- ただ，prometheusのアーキテクチャにストレスレスに乗っかれないシステム等では，これでlogをみるメリットはそう多くなさそうに思える．素直にelastic stack等でみてあげたほうが良さそうに思える．

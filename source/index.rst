@@ -26,6 +26,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201909
   dialy/201910
   dialy/201911
+  dialy/201912
 
   todo
   programming/sh
@@ -50,6 +51,7 @@ Welcome to JP7FKF-Warehouse!
   tech/git
   tech/ldap
   tech/ssl_tls
+  tech/devops
   unix/iptables
   unix/namespace
   unix/nmap
@@ -97,6 +99,8 @@ Welcome to JP7FKF-Warehouse!
   network/prometheus
   network/wireless
   network/eventnetwork
+  network/a10
+  network/network_misc
   hobbies/places
   hobbies/making
   hobbies/stm32

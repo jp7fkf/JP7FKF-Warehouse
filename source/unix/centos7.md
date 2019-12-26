@@ -82,7 +82,7 @@
 
 
 ## Chkconfig
-  - ランレベル
+- ランレベル
 ```
 0: システムの停止
 1: シングルユーザモード
@@ -92,7 +92,8 @@
 5: マルチユーザモード(ディスプレイマネージャ使用)
 6: システム再起動
 ```
-  - commands
+
+- commands
 ```
 chkconfig --add <service_name>
 chkconfig --del <service_name>
