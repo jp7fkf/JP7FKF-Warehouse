@@ -12,7 +12,7 @@ zipcloak hoge.zip
   - sudo networksetup (-setv6off | -setv6automatic) <networkservice(ex.Wi-Fi)>
 
 ## iterm2-tips-network-engineers
-  - http://movingpackets.net/2014/04/13/iterm2-tips-network-engineers/
+- [iTerm2 Tips for Network Engineers - MovingPackets.net](http://movingpackets.net/2014/04/13/iterm2-tips-network-engineers/)
   
 ## brew doctorで怒られる
 - `brew doctor` すると
@@ -52,5 +52,5 @@ Your system is ready to brew.
 - `diskutil eraseDisk HFS+ Untitled <path_to_disk>`
 
 ## macosでDHCP (cache)をrenew/release する．
-  - `sudo ipconfig set <if_name> DHCP`
-  - http://osxdaily.com/2015/07/30/release-renew-dhcp-command-line-ipconfig/
+- `sudo ipconfig set <if_name> DHCP`
+- [Release & Renew DHCP from the Command Line with ipconfig on Mac](http://osxdaily.com/2015/07/30/release-renew-dhcp-command-line-ipconfig/)

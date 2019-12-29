@@ -46,8 +46,8 @@ Host proxy_target
    ```
 
 ## agent transfer
- - https://qiita.com/ymd_/items/5eb833ad757bd8b3e6c3
- - https://qiita.com/isaoshimizu/items/84ac5a0b1d42b9d355cf
+ - [多段sshを行うときに、ローカルの秘密鍵を参照し続ける - Qiita](https://qiita.com/ymd_/items/5eb833ad757bd8b3e6c3)
+ - [ssh-agentの使い方 - Qiita](https://qiita.com/isaoshimizu/items/84ac5a0b1d42b9d355cf)
  - sshに`-A`オプションをつけるのが一番手っ取り早い．
  - `ForwardAgent yes` を`/etc/ssh/sshd_config` or `~/.ssh/config` とかに書く．
 
@@ -86,14 +86,16 @@ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 ```
 
 ## ssh 先にvimrcとかbashrcをもっていく
-- https://qiita.com/ikuwow/items/ba4ca57fd67c06fd1b19
+- [sshした先に.bashrcや.vimrcを持って行きたい人のためのsshrc - Qiita](https://qiita.com/ikuwow/items/ba4ca57fd67c06fd1b19)
 
 ## ssh broken pipe
-- https://askubuntu.com/questions/127369/how-to-prevent-write-failed-broken-pipe-on-ssh-connection
+- [How to prevent "Write Failed: broken pipe" on SSH connection? - Ask Ubuntu](https://askubuntu.com/questions/127369/how-to-prevent-write-failed-broken-pipe-on-ssh-connection)
+```
 Earlier I was able to ssh to my droplet using ssh root@xxx.xx.xx.xxx command. But from yesterday I am getting this error packet_write_wait: Connection to xxx.xx.xx.xxx port 22: Broken pipe. What could be the possible reason for it. And how to solve it?
 kamaln7 MOD February 14, 2018
 Hi, if you're getting that error it means that your SSH connection was cut off due to a long period of inactivity. You can prevent that from happening by configuring either the SSH server or client to check if the other is still connected periodically.
 To do so on the server, add the following two lines to /etc/ssh/sshd_config:
+```
 ```
 ClientAliveInterval 300
 ClientAliveCountMax 2

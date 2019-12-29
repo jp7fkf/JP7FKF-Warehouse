@@ -9,9 +9,7 @@
 ## commands
   - 実行
     - 基本的には、`go run hoge.go`
-    - もしくは `go build hoge hoge.go` して `./hoge` 
-
-
+    - もしくは `go build hoge hoge.go` して `./hoge`
   - build(compile)
     - `go build <out_file> <src_file>` で実行バイナリができる．
 
@@ -202,16 +200,15 @@ Use "go help <topic>" for more information about that topic.
 
 ## [godoc](https://godoc.org/)
 
-
 ## pidをつくる
-- https://qiita.com/catatsuy/items/a485066ca9d4115dd213
+- [Go製のサーバーで起動時にPIDファイルを作る - Qiita](https://qiita.com/catatsuy/items/a485066ca9d4115dd213)
 
 ## go-cache
-- http://tech-savvy.hatenablog.com/entry/go-cache
-- https://patrickmn.com/projects/go-cache/
+- [Goのインメモリキャッシュ用ライブラリ「go-cache」のご紹介 - timakin.log](http://tech-savvy.hatenablog.com/entry/go-cache)
+- [go-cache](https://patrickmn.com/projects/go-cache/)
 
 ## uuid
-- https://github.com/google/uuid
+- [GitHub - google/uuid: Go package for UUIDs based on RFC 4122 and DCE 1.1: Authentication and Security Services.](https://github.com/google/uuid)
 
 ## misc/tips
 - [【Go】structにデフォルトの値を設定したい - /dev/null](http://gitpub.hatenablog.com/entry/2015/01/24/213223)
@@ -230,13 +227,13 @@ Use "go help <topic>" for more information about that topic.
 
 ## goでgradeful shutdown
 - コンテナとかでpod落としたかったりrolling updateするときといかにはこういうことができるようにしておかないとダメだなと思う
-- https://qiita.com/t2y/items/acd86fe24a25e996dbda
-- https://christina04.hatenablog.com/entry/go-graceful-shutdown
+- [Go 1.8 の Graceful Shutdown の振る舞いを調べてみた - Qiita](https://qiita.com/t2y/items/acd86fe24a25e996dbda)
+- [GoでGraceful Shutdown - Carpe Diem](https://christina04.hatenablog.com/entry/go-graceful-shutdown)
 
 ## goでssh
 - https://medium.com/@Vasya4k/go-and-ssh-for-network-devices-128937852ccb
 - goでraicid/oxidized的な何かを実装してみたい気もする
 
 ## Play Sound by Golang
-  - https://github.com/faiface/beep
-  - https://github.com/hajimehoshi/oto
+- [GitHub - faiface/beep: A little package that brings sound to any Go application. Suitable for playback and audio-processing.](https://github.com/faiface/beep)
+- [GitHub - hajimehoshi/oto: ♪ A low-level library to play sound on multiple platforms ♪](https://github.com/hajimehoshi/oto)

@@ -1,15 +1,15 @@
 # iptables
 
 ## tutorial
-- https://en.wikipedia.org/wiki/Netfilter#/media/File:Netfilter-packet-flow.svg
+- [Netfilter - Wikipedia](https://en.wikipedia.org/wiki/Netfilter#/media/File:Netfilter-packet-flow.svg)
 - iptablesを理解する上ではこの図がとても重要．
 - iptables, ebtables
-- http://ebtables.netfilter.org/br_fw_ia/br_fw_ia.html
-- https://qiita.com/shotaTsuge/items/4d51e5dd24506a6fb07c
+- [ebtables/iptables interaction on a Linux-based bridge](http://ebtables.netfilter.org/br_fw_ia/br_fw_ia.html)
+- [iptables周りの備忘録 - Qiita](https://qiita.com/shotaTsuge/items/4d51e5dd24506a6fb07c)
 - https://www.turbolinux.co.jp/products/server/11s/user_guide/iptablescmd.html
 
 ## configuration 
-- https://qiita.com/Tocyuki/items/6d90a1ec4dd8e991a1ce
+- [iptables まとめ - Qiita](https://qiita.com/Tocyuki/items/6d90a1ec4dd8e991a1ce)
 - 現在のルール一覧を見る．
   - `iptables -L`
 - ルールを追加する
@@ -91,7 +91,7 @@ Options:
   --set-counters PKTS BYTES set the counter during insert/append
 [!] --version -V    print package version.
 ```
-- https://knowledge.sakura.ad.jp/4048/
+- [ファイアウォールiptablesを簡単解説～初心者でもよくわかる！VPSによるWebサーバー運用講座(4) | さくらのナレッジ](https://knowledge.sakura.ad.jp/4048/)
 ```
 # (1) ポリシーの設定 OUTPUTのみACCEPTにする
 *filter

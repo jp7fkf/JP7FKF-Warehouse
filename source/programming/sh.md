@@ -5,7 +5,7 @@
 - 実行したコマンドラインも表示する
   - `set -x` を書く．(`set +x` で非表示になる．)
   - `#!/bin/sh -x`， `#!/bin/bash -x` と頭にかいてもよい．
-  - https://www.atmarkit.co.jp/ait/articles/1805/10/news023.html
+  - [【 set 】コマンド――シェルの設定を確認、変更する：Linux基本コマンドTips（205） - ＠IT](https://www.atmarkit.co.jp/ait/articles/1805/10/news023.html)
 
 ## config ファイルとかを別で管理する
 - shell script のconfigだけ別ファイルにしたいとき．
@@ -49,4 +49,4 @@ fi
 
 - also we can do it as follows
   - `sh -xe shell_script.sh`
-- Reference: http://julio.meroh.net/2010/01/set-e-and-set-x.html
+- Reference: [https://jmmv.dev/2010/01/set-e-and-set-x.html](http://julio.meroh.net/2010/01/set-e-and-set-x.html)

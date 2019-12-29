@@ -4,8 +4,8 @@
 
 ### kea dhcp v1.5.0 install battle on ubuntu18.04
 - 公式のやり方で進める．
-- https://kb.isc.org/docs/kea-build-on-ubuntu
-- https://downloads.isc.org/isc/kea/1.5.0/doc/kea-guide.html#install
+- [Kea build on Ubuntu - Installing Kea](https://kb.isc.org/docs/kea-build-on-ubuntu)
+- [Kea Administrator Reference Manual](https://downloads.isc.org/isc/kea/1.5.0/doc/kea-guide.html#install)
 ```
 sudo apt update
 sudo apt upgrade -y
@@ -102,10 +102,10 @@ mysql> SOURCE path-to-kea/share/kea/scripts/mysql/dhcpdb_create.mysql
 $ kea-admin lease-init mysql -u database-user -p database-password -n database-name
 ```
 
-- https://yakst.com/ja/posts/734
-- https://github.com/soundcloud/lhm/issues/76
-- https://stackoverflow.com/questions/1814532/1071-specified-key-was-too-long-max-key-length-is-767-bytes
-- http://unixservermemo.web.fc2.com/sv/dhcp-failover.htm
+- [innodb_large_prefixを使ってERROR 1071を回避する | Yakst](https://yakst.com/ja/posts/734)
+- ["You do not have the SUPER privilege and binary logging is enabled" Âˇ Issue #76 Âˇ soundcloud/lhm Âˇ GitHub](https://github.com/soundcloud/lhm/issues/76)
+- [mysql - #1071 - Specified key was too long; max key length is 767 bytes - Stack Overflow](https://stackoverflow.com/questions/1814532/1071-specified-key-was-too-long-max-key-length-is-767-bytes)
+- [DHCPサーバの２重化(failover)の設定](http://unixservermemo.web.fc2.com/sv/dhcp-failover.htm)
 
 - [Kea High Availability vs ISC DHCP Failover - Kea DHCP](https://kb.isc.org/docs/aa-01617)
 - [ISC DHCP から置き換わるであろう Kea の話し 中編 - /var/log/study](https://yaaamaaaguuu.hatenablog.com/entry/2017/12/11/112356)
@@ -113,27 +113,27 @@ $ kea-admin lease-init mysql -u database-user -p database-password -n database-n
 - [Understanding DHCP Relay Agents | NETMANIAS](https://www.netmanias.com/en/post/techdocs/6000/dhcp-network-protocol/understanding-dhcp-relay-agents)
 
 ## dhcp lifecycle
-- https://www.netmanias.com/en/post/techdocs/5999/dhcp-network-protocol/understanding-the-detailed-operations-of-dhcp
+- [Understanding the Detailed Operations of DHCP | NETMANIAS](https://www.netmanias.com/en/post/techdocs/5999/dhcp-network-protocol/understanding-the-detailed-operations-of-dhcp)
 
 ## PerfTools
-- perfdhcp: http://lost-and-found-narihiro.blogspot.com/2013/04/perfdhcp-dhcp-stress-tool.html
-- dhcperf: https://qiita.com/gzock/items/3732475ef97ee0536589
+- perfdhcp: [lost and found ( for me ? ): perfdhcp : DHCP stress tool](http://lost-and-found-narihiro.blogspot.com/2013/04/perfdhcp-dhcp-stress-tool.html)
+- dhcperf: [DHCP 負荷試験(dhcperf) - Qiita](https://qiita.com/gzock/items/3732475ef97ee0536589)
 
 ## understanding dhcp relay
-- https://www.netmanias.com/en/post/techdocs/6000/dhcp-network-protocol/understanding-dhcp-relay-agents
+- [Understanding DHCP Relay Agents | NETMANIAS](https://www.netmanias.com/en/post/techdocs/6000/dhcp-network-protocol/understanding-dhcp-relay-agents)
 
 ## kea dhcp keynote
 - https://www.isc.org/docs/getting-started-with-Kea-withQA.ppt.pdf
 
 ## kea dockerfile
-- https://github.com/hrntknr/docker-kea-dhcp
+- [GitHub - hrntknr/docker-kea-dhcp](https://github.com/hrntknr/docker-kea-dhcp)
 
 ## [dhtest](https://github.com/saravana815/dhtest)
-- https://github.com/saravana815/dhtest
-- https://sargandh.wordpress.com/2012/02/23/linux-dhcp-client-simulation-tool/
+- [GitHub - saravana815/dhtest: A DHCP client simulation on linux. It can simulates multiple DHCP clients behind a network device.  It can help in testing the DHCP servers or in testing switch/router by loading the device with  multiple DHCP clients.](https://github.com/saravana815/dhtest)
+- [Linux dhcp client simulation tool | sargandh](https://sargandh.wordpress.com/2012/02/23/linux-dhcp-client-simulation-tool/)
 
 ## kea-anterius: kea dhcp GUI dashboard
-- https://github.com/isc-projects/kea-anterius
+- [GitHub - isc-projects/kea-anterius: This was a Google Summer of Code project to create a GUI dashboard for Kea. It is publicly available open source, but ISC is *not* supporting it.  The original author is unable to provide much support either, so it should be considered experimental.](https://github.com/isc-projects/kea-anterius)
 
 ## kea performance optimization
-- https://kb.isc.org/docs/kea-performance-optimization
+- [Kea Performance Optimization](https://kb.isc.org/docs/kea-performance-optimization)

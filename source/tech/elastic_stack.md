@@ -4,10 +4,10 @@
 ## Elasticsearch
 ### dump
 - レポジトリを作ってデータバックアップ，リストア
-  - http://togattti.hateblo.jp/entry/2016/11/09/120710
-  - https://cloudpack.media/7139
+  - [Elasticsearchのデータをバックアップして、別ノードにリストアする - togatttiのエンジニアメモ](http://togattti.hateblo.jp/entry/2016/11/09/120710)
+  - [Elasticsearch スナップショット 5 分で取得する | cloudpack.media](https://cloudpack.media/7139)
 - elasticdumpを使う方法
-  - https://qiita.com/nakazii-co-jp/items/3199433d685d0600c6d6
+  - [よく使うElasticSearchのクエリ（elasticdump） - Qiita](https://qiita.com/nakazii-co-jp/items/3199433d685d0600c6d6)
   - jsonとかでとれる．
 大容量ファイルのときにどっちの手法がいいのかわからない．多分レポを作ってやるほうかな．
 
@@ -25,13 +25,13 @@ Installing logstash-output-slack
 
 #### geoip
 - https://www.elastic.co/jp/blog/geoip-in-the-elastic-stack
-- https://www.elastic.co/guide/en/logstash/6.2/plugins-filters-geoip.html
+- [Geoip filter plugin | Logstash Reference [6.2] | Elastic](https://www.elastic.co/guide/en/logstash/6.2/plugins-filters-geoip.html)
 - geolite.maxmind.com
-- http://kodamap.hatenablog.com/entry/2017/07/11/230705
-- https://dev.maxmind.com/geoip/geoip2/geolite2/
+- [Kibana + Elasticsearch + Logstash を使って Netflow を可視化する - kodamapのブログ](http://kodamap.hatenablog.com/entry/2017/07/11/230705)
+- [GeoLite2 Free Downloadable Databases « MaxMind Developer Site](https://dev.maxmind.com/geoip/geoip2/geolite2/)
 
 #### dns
-- https://www.elastic.co/guide/en/logstash/current/plugins-filters-dns.html
+- [Dns filter plugin | Logstash Reference [7.5] | Elastic](https://www.elastic.co/guide/en/logstash/current/plugins-filters-dns.html)
 
 #### flow
 - http://enog.jp/wp-content/uploads/2015/09/enog43_elk_0904.pdf
@@ -40,7 +40,7 @@ Installing logstash-output-slack
 
 #### slack通知
   - [logstash-plugins/logstash-output-slack](https://github.com/logstash-plugins/logstash-output-slack)
-  - https://github.com/cyli/logstash-output-slack/issues/24
+  - [Real examples needed Âˇ Issue #24 Âˇ cyli/logstash-output-slack Âˇ GitHub](https://github.com/cyli/logstash-output-slack/issues/24)
 
 - こんな分岐のしかたもある．
 ```
@@ -49,26 +49,26 @@ if [dstip] and [dstip] !~ "(^127.0.0.1)|(^10.)|(^172.1[6-9].)|(^172.2[0-9].)|(^1
 
 ### Tools
 - grok debugger
-  - https://grokdebug.herokuapp.com/
+  - [Grok Debugger](https://grokdebug.herokuapp.com/)
 - elastic search tips
-  - kuromoji tokenizer: http://pppurple.hatenablog.com/entry/2017/05/28/141143
+  - kuromoji tokenizer: [ElasticsearchでKuromoji Tokenizerを試す - abcdefg.....](http://pppurple.hatenablog.com/entry/2017/05/28/141143)
 
 ### Others
 - Multiple Pipeline
-  - https://qiita.com/micci184/items/24e197a168891f089b3d
+  - [絶対的に使った方がいいLogstashのMultiple Pipelinesについて書いてみた - Qiita](https://qiita.com/micci184/items/24e197a168891f089b3d)
 
 - 振り分け系
-  - https://designetwork.daichi703n.com/entry/2017/04/10/logstash-multiple-output
+  - [Logstashで内容ごとに送信先を複数に振り分ける設定 - designetwork](https://designetwork.daichi703n.com/entry/2017/04/10/logstash-multiple-output)
 
 - flow on ELK
   - http://enog.jp/wp-content/uploads/2015/09/enog43_elk_0904.pdf
   - [sflow | Logstash Reference [5.2] | Elastic](https://www.elastic.co/guide/en/logstash/5.2/plugins-codecs-sflow.html)
 
 - netflow module
-  - https://www.elastic.co/guide/en/logstash/current/netflow-module.html
+  - [Logstash Netflow Module | Logstash Reference [7.5] | Elastic](https://www.elastic.co/guide/en/logstash/current/netflow-module.html)
 
 - logstash 入門
-  - https://qiita.com/nihei9/items/1ebc7934eb1e1ce66162
+  - [Logstash入門 - Qiita](https://qiita.com/nihei9/items/1ebc7934eb1e1ce66162)
 
 ### Refs
 - [Elasticsearch Logstash Kibanaの環境構築 | Think IT（シンクイット）](https://thinkit.co.jp/article/13444)
@@ -107,27 +107,27 @@ sudo service elasticsearch start
 
 
 ## elk memo misc
-- installation: https://www.elastic.co/guide/jp/kibana/current/deb.html
-- installation to ubuntu18.04: https://qiita.com/hogehogehugahuga/items/e4ce03269309e90d04b8
-- https://thinkit.co.jp/article/13444
-- https://www.n-novice.com/entry/2018/02/22/214421#logstashインストール
-- beats: https://dev.classmethod.jp/server-side/elasticsearch/beats-entry-matome/
-- metricbeat: https://qiita.com/hana_shin/items/95cf8e165333f2a9d1c1
+- installation: [DebianパッケージでのKibanaのインストール | Kibanaユーザーガイド [5.4] | Elastic](https://www.elastic.co/guide/jp/kibana/current/deb.html)
+- installation to ubuntu18.04: [Ubuntu18へのElasticStackインストール - Qiita](https://qiita.com/hogehogehugahuga/items/e4ce03269309e90d04b8)
+- [Elasticsearch Logstash Kibanaの環境構築 | Think IT（シンクイット）](https://thinkit.co.jp/article/13444)
+- [インストール：Elasticsearch, Logstash, and Kibana (ELK Stack) ＋ Nginx(ReverseProxy) on CentOS7.4 - 備忘録／にわかエンジニアが好きなように書く](https://www.n-novice.com/entry/2018/02/22/214421#logstashインストール)
+- beats: [Beatsを使ってみた（まとめ編） ｜ Developers.IO](https://dev.classmethod.jp/server-side/elasticsearch/beats-entry-matome/)
+- metricbeat: [Metricbeatによるシステム情報の視覚化 - Qiita](https://qiita.com/hana_shin/items/95cf8e165333f2a9d1c1)
 - kibanaの正規表現がいけてない．普通のregexpでは反応しない．
-- visualize of netflow: http://kodamap.hatenablog.com/entry/2017/07/11/230705
-- log aggregator with logstash: http://success.tracpath.com/blog/2014/06/04/logstash%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E6%A7%8B%E7%AF%89/
-- https://knowledge.sakura.ad.jp/2736/
-- https://support.halon.io/hc/en-us/articles/360000700065-Remote-syslog-to-Logstash
-- https://qiita.com/quotto/items/8250c67ced43dc83b770
+- visualize of netflow: [Kibana + Elasticsearch + Logstash を使って Netflow を可視化する - kodamapのブログ](http://kodamap.hatenablog.com/entry/2017/07/11/230705)
+- log aggregator with logstash: [Logstashによるログ収集システムの構築 | 情シスハック](http://success.tracpath.com/blog/2014/06/04/logstash%E3%81%AB%E3%82%88%E3%82%8B%E3%83%AD%E3%82%B0%E5%8F%8E%E9%9B%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E6%A7%8B%E7%AF%89/)
+- [15分で作る、Logstash＋Elasticsearchによるログ収集・解析環境 | さくらのナレッジ](https://knowledge.sakura.ad.jp/2736/)
+- [Remote syslog to Logstash – Halon](https://support.halon.io/hc/en-us/articles/360000700065-Remote-syslog-to-Logstash)
+- [Logstash+Elasticsearch+Kibanaでログを可視化してみましょう - Qiita](https://qiita.com/quotto/items/8250c67ced43dc83b770)
 - https://protocol.nekono.tokyo/2018/11/01/logstashで複数ポートでsyslog転送を受け付ける/
 - // 結局groksを上手に書いて多数のログ形式をサポートするのがつらい．
 
-- installation logstash: https://symfoware.blog.fc2.com/blog-entry-1910.html
-- the first logstash: https://qiita.com/nskydiving/items/0cb598de7ffb5c22424d
+- installation logstash: [Logstashのインストールと簡単な設定方法 - Symfoware](https://symfoware.blog.fc2.com/blog-entry-1910.html)
+- the first logstash: [はじめての Logstash - Qiita](https://qiita.com/nskydiving/items/0cb598de7ffb5c22424d)
 
 - syslog: serverity, rsyslog, logger command
-- geoip with logstash: https://www.digitalocean.com/community/tutorials/how-to-map-user-location-with-geoip-and-elk-elasticsearch-logstash-and-kibana
-- logstash grok: https://qiita.com/tuneyukkie/items/75cbb4d44f901fec2188
+- geoip with logstash: [How To Map User Location with GeoIP and ELK (Elasticsearch, Logstash, and Kibana) | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-map-user-location-with-geoip-and-elk-elasticsearch-logstash-and-kibana)
+- logstash grok: [LogstashでのGrokの始め方 - Qiita](https://qiita.com/tuneyukkie/items/75cbb4d44f901fec2188)
 - [DHCP lease logからmac addr OUI/Vender を抽出する](https://www.securitydistractions.com/2019/01/05/adding-windows-dhcp-logs-to-elastic-part-2/)
   - OUIはこのあたりのリストが便利: [nmap/nmap-mac-prefixes at master · nmap/nmap](https://github.com/nmap/nmap/blob/master/nmap-mac-prefixes)
 
@@ -213,7 +213,7 @@ output{
     - この手法をとるとouiフィールドがあるindexと無いindexでほぼ同様の情報が2つdupで保存されてしまうことに注意する．
 
 ## elk install battle
-- https://www.n-novice.com/entry/2018/02/22/214421#logstash%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB
+- [インストール：Elasticsearch, Logstash, and Kibana (ELK Stack) ＋ Nginx(ReverseProxy) on CentOS7.4 - 備忘録／にわかエンジニアが好きなように書く](https://www.n-novice.com/entry/2018/02/22/214421#logstash%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB)
 
 ## logstash x grok
-- https://qiita.com/tuneyukkie/items/75cbb4d44f901fec2188
+- [LogstashでのGrokの始め方 - Qiita](https://qiita.com/tuneyukkie/items/75cbb4d44f901fec2188)

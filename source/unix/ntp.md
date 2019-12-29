@@ -85,8 +85,8 @@
   - `sudo hwclock --hctosys`
 
 ## ntp
-- https://incarose86.hatenadiary.org/entry/20110505/1312522379
-- https://ja.wikipedia.org/wiki/Network_Time_Protocol
+- [NTP設定 - とあるSIerの憂鬱](https://incarose86.hatenadiary.org/entry/20110505/1312522379)
+- [Network Time Protocol - Wikipedia](https://ja.wikipedia.org/wiki/Network_Time_Protocol)
 
 ## ntp.conf
 - `tinker panic 0`
@@ -136,11 +136,11 @@ Connection to 192.168.1.1 closed.
 [root@hostA]# cat /sys/devices/system/clocksource/clocksource0/current_clocksource
 hpet
 ```
-- ref.) https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-configuring_clock_sources
+- ref.) [18.19. クロックソースの設定 Red Hat Enterprise Linux 7 | Red Hat Customer Portal](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/7/html/system_administrators_guide/s1-configuring_clock_sources)
 - TODO: clock sourceの違い
 
 ## ref
-- http://yeh.jp/blog/ntpq-p/
+- [ntpq -pコマンドの出力メモ | 電子計算機の操縦桿](http://yeh.jp/blog/ntpq-p/)
 
 ## memo
 spike_detect 
@@ -164,5 +164,5 @@ Precision Time Protocol (PTP) は比較的新しいプロトコルであり，�
 
 PTP ではネットワークインターフェースチップのMACやPHYに実装されたハードウェアタイムスタンプ機能を使い，マイクロ秒RMS以下のタイムスタンプ精度を実現します． また誤差の要因であるネットワークの伝搬遅延を検出して補正する仕掛けを持ちます．Version 1では大規模な展開を行うためにセグメントを区切るBoundary Clock (BC)が用意されました． 現在標準とされ，EndRun製品がサポートする Version 2 では遅延管理機能を持つスイッチングハブ Transparent Clock (TC) が用意され，より柔軟で精度の高い展開が可能になりました．PTP の時刻同期精度は グランドマスタークロックやスレーブクロックのタイムスタンプ精度だけで決まるのではなく，ネットワークのトポロジー，例えばスイッチ， BC， TC やスレーブの同期能力が影響を与えます． Sonoma を含む、現在主流の PTP ハードウェアタイムスタンプをサポートする製品で構成するトポロジーは <100ns の同期も可能になっています． PTP の動作説明については，このEndRun 1588/PTP白書も参照ください．
 ```
-- ref: https://www.shoshin.co.jp/c/endrun/1588ptp.html
-- ref: http://john-rama01.hatenablog.com/entry/2016/09/12/192536
+- ref: [Endrun IEEE 1588 PTP グランドマスタークロック](https://www.shoshin.co.jp/c/endrun/1588ptp.html)
+- ref: [vol10. PTP(Precision Time Protocol)について調べてみた - ジョンのblog](http://john-rama01.hatenablog.com/entry/2016/09/12/192536)

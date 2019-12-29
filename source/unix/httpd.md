@@ -55,7 +55,7 @@
         - 念の為バックアップを取ったほうがいいと思う．
 
 ### nginxでリバプロ
-- https://qiita.com/HeRo/items/7063b86b5e8a2efde0f4
+- [Nginx のリバースプロキシ設定のメモ - Qiita](https://qiita.com/HeRo/items/7063b86b5e8a2efde0f4)
 
 - httpをhttpsにリダイレクト
 ```
@@ -81,21 +81,21 @@ proxy_set_header X-Real-IP $remote_addr;
 ```
 
 - オレオレSSL証明書
-  - https://dogmap.jp/2011/05/10/nginx-ssl/
+  - [nginx で ssl 設定をする - dogmap.jp](https://dogmap.jp/2011/05/10/nginx-ssl/)
 
 - basic認証をつける
-  - https://qiita.com/kotarella1110/items/be76b17cdbe61ff7b5ca
+  - [Nginx で Basic 認証 - Qiita](https://qiita.com/kotarella1110/items/be76b17cdbe61ff7b5ca)
 
 - sni
-  - https://qiita.com/sawanoboly/items/5fd06f4787853c756122
+  - [nginxでServer Name Indication(sni) - Qiita](https://qiita.com/sawanoboly/items/5fd06f4787853c756122)
 
 - SANs, 2way
   - 1つの証明書で複数のcommon nameに対応
-  - http://memories.zal.jp/WP/blog/20180716_2979.html
+  - [えっ！ wwwあり・なし両方は未対応 CPI SSLサーバー証明書 | サイト構築日記](http://memories.zal.jp/WP/blog/20180716_2979.html)
 
 ## h2o
   - h2oをcentos7にいれる
-    - https://github.com/tatsushid/h2o-rpm を参考にyumでいれる．
+    - [GitHub - tatsushid/h2o-rpm: Unofficial H2O RPM for Fedora, RHEL/CentOS and OpenSUSE builder](https://github.com/tatsushid/h2o-rpm) を参考にyumでいれる．
     ```
     [jp7fkf@localhost]$ cat /etc/yum.repos.d/bintray-tatsushid-h2o-rpm.repo
     #bintray-tatsushid-h2o-rpm - packages by tatsushid from Bintray
@@ -404,7 +404,7 @@ www.jp7fkf.dev = /path/to/document/root
 これがいつのまにか消えてたりするらしいので注意．
 
 ## SSL Server Testとか
-- https://blog.yuu26.com/entry/20180618/1529333962
+- [H2O + Let's Encrypt で SSL Server Test A+ 評価を取る設定 - yuu26's memo](https://blog.yuu26.com/entry/20180618/1529333962)
 
 ## apache2 (ubuntu18?)
 ### apache2でdocument rootをredirectする．

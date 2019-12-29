@@ -72,8 +72,8 @@
 ```
 
 ## on docker
-- https://www.higebu.com/blog/2018/03/19/docker-on-vyos-1.2/#.XQBFr2_7TAL
+- [VyOS 1.2でDockerを動かす | higeblog](https://www.higebu.com/blog/2018/03/19/docker-on-vyos-1.2/#.XQBFr2_7TAL)
 
 ## vxlan on vyos
-- https://jedipunkz.github.io/blog/2014/12/16/vyos-vxlan/
-- https://www.slideshare.net/upaa/vyos-users-meeting-2-vyosvxlan
+- [VyOS で VXLAN を使ってみる - ジェダイさんのブログ](https://jedipunkz.github.io/blog/2014/12/16/vyos-vxlan/)
+- [VyOS Users Meeting #2, VyOSのVXLANの話](https://www.slideshare.net/upaa/vyos-users-meeting-2-vyosvxlan)

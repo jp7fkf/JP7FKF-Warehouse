@@ -81,12 +81,12 @@
 
 ## Replicator 2x
 - Shuhei Udaさんのところがよくまとめられていて大変参考になる
-  - https://www.syuheiuda.com/?p=1775
-  - https://www.syuheiuda.com/?s=replicator
+  - [Replicator 2X 日本語マニュアル – Made in container](https://www.syuheiuda.com/?p=1775)
+  - [“replicator” の検索結果 – Made in container](https://www.syuheiuda.com/?s=replicator)
 - MakerBot MakerWare は201911現在discon.
 - 201911現在，softwareとしてはMakerbot Printが存在するが，これだとdual ext.が使えない．
   - dual ext. 出力したい場合は，MakerBot Desktopを使うといい．
-  - https://support.makerbot.com/learn/makerbot-desktop-software/installation-and-setup/installing-makerbot-desktop_11222
+  - [Installing MakerBot Desktop | MakerBot Desktop (Software) | MakerBot Support](https://support.makerbot.com/learn/makerbot-desktop-software/installation-and-setup/installing-makerbot-desktop_11222)
   - 無論2xも対応している．deviceから選択する．
 
 ### 3D Printingの条件

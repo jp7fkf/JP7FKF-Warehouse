@@ -2,7 +2,7 @@
 
 ## validation
 - yaml validation
-  - https://stackoverflow.com/questions/3262569/validating-a-yaml-document-in-python
+  - [Validating a yaml document in python - Stack Overflow](https://stackoverflow.com/questions/3262569/validating-a-yaml-document-in-python)
 
 ## netaddr
 ### ip範囲からCIDRを求める

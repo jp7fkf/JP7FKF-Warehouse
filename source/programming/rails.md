@@ -80,7 +80,7 @@ rails db:migrate
 ## 1つのformで複数のmodelを編集したい
   - 基本的にassociationを書いておいたほうがよさそう．
   - form_forの中でfields_forをネストさせるのが定石っぽい
-  - http://tkot.hatenablog.com/entry/2013/07/06/010617
+  - [【Rails】一つのフォームで2つのモデルを更新 - プログラミング 美徳の不幸](http://tkot.hatenablog.com/entry/2013/07/06/010617)
   - 関連がないときのベストプラクティスはこれ？(本当にこれがいいかは不明)
     ```
       def update
@@ -99,4 +99,4 @@ rails db:migrate
 - option(:include_blankや:prompt)は第3引数に設定し，html_options(classやstyle)は第4引数に設定する．
   - reference見ろって話．
 - ex.) `f.select :person_id,Person.all.collect { |p| [ p.name, p.id ] }, {}, {class: 'form-control'}`
-- https://qiita.com/nakanoyoshiki/items/e87a6238f8febbeb208a
+- [railsでf.selectにclassを設定する - Qiita](https://qiita.com/nakanoyoshiki/items/e87a6238f8febbeb208a)

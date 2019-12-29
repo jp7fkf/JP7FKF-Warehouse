@@ -5,11 +5,11 @@
 
 ## scripts
 - たくさんスクリプトがある．便利．
-- http://n.pentest.ninja/?p=32488
-- https://nmap.org/nsedoc/
+- [Nmapを検証してみました【NSE編】 – (n)](http://n.pentest.ninja/?p=32488)
+- [NSEDoc Reference Portal](https://nmap.org/nsedoc/)
 
 ### dhcp-discover を投げる
-- https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html
+- [broadcast-dhcp-discover NSE Script](https://nmap.org/nsedoc/scripts/broadcast-dhcp-discover.html)
 - `sudo nmap --script broadcast-dhcp-discover`
 - `nmap -sU -p 67 --script=dhcp-discover <target_ip> -e <interface>` とか．
 

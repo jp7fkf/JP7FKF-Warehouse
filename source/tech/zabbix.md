@@ -25,10 +25,10 @@
 
       - もうひとつのやりかたとして，実行内容でリモートコマンドの実行とする手がある．
 
-  - https://github.com/ericoc/zabbix-slack-alertscript
+  - [GitHub - ericoc/zabbix-slack-alertscript: Zabbix AlertScript for Slack.com chat](https://github.com/ericoc/zabbix-slack-alertscript)
 
 ## 時刻監視
-- https://qiita.com/miyahang55/items/9d1f99e9549143cdc8de
+- [zabbix3.0でサーバ時刻のズレを監視する（うるう秒対策） - Qiita](https://qiita.com/miyahang55/items/9d1f99e9549143cdc8de)
 - zabのアイテムとして下記を登録．
 ```
 項目  値
@@ -88,7 +88,7 @@
   Key: script.ntpcheck
   ...
   ```
-- ref.) https://kimoota.wiki.fc2.com/wiki/zabbix%2F%E7%8B%AC%E8%87%AA%E7%9B%A3%E8%A6%96%E3%81%AE%E8%A8%AD%E5%AE%9A
+- ref.) [zabbix/独自監視の設定 - インターネットウィキ](https://kimoota.wiki.fc2.com/wiki/zabbix%2F%E7%8B%AC%E8%87%AA%E7%9B%A3%E8%A6%96%E3%81%AE%E8%A8%AD%E5%AE%9A)
 
 ## zabbix install battle
 ```
@@ -129,5 +129,8 @@ https://qiita.com/hirotaka-tajiri/items/fa8a6dbaf1ddf1b59cdd
 ```
 
 ## zabbix templates
-- https://share.zabbix.com/network_devices/juniper
-- https://share.zabbix.com/network_devices/cisco
+- [Zabbix Share - Juniper](https://share.zabbix.com/network_devices/juniper)
+- [Zabbix Share - Cisco](https://share.zabbix.com/network_devices/cisco)
+
+## folum
+- [Forums -  ZABBIX Forums](https://www.zabbix.com/forum/)

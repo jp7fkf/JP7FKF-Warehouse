@@ -56,10 +56,10 @@ set protocols layer2-control nonstop-bridging
 set system commit synchronize
 ```
 - `set virtual-chassis no-split-detection`
-  - http://blog.sidetech.jp/2014/12/05/182257
+  - [Juniper EXのSplit and Merge機能の功罪 - sidetech](http://blog.sidetech.jp/2014/12/05/182257)
   - split-brain, split-master にならないようにする．
     - たとえばipaddr重複とかしてたときによろしくない．(ex. irbとか)
-  - https://www.juniper.net/documentation/en_US/junos/topics/concept/virtual-chassis-ex4200-split-merge.html
+  - [Understanding Split and Merge in a Virtual Chassis - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/concept/virtual-chassis-ex4200-split-merge.html)
 
 ### LEDがおかしい．
 ```
@@ -134,10 +134,10 @@ interfaces {
 - 下の階層まで消して作り直したりしなくてよくて便利
 
 ## mpls
-- http://www.mplsvpn.info/2018/04/using-salt-with-network-devices-part-2_21.html
+- [Using Salt with Network Devices - Part 2 |MPLSVPN - Moving Towards SDN and NFV Based Networks](http://www.mplsvpn.info/2018/04/using-salt-with-network-devices-part-2_21.html)
 
 ### disable と deactivateの違い
-- http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/
+- [JUNOS Disable vs Deactivate interfaces - Networkers-online.com](http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/)
 
 ## traceoprionsでファイル作ったのを消したい．
 - 中身だけclear: `clear log <file_name>`
@@ -185,7 +185,7 @@ Possible completions:
 ```
 
 ## port checker
-- https://apps.juniper.net/home/port-checker/
+- [Port Checker - Juniper Networks](https://apps.juniper.net/home/port-checker/)
 
 ## vc-portのdiagnostics
 - `request virtual-chassis vc-port diagnostics optics`
@@ -213,7 +213,7 @@ Possible completions:
 ## chassis cluster組んでる時にほかのノードにlogin
 - `request routing-engine login node <node_num>`
 
-## interface prefixes([REF](https://www.juniper.net/documentation/en_US/junos/topics/concept/interfaces-interface-naming-overview.html))
+## interface prefixes([Interface Naming Overview - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/concept/interfaces-interface-naming-overview.html))
 - ae: Aggregated Ethernet interface. This is a virtual aggregated link and has a different naming format from most PICs; for more information, see Aggregated Ethernet Interfaces Overview.
 - as: Aggregated SONET/SDH interface. This is a virtual aggregated link and has a different naming format from most PICs; for more information, see Configuring Aggregated SONET/SDH Interfaces.
 - at: ATM1 or ATM2 intelligent queuing (IQ) interface or a virtual ATM interface on a circuit emulation (CE) interface.
@@ -288,7 +288,7 @@ Possible completions:
   - deactivate: configがdeactivateされると思えば良い．入っていない状態となる．factory defaultがadmin-upならifはadmin-upになる．
   - たとえばSFPからの光を出したくない場合はdisableにするべきか．deacだとadmin-upなので光は出してしまうことになる．ただ，configを入れなければならないのはちょっとな...．
     - JUNOS，factory defaultがadmin-upということはSFPさした瞬間に(configが入っていなくても)光が出てくるということなんだよね．うーん．
-  - ref: http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/
+  - ref: [JUNOS Disable vs Deactivate interfaces - Networkers-online.com](http://www.networkers-online.com/blog/2016/05/junos-disable-vs-deactivate/)
 
 ## junos chassis clustor
 - clustor id: 同じl2 domainに複数のclustor id は混在できない．clustor id は1-15まで．同じl2には15clustor参加できる．
@@ -394,7 +394,7 @@ node1  50       secondary            yes     no       None
 
 ## junos config parser
 - junoser
-  - https://github.com/codeout/junoser
+  - [GitHub - codeout/junoser: PEG parser for JUNOS configuration.](https://github.com/codeout/junoser)
   - https://codeout.hatenablog.com/entry/2017/10/26/210810
 
 ### juniper exのLAG
@@ -438,7 +438,7 @@ node1  50       secondary            yes     no       None
   含まれる場合に自ASにoverrideしてadvertiseする．
   - VRFを切った MP-BGP/MPLS VPN等で多用される（CEが同一AS-numを持つため）．
   どうやら直前のas-path以外も，かぶってさえいれば自AS numに書き換えるようだ．
-    - https://www.sash.jp/vpn-mpls-vpn-as-override
+    - [VPN MPLS-VPN as-override  |  Logs](https://www.sash.jp/vpn-mpls-vpn-as-override)
 
 ## algの動作がわからん．
 - application level gateway. nat処理等を実施する場合にパケットヘッダのみの変換では十分でないアプリケーション等がある場合，そのアプリケーションのペイロードデータに対しても変換を行う機能っぽい．
@@ -448,7 +448,7 @@ node1  50       secondary            yes     no       None
   - bandwidth-levelになったら bumだけ切ってくれるっぽい．明示的にaction, shutとかlogとかしなくてもbumだけPolicingしてくれるっぽい．デフォでloggingされる．action-shutはデフォでしない．
 
 ## junosのvcにおけるmeの扱い
-- https://kb.juniper.net/InfoCenter/index?page=content&id=KB25724&actp=METADATA
+- [[EX] How to troubleshoot the Virtual Chassis (VC) management ethernet interface (VME) - Juniper Networks](https://kb.juniper.net/InfoCenter/index?page=content&id=KB25724&actp=METADATA)
 
 ## srx high-availability
 - [7. High Availability - Juniper SRX Series [Book]](https://www.oreilly.com/library/view/juniper-srx-series/9781449339029/ch07.html)

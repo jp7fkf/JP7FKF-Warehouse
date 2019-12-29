@@ -68,7 +68,7 @@ Item 1   | Item 2
     "| Item 1
     | Item 2",Item 3,Item 4
 ```
-- ref.) http://saponote.hatenablog.com/entry/2017/11/24/214309
+- ref.) [restructuredText の表のセルの中で改行する - サポンテ 勉強ノート](http://saponote.hatenablog.com/entry/2017/11/24/214309)
 
 ## images
 ````
@@ -99,5 +99,5 @@ Item 1   | Item 2
    一行あけてここに書いたものがキャプションになります。
 ```
 ````
-- https://sphinx-users.jp/reverse-dict/images/caption.html
+- [図にキャプションをつけたい — Python製ドキュメンテーションビルダー、Sphinxの日本ユーザ会](https://sphinx-users.jp/reverse-dict/images/caption.html)
   - ただしcssかいておかないと意味なさそう...

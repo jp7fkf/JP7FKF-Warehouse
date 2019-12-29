@@ -1,9 +1,9 @@
 # git
 
 ## gitlab install battle on ubuntu 18.04
-- https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gitlab-on-ubuntu-18-04
-- https://qiita.com/win-chanma/items/37680a4384be77f2a9e2
-- https://qiita.com/hiko_t/items/263d6429b7fa9d2a001f
+- [How To Install and Configure GitLab on Ubuntu 18.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gitlab-on-ubuntu-18-04)
+- [Ubuntu18.04 +GitLab CE(Community Edition)を爆速構築 - Qiita](https://qiita.com/win-chanma/items/37680a4384be77f2a9e2)
+- [Ubuntu18.04.1にGitlab11.2.3インストール＆日本語設定 - Qiita](https://qiita.com/hiko_t/items/263d6429b7fa9d2a001f)
 
 ### recommended machine specs
 - 2 cores

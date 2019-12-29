@@ -1,11 +1,11 @@
 # SSL/TLS
 
 ## PKIと証明書，CAの話
-- https://milestone-of-se.nesuke.com/sv-advanced/digicert/digital-certification-summary/
+- [【図解】よく分かるデジタル証明書(SSL証明書)の仕組み 〜https通信フロー,発行手順,CSR,自己署名(オレオレ)証明書,ルート証明書,中間証明書の必要性や扱いについて〜  |  SEの道標](https://milestone-of-se.nesuke.com/sv-advanced/digicert/digital-certification-summary/)
   - うまくまとまっている．理解しやすい．
 
 ### CA証明書の発行
-- https://www.ipentec.com/document/create-server-certificate-file
+- [「証明機関」による証明書の発行 (サーバー証明書を作成する) (Windows Server Tips)](https://www.ipentec.com/document/create-server-certificate-file)
 
 ### CA機関による審査（認証局による認証）
 - CAは誰にでもサーバ証明書を発行するわけではなく，もちろん正当性を審査して発行する．
@@ -15,7 +15,7 @@
   - EV証明書 (Extended Validation証明書): OV 証明書と同様の確認を行うが，確認方法が国際的な認定基準に基づいて行われる．加えて，ブラウザのアドレスバーが緑色になる「グリーンバー」によりそのWebサーバの安全性をよりアピールすることができる．グリーンバーには運営組織が表示される．
 
 ### SSL証明書の中身
-- https://www.ssloff.com/members/knowledgebase/88/SSL.html
+- [SSLサーバ証明書の中身 - Q&A - SSLOFF](https://www.ssloff.com/members/knowledgebase/88/SSL.html)
   - ウェブサーバの情報（識別名（ディスティングイッシュネーム））
   - Common Name（コモンネーム）
   - Organizational Name（組織名）
@@ -163,7 +163,7 @@ closed
 - `openssl req -in <csr_file> -text` で確認できる．
 
 ## プライベート認証局(root ca, intermediate ca)
-- https://qiita.com/haruca_tech/items/ac5ece9618a613f37ce5
+- [OpenSSLでプライベート認証局の構築（ルートCA、中間CA） - Qiita](https://qiita.com/haruca_tech/items/ac5ece9618a613f37ce5)
 
 ## wildcard 証明書 - SSL
-- https://speakerdeck.com/kenojiri/how-to-get-wildcard-certs-without-any-charges
+- [完全無料でワイルドカード証明書を手に入れよう / How to get wildcard certs without any charges - Speaker Deck](https://speakerdeck.com/kenojiri/how-to-get-wildcard-certs-without-any-charges)

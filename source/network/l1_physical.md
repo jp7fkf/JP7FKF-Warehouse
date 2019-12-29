@@ -13,7 +13,7 @@
 - UTP4Pケーブルは中に線の1ペアが4つ（8芯）ある．
 - 1000Base-Tでは、1ペアが各々250Mの双方向（行って来い）の送信、受信を1ペアの中で行います。250Mの双方向で送受信×4ペアで1000Mと言う事。
 - 1000Base-TXは、1ペアで各々500Mの片方向の送信のみ、受信のみを行います。500Mの送信のみ×2ペアで1000Mと500Mの受信のみ×2ペアで1000Mと言う事。
-- https://lan-cables.com/txtigai.html
+- [1000Base-Tと1000Base-TXの違いは？TよりTXの方がいいの？ケーブルは？](https://lan-cables.com/txtigai.html)
 
 - [1000BASE-TX か、1000BASE-T か：ネットワークエンジニアになろう！](http://www.smartnetworks.jp/2006/02/1000basetx_1000baset.html)
   - IEEE802.3ab(1000BASE-T)
@@ -113,24 +113,24 @@
 - 電力和等レベル遠端漏話（Power Sum Equal Level FEXT, PS-ELFEXT）
 
 ## SFPの規格ってどないなっとんねん
-  - SFF-8431 Specifications for Enhanced Small Form Factor Pluggable Module SFP+
-  - https://www.snia.org/technology-communities/sff/specifications
-  - https://www.snia.org/sff
-  - http://www.10gtek.com/templates/wzten/pdf/INF-8074.pdf
+- SFF-8431 Specifications for Enhanced Small Form Factor Pluggable Module SFP+
+- [SFF Specifications | SNIA](https://www.snia.org/technology-communities/sff/specifications)
+- [SFF Technology Affiliate | SNIA](https://www.snia.org/sff)
+- http://www.10gtek.com/templates/wzten/pdf/INF-8074.pdf
 
 ## MTPコネクタ
-  - MPOコネクタの進化版らしい．
-  - MTPはUS Conecの登録商標とのこと．
-  - [MTP コネクタ](https://www.empowerfiber.com/ja/mtp-connector.html)
-  - [MTPコネクタとMPOコネクタ：違いは何ですか？ - sunny3210’s blog](https://sunny3210.hatenablog.com/entry/2018/10/06/152232)
+- MPOコネクタの進化版らしい．
+- MTPはUS Conecの登録商標とのこと．
+- [MTP コネクタ](https://www.empowerfiber.com/ja/mtp-connector.html)
+- [MTPコネクタとMPOコネクタ：違いは何ですか？ - sunny3210’s blog](https://sunny3210.hatenablog.com/entry/2018/10/06/152232)
 
 ## FlexULC
-  - [FlexULC™付２心ラウンドコード - 製品情報 | 住友電工Optigate](http://www.optigate.jp/products/connector/mpo/2-fulc.html)
-  - ファイバ2芯分が1本の外部被覆にくるまっている．
-  - スペース的にも1/2になるみたい．配線がかさばることが想定されるところに適用するとよさそう．
+- [FlexULC™付２心ラウンドコード - 製品情報 | 住友電工Optigate](http://www.optigate.jp/products/connector/mpo/2-fulc.html)
+- ファイバ2芯分が1本の外部被覆にくるまっている．
+- スペース的にも1/2になるみたい．配線がかさばることが想定されるところに適用するとよさそう．
 
 ## 符号化って，ある意味の圧縮である
-  - xx符号，ハフマンetc...
+- xx符号，ハフマンetc...
 
 ## http://www.net.c.dendai.ac.jp/~nojikawa/03kc082.htm
 
@@ -210,13 +210,13 @@ b)条件 3 で規定する測定用の開口直径（表 11 参照）より大�
   - わかりやすい
     - [http://grouper.ieee.org/groups/802/3/tutorial/march98/mick_170398.pdf](http://grouper.ieee.org/groups/802/3/tutorial/march98/mick_170398.pdf)
 
-  - https://www.fiberlabs.co.jp/column/about-ld/
+  - [半導体レーザ(レーザーダイオード)の仕組みとは | ファイバーラボ株式会社](https://www.fiberlabs.co.jp/column/about-ld/)
     - レーザの話
-    - http://www.elec.chubu.ac.jp/kuzuya-Lab/laser-j.htm
+    - [レーザ基礎講座](http://www.elec.chubu.ac.jp/kuzuya-Lab/laser-j.htm)
   - https://jpn.nec.com/techrep/journal/g15/n03/pdf/150315.pdf
     - デジコヒ
     - どこまで来ているのか気になる．トランシーバ，実用事例
-  - https://en.wikipedia.org/wiki/Ethernet_physical_layer
+  - [Ethernet physical layer - Wikipedia](https://en.wikipedia.org/wiki/Ethernet_physical_layer)
   - http://kulgov.su/802.3-2008_section3.pdf
   - https://www.jstage.jst.go.jp/article/lsj/37/3/37_194/_pdf
   - http://www.ntt.co.jp/journal/0607/files/jn200607058.pdf
@@ -224,7 +224,7 @@ b)条件 3 で規定する測定用の開口直径（表 11 参照）より大�
   - ROADMの話
   - 実は違うRJ45と8P8C
     - https://jp.flukenetworks.com/blog/cabling-chronicles/history-rj45-case-mistaken-identity
-  - http://www.cqpub.co.jp/interface/toku/200109/toku1_3.htm
+  - [2001年9月号　特集第1章](http://www.cqpub.co.jp/interface/toku/200109/toku1_3.htm)
   - http://www.ntt.co.jp/journal/1303/files/jn201303042.pdf
   - http://www.soumu.go.jp/main_sosiki/joho_tsusin/policyreports/joho_tsusin/catv_system/pdf/070315_1_sa1_4.pdf
 
@@ -323,7 +323,7 @@ X、R  -  PCS符号化方式（世代によって異なる）：8b / 10bブロ�
 
 ベースバンド変調
 10BASExではマンチェスターコードが用いられた。マンチェスターコードは、各ビットを示す信号の中央で常に Lo→Hi や Hi→Lo に信号レベルが変化することで伝送の基準となるクロック信号をデータ信号に重ねて送ることができた。100BASE-TXではMLT-3、1000BASE-Tでは4D-PAM5など、それぞれ適した変調が用いられる。（以下参照）
-（引用元）http://www.aim-ele.co.jp/tech/metal-tech6/
+（引用元）[100Base-TX、1000Base-TX、1000Base-Tにおける伝送方式の違い　|　エイム電子株式会社](http://www.aim-ele.co.jp/tech/metal-tech6/)
 
 100Base-TXは、MLT-3と呼ばれるコード変換方式を採用しています。MLT-3は1クロック・サイクル(125MHz,サイクル時間:8n秒)で、3レベルの電圧を使い1ビット(2値)情報を伝送することができます。しかし、データ4ビットをケーブル上に送信する段階で5ビットに変換し、逆にケーブル上を流れる5ビットデータを受信すると4ビットに変換する4B/5B変換を行っているため、実際の伝送速度は125Mビット/秒の4 /5である100Mビット/秒になります。
 

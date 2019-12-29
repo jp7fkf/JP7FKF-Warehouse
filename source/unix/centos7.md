@@ -67,7 +67,7 @@
 - 入ってるkernelを確認: `$ rpm -qa | grep kernel`
 - wget とかでパッケージを持ってくる． `$ wget https://elrepo.org/linux/kernel/el6/x86_64/RPMS/hogehoge /tmp/`
 - grubでどのkernelからあげるかをset: `/etc/grub.conf`のうちのn番目のkernelで起動するときは，`$ # /sbin/grubby --set-default=<n-1>`
-- (参考)カーネルレポジトリ: https://elrepo.org/linux/kernel/el6/x86_64/RPMS/
+- (参考)カーネルレポジトリ: [Index of /linux/kernel/el6/x86_64/RPMS](https://elrepo.org/linux/kernel/el6/x86_64/RPMS/)
 
 - kernel-<バージョン番号>: ユニプロセッサマシン向けカーネル(≒カーネル本体か．)
 - kernel-smp-<バージョン番号>: マルチプロセッサ、または、4GB以上のメモリを搭載しているマシン向けカーネル
@@ -78,7 +78,6 @@
 
 ### 参考
 - [2. カーネルのアップデート(第1章カーネル:基本管理コースII)](https://users.miraclelinux.com/technet/document/linux/training/2_1_2.html)
-
 
 ## Chkconfig
 - ランレベル
@@ -189,7 +188,7 @@ tmpfs                            4941256        0   4941256   0% /run/user/1001
 ```
 - この時点で`apt-get -f install`しても`/boot`が足りてないせいで正常終了しない．
 - というわけで/boot配下を掃除する．
-  - https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
+  - [Safest way to clean up boot partition - Ubuntu 14.04LTS-x64, Ubuntu 16.04LTS-x64 Âˇ GitHub](https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600)
     - ``sudo dpkg --list 'linux-image*'|awk '{ if ($1=="ii") print $2}'|grep -v `uname -r``
       - すると
       ```user@centos:~$ sudo dpkg --list 'linux-image*'|awk '{ if ($1=="ii") print $2}'|grep -v `uname -r`
@@ -212,7 +211,7 @@ tmpfs                            4941256        0   4941256   0% /run/user/1001
 - 基本的にしないっぽい．yumは依存性解決とかをやってくれているだけで，中ではrpm叩いてるらしい．
 
 ## yum とかrpmでURL指定でinstallする
-- https://qiita.com/kazinoue/items/d432b858c71618a1c15e
+- [rpmもyumもURLを直接指定してインストールできる - Qiita](https://qiita.com/kazinoue/items/d432b858c71618a1c15e)
 - `sudo rpm -[i,U]vh https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm`
 - `sudo yum install http://ftp.riken.jp/Linux/centos/7.5.1804/updates/x86_64/Packages/gcc-4.8.5-28.el7_5.1.x86_64.rpm`
 
