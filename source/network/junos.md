@@ -452,3 +452,9 @@ node1  50       secondary            yes     no       None
 
 ## srx high-availability
 - [7. High Availability - Juniper SRX Series [Book]](https://www.oreilly.com/library/view/juniper-srx-series/9781449339029/ch07.html)
+
+## haltとpower-offのちがい
+- `request system power-off`
+  - 電源をOFFにする
+- `request system halt`
+  - いつでも電源断ready(=プラグ抜いていい)だが，何か入力があると起動する．

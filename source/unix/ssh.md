@@ -10,17 +10,17 @@ ssh-keygen -t rsa -b 4096 {-C "email@example.com"} //コメントつけたけれ
 ```
 ssh-keygen -l -v -f ~/.ssh/id_rsa.pub
 ```
-  - -v つけるとフィンガープリントが出る．
+- -v つけるとフィンガープリントが出る．
 
 ## known_hosts って
-  - 何が書かれてるんだ？  
-  sha2 とかrsaとしてのハッシュ値が保存されていて，ホストの信頼性を保証しようとしている
-  そもそもホスト鍵って何者？ホストの公開鍵を引っ張ってくるならわかる．
-  でもパスワード認証だけの場合はここに何が入るの？ -> ssh_keygenとか全くやってないから公開鍵なんてどこにもないんじゃないの？
+- 何が書かれてるんだ？  
+  - sha2 とかrsaとしてのハッシュ値が保存されていて，ホストの信頼性を保証しようとしている
+  - そもそもホスト鍵って何者？ホストの公開鍵を引っ張ってくるならわかる．
+  - でもパスワード認証だけの場合はここに何が入るの？ -> ssh_keygenとか全くやってないから公開鍵なんてどこにもないんじゃないの？
 
 ## sshuttle
-  - べんり
-  - `sshuttle -r <username>@<host> <forwarding_ip_range>`
+- べんり
+- `sshuttle -r <username>@<host> <forwarding_ip_range>`
 
 ## port forward
 ```
@@ -46,31 +46,31 @@ Host proxy_target
    ```
 
 ## agent transfer
- - [多段sshを行うときに、ローカルの秘密鍵を参照し続ける - Qiita](https://qiita.com/ymd_/items/5eb833ad757bd8b3e6c3)
- - [ssh-agentの使い方 - Qiita](https://qiita.com/isaoshimizu/items/84ac5a0b1d42b9d355cf)
- - sshに`-A`オプションをつけるのが一番手っ取り早い．
- - `ForwardAgent yes` を`/etc/ssh/sshd_config` or `~/.ssh/config` とかに書く．
+- [多段sshを行うときに、ローカルの秘密鍵を参照し続ける - Qiita](https://qiita.com/ymd_/items/5eb833ad757bd8b3e6c3)
+- [ssh-agentの使い方 - Qiita](https://qiita.com/isaoshimizu/items/84ac5a0b1d42b9d355cf)
+- sshに`-A`オプションをつけるのが一番手っ取り早い．
+- `ForwardAgent yes` を`/etc/ssh/sshd_config` or `~/.ssh/config` とかに書く．
 
 ## ワイルドカードを使う
 ```
- host gateway
-   HostName sshgate.hoge
-   User hoge
+host gateway
+  HostName sshgate.hoge
+  User hoge
 
 Host RemoteHost*
   HostName RemoteHost
   User fuga
 
 host *-none
-   ProxyCommand none
+  ProxyCommand none
 
 Host *-out*
-   ProxyCommand ssh -W %h:%p gateway
+  ProxyCommand ssh -W %h:%p gateway
 ```
 
 ## permission
-  - `~/.ssh` は`700`
-  - `~/.ssh/authorized_keys` は`644`
+- `~/.ssh` は`700`
+- `~/.ssh/authorized_keys` は`644`
 
 ## sshrc
 - `brew install sshrc`

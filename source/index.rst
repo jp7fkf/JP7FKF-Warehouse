@@ -27,6 +27,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201910
   dialy/201911
   dialy/201912
+  dialy/202001
 
   todo
   programming/sh
@@ -106,7 +107,8 @@ Welcome to JP7FKF-Warehouse!
   hobbies/stm32
   hobbies/hamradio
   hobbies/mobile_communication
-  hobbies/camp
+  hobbies/outdoor
+  hobbies/trip
   settings
   electronics/electronics
 
