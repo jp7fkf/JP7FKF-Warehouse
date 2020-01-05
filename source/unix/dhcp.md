@@ -137,3 +137,9 @@ $ kea-admin lease-init mysql -u database-user -p database-password -n database-n
 
 ## kea performance optimization
 - [Kea Performance Optimization](https://kb.isc.org/docs/kea-performance-optimization)
+
+## Load-Balancing
+- KeaもMicrosoft ServerのLoad-Balancingも，act-actで動作させる場合はRFC3074に基づく場合が多いようだ．
+  - [RFC 3074 - DHC Load Balancing Algorithm](https://tools.ietf.org/html/rfc3074)
+  - [DHCP Failover Load Balance Mode – Microsoft Windows DNS, DHCP and IPAM Team Blog](https://blogs.technet.microsoft.com/teamdhcp/2012/08/06/dhcp-failover-load-balance-mode/)
+  - これはハッシュ値に基づいて応答するサーバを選出する方式である．各サーバが自分が応答すべきハッシュリストを持っており，各サーバがDHCP Discoverを受け取ったらそれぞれのサーバでハッシュ計算を行い，自分が応答すべきハッシュリストにそのハッシュ値がある場合に応答(DHCP Offer)を送出するようだ．

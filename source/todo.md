@@ -139,3 +139,10 @@
 - QSLカードOCR
 - kyuko_cal をlambda化できる気が
   - つーかkyuko-calのpromotionしたほうがいいんじゃ．
+
+## blog
+- rfc3074の解説
+- 2019ふりかえりと2020にむけて．
+- 無線の教育の話
+- zab agent bux fixのはなし
+- spectrum analyzer修理した話

@@ -13,6 +13,7 @@
     - [Facebook](https://www.facebook.com/jp7fkf)
     - [Instagram](https://www.instagram.com/jp7fkf/)
     - [Linkedin](https://www.linkedin.com/in/yudai-hashimoto-21755464/)
+    - [Qiita](https://qiita.com/jp7fkf)
     - [Amazon Wishlist](http://amzn.asia/f2Ravi2)
 
 ## 資格等
