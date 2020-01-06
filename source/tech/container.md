@@ -78,7 +78,7 @@ docker container cp <id or name>:/path/to/target_file /コピー先/ディレク
   "latest"
 ```
 
-## コンテナの詳細なデータを見たい 
+## コンテナの詳細なデータを見たい
 - `docker inspect <namme/id>`
 - たとえばIPがほしいときは
   - `docker inspect --format '{{ .NetworkSettings.IPAddress }}' <id/name>`
@@ -447,7 +447,7 @@ docker container cp <id or name>:/path/to/target_file /コピー先/ディレク
       CONTAINER_ID=$1
       IP_CONTAINER=$2
       IP_HOST=$3
-      NIC_NAME=$4 
+      NIC_NAME=$4
 
       sudo yum -y install bridge-utils
       sudo yum -y install git
@@ -706,7 +706,7 @@ docker container cp <id or name>:/path/to/target_file /コピー先/ディレク
 ## docker lint
 - [Dockerfileの静的解析ツールが便利すぎた - Qiita](https://qiita.com/ryuichi1208/items/d49f3f6ba39c88899049)
 
-## コンテナ技術入門  
+## コンテナ技術入門
 - [コンテナ技術入門 - 仮想化との違いを知り、要素技術を触って学ぼう - エンジニアHub｜若手Webエンジニアのキャリアを考える！](https://employment.en-japan.com/engineerhub/entry/2019/02/05/103000)
 
 

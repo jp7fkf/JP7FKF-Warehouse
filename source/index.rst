@@ -36,7 +36,7 @@ Welcome to JP7FKF-Warehouse!
   programming/javascript
   programming/rails
   programming/python
-  programming/r_lang
+  programming/r
   tech/jenkins
   tech/container
   tech/renat
@@ -53,6 +53,7 @@ Welcome to JP7FKF-Warehouse!
   tech/ldap
   tech/ssl_tls
   tech/devops
+  tech/prometheus
   unix/iptables
   unix/namespace
   unix/nmap
@@ -77,30 +78,29 @@ Welcome to JP7FKF-Warehouse!
   unix/httpd
   unix/ubuntu
   unix/syslog
-  network/L2
+  network/ipv6
+  network/l1
+  network/l2
   network/arp
   network/802_11
-  network/ipv6
-  network/junos
-  network/l1_physical
+  network/wireless
+  network/poe
+  network/optical
+  network/lag
+  network/vrrp
   network/bgp
   network/ospf
+  network/segment_routing
+  network/snmp
+  network/junos
   network/cisco
   network/alaxala
-  network/optical
-  network/vrrp
   network/yamaha
   network/vyos
   network/cumulus
-  network/snmp
   network/vpp
-  network/segment_routing
-  network/lag
-  network/poe
-  network/prometheus
-  network/wireless
-  network/eventnetwork
   network/a10
+  network/eventnetwork
   network/network_misc
   hobbies/places
   hobbies/making

@@ -139,6 +139,8 @@
 - QSLカードOCR
 - kyuko_cal をlambda化できる気が
   - つーかkyuko-calのpromotionしたほうがいいんじゃ．
+- ナミヤ雑貨店の奇蹟
+- NW-L1な本を書いてみるとか．なかなかない．
 
 ## blog
 - rfc3074の解説
