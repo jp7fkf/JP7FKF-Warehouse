@@ -28,11 +28,11 @@ Status: active
 
 To                         Action      From
 --                         ------      ----
-OpenSSH                    ALLOW       Anywhere                  
-80/tcp                     ALLOW       Anywhere                  
-443/tcp                    ALLOW       Anywhere                  
-OpenSSH (v6)               ALLOW       Anywhere (v6)             
-80/tcp (v6)                ALLOW       Anywhere (v6)             
+OpenSSH                    ALLOW       Anywhere
+80/tcp                     ALLOW       Anywhere
+443/tcp                    ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
+80/tcp (v6)                ALLOW       Anywhere (v6)
 443/tcp (v6)               ALLOW       Anywhere (v6)
 The above output indicates that the GitLab web interface will be accessible once we configure the application.
 ```
@@ -57,3 +57,40 @@ letsencrypt['auto_renew_minute'] = "30"
 letsencrypt['auto_renew_day_of_month'] = "*/7"
 letsencrypt['auto_renew'] = false
 ```
+
+## git rm
+- Gitリポジトリからファイルを削除するには3パターンある．
+1. リポジトリから削除，かつ，ディレクトリから削除（i.e. 完全に削除）．
+2. リポジトリから削除，かつ，ディレクトリには残す．
+3. リポジトリには残す，かつ，ディレクトリから削除（あんまりないかも）．
+
+```
+$ git rm FILENAME           ## 1.の場合．
+$ git rm --cached FILENAME  ## 2.の場合．
+$ rm FILENAME               ## 3.の場合．
+```
+
+- 1.の場合については，以下と同じ．
+```
+$ rm FILENAME       ## ファイルが deleted になる．
+$ git add FILENAME  ## deletedなことがステージされる．
+```
+ref: [Gitリポジトリからファイルを削除したい [QumaWiki]](https://www-he.scphys.kyoto-u.ac.jp/member/shotakaha/dokuwiki/doku.php?id=toolbox:git:rm:start)
+
+## commit をまとめる
+### squash
+- 作業用ブランチを切ってご自由にcommit する．
+- push する前に，commitをひとまとめにするためにbranchを作成．そのブランチで該当のcommitをたくさんしたブランチを`git merge --squash <branch_name>`する．
+- ひとまとめにするcommitをうつ．
+- push!
+
+### rebase
+- `git rebase -i <commit_id>`
+```
+(p)pick コミットをそのまま残す。
+(r)reword コミットメッセージを変更。
+(e)edit コミット自体の内容を編集。
+(s)squash 直前のpickを指定したコミットに統合。メッセージも統合。
+(f)fixup  直前のpickを指定したコミットに統合。メッセージは破棄。
+```
+- リモートにpushするときに場合によって(local/remoteのbranchの状況によって)は怒られる．force push するしかない？

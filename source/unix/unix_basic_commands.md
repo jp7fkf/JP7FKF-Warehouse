@@ -31,8 +31,8 @@ $ jobs 1
 $ disown %1
 ```
 - nohupとdisownの違いは
-  - nohup:コマンドをハングアップシグナル無視で実行させる。
-  - disown:nohupをつけ忘れた時、途中からバックグラウンドでの実行へ切り替える
+  - nohup:コマンドをハングアップシグナル無視で実行させる．
+  - disown:nohupをつけ忘れた時，途中からバックグラウンドでの実行へ切り替える
 
 ## PIDファイルが残っている/subsys locked
 ```
@@ -88,7 +88,7 @@ $ service iptables save # 現在のiptablesの情報をinitにする(たぶん/e
 
 ## find
 - `find <search_dir> -name <file_name>`
-  
+
 ```
 # you can filter out messages to stderr. I prefer to redirect them to stdout like this.
 $ find / -name art  2>&1 | grep -v "Permission denied"
@@ -141,9 +141,9 @@ passwd <user> でパス変更しておこう
 - `visudo` する
 ```
  $ 誰が どのホストで = (誰として) 何を
-# rootユーザはどこでも、誰としてでも何でもできる
+# rootユーザはどこでも，誰としてでも何でもできる
  $ root ALL=(ALL:ALL) ALL
-# wheelグループのユーザはどこでも、誰としてでもパスワード無しで何でもできる
+# wheelグループのユーザはどこでも，誰としてでもパスワード無しで何でもできる
 # %つけるとgroup指定．誰としての部分は(user:group)
  $ %wheel ALL=(ALL:ALL) NOPASSWD: ALL
 # bobはaliceとして閲覧コマンドを実行できる
@@ -194,6 +194,11 @@ passwd <user> でパス変更しておこう
 ## diff
 - フォルダごとdiffとりたい
   - `diff -r <dir_1> <dir_2>`
+  - `-u`: unified形式 (大文字でn行指定)
+  - `-c`: context形式 (大文字でn行指定)
+  - `-y`: 2カラム形式
+    - `sdiff` っぽい．
+    - `-W`で合計の横幅を指定できる．
 
 ## netstat
 - `netstat -rn`
@@ -461,3 +466,33 @@ WantedBy=multi-user.target
   - cdromの内容を直接iso化する．
 - `dd bs=1K count=100 if=/dev/zero of=dummy`
   - 1K x 100 = 100Kバイトのファイル生成できる．
+
+## メモリキャッシュ
+- 現在のメモリ使用状況を確認
+  - `free -h`
+    ```
+    jp7fkf@lab:~$ free -h
+                  total        used        free      shared  buff/cache   available
+    Mem:           3.8G        265M        2.7G         40M        862M        3.4G
+    Swap:            9G        197M        9.8G
+    ```
+    - cached: ページキャッシュ．ファイルシステムに対するキャッシュであり，ファイル単位でアクセスするときに使用されるキャッシュ．
+    - buffers: バッファキャッシュが存在する．ブロックデバイスを直接アクセスするときに使用されるキャッシュになる．
+
+  - `vmstat -a`
+    - inactとactがあるが，このinactのものは削除可能．actは削除できない．
+    ```
+    jp7fkf@lab:~$ vmstat -a
+    procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+     r  b   swpd   free  inact active   si   so    bi    bo   in   cs us sy id wa st
+     0  0 201868 2865132 131688 753296    0    0     2     6    0    0  2  1 97  0  0
+    ```
+
+- キャッシュの解放
+  - cacheは高速化のために有益だが，事情があって削除したい場合，パフォーマンス測定を実施する場合にキャッシュの影響を消したい場合などは下記コマンドで削除できる．
+  - `sync` してDirty cache を書き出す．
+  - `echo 3 > sudo /proc/sys/vm/drop_caches`
+    - もしくは, `sudo sysctl -w vm.drop_caches=3`
+
+- ref: [Ubuntu メモリキャッシュクリア: プログラマの歩き方](http://zorinos.seesaa.net/article/451160288.html)
+- ref: [How to Clear RAM Memory Cache, Buffer and Swap Space on Linux](https://www.tecmint.com/clear-ram-memory-cache-buffer-and-swap-space-on-linux/)

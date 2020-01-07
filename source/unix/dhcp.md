@@ -13,7 +13,7 @@ sudo apt upgrade -y
 ## Installing with Postgres
 ## If you want to compile Kea with PostgreSQL, install the following packages in addition to the ones above:
 ## memo: ucan select cassandra instead of postgres
-sudo apt -y install postgresql-server-dev-all libpq-dev 
+sudo apt -y install postgresql-server-dev-all libpq-dev
 
 # Run configure and add --with-pgsql
 
@@ -143,3 +143,6 @@ $ kea-admin lease-init mysql -u database-user -p database-password -n database-n
   - [RFC 3074 - DHC Load Balancing Algorithm](https://tools.ietf.org/html/rfc3074)
   - [DHCP Failover Load Balance Mode – Microsoft Windows DNS, DHCP and IPAM Team Blog](https://blogs.technet.microsoft.com/teamdhcp/2012/08/06/dhcp-failover-load-balance-mode/)
   - これはハッシュ値に基づいて応答するサーバを選出する方式である．各サーバが自分が応答すべきハッシュリストを持っており，各サーバがDHCP Discoverを受け取ったらそれぞれのサーバでハッシュ計算を行い，自分が応答すべきハッシュリストにそのハッシュ値がある場合に応答(DHCP Offer)を送出するようだ．
+
+## dhcplb
+- [GitHub - facebookincubator/dhcplb: dhcplb is Facebook's implementation of a load balancer for DHCP.](https://github.com/facebookincubator/dhcplb)

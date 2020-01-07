@@ -37,6 +37,7 @@ Welcome to JP7FKF-Warehouse!
   programming/rails
   programming/python
   programming/r
+  programming/debug
   tech/jenkins
   tech/container
   tech/renat
@@ -102,6 +103,7 @@ Welcome to JP7FKF-Warehouse!
   network/a10
   network/eventnetwork
   network/network_misc
+  network/rfc3074
   hobbies/places
   hobbies/making
   hobbies/stm32

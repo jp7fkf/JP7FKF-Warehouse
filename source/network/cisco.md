@@ -1,19 +1,11 @@
 # Cisco commands
 
-## ios
+## IOS
 - [Cisco Software](https://www.cisco.com/public/library/iosplanner/reldesignation.html)
 
 ## username password の数字の意味
 username 'hoge' password 0 'pass' -> この0の意味はなんなのか？
 →0は暗号化してない．7はcisco独自の暗号化方式によってencryptされていることを示している．
-
-## Cisco IOS XE, IOS XR: how to check optical power
-- IOS XE example:
-  - `show interfaces tenGigabitEthernet 1/1/4 transceiver`
-
-- IOS XR example:
-  - `show controllers tenGigE 0/0/2/1 phy`
-  - `show controllers dwdm 0/0/2/1 optics`
 
 ### シーケンス番号指定でACLを削除する
 ```
@@ -69,31 +61,31 @@ ip dns server
 ip host www.example.local 192.168.0.1
 ip dns primary example.local soa dns01.example.local root.example.local 3600 900 86400 3600
 ```
-  - こんな感じでレコードをつっこむ．
+- こんな感じでレコードをつっこむ．
 
 ### ACLとかがどういう順序で動くか
 - ref.) [CiscoにおけるNATの処理順序](https://www.infraexpert.com/study/nat7.htm)
 - `ip nat inside -> ip nat outside`
-  1. IPSecの場合は入力アクセスリストをチェック 
-  1. 復号化： CET または IPSec 
-  1. 入力アクセスリストをチェック 
+  1. IPSecの場合は入力アクセスリストをチェック
+  1. 復号化： CET または IPSec
+  1. 入力アクセスリストをチェック
   1. 入力レート制限をチェック
-  1. 入力アカウンティング 
+  1. 入力アカウンティング
   1. Webキャッシュにリダイレクト
   1. ポリシールーティング
   1. ルーティング
-  1. Inside から Outside への NAT 
-  1. クリプト（暗号化用のマップのチェックとマーク） 
-  1. 出力アクセスリストをチェック 
+  1. Inside から Outside への NAT
+  1. クリプト（暗号化用のマップのチェックとマーク）
+  1. 出力アクセスリストをチェック
   1. CBACによる検査
-  1. TCPインターセプト 
+  1. TCPインターセプト
   1. 暗号化
   1. キューイング
 
 - `ip nat outside -> ip nat inside`
-  1. IPSecの場合は入力アクセスリストをチェック 
+  1. IPSecの場合は入力アクセスリストをチェック
   1. 復号化： CET または IPSec
-  1. 入力アクセスリストをチェック 
+  1. 入力アクセスリストをチェック
   1. 入力レート制限をチェック
   1. 入力アカウンティング
   1. Webキャッシュにリダイレクト
@@ -103,7 +95,7 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
   1. クリプト（暗号化用のマップのチェックとマーク）
   1. 出力アクセス リストをチェック
   1. CBACによる検査
-  1. TCPインターセプト 
+  1. TCPインターセプト
   1. 暗号化
   1. キューイング
 
@@ -133,6 +125,69 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
 - ciscoでtraceroute をとめる
   - `Ctrl-Shift-6`
 
+## cisco のprivilege level
+- 0-15の16段階．
+- 0: user mode
+- 15: privileged mode(enable/conf t)
+- custom privilege::
+```
+privilege configure level 15 ip dhcp pool
+privilege configure level 15 ip dhcp
+privilege configure level 15 ip
+privilege exec level 1 show running-config ip dhcp pool
+privilege exec level 1 show running-config ip dhcp
+privilege exec level 1 show running-config ip
+privilege exec level 15 show running-config
+privilege exec level 1 show
+```
+的な感じにprivilege levelを指定することができる．
+`username <username> privilege <priv_level_num> password <password>`
+のprivilegeと紐づく．当たり前だけど．
+
+## `show interfaces summary`
+- legend
+```
+*: interface is up
+IHQ: pkts in input hold queue
+IQD: pkts dropped from input queue
+OHQ: pkts in output hold queue
+OQD: pkts dropped from output queue
+RXBS: rx rate (bits/sec)
+RXPS: rx rate (pkts/sec)
+TXBS: tx rate (bits/sec)
+TXPS: tx rate (pkts/sec)
+TRTL: throttle count
+```
+
+### IOS-XR
+#### VPLSのmacをみる．(IOS-XR)
+- `show l2vpn forwarding bridge-domain VPLS:VLAN100 mac-address location 0/0/CPU0 | include c496`
+
+#### config一般
+- `show config`: 設定したコマンドを表示．
+  - `clear`で設定しない状態に戻る
+- `show commit changes diff`: これで設定によるconfigの差分がみれる．
+- `show configuration changes diff`
+- `commit replace`: loadしたりしている状態だと，そのconfigに丸ごと変更することができるが，何もloadしていない(empty candidatec config)場合は設定が空になる(初期化)．
+- `configure exclusive`: 編集権限をロックする．自分以外に編集させない．セマフォ．排他制御．
+- `commit confirmed`: 時間を指定してその時間だけconfigを適用する．commit しないとその時間経過後はもとのconfigに戻る．
+- `show configuration commit changes` 特定のコミット（群）との差分を表示すす．
+
+### IOS-XE
+
+## Misc
+### Cisco IOS XE, IOS XR: how to check optical power
+- IOS XE example:
+  - `show interfaces tenGigabitEthernet 1/1/4 transceiver`
+
+- IOS XR example:
+  - `show controllers tenGigE 0/0/2/1 phy`
+  - `show controllers dwdm 0/0/2/1 optics`
+
+## cisco wlc snmp monitoring tips
+- [WLCのアソシエート数登録 · GitHub](https://gist.github.com/tajibot/a5456f8187ca2c8c3328)
+- [Zabbix-Templates/Template Cisco WLC Discovery.xml at Zabbix3 · B4ckF0rw4rd/Zabbix-Templates · GitHub](https://github.com/B4ckF0rw4rd/Zabbix-Templates/blob/Zabbix3/Template-Cisco-WLC-Discovery/Template%20Cisco%20WLC%20Discovery.xml)
+
 ## Firmware Update
 -  cisco sw firm up
 ```
@@ -160,44 +215,3 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
 ```
 - ref: [Upgrade Firmware on a Switch through the Command Line Interface (CLI) - Cisco](https://www.cisco.com/c/en/us/support/docs/smb/switches/cisco-550x-series-stackable-managed-switches/smb5566-upgrade-firmware-on-a-switch-through-the-command-line-interf.html)
 - ref: [7 Steps to Upgrade IOS Image on Cisco Catalyst Switch or Router](https://www.thegeekstuff.com/2011/06/upgrade-cisco-ios-image/)
-
-## cisco のprivilege level
-- 0-15の16段階．
-- 0: user mode
-- 15: privileged mode(enable/conf t)
-- custom privilege::
-```
-privilege configure level 15 ip dhcp pool
-privilege configure level 15 ip dhcp
-privilege configure level 15 ip
-privilege exec level 1 show running-config ip dhcp pool
-privilege exec level 1 show running-config ip dhcp
-privilege exec level 1 show running-config ip
-privilege exec level 15 show running-config
-privilege exec level 1 show
-```
-的な感じにprivilege levelを指定することができる．
-`username <username> privilege <priv_level_num> password <password>`
-のprivilegeと紐づく．当たり前だけど．
-
-## cisco wlc snmp monitoring tips
-- [WLCのアソシエート数登録 · GitHub](https://gist.github.com/tajibot/a5456f8187ca2c8c3328)
-- [Zabbix-Templates/Template Cisco WLC Discovery.xml at Zabbix3 · B4ckF0rw4rd/Zabbix-Templates · GitHub](https://github.com/B4ckF0rw4rd/Zabbix-Templates/blob/Zabbix3/Template-Cisco-WLC-Discovery/Template%20Cisco%20WLC%20Discovery.xml)
-
-## VPLSのmacをみる．(IOS-XR)
-- `show l2vpn forwarding bridge-domain VPLS:VLAN100 mac-address location 0/0/CPU0 | include c496`
-
-## show interfaces summary
-- legend
-  ```
-  *: interface is up
-  IHQ: pkts in input hold queue
-  IQD: pkts dropped from input queue
-  OHQ: pkts in output hold queue
-  OQD: pkts dropped from output queue
-  RXBS: rx rate (bits/sec)
-  RXPS: rx rate (pkts/sec)
-  TXBS: tx rate (bits/sec)
-  TXPS: tx rate (pkts/sec)
-  TRTL: throttle count
-  ```
