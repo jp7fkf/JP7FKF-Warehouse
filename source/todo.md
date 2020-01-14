@@ -94,19 +94,22 @@
 - makefileのかきかた
 
 ## 資格
+- CCNP
+- データベーススペシャリスト
+- 電験3種
+- 危険物甲種まで
 - 一総通
+- 2級ボイラー技士
 - 潜水士
-- G検定
 - Xray作業主任
+- G検定
 - 簿記3級
 - FE/PE試験を受けたい
 - 救命講習？
 - Oracle master
 - ワインエキスパート
-- CCNP
 - LPIC(もうとらなくていいか...) -> LinuC?
 - エンベデットシステムスペシャリスト
-- エネ管
 - Cカード
 - AWS系資格(AWS Solution Arch. Assoc.?はとりたい．)
 - 身に付けたい能力
@@ -121,6 +124,13 @@
   - comptia?([CompTIA CTT+ (TK0-201)　類似問題：解答｜CompTIA JAPAN (コンプティア 日本支局)](https://www.comptia.jp/cert_about/samplequestion/comptia_ctt/tk0-201_answer.html))
   - 旅行業務取扱管理者
   - 総合旅行業務取扱管理者
+  - 高圧ガス製造保安責任者: 冷凍2種くらいは最低．乙種化学・乙種機械責任者とかadditional.
+  - 毒劇物取扱者
+  - クレーンデリック
+  - 衛生管理者
+  - 甲種・乙種火薬類取扱保安責任者 17000円
+  - 消防設備士
+  - エネルギー管理士
 
 ## 本を読む
 - [全てのプログラマが読むべき本 まとめ - 5/75 ページ](http://cielquis.net/programming-books/5.html)

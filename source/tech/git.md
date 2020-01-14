@@ -77,6 +77,9 @@ $ git add FILENAME  ## deletedなことがステージされる．
 ```
 ref: [Gitリポジトリからファイルを削除したい [QumaWiki]](https://www-he.scphys.kyoto-u.ac.jp/member/shotakaha/dokuwiki/doku.php?id=toolbox:git:rm:start)
 
+## git diff
+- `--name-only`: 変更があるファイル名のみを表示する
+
 ## commit をまとめる
 ### squash
 - 作業用ブランチを切ってご自由にcommit する．
@@ -87,10 +90,85 @@ ref: [Gitリポジトリからファイルを削除したい [QumaWiki]](https:/
 ### rebase
 - `git rebase -i <commit_id>`
 ```
-(p)pick コミットをそのまま残す。
-(r)reword コミットメッセージを変更。
-(e)edit コミット自体の内容を編集。
-(s)squash 直前のpickを指定したコミットに統合。メッセージも統合。
-(f)fixup  直前のpickを指定したコミットに統合。メッセージは破棄。
+(p)pick コミットをそのまま残す．
+(r)reword コミットメッセージを変更．
+(e)edit コミット自体の内容を編集．
+(s)squash 直前のpickを指定したコミットに統合．メッセージも統合．
+(f)fixup  直前のpickを指定したコミットに統合．メッセージは破棄．
 ```
 - リモートにpushするときに場合によって(local/remoteのbranchの状況によって)は怒られる．force push するしかない？
+- ref:
+```
+# Rebase xxxxxx..xxxxxx onto xxxxxx (x commands)
+#
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup <commit> = like "squash", but discard this commit's log message
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+# .       create a merge commit using the original merge commit's
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c <commit> to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+```
+
+## 個人的な決まり
+### issueの管理
+- issueをあげたら，それに対するcommit メッセージは下記のformatとする
+  - `[issue #<issue_no>] <messages>`
+- issueに対応するリモートブランチを作成する場合，そのブランチ名は下記のformatとする．
+  - `issue-<issue_no>`
+- ref:
+    - <issue_no>: issue番号
+    - <messages>: 任意のmessage
+
+### その他
+- productionにmergeする際は基本的にpull requestで実施する．
+
+## git tag
+- tagをうつ
+  - `git tag <tag_name>`
+    - タグに関する情報(author, date, comment)は入らない．
+  - `git tag -a "<tag_name>" -m "<comment>" <commit_hash>`
+      - タグに関する情報(author, date, comment)が入る．
+    - ex. `git tag -a "v0.1.1" -m "version 0.1.1" xxxxxxxx`
+    - <commit_hash>を抜いて打つと現在のブランチの最新コミットに対して付与される．
+- tag群を見る
+  - `git tag`
+  - `git tag --list`, `git tag -l`
+- tag群を検索
+  - `git tag -l <regexp>`
+    - ex.: `git tag -l 'v1.2.*'`
+- tagをpush して共有する
+  - `git push origin <tag_name>`
+- 詳細情報まで見たい
+  - `git show <tag_name>`
+
+## github
+- commitメッセージとして`close #<issue_no>`があると，そのissueはcloseされる．
+  - ほかには以下のキーワードの後に Issue 番号を入れると，その Issue がクローズされる．
+    - close
+    - closes
+    - closed
+    - fix
+    - fixes
+    - fixed
+    - 解決
+    - resolves
+    - resolved
+  - プルリクのメッセージでも同様の機能が使えて，プルリクの場合にはマージされたタイミングでcloseされる．
+  - ref: [キーワードを使って Issue をクローズする - GitHub ヘルプ](https://help.github.com/ja/github/managing-your-work-on-github/closing-issues-using-keywords)

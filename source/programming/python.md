@@ -39,3 +39,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ## aplayを使ってpythonでsound 再生をする
 - os.popen('aplay --device=plughw:CARD=PCH,DEV=7 /home/jp7fkf/nc106374.wav')
+
+## パッケージ化する
+- pipでinstallとかができるようになる．
+- [Python: 自作パッケージにデータファイルを含める - CUBE SUGAR CONTAINER](https://blog.amedama.jp/entry/2015/12/26/012332)
