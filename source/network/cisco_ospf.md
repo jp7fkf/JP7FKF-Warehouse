@@ -60,41 +60,41 @@
 
 - LSA Type
   1. Type1: ルータLSA
-    - 生成元: OSPFルータ
-    - 自エリアでのみフラッディング．
-    - ルータID，リンク数，リンクの種類，コスト値を含む
-    - `show ip ospf database router`
-    - code on routing table: `O`
+      - 生成元: OSPFルータ
+      - 自エリアでのみフラッディング．
+      - ルータID，リンク数，リンクの種類，コスト値を含む
+      - `show ip ospf database router`
+      - code on routing table: `O`
   1. Type2: ネットワークLSA
-    - 生成元: DR
-    - 自エリアでのみフラッディング．
-    - DRのIPアドレス，セグメント上のルータID一覧を含む
-    - `show ip ospf database network`
-    - code on routing table: `O`
+      - 生成元: DR
+      - 自エリアでのみフラッディング．
+      - DRのIPアドレス，セグメント上のルータID一覧を含む
+      - `show ip ospf database network`
+      - code on routing table: `O`
   1. Type3: ネットワーク集約LSA
-    - 生成元: ABR
-    - 全エリアフラッディング(stub area, NSSAを除く)
-    - 各エリアごとの経路情報，コスト値を含む(経路集約は手動で設定し通知する必要がある)
-    - `show ip ospf database summary`
-    - code on routing table: `O IA`
+      - 生成元: ABR
+      - 全エリアフラッディング(stub area, NSSAを除く)
+      - 各エリアごとの経路情報，コスト値を含む(経路集約は手動で設定し通知する必要がある)
+      - `show ip ospf database summary`
+      - code on routing table: `O IA`
   1. Type4: ASBR集約LSA
-    - 生成元: ABR
-    - 全エリアフラッディング(stub area, NSSAを除く)
-    - ABRが知っているASBRのルータID，コスト値を含む
-    - `show ip ospf database asbr-summary`
-    - code on routing table: `O E1 / O E2`
+      - 生成元: ABR
+      - 全エリアフラッディング(stub area, NSSAを除く)
+      - ABRが知っているASBRのルータID，コスト値を含む
+      - `show ip ospf database asbr-summary`
+      - code on routing table: `O E1 / O E2`
   1. Type5: AS外部LSA
-    - 生成元: ASBR
-    - 全エリアフラッディング(stub area, NSSAを除く)
-    - 再配布した経路情報，コスト，ネクストホップを(外部AS(非OSPF)にある情報)含む
-    - `show ip ospf database external`
-    - code on routing table: `O E1 / O E2`
+      - 生成元: ASBR
+      - 全エリアフラッディング(stub area, NSSAを除く)
+      - 再配布した経路情報，コスト，ネクストホップを(外部AS(非OSPF)にある情報)含む
+      - `show ip ospf database external`
+      - code on routing table: `O E1 / O E2`
   1. Type7: NSSA外部LSA
-    - 生成元: NSSAのASBR
-    - NSSA
-    - 再配布した経路情報，コスト，ネクストホップを(外部AS(非OSPF)にある情報)含む
-    - `show ip ospf database nssa-external`
-    - code on routing table: `O N1 / O N2`
+      - 生成元: NSSAのASBR
+      - NSSA
+      - 再配布した経路情報，コスト，ネクストホップを(外部AS(非OSPF)にある情報)含む
+      - `show ip ospf database nssa-external`
+      - code on routing table: `O N1 / O N2`
   - `O`はOSPF, `E`はExternal, `N`はNSSA?
 
 - Network Type
@@ -109,19 +109,19 @@
       - Point-to-Point
       - Point-to-Multipoint
       - Point-to-Multipoint(Non-Broadcast)
-      ```
-      +---------------------+----------+-----------+--------------------+---------------------+----------+
-      |      NBMA Mode      | Neighbor |  DR/BDR   |    Appropreate     |   ip ospf network   |  Hello   |
-      |                     |  Detect  | Candidate |      Topology      |                     | Interval |
-      +---------------------+----------+-----------+--------------------+---------------------+----------+
-      | NBMA                |  Manual  |    Yes    |     Full Mesh      |    non-broadcast    |    30    |
-      | Broadcast           |   Auto   |    Yes    |     Full Mesh      |      broadcast      |    10    |
-      | Point-to-Point      |   Auto   |    No     | Star(subInterface) |    point-to-point   |    10    |
-      | Point-to-Multipint  |   Auto   |    No     |        Star        | point-to-multipoint |    30    |
-      | Point-to-Multipoint |  Manual  |    No     |        Star        | point-to-multipoint |    30    |
-      |   (Non Broadcast)   |          |           |                    |    nonbroadcast     |          |
-      +---------------------+----------+-----------+--------------------+---------------------+----------+
-      ```
+    ```
+    +---------------------+----------+-----------+--------------------+---------------------+----------+
+    |      NBMA Mode      | Neighbor |  DR/BDR   |    Appropreate     |   ip ospf network   |  Hello   |
+    |                     |  Detect  | Candidate |      Topology      |                     | Interval |
+    +---------------------+----------+-----------+--------------------+---------------------+----------+
+    | NBMA                |  Manual  |    Yes    |     Full Mesh      |    non-broadcast    |    30    |
+    | Broadcast           |   Auto   |    Yes    |     Full Mesh      |      broadcast      |    10    |
+    | Point-to-Point      |   Auto   |    No     | Star(subInterface) |    point-to-point   |    10    |
+    | Point-to-Multipint  |   Auto   |    No     |        Star        | point-to-multipoint |    30    |
+    | Point-to-Multipoint |  Manual  |    No     |        Star        | point-to-multipoint |    30    |
+    |   (Non Broadcast)   |          |           |                    |    nonbroadcast     |          |
+    +---------------------+----------+-----------+--------------------+---------------------+----------+
+    ```
 - Virtual Link
   - 全てのareaは必ずbackbone area(Area 0)に接続している必要があるが，直接接続できない場合，virtual linkで論理的に接続することが可能．
 
