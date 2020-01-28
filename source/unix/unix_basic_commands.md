@@ -496,3 +496,42 @@ WantedBy=multi-user.target
 
 - ref: [Ubuntu メモリキャッシュクリア: プログラマの歩き方](http://zorinos.seesaa.net/article/451160288.html)
 - ref: [How to Clear RAM Memory Cache, Buffer and Swap Space on Linux](https://www.tecmint.com/clear-ram-memory-cache-buffer-and-swap-space-on-linux/)
+
+## gzipを解凍する．
+- `.gz`
+  - `gunzip <filename>`
+  - `gzip -d <filename>`
+- `tar.gz`
+  - `tar xzvf <filename>`
+  - 圧縮パッケージを作る場合: `tar czvf <output_filename> <input_dir_name>`
+- 　gzipでは，複数のファイルを圧縮して1つのファイルにまとめることはできない．ディレクトリごと圧縮して1ファイルにまとめたい場合は，tar でパッケージした後，gzipで圧縮する．
+- tarはアーカイバ．複数ファイルを1つにまとめる．
+- gzipは圧縮機能．ファイルを圧縮するだけ．複数ファイルを1つにまとめることはできない．
+- zipは圧縮アーカイバ．複数ファイルをまとめることができ，かつ圧縮できる．
+
+## 乱数文字列生成
+- `echo $(cat /dev/urandom | LC_ALL=C tr -dc '[:alnum:]' | head -c 20)`
+  - `tr: Illegal byte sequence` とか言われるときのために`LC_ALL=C`をいれてある．`LC_CTYPE=C`だけでも解決できる場合があるがダメなこともあるのでおとなしく`LC_ALL=C`でいけばいいと思う．
+  - また，classは下記のような種類があるので要件に応じて使い分けると良さそうだ．
+  - ex.) `echo $(cat /dev/urandom | LC_ALL=C tr -dc '[:print:]' | head -c 10) # '7+2vNPF$\`
+  ```
+  # man tr より抜粋
+  [:class:]  Represents all characters belonging to the defined character class.  Class names are:
+
+  alnum        <alphanumeric characters>
+  alpha        <alphabetic characters>
+  blank        <whitespace characters>
+  cntrl        <control characters>
+  digit        <numeric characters>
+  graph        <graphic characters>
+  ideogram     <ideographic characters>
+  lower        <lower-case alphabetic characters>
+  phonogram    <phonographic characters>
+  print        <printable characters>
+  punct        <punctuation characters>
+  rune         <valid characters>
+  space        <space characters>
+  special      <special characters>
+  upper        <upper-case characters>
+  xdigit       <hexadecimal characters>
+  ```

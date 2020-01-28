@@ -146,3 +146,5 @@ $ kea-admin lease-init mysql -u database-user -p database-password -n database-n
 
 ## dhcplb
 - [GitHub - facebookincubator/dhcplb: dhcplb is Facebook's implementation of a load balancer for DHCP.](https://github.com/facebookincubator/dhcplb)
+
+## [DHCP (動的ホスト構成プロトコル) の基本事項](https://support.microsoft.com/ja-jp/help/169289/dhcp-dynamic-host-configuration-protocol-basics)

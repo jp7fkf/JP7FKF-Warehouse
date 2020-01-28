@@ -21,3 +21,53 @@ $template MyTemplate,
 "%TIMESTAMP:::date-rfc3339%|%syslogpriority-text%|%HOSTNAME%|%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\n"
 $ActionFileDefaultTemplate MyTemplate
 ```
+
+## facility
+A facility code is used to specify the type of program that is logging the message. Messages with different facilities may be handled differently.[5] The list of facilities available is defined by the standard:[2]:9
+```
++----------+-----------------+------------------------------------------+
+| Facility |                 |                                          |
+|     code | Keyword         | Description                              |
++----------+-----------------+------------------------------------------+
+|        0 | kern            | Kernel messages                          |
+|        1 | user            | User-level messages                      |
+|        2 | mail            | Mail system                              |
+|        3 | daemon          | System daemons                           |
+|        4 | auth            | Security/authentication messages         |
+|        5 | syslog          | Messages generated internally by syslogd |
+|        6 | lpr             | Line printer subsystem                   |
+|        7 | news            | Network news subsystem                   |
+|        8 | uucp            | UUCP subsystem                           |
+|        9 | cron            | Clock daemon                             |
+|       10 | authpriv        | Security/authentication messages         |
+|       11 | ftp             | FTP daemon                               |
+|       12 | ntp             | NTP subsystem                            |
+|       13 | security        | Log audit                                |
+|       14 | console         | Log alert                                |
+|       15 | solaris-cron    | Scheduling daemon                        |
+|    16–23 | local0 – local7 | Locally used facilities                  |
++----------+-----------------+------------------------------------------+
+```
+The mapping between facility code and keyword is not uniform in different operating systems and syslog implementations.[6]
+
+## Severity level
+The list of severities is also defined by the standard:[2]:10
+```
++-------+---------------+---------+-----------------------------------+-------------------------------------------------------------------------------------------+
+| Value | Severity      | Keyword | Description                       | Condition                                                                                 |
++-------+---------------+---------+-----------------------------------+-------------------------------------------------------------------------------------------+
+|     0 | Emergency     | emerg   | System is unusable                | A panic condition.[8]                                                                     |
+|     1 | Alert         | alert   | Action must be taken immediately  | A condition that should be corrected immediately, such as a corrupted system database.[8] |
+|     2 | Critical      | crit    | Critical conditions               | Hard device errors.[8]                                                                    |
+|     3 | Error         | err     | Error conditions                  |                                                                                           |
+|     4 | Warning       | warning | Warning conditions                |                                                                                           |
+|     5 | Notice        | notice  | Normal but significant conditions | Conditions that are not error conditions, but that may require special handling.[8]       |
+|     6 | Informational | info    | Informational messages            |                                                                                           |
+|     7 | Debug         | debug   | Debug-level messages              | Messages that contain information normally of use only when debugging a program.[8]       |
++-------+---------------+---------+-----------------------------------+-------------------------------------------------------------------------------------------+
+```
+- ref: [syslog - Wikipedia](https://en.wikipedia.org/wiki/Syslog)
+
+## [RFC 5424 - The Syslog Protocol](https://tools.ietf.org/html/rfc5424)
+
+## [RFC 3164 - The BSD Syslog Protocol](https://tools.ietf.org/html/rfc3164)

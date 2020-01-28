@@ -127,17 +127,47 @@ ref: [Gitリポジトリからファイルを削除したい [QumaWiki]](https:/
 ```
 
 ## 個人的な決まり
-### issueの管理
+## remote repositoryの用途
+- `master`: 開発用．issueや開発
+- `production`: プロダクション．商用と同じもの．
+- `issue-<issue_no>`: issue_noのissueに紐づく修正
+  - 新規機能開発も開発内容をissueとして登録し，それに準じて行う．
+
+## production展開までの流れ
+1. issue登録
+2. issueにともなうコード変更とcommit
+3. 該当のissue番号のissueに伴う変更を，issue-<issue_num>ブランチへpush
+4. issueのコードレビューをissue ticketで実施．適宜squashしてcommitを綺麗にまとめる．
+5. レビュー後，merge readyとなった段階で，masterブランチに対する，pull requestを発出．
+6. 再度レビューを実施し，問題が認められなければmasterへmergeする．merge前にtestを実施しても良いが必須ではない．
+7. ある時点のmasterのcommitに対してproduction展開のGO/NOGO判断を実施する．
+コード中のversion番号はproductionリリースさせるversion番号に変更されていること．
+8. production展開したいmasterのcommitについて，productionに対してpull requestを発出する．
+  - このpull requestのtitleは下記のformatとする
+  - `[prod] <rev_no>`
+  - ref: `<rev_no>`: `v%d.%d.%d`のフォーマットで示されるバージョン(リビジョン)番号．
+  - ex: `[prod] v1.2.3`
+9. 必要に応じてこの時点でtestを実施する．testを自動化するのであればこのタイミング．
+10. 最終的なGO/NOGOを判断する．GO判断とされた場合，そのpull requestをproductionへmergeする．
+同時に，productionにmergeされたcommitに対してtagを打つ．これがリリースバージョンを指す．
+また，同時に商用環境に展開する．
+
+## issueの管理
 - issueをあげたら，それに対するcommit メッセージは下記のformatとする
   - `[issue #<issue_no>] <messages>`
+  - ex: `git commit -m '[issue #1] fix hogehoge'`
 - issueに対応するリモートブランチを作成する場合，そのブランチ名は下記のformatとする．
   - `issue-<issue_no>`
+  - ex: `git checkout -b issue-1`, `git push origin issue-1`
 - ref:
-    - <issue_no>: issue番号
-    - <messages>: 任意のmessage
+    - `<issue_no>`: issue番号
+    - `<messages>`: 任意のmessage
 
-### その他
+## その他
 - productionにmergeする際は基本的にpull requestで実施する．
+  - productionへのmergeタイミングをリリースタイミングとする．
+    - リリースタイミングでは，リリースバージョンをtagとして打つ．
+    - tagのformatは `v%d.%d.%d` とする．適宜インクリメントし，戻ることはなく，重複しない．
 
 ## git tag
 - tagをうつ

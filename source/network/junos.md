@@ -15,7 +15,7 @@
 ※マスターが選定された後、マスターREと同じ選定方式により、バックアップREスイッチの選定が実施される\\
 
 
-### preprovisioned mode 
+### preprovisioned mode
 ```
 set virtual-chassis preprovisioned
 set virtual-chassis member 0 role routing-engine
@@ -63,9 +63,9 @@ set system commit synchronize
 
 ### LEDがおかしい．
 ```
-show chassis alarms 
-show system alarms 
-show chassis led 
+show chassis alarms
+show system alarms
+show chassis led
 ```
 - 何も考えずに`show chassis` 系と`show system` 系を叩くんだな．
 
@@ -141,7 +141,7 @@ interfaces {
 
 ## traceoprionsでファイル作ったのを消したい．
 - 中身だけclear: `clear log <file_name>`
-- いやファイルごと消したいんだけど: 
+- いやファイルごと消したいんだけど:
   ```
     # start shell
     # rm /var/log/<file_name>
@@ -192,7 +192,7 @@ Possible completions:
 - `show virtual-chassis vc-port diagnostics optics`
   - `show virtual-chassis vc-port diagnostics optics `
   - `match "(fpc|vcp|Module voltage  |Receiver signal avarage|output power  |Module temperature  )"` あたりを併用すると見やすそう
-    - example: 
+    - example:
     ```
     fpc0:
     --------------------------------------------------------------------------
@@ -458,3 +458,12 @@ node1  50       secondary            yes     no       None
   - 電源をOFFにする
 - `request system halt`
   - いつでも電源断ready(=プラグ抜いていい)だが，何か入力があると起動する．
+
+## [Juniper SRX 日本語マニュアル - 26. Traffic LoggingのCLI設定](https://www.juniper.net/assets/jp/jp/local/pdf/additional-resources/traffic-logging.pdf)
+
+## juniper srcでhitするポリシを見る．
+- `show security match-policies ...` を使う．
+  - ポリシにmatchするかしないかが定まるだけの情報を引数に与える必要がある．
+  - 多くの場合，src/dst-zone, src/dst-ip/ src/dst-port, protocolでいい塩梅なきがする．
+- ex.) `show security match-policies from-zone z1 to-zone z2 source-ip 10.10.10.1 destination-ip 192.0.2.1 source-port 1 destination-port 21 protocol tcp`
+- ref: [show security match-policies - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/reference/command-summary/show-security-match-policies.html)

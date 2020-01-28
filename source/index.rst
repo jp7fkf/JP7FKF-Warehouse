@@ -91,6 +91,10 @@ Welcome to JP7FKF-Warehouse!
   network/vrrp
   network/bgp
   network/ospf
+  network/cisco_ospf
+  network/cisco_eigrp
+  network/cisco_config_template
+  network/vpn
   network/segment_routing
   network/snmp
   network/junos
@@ -113,6 +117,7 @@ Welcome to JP7FKF-Warehouse!
   hobbies/trip
   settings
   electronics/electronics
+
 
 Indices and tables
 ==================

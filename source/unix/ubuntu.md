@@ -94,7 +94,7 @@ MulticastDNS setting: no
       DNSSEC setting: no
     DNSSEC supported: no
          DNS Servers: 8.8.8.8
-jp7fkf@lab1:~$ 
+jp7fkf@lab1:~$
 jp7fkf@lab1:~$ netstat -tuna
 Active Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State
@@ -113,12 +113,11 @@ lrwxrwxrwx 1 root root 39 Feb 14 09:49 /etc/resolv.conf -> ../run/systemd/resolv
   - これを実施することで再起動後も設定が保存されるようだ．
   ```
   # This will cause the set+update hostname module to not operate (if true)
-  preserve_hostname: true #default: false 
+  preserve_hostname: true #default: false
   ```
 1. `sudo hostnamectl set-hostname yourhostname`
 1. `sudo reboot`
 - 必要に応じて `/etc/hosts` も編集するとよい．
-
 
 ## apt - advanced package tool
 - `apt update`
@@ -138,12 +137,16 @@ lrwxrwxrwx 1 root root 39 Feb 14 09:49 /etc/resolv.conf -> ../run/systemd/resolv
 - `apt depends <package_name>`: 依存するパッケージを表示
 - `apt rdpeneds <package_name>`: 依存されているパッケージを表示
 
-
 ## go をいれる
 - `sudo snap install --classic go`
 - `export GOPATH=$HOME/go`
-- `export 
+- `export
 PATH=$PATH:$GOPATH/bin`
 
 ## GUIをいれる
 - [Ubuntu 16.04 LTS に後から GUI (X Window System) を追加する - CUBE SUGAR CONTAINER](https://blog.amedama.jp/entry/2016/11/30/155238)
+
+## versionを調べる
+- `lsb_release -a`
+- `cat /etc/issue`
+- `cat /etc/os-release`
