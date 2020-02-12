@@ -13,7 +13,7 @@ zipcloak hoge.zip
 
 ## iterm2-tips-network-engineers
 - [iTerm2 Tips for Network Engineers - MovingPackets.net](http://movingpackets.net/2014/04/13/iterm2-tips-network-engineers/)
-  
+
 ## brew doctorで怒られる
 - `brew doctor` すると
 ```
@@ -50,6 +50,14 @@ Your system is ready to brew.
 - `diskutil list`
 - `diskutil unMountDisk <path_to_disk>`
 - `diskutil eraseDisk HFS+ Untitled <path_to_disk>`
+
+### SDとかにOSを書き込むなどするとき
+```
+sudo diskutil list
+sudo diskutil umountDisk /dev/diskxxx
+sudo dd bs=32m if=xxx.img of=/dev/rdiskxxx # rつけるとはやい．シーケンシャル．
+sudo diskutil umountDisk /dev/diskxxx
+```
 
 ## macosでDHCP (cache)をrenew/release する．
 - `sudo ipconfig set <if_name> DHCP`

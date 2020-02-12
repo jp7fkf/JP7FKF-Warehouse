@@ -121,7 +121,14 @@ ip dns primary example.local soa dns01.example.local root.example.local 3600 900
 ### Common
 - startup-configとruning-configのdiffみたいとき．
   - - `show archive config differences`
-
+```
+(config)#do show archive config differences
+!Contextual Config Diffs:
+!No changes were found
+(config)#do show archive config differences nvram:startup-config system:running-config
+!Contextual Config Diffs:
+!No changes were found
+```
 - ciscoでtraceroute をとめる
   - `Ctrl-Shift-6`
 

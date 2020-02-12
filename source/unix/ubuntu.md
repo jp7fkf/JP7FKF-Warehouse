@@ -150,3 +150,7 @@ PATH=$PATH:$GOPATH/bin`
 - `lsb_release -a`
 - `cat /etc/issue`
 - `cat /etc/os-release`
+
+## zshにする
+- `apt install zsh`
+- `chsh -s $(which zsh)`

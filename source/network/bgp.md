@@ -6,8 +6,8 @@
 ## BGPのtips
 
 ### iBGPはスプリットホライズンが効いている．
-- iBGPは受信した経路広告を他のiBGPピアには広告しない  
-  →ルーティングループ防止のため  
+- iBGPは受信した経路広告を他のiBGPピアには広告しない
+  →ルーティングループ防止のため
   →だからフルメッシュを張る必要がある
 
 ### BGP のAttibutes and Preference
@@ -46,13 +46,13 @@ type code attr.name category
 8 COMMUNITY Optional transitive
 9 ORIGINATOR_ID Optional non-transitive
 10  CLUSTER_LIST  Optional non-transitive
-- WEIGHT  
+- WEIGHT
 
 カテゴリー 説明
 　Well-known mandatory（ 既知必須 ） 　全てのBGPルータで識別できて、全てのUpdateメッセージに含まれる
 　Well-known discretinary（ 既知任意 ）　 　全てのBGPルータで識別できるが、Updateメッセージに含まれるかは任意
-　Optional transitive（ オプション通知 ） 　全てのBGPルータで識別できない可能性があるが、BGPネイバーへは通知する
-　Optional non-transitive（オプション非通知）  　全てのBGPルータで識別できない可能性があり、BGPネイバーへは通知しない
+　Optional transitive（ オプション通知 ） 　全てのBGPルータで識別できない可能性があるが、BGPネイバーへは必ず通知する
+　Optional non-transitive（オプション非通知）  　全てのBGPルータで識別できない可能性があり、BGPネイバーへは通知しなくてよい．(削除可)
 ```
 - ref: [RFC 4271 - A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
 ```

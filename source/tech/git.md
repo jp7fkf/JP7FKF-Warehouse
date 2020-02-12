@@ -202,3 +202,51 @@ ref: [Gitリポジトリからファイルを削除したい [QumaWiki]](https:/
     - resolved
   - プルリクのメッセージでも同様の機能が使えて，プルリクの場合にはマージされたタイミングでcloseされる．
   - ref: [キーワードを使って Issue をクローズする - GitHub ヘルプ](https://help.github.com/ja/github/managing-your-work-on-github/closing-issues-using-keywords)
+
+## 過去のコミットを消す
+- rebaseしてreflog削除する
+  - `git rebase -i hogehoge`
+  - `git reflog expire --expire=now --all`
+
+## Git ファイルの履歴を完全に削除する
+- 秘密鍵など誤ってコミットしてしまった場合に履歴を完全に削除する手順
+- 参考:[6.4 Git のさまざまなツール - 歴史の書き換え](http://git-scm.com/book/ja/ch6-4.html)
+
+1. 動作確認用にブランチを作成して試す
+`$ git checkout -b clean-key-file`
+
+1. 動作確認用にブランチでgit filter-branchを実行
+```
+  $ git filter-branch --tree-filter 'rm -f common/key/id_rsa' HEAD
+  Rewrite 856f0bf61e41a27326cdae8f09fe708d679f596f (12/12)
+  Ref 'refs/heads/clean-key-file' was rewritten
+```
+clean-key-fileブランチでid_rsaが履歴から完全に削除されていることを確認する。
+
+1. 全てのブランチを対象にgit filter-branchを実行
+```
+$ git filter-branch --tree-filter 'rm -f common/key/id_rsa' HEAD --all
+```
+
+1. reflogを削除
+```
+$ git reflog expire --expire=now --all
+```
+
+1. git gcを実行
+```
+$ git gc --aggressive --prune=now
+```
+
+1. git push --forceを実行
+```
+$ git push --force origin master
+```
+※ remote:error: denying non-fast-forward refs/heads/master ... とエラーが出た場合は
+   下記のようにreceive.denynonfastforwardsをfalseにする。
+```
+$ git config receive.denynonfastforwards false
+```
+
+- ref: [Git ファイルの履歴を完全に削除する · GitHub](https://gist.github.com/ktx2207/3167fa69531bdd6b44f1#file-git_-md)
+- ref: [機密データをリポジトリから削除する - GitHub ヘルプ](https://help.github.com/ja/github/authenticating-to-github/removing-sensitive-data-from-a-repository)

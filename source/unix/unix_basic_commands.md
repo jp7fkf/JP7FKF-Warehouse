@@ -509,6 +509,15 @@ WantedBy=multi-user.target
 - gzipは圧縮機能．ファイルを圧縮するだけ．複数ファイルを1つにまとめることはできない．
 - zipは圧縮アーカイバ．複数ファイルをまとめることができ，かつ圧縮できる．
 
+- tar のoptions
+  - `c`: create
+  - `v`: verbose
+  - `f`: filename
+  - `x`: extract
+  - `z`: `gz`
+  - `j`: `bz2`
+  - `J`: `xz`
+
 ## 乱数文字列生成
 - `echo $(cat /dev/urandom | LC_ALL=C tr -dc '[:alnum:]' | head -c 20)`
   - `tr: Illegal byte sequence` とか言われるときのために`LC_ALL=C`をいれてある．`LC_CTYPE=C`だけでも解決できる場合があるがダメなこともあるのでおとなしく`LC_ALL=C`でいけばいいと思う．
