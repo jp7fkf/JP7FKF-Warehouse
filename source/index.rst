@@ -109,13 +109,13 @@ Welcome to JP7FKF-Warehouse!
   network/eventnetwork
   network/network_misc
   network/rfc3074
-  source/network/ccnp_rt
-  source/network/ccnp_sw
-  source/network/cisco_bgp
-  source/network/cisco_ipv6
-  source/network/cisco_nat
-  source/network/flets
-  source/network/multicast
+  network/ccnp_rt
+  network/ccnp_sw
+  network/cisco_bgp
+  network/cisco_ipv6
+  network/cisco_nat
+  network/flets
+  network/multicast
   hobbies/places
   hobbies/making
   hobbies/stm32
