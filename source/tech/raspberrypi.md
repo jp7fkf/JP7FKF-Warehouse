@@ -18,7 +18,7 @@ $ cat /proc/device-tree/model
 ## GNSS Stratum1 NTP
 
 ### References
-- [Raspberry Pi + GPS ModuleでStratum1なNTPサーバをつくる](raspintp.md)
+- [Raspberry Pi + GPS ModuleでStratum1なNTPサーバをつくる](tech/raspintp.md)
 - [#2 Raspberry Piで作るStratum1 NTPサーバをベランダで動かすまで - 猫にジャズ](https://notchi.hatenablog.jp/entry/2019/05/06/165659)
 - [NMEA 0183 sentences データ解析 – piyajk.com](https://piyajk.com/archives/302)
 - [GitHub - MartijnBraam/gpsd-py3: Python 3 GPSD client](https://github.com/MartijnBraam/gpsd-py3)
