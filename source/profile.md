@@ -39,6 +39,8 @@
   - 2018/12  技術士補（電気電子部門）
   - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credential.net/2tb0by0q)
   - 2019/06  情報処理安全確保支援士試験
+  - 2020/02  CCNP Switch(300-115) Pass(856/1000(boarder: 790))
+  - 2020/02  危険物取扱者 乙種第4類 Pass(法令80%, 物理・化学100%, 性質・消火90%)
   - TOEICは最高でも700ptsに満たない程度です．
 
 ## Life Events
@@ -74,7 +76,7 @@
   - 2016/01  第2種電気工事士資格 取得
   - 2016/02  福島フィールド実習参加
     - 震災をトリガとする福島の原子力発電所事故に関連し，原子力の研修に参加しました．
-    - 福島第二原子力発電所，原子炉建屋はもちろん，原子炉格納容器の内部まで入って見学させていただきました． 
+    - 福島第二原子力発電所，原子炉建屋はもちろん，原子炉格納容器の内部まで入って見学させていただきました．
   - 2016/02  仙台高等専門学校の卒業研究「圧電フィルムを用いた水素ガスセンサに関する研究」が評価され卒業研究優秀賞をいただきました．
   - 2016/03  Ngee Ann Poly. DSPハンズオントレーニング in Singapore
   - 2016/03  仙台高等専門学校　広瀬キャンパス　情報ネットワーク工学科卒業
@@ -108,6 +110,10 @@
   - 2018/12  技術士補（電気電子部門）
   - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credential.net/2tb0by0q)
   - 2019/06  情報処理安全確保支援士試験　合格
+  - 2020/02  CCNP Route(300-101) Fail(667/1000(boarder: 790))
+  - 2020/02  CCNP Switch(300-115) Pass(856/1000(boarder: 790))
+  - 2020/02  CCNP Route(300-101) Fail(779/1000(boarder: 790))
+  - 2020/02  危険物取扱者 乙種第4類 Pass(法令80%, 物理・化学100%, 性質・消火90%)
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.
@@ -120,7 +126,7 @@
   8. 袁巧微, 新関莉理, 橋本雄大, 山本芳之, 本間尚樹, 陳強, "アンテナと180°ハイブリッド一体化にしたMIMO Full-Duplexシステムの自己干渉抑圧に関する検討," 信学技報, AP2017-187 , Feb. 2018.
   9. 橋本雄大, 袁巧微, 篠原直毅 , "マイクロ波送電によるドローンの飛行に関する基礎検討 ～負荷と入力電力の変動を考慮したレクテナの設計手法～," 信学技報, WPT2017-71 , Mar. 2018.
   10. Yudai Hashimoto, Qiaowei YUAN, Takumi Aoki, The Fundamental Experiment of Microwave Wireless Power Transmission to UAV,  Asian Wireless Power Transfer Workshop (AWPT2018), Nov. 2018.
-  11. Yudai Hashimoto, Qiaowei YUAN, Takumi Aoki, Drone Driven by Microwave, 2018 Asia-Pacific Microwave Conference (APMC2018), AP2017-187, Nov. 2018. 
+  11. Yudai Hashimoto, Qiaowei YUAN, Takumi Aoki, Drone Driven by Microwave, 2018 Asia-Pacific Microwave Conference (APMC2018), AP2017-187, Nov. 2018.
 
 ## 自分向け
   -  [toggle](https://toggl.com/app/timer)
@@ -131,7 +137,7 @@
   ```
   E = m c^2
   ```
-  - インライン数式も使えます。 
+  - インライン数式も使えます。
 
   マークダウン記法
   This formula `$ y=\sum_{i=1}^n g(x_i) $`

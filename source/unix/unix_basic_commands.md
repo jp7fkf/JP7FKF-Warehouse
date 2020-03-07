@@ -544,3 +544,20 @@ WantedBy=multi-user.target
   upper        <upper-case characters>
   xdigit       <hexadecimal characters>
   ```
+
+## testでmd5とかshaををテストする． 0なら一致．1なら不一致．
+```
+## md5
+md5 -q <filename> | xargs -I _ test _ = <md5>; echo $?
+
+## sha1
+shasum -a 1 <filename> | awk '{print $1}' | xargs -I _ test _ = <sha1>; echo $?
+
+## -c で空白区切で `<hash> <filename>` となっているファイルを読んで実行した階層の下のファイルを検査する．
+% touch test
+% shasum -a 1 test
+da39a3ee5e6b4b0d3843bfef95601890afd80709  test
+% shasum -a 1 test >> test.sha1
+% shasum -a 1 -c test.sha1
+test: OK
+```

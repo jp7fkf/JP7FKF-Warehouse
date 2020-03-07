@@ -58,7 +58,21 @@ sudo diskutil umountDisk /dev/diskxxx
 sudo dd bs=32m if=xxx.img of=/dev/rdiskxxx # rつけるとはやい．シーケンシャル．
 sudo diskutil umountDisk /dev/diskxxx
 ```
+- isoとか
+```
+diskutil list
+diskutil eraseDisk MS-DOS UNTITLED /dev/disk2
+diskutil unmountDisk /dev/disk2
+sudo dd if=./Downloads/kali-linux-2016.2-amd64.iso of=/dev/disk2 bs=4028
+diskutil eject /dev/disk2
+```
 
 ## macosでDHCP (cache)をrenew/release する．
 - `sudo ipconfig set <if_name> DHCP`
 - [Release & Renew DHCP from the Command Line with ipconfig on Mac](http://osxdaily.com/2015/07/30/release-renew-dhcp-command-line-ipconfig/)
+
+## shell bugったときはこれとりあえずやれ
+```
+% stty sane
+```
+- [Terminalの入力が異常になったときの直し方 - Qiita](https://qiita.com/m-sakano/items/7f1afc7eb452a1a57015)

@@ -467,3 +467,7 @@ node1  50       secondary            yes     no       None
   - 多くの場合，src/dst-zone, src/dst-ip/ src/dst-port, protocolでいい塩梅なきがする．
 - ex.) `show security match-policies from-zone z1 to-zone z2 source-ip 10.10.10.1 destination-ip 192.0.2.1 source-port 1 destination-port 21 protocol tcp`
 - ref: [show security match-policies - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/reference/command-summary/show-security-match-policies.html)
+
+## juniperのpvst
+- vstpと言う名前らしい．
+- [Configuring VSTP Protocol - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/topic-map/spanning-tree-configuring-vstp.html)
