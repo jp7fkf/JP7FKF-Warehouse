@@ -56,6 +56,9 @@ Welcome to JP7FKF-Warehouse!
   tech/ssl_tls
   tech/devops
   tech/prometheus
+  tech/netbox
+  tech/raspint
+  tech/strongswan
   unix/iptables
   unix/namespace
   unix/nmap
@@ -111,6 +114,8 @@ Welcome to JP7FKF-Warehouse!
   network/rfc3074
   network/ccnp_rt
   network/ccnp_sw
+  network/ccnp_ts
+  network/ccnp_others
   network/cisco_bgp
   network/cisco_ipv6
   network/cisco_nat
