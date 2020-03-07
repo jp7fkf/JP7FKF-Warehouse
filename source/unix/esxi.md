@@ -94,3 +94,75 @@ Update Result
    VIBs Skipped: VMW_bootbank_ima-qla4xxx_2.02.18-1vmw.670.0.0.8169922, VMW_bootbank_misc-cnic-register_1.78.75.v60.7-1vmw.670.0.0.8169922, VMW_bootbank_net-bnx2_2.2.4f.v60.10-2vmw.670.0.0.8169922, VMW_bootbank_net-bnx2x_1.78.80.v60.12-2vmw.670.0.0.8169922, VMW_bootbank_net-cnic_1.78.76.v60.13-2vmw.670.0.0.8169922, VMW_bootbank_net-igb_5.0.5.1.1-5vmw.670.0.0.8169922, VMW_bootbank_net-ixgbe_3.7.13.7.14iov-20vmw.670.0.0.8169922, VMW_bootbank_net-tg3_3.131d.v60.4-2vmw.670.0.0.8169922, VMW_bootbank_scsi-bnx2fc_1.78.78.v60.8-1vmw.670.0.0.8169922, VMW_bootbank_scsi-bnx2i_2.78.76.v60.8-1vmw.670.0.0.8169922, VMW_bootbank_scsi-megaraid-sas_6.603.55.00-2vmw.670.0.0.8169922, VMW_bootbank_scsi-qla4xxx_5.01.03.2-7vmw.670.0.0.8169922
 [root@localhost:~]
 ```
+
+## Synology NAS(DS918+)とESXiをiSCSIする
+わりと簡単にできたのでメモっておく．
+
+### やりたいこと
+- SynologyのNAS(DS918+)とESXi 6.5の間をiSCSIでつなぐ．
+- Synology NASがtarget, ESXiがinitiator
+- CHAP認証してみる．
+
+### やりかた
+- ここ見るとさくっとできる．
+  - [DiskStation Manager - Knowledge Base | Synology Inc.](https://www.synology.com/ja-jp/knowledgebase/DSM/tutorial/Virtualization/How_to_set_up_Synology_NAS_as_VMware_server_datastore)
+- じゃあなんでお前この記事書いてんのって話だが，自分の記録のためである．
+
+### やる
+まずはSynology NAS側でiSCSI targetを設定する．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_01.png
+```
+iSCSI managerからtargetを新規作成する．CHAPしたいときはCHAP有効化して認証情報をいれておく．別に後から有効化することもできる(一時的なstorage断は伴うが)．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_02.png
+```
+LUNが未作成の場合/割り当てるLUNがない場合はここでLUNを作成する．すでに作成済みの場合はそれを割り当てる事もできる．適当にsizeやらを設定して作成する．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_03.png
+```
+LUNを作成したいボリュームや容量を決める．
+スペース割り当てと書いてある部分はthick/thin provisioningが選べるはず．
+thick provisioningはLUN作成時に割り当て容量のすべてを実際のディスクに割り当てをするが，thinの場合は必要になったらその都度割り当てするようなイメージ．
+thinの場合は利用した分だけ割り当てられるのでストレージの利用効率がいいが，その特性上必要になったら都度割り当て, zeronize等の処理が入るので若干のパフォーマンス低下が存在することがあるというのが懸念点かと思う．
+それに対しthin provisioningは初めに割り当て容量の全てをzeronizeする．この処理が入るのは割り当て時のみであるため利用中の割り当て/zeronize等によるパフォーマンス低下は気にしなくていいと考えられる．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_04.png
+```
+見直して良ければ適用してLUN, targetの作成を終える．
+これでSynology NAS側のsettingは終了．IQNとSynology NASのIPがのちに必要になる．
+ここからはinitiatorとなるESXi側で設定を行なっていく．
+`ストレージ > アダプタ`タブを選択し，今回はソフトウェアiSCSIを利用するのでそいつを選択．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_05.png
+```
+iSCSIを有効にし，CHAP認証を利用する場合はCHAPを有効化して認証情報を入れる．
+ポートバインディングではiSCSIを利用するVMkernel NICを選ぶ．これはmanagement VMkernel NICとは別にしておくのがよさそう．iSCSI用にVMkernel NICをあらかじめ割り当てておくとよい．
+固定ターゲットの部分にSynology NASのIQNとIP Addressを入れる．動的ターゲットとしてIP Addressを入れるだけでも接続と思われるが，より限定的/明示的に設定したいので今回は固定ターゲットとして設定する．
+入力を終えたら設定を保存して適用する．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_06.png
+```
+設定が正常に行われるとデバイスにiSCSI接続されたNASが見える．
+// degradeしているのが見えているが，これはiSCSIのuplinkが冗長でないためのよう．複数のuplinkをvswitchにいれてやれば解決すると思う．
+もちろんSynology NAS側でも接続されていることが確認できる(iSCSI managerで確認可能)．
+ここまでくればあとはこのiSCSI targetに対してVMFSを設定して利用するだけだ．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_07.png
+```
+`ストレージ > データストア > 新しいデータストア` からデータストア設定wisardに入る．
+新規にVMFSを作成する．あとはぽちぽち進んで，できあがる．
+```eval_rst
+.. image:: ../resources/images/esxi_synology_iscsi_08.png
+```
+データストア もちゃんと見えている．めでたし
+
+### 気になること．
+- どのくらい切断するとVMに顕著に影響するのか．
+  - もちろん切断した瞬間からファイルシステムへの書き込みはできなくなるわけだが，たとえばdbとかどうなるのかわかってない．
+  - 要するにdisk busyになっちゃうからmem上でしか遊べなくなるんだろう．
+- [iSCSIが切断された時どうなるか検証（ESXi） | fefcc.net](https://fefcc.net/archives/475)
+
+### References
+- [DiskStation Manager - Knowledge Base | Synology Inc.](https://www.synology.com/ja-jp/knowledgebase/DSM/tutorial/Virtualization/How_to_set_up_Synology_NAS_as_VMware_server_datastore)
+- [VMware Knowledge Base](https://kb.vmware.com/s/article/2045040)
