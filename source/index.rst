@@ -57,7 +57,8 @@ Welcome to JP7FKF-Warehouse!
   tech/devops
   tech/prometheus
   tech/netbox
-  tech/raspint
+  tech/raspintp
+  tech/raspberrypi
   tech/strongswan
   unix/iptables
   unix/namespace
