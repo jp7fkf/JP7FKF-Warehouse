@@ -7,22 +7,22 @@
 - AD値
   - EIGRP集約：5
   - 内部EIGRP：90
-  - 外部EIGRP：170　
+  - `外部EIGRP：170`
 
 - Packet
-  - Hello
+  - `Hello`
     - neighbor確立，またneighbor のkeepaliveのために利用．multicast(224.0.0.10).
-  - Update
-    - routing update. 新規ルート検出時，収束完了時はmulticast(224.0.0.10)．ERGRP開始時の同期はunicast.
-  - Query
+  - `Update`
+    - routing update. 新規ルート検出時，収束完了した後の差分updateはmulticast(224.0.0.10)．EIGRP開始時の同期はunicast.
+  - `Query`
     - route informationを要求する．
     - FSが存在しないときに代替経路を探索．
-  - Reply
+  - `Reply`
     - Queryのための応答．unicast.
-  - Ack
+  - `Ack`
 
-  - このうちAckが必要(RCP)な高信頼パケットはUpdate, Query, Reply．Ackがない場合，16回まで再送信する．
-  - Ackが必要ない無信頼パケットはHello, Ack
+  - このうち`Ack`が必要(RCP)な高信頼パケットは`Update`, `Query`, `Reply`．`Ack`がない場合，16回まで再送信する．
+  - Ackが必要ない無信頼パケットは`Hello`, `Ack`
 
   - SRTT(SmoothRound-TripTimer)
     - 高信頼性パケット送信 →ACK受信確認までの時間
@@ -98,14 +98,15 @@
 
   - サクセサdown時のふるまい
     - サクセサ（Passive状態）Down→バックアップ（FS）なし（Active状態）→クエリ送信（Active状態：3分間）＝SIA（StuckInActive）⇒経路削除
-      - ※クエリ送信時は収束（コンバージェンス）しない⇒SIAは経路に悪影響
+      - ※クエリ送信時は収束（コンバージェンス）しない
+        - SIAは経路に悪影響
     - SIA(Stack in Active)
       - クエリを送信して3分以上Ackがないこと．
       - 原因
         - ルータがBusy, Memory, CPUのリソース問題
         - 片方向のリンク障害
         - パケロス
-        - Ackが届かないなんらかの原因．
+        - Ackが届かない何らかの原因．
 
 - neighbor確立
   - EIGRP neighbor の確立条件
@@ -136,14 +137,14 @@
     - `show ip eigrp neighbors`でneithborが張れていればok．
     - trouble shoot的には`debug eigrp packets`かな．
 
-
 - スタブ
   - スタブが設定されたルータは自身がスタブであることを示すpacketを全neighborに送る．
   - これにより，neighborはスタブルータにQueryを送らなくなる．
   - スタブルータはdefaultでsummary経路とconnected経路をadvertise.
 
 - 経路集約
-  - 集約経路はIOS15.0以降は自動生成されない(no auto-summary)ので，明示的に設定する必要がある．
+  - 集約経路はIOS15.0(1)M以降は自動生成されない(no auto-summary)ので，明示的に設定する必要がある．
+    - `(config-if)# [no] auto-summary`
   - 集約経路のAD値はデフォルトで`5`．
   - 自動集約
     - `(config-router)# auto-summary`
@@ -214,18 +215,44 @@ interface GigabitEthernet0/0
   ip summary-address eigrp 1 10.10.0.0 255.255.0.0  # manual route aggregate (set under "output" interface of aggregated route-updates)
   # if the manual aggregation enabled, the Null0 route of aggregated prefix will be installed in order to prevent routing loop.
 
-
 access-list 1 deny any any    # for distribute-list
 ```
-- 名前付きの場合(address-family)の一例
+- IPv6の場合
+  - helloはneighbor discoveryが用いられる
+  - multicast: `FF02::A`
+  - ルータIDの指定が必要
 ```
-　Cisco(config) # router eigrp N-EIGRP
-　Cisco(config-router) # address-family ipv4 unicast autonomous-system 10
-　Cisco(config-router-af) # af-interface default
-　Cisco(config-router-af-interface) # passive-interface
+# v6 routingを有効化
+(config)# ipv6 unicast-routing
+(config)# ipv6 router eigrp <as-number>
+(config-rtr)# eigrp router-id <router_id> # 32bits
 
-　Cisco(config-router-af) # af-interface Gigabitethernet0/1
-　Cisco(config-router-af-interface) # no passive-interface
+# インターフェース上でのEIGRP for IPv6の有効化
+(config)# int gi 0/1  #example
+(config-if)# ipv6 eigrp <as-number>
+
+# EIGRP for IPv6 における手動経路集約
+(config-if)# ipv6 summary-address eigrp <as-number> <prefix/length>
+```
+  - IPv6では自動集約はなく`auto-summary`や`no auto-summary`コマンドはない．
+- show系
+  - `show ipv6 protocols`: 設定されているルーティングプロトコルの要約情報
+  - `show ipv6 eigrp neighbors`: EIGRP for IPv6のネイバールータ
+  - `show ipv6 eigrp topolog`: EIGRP for IPv6のトポロジーテーブル
+  - `show ipv6 route eigrp`: EIGRP for IPv6で学習したルート情報
+  - `show ipv6 eigrp interface`: EIGRP for IPv6が有効化されたインターフェースでのEIGRPのトラフィック情報
+  - `show ipv6 eigrp traffic`: EIGRP for IPv6の送受信された各種パケット数
+
+- 名前付きの場合
+```
+# 名前付きの場合の例
+(config) # router eigrp N-EIGRP
+(config-router) # address-family ipv4 unicast autonomous-system 10
+(config-router-af) # af-interface default
+(config-router-af-interface) # passive-interface
+
+(config-router-af) # af-interface Gigabitethernet0/1
+(config-router-af-interface) # no passive-interface
 ```
 
 ## commands
@@ -239,13 +266,12 @@ access-list 1 deny any any    # for distribute-list
 - `show ip eigrp topology`
   - 通常サクセサとフィージブルサクセサの情報のみが出る．
   - 全ルート情報を見たい場合は`show ip eigrp topology all-links`
-  -
   ```
-  P(Passive)： ルート情報がEIGRPの計算中ではないことを示すコード．
-  A(Active)： ルート情報がEIGRPの計算中であることを示すコード．
-  U(Update)： Updateパケットがこの宛先へ送信されたことを示すコード．
-  Q(Query)： Queryパケットがこの宛先へ送信されたことを示すコード．
-  R(Reply)： Replyパケットがこの宛先へ送信されたことを示すコード．
+  P(Passive)： ルート情報がEIGRPの計算中ではないことを示す．
+  A(Active)： ルート情報がEIGRPの計算中であることを示す．
+  U(Update)： Updateパケットがこの宛先へ送信されたことを示す．
+  Q(Query)： Queryパケットがこの宛先へ送信されたことを示す．
+  R(Reply)： Replyパケットがこの宛先へ送信されたことを示す．
   ```
 - `debug ip eigrp`
 

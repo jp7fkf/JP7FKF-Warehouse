@@ -4,6 +4,8 @@
 - [RFC 4271 - A Border Gateway Protocol 4 (BGP-4)](https://tools.ietf.org/html/rfc4271)
 
 ## BGPのtips
+- BGPのas-pathはeBGPを用いて"他ASに広告するとき"に自AS番号をas-pathに付加する．
+  - BGPで受信しただけの経路にはまだ自AS番号はas-pathに含まれない．
 
 ### iBGPはスプリットホライズンが効いている．
 - iBGPは受信した経路広告を他のiBGPピアには広告しない

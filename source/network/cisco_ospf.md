@@ -1,12 +1,12 @@
 # Cisco - OSPF
 
-## About ospf
+## About OSPFv2
 - link-state type
 - LSA(Link State Advertisement)をLSDB(Link Stete Database)に保存し，そのリンク情報をDijkstra Algorithmで計算し最短パスを計算．
 
 - Packet
   - IP Protocol Number: `89`
-  - Hello: neighbor確立．キープアライブ． (multicast: 224.0.0.5)
+  - Hello: neighbor確立．キープアライブ． (multicast: `224.0.0.5`)
     Helloパケットは，ネイバーを検出するためのパケット．ネイバーを検出してネイバー関係を確立した後の
     キープアライブ（ネイバー維持）としても使用される．マルチキャスト(224.0.0.5)として送信される．
   - DBD: DBD（Database Description）パケットは，自身のLSDBに含まれているLSAのリスト一覧．ネイバー
@@ -129,6 +129,12 @@
     - LSAのSeq. Noは0x80000001から始まり，Updateするごとに1ずつインクリメントする．
     - LSAにはaging timerが存在し，60分を過ぎた場合は該当のLSAを削除する．
 
+- ルーティングテーブルへの格納順序(同一経路の優先順位)
+1. `O   `: エリア内の経路(intra-area：同一エリアから伝えられている経路情報)
+1. `O IA`: エリア間の経路(inter-area：異なるエリアから伝えられている経路情報)
+1. `O E1`: 外部経路タイプ1(external type1：OSPFに再配送されている経路情報)
+1. `O E2`: 外部経路タイプ2(external type2：OSPFに再配送されている経路情報)
+
 - エリア
   - Backbone Area
     - area 0
@@ -144,7 +150,7 @@
     - ABRは自動的にdefault routeを生成する．
     - エリア内全ルータで`area <area-id> stub`
   - Totally Stub Area
-    - LSA: 1-2
+    - LSA: 1-2 + デフォルトルートのLSA Type3
     - Stub Area同様，ASBRのルート(LSA type5)ではなく，ABRの配布するデフォルトルートを用いて非OSPFネットワークとアクセスする
       - デフォルトルートは自動生成される
     - さらにABRのLSA type3のルートも利用せず，ABRが広告するデフォルトルートのみを利用する．
@@ -160,7 +166,7 @@
     - ABRにて`area <area-id> nssa default-information-originate`
       - デフォルトルートは自動生成されない
   - Totally Not so Stubby Area(Totally NSSA)
-    - LSA: 1-2, 7
+    - LSA: 1-2, 7 + デフォルトルートのLSA Type3
     - デフォルトルートは自動生成される
     - エリア内全ルータにて`area <area-id> nssa`
     - ABRにて`area <area-id> nssa no-summary`
@@ -272,11 +278,11 @@ router ospf 1 # process id
   distribute-list 10 out eigrp
 
   # Route Addgegation
-  summary-address 172.16.0.0 255.255.0.0 # at ASBR LSA type5
-  area 10 range 172.16.0.0 255.255.0.0 [ cost cost ] # at ABR LSA type3
+  summary-address 172.16.0.0 255.255.0.0 # at ASBR as LSA type5
+  area 10 range 172.16.0.0 255.255.0.0 [ cost cost ] # at ABR as LSA type3
 
   # virtual link
-  area 0 virtual-link 1.1.1.1 # area <area-id> virtual-link <router-id>
+  area 0 virtual-link 1.1.1.1 # area <transit-area-id> virtual-link <neighbor-router-id>
 
   # default route
   default-information originate [always] [metric metric] [metric-type [ 1 | 2 ]]
@@ -325,5 +331,39 @@ interface GigabitEthernet 0/1
 
 ## debug/t-shoot
 
+## About OSPFv3
+- OSPFｖ3LSAを新たに定義
+  - LSA Type8: Link LSA
+  - LSA Type9: Intra Area Prefix LSA
+- Multicast
+  - `FF02::5`: 全てのOSPFv3ルータ宛
+  - `FF02::6`: DR/BDR
+- next_header: 89
+- neighbor確率，およびnexthopにlink-local address を使用
+- IPsecを使用した認証も可能
+- リンク単位（I/F単位）で有効化
+
+- config
+```
+# IPv6の有効化
+(config)# ipv6 unicast-routing
+
+(config)# ipv6 router ospf <process-id>
+(config-rtr)# router-id <router_id>
+(config)# int gi 0/1
+(config-if)# ipv6 ospf <process-id> area <area-id>    # interface で有効化
+```
+- interface で有効化する以外はほぼ変わらない？
+  - passive-interface指定もinterface ではなくrtr階層で行う．
+
+- show系
+  - `show ipv6 protocols`: ルータで設定されているルーティングプロトコルの要約情報の表示
+  - `show ipv6 ospf neighbor`: OSPFv3により探知されたネイバールータの表示
+  - `show ipv6 ospf database`: OSPFv3のリンクデータベースの表示
+  - `show ipv6 route ospf`: OSPFv3で学習したルート情報の表示
+  - `show ipv6 ospf interface`: OSPFv3の有効化インターフェース、所属エリア、コスト値、タイマー値、隣接ルータの確認
+
 ## References
 - [OSPF - Type 1 LSA vs Type 5 LSA (passive vs redistribute) - Darren's Blog](https://mellowd.co.uk/ccie/ospf-type-1-lsa-vs-type-5-lsa/)
+- [OSPF 設計ガイド - Cisco](https://www.cisco.com/c/ja_jp/support/docs/ip/open-shortest-path-first-ospf/7039-1.html)
+- [ネットワークエンジニアとして](https://www.infraexpert.com/)

@@ -222,3 +222,15 @@ TRTL: throttle count
 ```
 - ref: [Upgrade Firmware on a Switch through the Command Line Interface (CLI) - Cisco](https://www.cisco.com/c/en/us/support/docs/smb/switches/cisco-550x-series-stackable-managed-switches/smb5566-upgrade-firmware-on-a-switch-through-the-command-line-interf.html)
 - ref: [7 Steps to Upgrade IOS Image on Cisco Catalyst Switch or Router](https://www.thegeekstuff.com/2011/06/upgrade-cisco-ios-image/)
+
+
+## AP系(Aironet/WLC)
+- [MBSSID - Cisco Community](https://community.cisco.com/t5/switching/mbssid/td-p/2362244)
+- bridge-group系の意味
+```
+bridge-group 50 subscriber-loop-control : Enables loop control on virtual circuits associated with a bridge group.
+bridge-group 50 spanning-disabled       : Disables spanning tree on the radio interface.
+bridge-group 50 block-unknown-source    : Blocks traffic that comes from unknown MAC address sources.
+no bridge-group 50 source-learning      : Disables source learning.
+no bridge-group 50 unicast-flooding     : Disables unicast flooding.
+```

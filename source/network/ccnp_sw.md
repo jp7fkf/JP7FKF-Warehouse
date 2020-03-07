@@ -1,11 +1,27 @@
 # CCNP - Switch
 
+## Ehter-Channel
+- 条件
+  - Ether-MediaType
+  - Speed/Duplex
+  - switchport mode(access/trunk/l3)
+  - vlan(including native vlan when set as trunk mode)
+  - trunking mode(when set as trunk mode)
+  - port priority(vlan each)
+- confing
+```
+(config-if)# channel-group [portchannel_no] mode [on|auto|desiragble|active|passive]
+(config-if)# channel-protocol [lacp|pagp]
+
+(config)# port-channel load-balance ethernet [dest-mac|dest-ip|src-mac|src-ip|etc...]
+```
+
 ## Port Security
 - type
   - static
     - 手動でmacを入力
   - dynamic
-    - フレーム受信時にmacを学習．mac address-tableにのみ追加．
+    - フレーム受信時にmacを学習．mac address-tableにのみ追加．(defalut)
   - sticky
     - フレーム受信時にmacを学習．mac address-tableとrunning-configに追加．
     - learnしてrun conに追加されたのを確認してsaveすればよい．
@@ -20,13 +36,23 @@
     - portをerrdisableとする．
     - SNMP/Syslogによる通知を行う．
 
+- agentはdefault disable.(0sec)
+
+- 指定できないポート
+  - ダイナミックアクセスポート（ダイナミックVLANに対応したポート）
+  - イーサチャネルポート
+  - SPAN（Switched Port Analyzer）の宛先ポート
+
+- 留意
+  - ポートセキュリティを使用しているポートで音声VLANも利用する場合は、最大セキュアアドレス許容数を2つ以上にする（IP Phone用1つ、PC用1つ）
+
 - config
 ```
 (config-if)# switchport port-security
 # 許可MACアドレスの最大数の決定(defalut: 1)
 (config-if)# switchport port-security maximum <number>
 # violation-modeの設定．defalut はshutdown.
-(config-if)# switchport port-security violation [ protect | restrict | shutdown]
+(config-if)# switchport port-security violation [protect | restrict | shutdown]
 
 # secure macの設定
 # static
@@ -39,8 +65,15 @@
 (config-if)# switchport port-security aging time <minutes>
 
 # aging type, absolute: 登録から時間経過後，通信途中であっても削除． inactivity: 最後の通信から指定時間経過したら削除
-(config-if)# switchport port-security aging type [ absolute | inactivity]
+(config-if)# switchport port-security aging type [absolute | inactivity]
 ```
+
+- maximum ip addressの上限の例(機種依存だと思う)
+
+> MAC アドレスの最大数の設定
+> レイヤ 2 インターフェイスで学習可能な MAC アドレスまたはスタティックに設定可能な MAC アドレスの最大数を設定するには、次の手順を実行します。 レイヤ 2 インターフェイス上の VLAN 単位でも MAC アドレスの最大数を設定できます。 設定できる最大アドレス数は 4096 です。
+> セキュア MAC アドレスは、レイヤ 2 転送テーブル（L2FT）を共有します。 各 VLAN の転送テーブルには最大 1024 エントリを保持できます。
+- [Cisco Nexus 1000V セキュリティ設定ガイド 4.2(1)SV2(1.1) - ポート セキュリティの設定 [VMware vSphere 向け Cisco Nexus 1000V スイッチ] - Cisco](https://www.cisco.com/c/ja_jp/td/docs/sw/dcswt/nex1000vswt/cg/030/b_Cisco_Nexus_1000V_Security_Configuration_Guide_2_1_1/b_Cisco_Nexus_1000V_Security_Configuration_Guide_2_1_1_chapter_01011.html#task_1DE22CCCEC4546F4AC5AEFD0A92F1771)
 
 ## SDMテンプレート
 - Switch Database Management
@@ -56,11 +89,11 @@
   - `(config) # sdm prefer dual-ipv4-and-ipv6 default` 等を叩いてv4/v6テンプレートに変更する．
 
 ## PoE
-- `(config-if)# power inline auto [ max milli-watts] | never | static [ max milli-watts]`
+- `(config-if)# power inline auto [max milli-watts] | never | static [max milli-watts]`
 - `show power inline`
 
 ## LLDP
-- multicast: 0180.C200.000E
+- multicast: `0180.C200.000E`
 - TLVベース
 ```
 +----------+---------------------+------------------+
@@ -87,9 +120,12 @@
 
 - タイマー系
 ```
-(config)# lldp holdtime 180 #(default: 120)
-(config)# lldp reinit 3 #(default: 2)
-(config)# lldp timer 60 #(default: 30)
+# ホールドタイム
+(config)# lldp holdtime 180 #(default: 120sec)
+# 再初期化遅延
+(config)# lldp reinit 3 #(default: 2sec)
+# interval
+(config)# lldp timer 60 #(default: 30sec)
 ```
 
 - `show lldp`: LLDPがグローバルで有効化しているかの確認，各種タイマー値の確認
@@ -102,9 +138,41 @@
 - `clear lldp table`: LLDPネイバーテーブルの情報削除
 
 - LLDP-MED: LLDP for Media Endpoint Devices
+  - TLVs
+    - LLDP-MED capabilities
+      - 機器がサポートする機能など　
+    - network policies
+      - レイヤ2/3の情報
+      - IP Phone voice vlan系など
+    - power management
+      - デバイスの消費電力など．PoEが絡みそうな内容
+    - inventory management
+      - Serial No., Modelなど
+    - location
+      - Civis Location(都市情報)
+      - ELIN(Emergency Location Identifier Number: 緊急ロケーション識別番号)など
 
 ## CDP
-- multicast: 0100.0CCC.CCCC
+- multicast: `0100.0CCC.CCCC`
+
+- timer
+  - interval: 60sec
+  - hold: 180sec
+
+- v1
+ -  Device ID（隣接デバイスのホスト名）
+ -  IP address（隣接デバイスのIPアドレス）
+ -  Platform（隣接デバイスのプラットフォーム）
+ -  Capabilities（隣接デバイスのデバイスタイプ）
+ -  Interface（自身のインターフェース）
+ -  Port ID（隣接デバイスのインターフェース）
+ -  Holdtime（CDPの情報を保持する残り秒数）
+ -  Version（隣接デバイスのIOSバージョン情報）
+- v2
+  - v1の内容
+  - VTP Management Domain（隣接デバイスのVTPドメイン名）
+  - Native VLAN（隣接デバイスのネイティブVLAN）
+  - Duplex(隣接デバイスのインターフェースのDuplex)
 
 ## Stack(StackWise/StackWise Plus/Flex-Stack)
 - stackケーブルはループにする(推奨で必須ではない．帯域が減る．)
@@ -139,6 +207,11 @@
 
 - マスタがconfigをもち，メンバはマスタから定期的にコピーを受信する．
 
+- スタックマスタがメンバに配布する情報
+  - config
+  - vlan.dat
+  - SDM template
+
 - congig
   - スタックメンバのプライオリティの設定
     - `(config)# switch <stackmember-number> priority <priority>`
@@ -150,10 +223,38 @@
   - `show switch detail`: スタックリングの詳細情報を表示．
   - `show platform stack manager all`: スタックプロトコルバージョンなど，すべてのスイッチスタック情報を表示．
 
+## StackWise Virtual
+- [High Availability Configuration Guide, Cisco IOS XE Everest 16.6.x (Catalyst 9500 Switches)  - Configuring Cisco StackWise Virtual [Support] - Cisco](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/16-6/configuration_guide/b_166_ha_9500/b_166_ha_9500_chapter_01.html)
+- Cat3850等で利用できる
+- SVL(Stackwise Virtual Link)を用いて接続
+  - 10Gbps, 40Gbps のethernet interfaceを利用可能
+- Active Switch, Standby Switchに役割が分かれる
+- IOSversionl, Licenseは同一である必要がある．
+
+- ref: [Catalyst：Stackwise Virtual の設定 - Cisco Community](https://community.cisco.com/t5/%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%82%A4%E3%83%B3%E3%83%95%E3%83%A9%E3%82%B9%E3%83%88%E3%83%A9%E3%82%AF%E3%83%81%E3%83%A3-%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/catalyst-stackwise-virtual-%E3%81%AE%E8%A8%AD%E5%AE%9A/ta-p/3780695#toc-hId--589685991)
+
+### DAD(Dual Active Detection)
+- StackWise Virtualで2台のスイッチがアクティブになることを検出する機能
+- Dual ActiveとなるとIP重複等で不安定になる．
+- 方法1
+  - DAD専用リンク(Stackwise Virtual Linkとは別に設ける)を用い，deal-active fast helloパケットの定期送出によってdual active を検出する．
+- 方法2
+  - MEC(Multi-Chassis EtherChannel)経由で伝達
+  - 拡張PAgPを利用
+
 ## VSS(Virtual Switcing System)
+- [Virtual switching system (VSS) Configur... - Cisco Community](https://community.cisco.com/t5/networking-documents/virtual-switching-system-vss-configuration-for-cisco-4500-series/ta-p/3147865)
+- Cat4500, Cat6500等で利用可能
+- 2台のスイッチを仮想的に1つのスイッチとして動作させる
+
 - 構成要素
   - 仮想スイッチメンバ: いわゆるスイッチ筐体
   - VSL(Vistual Switch Link): 筐体間リンク
+
+- VSLがdownしたとき
+  - standby側のswitchはactive側から役割が移譲されトラフィック転送を続ける
+  - master側のswitchはstandby側がbrainを持っているのでsplit-brainを防ぐためにVSL以外の全interfaceをshutdownしVSLの復旧を待つ．
+    - デュアルアクティブリカバリモードと呼ぶ
 
 - MSS(Multi-Chassis EtherChannel)で上・下流とつなぐことがおおい．
 
@@ -201,7 +302,7 @@
 - ISLはオーバーヘッドが大きいので基本dot1qという感じ．
 
 ## switchport mode
-- `(config-if)# switchport mode [ access | trunk | dynamic desirable | dynamic auto]`
+- `(config-if)# switchport mode [access | trunk | dynamic desirable | dynamic auto]`
 
 - access
   - static: 管理者が手動でVLANを割り当てる
@@ -232,8 +333,17 @@
   - 同期の前提はVTPドメインが同じであること
   - versionは1, 2, 3がある．
     - version1と2では互換性がない．default VTP versionが異なる場合もあるので注意
-    - version2ではトークンリングのサポート，認識不能TLVのサポート機能が付加
-    - version3ではvlan-id 1-1005だけでなく拡張vlan(1006-4095)がサポート
+    - version2
+      - トークンリングのサポート
+      - 認識不能TLV伝搬
+      - バージョン非依存のtransperent動作
+      - 整合性チェック
+    - version3
+      - vlan-id 1-1005だけでなく拡張vlan(1006-4095)がサポート
+      - プライベートvlanのサポート(private vlanを設定するswでtransparentにしなくてよくなった．)
+      - ポート単位でのVTPの有効/無効化
+      - サーバモードのヒエラルキ(primary, secondary)
+      - 複数のデータベースの利用(vlan, mst, unknown)
 - Message
   - 要約アドバタイズメント
     - VTPドメイン名，VTPパスワード，VLAN情報，リビジョンの4つが含まれる．
@@ -267,7 +377,7 @@
 - config
 ```
 # VTPバージョンの設定
-(config)# vtp version [ 1 | 2 | 3]
+(config)# vtp version [1 | 2 | 3]
 
 # VTPドメイン名の設定
 (config)# vtp domain <domain-name>
@@ -276,7 +386,7 @@
 (config)# vtp password password
 
 # VTPモードの設定(defalut: server)
-(config)# vtp mode [ server | client | transparent]
+(config)# vtp mode [server | client | transparent]
 
 # VTP pruning有効化
 (config)# vtp pruning
@@ -330,7 +440,7 @@
   - Primary VLANの設定
 ```
 (config)# vlan <vlan-id>
-(config-vlan)# private-vlan [ primary | isolated | community]
+(config-vlan)# private-vlan [primary | isolated | community]
 (config-vlan)# private-vlan association <secondary_vlan_ids, ex.101-102>
 ```
   - 混合ポートの設定
@@ -351,11 +461,26 @@
 (config-if)# private-vlan mapping <secondary_vlanlist>
 ```
 
-
 ## STP
+- [Understanding Spanning-Tree Protocol Topology Changes - Cisco](https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/12013-17.html)
 - 言わずと知れたループフリー製造装置
 - IEEE802.1D
 - BPDU(Bridge Protocol Data Unit)を使って制御
+  - topology change notification (TCN) BPDU
+  - topology change acknowledgement (TCA)
+
+- 遅延系
+  - ブリッジ中継遅延
+    - ブリッジがフレームを受信してから同じフレームを送出するまでにかかる時間
+  - BPDU転送遅延
+    - ポートでBPDUを受信してから別のポートへ転送されるまでにかかる時間
+  - 転送停止遅延
+    - ポートがブロックされることが決まってから実際にブロッキング状態になるまでにかかる時間
+  - メディアアクセス遅延
+    - CPUがフレーム送信を決定してから実際にブリッジを離れ始めるまでにかかる時間
+
+- `spanning-tree extend system-id`
+  - [STP の Extended System ID と Priorityが4096単位(倍数)であることの関係│SEの道標](https://milestone-of-se.nesuke.com/nw-basic/stp/extended-system-id/)
 
 - BPDU
   - Multicast: `0180.C200.0000`
@@ -441,8 +566,6 @@
     - Convergence Time: 30sec(15 + 15)
 
 - 複数のvlanがあるSpanning Tree
-  - CST(Common Spanning Tree)
-    - 複数のvlanでも1トポロジを生成
   - PVST+
     - 複数のvlanでvlan eachにトポロジを生成
       - vlanごとにroot bridgeがいる．
@@ -452,17 +575,85 @@
   - スパニングツリープロトコルの有効化
     - `(config)# spanning-tree vlan <vlan-id>`
   - ブリッジプライオリティの設定
-    - `(config)# spanning-tree vlan <vlan-id> priority <priority>`
+    - `(config)# spanning-tree vlan <vlan-id> [priority <priority> | root primary | root secondary]`
+    - プライオリティは0～61440から4096の倍数で指定
+    - defalut: 32768
+    - `root primary`: 現在のルートブリッジのプライオリティより小さい値にする
+    - `root secondary`: プライオリティを「28672」にする
+  - ポートプライオリティの設定
+    - `(config-if)#spanning-tree [vlan <vlan-id>] port-priority <priority>`
+      - default: 128
+      - priority: 0～240から16の倍数で指定
+  - ポートパスコストの設定
+    - `(config-if)#spanning-tree [vlan <vlan-id>] cost <cost>`
+      - 指定したsw内部でのみ有効
+      - ショートパスコストを使用している場合は 1～65536、ロングパスコストを使用している場合は 1～200000000から指定
+```
+# PortFast - 推奨  # linkup後ただちにforwarding状態となる
+(config-if)# spanning-tree portfast
+# PortFast - 非推奨
+(config)# spanning-tree portfast default
+
+# UplinkFast  # ルートポートと非指定ポートをもつ非ルートブリッジにてルートポートに障害が派生した場合に非指定ポートを5秒以内にルートポートとする
+(config)# spanning-tree uplinkfast
+
+# Backbone fast  # 間接リンク障害において収束時間におけるblocking時間(max age)を省略する
+# STPを組んでいる全てのスイッチにて設定することが前提
+# 間接リンク障害において下位BPDUを受信すると，RLQ(Root Link Query), RLQ Ackを用いてルートブリッジを確認．
+(config)# spanning-tree backbonefast
+
+
+# BPDU Guard  # BPDUを受信した場合err-disabledする
+(config-if)# spanning-tree bpduguard [enable|disable]
+## またはportfastが設定されているportでdefalut有効にする場合
+(config)# spanning-tree portfast bpduguard default
+
+# BPDU Filter ## BPDUの送出を停止(非推奨.L2loopの原因となり得るため)
+(config-if)# spanning-tree bpdufilter [enable|disable]  # BPDU送受信を停止
+## または
+(config)# spanning-tree portfast bpdufilter default  # portfast が設定されているポートでBPDUの送信を停止．
+# 受信した場合はportfastが解除されBPDUフィルタは無効となる．
+
+# Root Guard
+## 上位BPDUを受信するとそのポートをblockする(loop-inconsistent状態)
+## 上位BPDUの受信が止まると自動回復し転送可能となる．(TODO: 時間は？20sec?)
+(config-if)# spanning-tree guard root
+
+# Loop Guard
+## 単一方向リンク障害等で本来受信するべきBPDUが受信できないときにポートをloop-inconsistentとする．
+## BPDUを受信すると自動回復し転送可能となる．(TODO: 時間は？20sec?)
+(config-if)# spanning-tree guard loop
+## または
+(config)# spanning-tree loopguard defalut
+
+## loop-inconsistenceポートの確認
+# show spanning-tree loopinconsistentports
+```
 
 ## RSTP
-- IEEE802.1W
+- [Understanding Rapid Spanning Tree Protocol (802.1w) - Cisco](https://www.cisco.com/c/en/us/support/docs/lan-switching/spanning-tree-protocol/24062-146.html)
+- IEEE802.1w
 - 基本おなじSTAを採用
+- BPDUは変更されている
+  > Topology Change (TC) and TC Acknowledgment (TCA), are defined in 802.1D
 - RSTPでは非指定ポートは存在せずに代替ポートとバックアップポートがある．
 
+## PVST
+- config
+  - `(config)#spanning-tree etherchannel guard misconfig`
+    - EtherChannelGuard.(PVST+, Rapid PVST+, MSTPが稼働していることが必要)
+
 ## MST
+- IEEE802.1s
 - 大規模なSTPをしたいとき向け．
 - 複数の同一トポロジvlanの計算を一度に実行できる．
 - インスタンスを複数持つ
+
+- 同じリージョン内で同一にする必要がある設定
+  - VLANとMSTインスタンスとのマッピング
+  - コンフィグレーション名の指定
+  - リビジョン番号の指定
+
 - ロングパスコスト(32bits/2bytes)を用いる．
 - デフォルトコスト
   - Ethernet(10Mbps): 2,000,000
@@ -471,13 +662,50 @@
   - TemGigabitEthernet(10Gbps): 2,000
   - HundredGigabitEthernet(100Gbps): 200
 
+- config
+```
+(config)# spanning-tree mst configuration
+(config-mst)# instance <instance_num> vlan <vlan_ids>
+(config-mst)# name <name>
+(config-mst)# revision <rev_num>
+(config)# spanning-tree mst
+```
+
+## CST(Common Spanning Tree)
+  - IEEE802.1q
+  - 複数のvlanでも1トポロジを生成
+
 ## EtherChannel
 - PAgP
 - LACP
 
 ## HSRP(Hot Standby Router Protocol)
 - Cisco独自のFirthop Redundancy Protocol
-- multicast: 224.0.0.2, UDP(IP:17)：1985
+
+- UDP(IP:17)：`1985`
+- Version
+  - Defalut: 1
+  - `(config-if)# standby version [1 | 2]`
+  - version1
+    - group番号: 0-255
+    - VMAC: `0000.0c07.acXX`
+    - Multicast: `244.0.0.2`
+  - version2
+    - group番号: 0-4095
+    - VMAC: `0000.0c9f.fXXX`
+    - Multicast: `244.0.0.102`
+  - v1とv2の違い
+    - interval
+      - HSRPv1では秒単位のadvertiseでしたが、HSRPv2ではミリ秒単位のadvertiseも可能になります。
+    - group number
+      - HSRPv1では0から255までのgroup idがサポートされていましたが、HSRPv2では0から4095までのgroup idがサポートされます。
+    - virtual MAC address
+      - HSRPv1はMACアドレス0000.0C07.ACXXを使用しますが、HSRPv2はMACアドレス0000.0C9F.FXXXを使用します。(Xはgroup idに対応したの16進数)
+    - physical MAC address
+      - HSRPの送信元を識別するためにHSRPv2からは送信元の物理MACアドレスを記録したフィールドが追加されました。
+    - address
+      - HSRPv1はCGMP leaveと重複する224.0.0.2を使用しますが、HSRPv2は224.0.0.102を使用します。
+
 - 仮想IPは物理IPとは異なるIP
 
 - Priority
@@ -511,23 +739,11 @@
   - Standby
     - Hello送信する
     - グループ内で1台．
-    - パケット転送はしない？
+    - パケット転送はしない
   - Active
     - Hello送信する
     - グループ内で1台．
     - 仮想IP(MAC)に送信されたパケットを転送する
-
-- Version
-  - Defalut: 1
-  - `(config-if)# standby version [ 1 | 2]`
-  - version1
-    - group番号: 0-255
-    - VMAC: 0000.0c07.acXX
-    - Multicast: 244.0.0.2
-  - version2
-    - group番号: 0-4095
-    - VMAC: 0000.0c9f.fXXX
-    - Multicast: 244.0.0.102
 
 - config
 ```
@@ -561,8 +777,8 @@
 - RFC
   - v2: RFC3768
   - v3: RFC5798
-- IP Protocol: 112
-- Multivast: 224.0.0.18
+- IP Protocol: `112`
+- Multivast: `224.0.0.18`
 - 仮想IPは物理IPと同一にすることが可能
   - IP Address Ownerと呼ぶ
 
@@ -594,7 +810,7 @@
 
 ## GLBP(Gateway Load Balancing Protocol)
 - シスコ独自
-- IP/UDP: UDP Port: 3222
+- IP/UDP: `224.0.0.102`, UDP Port: `3222`
 - HSRP, VRRPと異なり，1グループないで複数のデフォゲを持てる．
 - デフォゲを冗長するプロトコル
 - デフォゲ自体の負荷分散が可能
@@ -611,7 +827,7 @@
 
 - 仮想mac: `0007.b400.XXYY`
   - XX: Group番号
-  - YY: MACアドレス番号(AVFが最大4台なので01-04らしい．)
+  - YY: MACアドレス番号(AVFが最大4台なので01-04らしい)
 - ロードバランス方式
   - host-depended
     - ホストが使用するMACアドレスが常に同じになるように，ホストのMACアドレスに基づくロードバランス
@@ -633,7 +849,7 @@
 # timer
 (config-if)# glbp <group-number> timers <hello-seconds> <hold-seconds>
 # loadbalance config
-(config-if)# glbp <group-number> load-balancing [ host-dependent | round-robin | weighted]
+(config-if)# glbp <group-number> load-balancing [host-dependent | round-robin | weighted]
 # Plaintext Auth(default: disable)
 (config-if)# glbp <group_num> authentication text <string>
 
@@ -726,25 +942,98 @@
 - `show ip dhcp binding`
 - `debug ip dhcp server packet`
 
-- Options
-  - 43: WLCのIPアドレスを Cisco Aironet lightweight access points に伝達
-  - 60: VCI（ Vendor Class Identifier：ベンダー クラス識別子 ）
+- DHCP Options
+  - Option 3: Default Gateway
+  - Option 6: DNS Servers
+  - Option 12: Hostname
+  - Option 15: Domain Name
+  - Option 42: NTP Servers
+  - Option 43: WLCのIPアドレスを Cisco Aironet APへ伝達
+  - Option 51: Lease Time
+  - Option 60: VCI(Vendor Class Identifier：ベンダークラス識別子)
     - ベンダー固有の製品型番など．テキスト．
-  - 150: IP-Phoneの設定情報のダウンロードとなるTFTPサーバのIPアドレスをIP-Phoneに伝達
-  - `(dhcp-config)# option code [ ascii string | hex string | ip address]`
+  - Option 66: TFTP Server
+  - Option 82: DHCP Relay Agent
+  - Option 150: IP-Phone設定情報のダウンロード先のTFTPサーバのIPアドレスを伝達
+
+  - `(dhcp-config)# option code [ascii string | hex string | ip address]`
+
+## DHCP helper-address
+- デフォルトでunicast転送するもの
+  - UDP37: TIME
+  - UDP42: NAMESERVER
+  - UDP49: TACACS
+  - UDP53: DNS
+  - UDP67: BOOTP Server
+  - UDP68: BOOTP Client
+  - UDP69: TFTP
+  - UDP137：NetBIOS Name Service
+  - UDP138：NetBIOS Datagram Service
+
+## DHCPv6
+- UDP: 546, 547
+- relay agentのconfig
+  - `(config-if)#ipv6 dhcp relay destination <dest_unicast_ip>`
+
+- message
+  - Solicit(要請)
+  - Advertise(広告)
+  - Request(要求)
+  - Reply(応答)
+- rapid-commitオプションが有効な場合はsolicit, replyのみで割り当てが可能．
+
+- Flags
+  - M: IPv6アドレスの割り当てを決定
+    - ON: RAからの自動生成
+    - OFF: DHCPv6からのステートレス割り当て
+  - O: IPv6アドレス以外(DNS etc)の情報cofig
+    - ON: DHCPv6サーバからの取得
+    - OFF: DHCPv6を利用しない(手動)
+
+- memo
+  - RFC6106に対応していればRAにDNS情報を含めることが可能．
+    - RFC6106はobsoleteした．
+    - [RFC 6106 - IPv6 Router Advertisement Options for DNS Configuration](https://tools.ietf.org/html/rfc6106)
+  - RFC8106で続いて提案されている．(こちらを参照するべき．RFC6106の内容はAppendix Aで記載あり．)
+    - [RFC 8106 - IPv6 Router Advertisement Options for DNS Configuration](https://tools.ietf.org/html/rfc8106)
+  - つまりM=0, O=0で完全RAによりDNS，GW, IPv6 Addressの設定が完了する．
+
+- sequence
+1. client -- Solicit --> server
+1. client <- Advertise - server
+1. client -- Request --> server
+1. client <--- Reply---- server
+
+- config
+```
+# 定期RAの停止
+(config-if)# ipv6 nd ra suppress
+# 定期RAの停止，RSによるRA送出のいずれも停止．
+　Cisco(config-if) # ipv6 nd ra suppress all
+
+# Mフラグを立てる
+(config-if) # ipv6 nd managed-config-flag
+# Oフラグを立てる
+(config-if) # ipv6 nd other-config-flag
+
+# defaultはいずれも0(flag-down)
+```
 
 ## UDLD(UniDirectional Link Detection)
 - 単一方向リンク検知
 - 光ファイバ等片方向での障害が発生しやすい場合に効果的
+- デフォルトで15秒間隔でUDLDメッセージを送信．エコーが3回連続で帰ってこなかった場合は単一方向リンクになっているとみなす．
 
 - mode
   - aggressive
     - 光ファイバーリンクとツイストペアーリンク上の片方向トラフィックの検出が可能
     - err-disabledする
     - 光ファイバー接続におけるポートの誤った接続による単一方向リンクの検出が可能
+    - 単方向リンクを検出した場合は8回リンクの再確立を試みる．それでも再確立不能の場合はerr-disabledする．
   - normal
     - 光ファイバー接続におけるポートの誤った接続による単一方向リンクの検出が可能
     - 該当ポートをundeterminedにする．err-disabledしない
+    - 単一方向リンク検出時にはsyslogメッセージを残す．
 
 - 動作
   - Helloパケット(probe)を定期送信
@@ -758,13 +1047,14 @@
 - config
 ```
 # UDLDをグローバルに有効化
+# globalで設定すると光ファイバリンク上のみがUDLD有効となる
 (config)# udld [aggressive | enable | message time <message-timer-interval>]
 ## enbaleはnormal mode
 ## message-timer-intervalはhello間隔．1-90sec, defalut:15sec
 
 # UDLDをインターフェース上で有効化
 (config)# interface <interface-id>
-(config-if)# udld port [ aggressive]
+(config-if)# udld port [aggressive]
 
 # err-disableのreset
 - shut-noshut
@@ -778,7 +1068,7 @@
 ```
 # ストーム制御としきい値レベルの設定
 (config)# interface <interface-id>
-(config-if)# storm-control | broadcast | multicast | unicast level level [ level-low] | bps bps [ bps-low] | pps pps [ pps-low]
+(config-if)# storm-control | broadcast | multicast | unicast level level [level-low] | bps bps [bps-low] | pps pps [pps-low]
 - level: 上限閾値．帯域幅のpercentage指定(0.00-100.00)
 - level-low: 下限閾値．帯域幅のpercentage指定(0.00-100.00)
  etc...
@@ -787,7 +1077,7 @@
 
 # action
 (config)# interface interface-id
-(config-if)# storm-control action [ shutdown | trap]
+(config-if)# storm-control action [shutdown | trap]
   - trapはsnmptrapする．
 ```
 
@@ -827,6 +1117,15 @@
 (config)#monitor session <session_num> destination interface <interface-id> [encapsulation replicate]
 # encap. replicate: タグつけして送信
 ```
+- SPANのもろもろ
+  - 異セッションで同一のsrc int指定可能
+  - dest intは異なるセッションを1つのdest intに指定はできない．
+  - dest int と src intを同一にはできない．
+  - dest portはL2 protocols(STP, VTP, CDP, DTP, PAgP)不可．
+  - Dest port stateは`up/down(monitoring)`となる．
+  - port-channelはsrc portとして指定できるがdestにはできない．
+  - srcはsessionごとにvlan or physical port のいずれかのみ指定できる．
+  - port-channelのmemberをSPAN dest port にするとport-channelから外れる可能性がある．
 
 ## RSPAN(Remote Switched Port Analyzer)
 - mirrorしたpacketをtaggingしてvlanにのっけてやる
@@ -841,18 +1140,29 @@
 (config)#monitor session <session_num> source vlan remote vlan <vlan-id>
 (config)#monitor session <session_num> destination interface <interface-id> [both|tx|rx]
 ```
-- 標準VLAN（VLAN ID：1005以下）であれば，RSPAN VLANをVTPで伝搬可能
-- 拡張VLAN（VLAN ID：1006 ～ 4094）をRSPAN VLANとして使用する場合は，送信元と宛先および通過するスイッチに手動で同じRSPAN VLANを設定する必要がある
-- RSPANトラフィックが通過するすべてのスイッチでRSPAN VLANをサポートしている必要がある
+- RSPAN, RSPAN VLANのもろもろ
+  - 複数作成可
+  - trunk(tagged) only
+  - 全パケットフラッディング(mac学習しない)
+  - vlan に remote-spanを指定
+  - STP可
+  - private vlanのprimary, secondayになれない．
+  - RSPAN VLANはtrunk only
+  - RSPAN VLANはVTP,VTPプルーニング可
+  - 標準VLAN（VLAN ID：〜1005）はRSPAN VLANをVTPで伝搬可.
+  - 拡張VLAN（VLAN ID：1006 ～ 4094）をRSPAN VLANとして使用する場合は、そのVLANを利用するすべての機器に手動で同じRSPAN VLANを設定する必要がある．
+  - RSPAN trafficが通過する全てのスイッチでRSPAN VLANをサポートしている必要がある
 
 ## is 何
 - 送信元ストリッピング
 - PIMトラフィック
 
 ## err-disable
+- `shot interface status err-disable`
+  - だったっけ．でerr-disableのsummary/原因が見れたりする．もちろん`show int <interface_id>`でも見れると思うが．
 - shut-noshutで回復
 - `(config)# errdisable recovery cause <hoge>`
-    - 一定時間経過後recoveryとできる
+  - 一定時間経過後recoveryとできる
 
 ## NSF(Non-Stop Forwarding)
 - ネットワークレベルの冗長化機能
@@ -905,7 +1215,7 @@
 (config-ext-nacl)# permit ip any any
 # MAC ACL
 (config)# mac access-list extended <acl-name>
-(config-ext-macl)# permit [ host <source-mac> | any] [ host <dest-mac> | any]
+(config-ext-macl)# permit [host <source-mac> | any] [host <dest-mac> | any]
 
 (config)# vlan access-map V-MAP 10
 (config-access-map)# match ip address A-TCP
@@ -921,7 +1231,7 @@
 
 ### PACL(Port ACL)
 - ポートにかけるACL
-- in only
+- ingress only
 
 - config
 ```
@@ -935,7 +1245,7 @@
 
 # MAC ACL
 (config)# mac access-list extended <acl-name>
-(config-ext-macl)# permit [ host <source-mac> | any] [ host <dest-mac> | any]
+(config-ext-macl)# permit [host <source-mac> | any] [host <dest-mac> | any]
 
 (config)# interface gigabitethernet 0/1
 (config-if)# no switchport
@@ -948,7 +1258,7 @@
 (config-if)# ip access-group A-TCP2 in
 
 # ポートモードの設定
-(config-if)# access-group mode [ prefer port | merge]
+(config-if)# access-group mode [prefer port | merge]
   - prefer port: 優先ポートモード.PACLがL2ポートに適用している場合はPACLだけが有効になり，その他のACL（RACL VACL）を
 　無効にする．trunk portではこちらだけが可能．
   - merge: マージモード(defalut).PACL，VACL，RACLの順番でフィルタリング.
@@ -957,11 +1267,11 @@
 ## 802.1X
 - IEEE802.1X認証を行うためにはサプリカント，認証装置，認証サーバの3つの構成要素が必要
   - サプリカントSupplicant)
-    - IEEE802.1Xにおけるクライアントのこと．またはクライアントにインストールするソフトウェア．
-    - 認証を受けるクライアントはPCにインストールする必要があるが，最近のPCには標準搭載されている．
+    - IEEE802.1Xにおけるクライアントのこと
   - 認証装置(Authenticator)
-    - サプリカントと認証サーバの仲介役となるネットワーク機器．IEEE802.1X対応のLANスイッチまたは無線LANアクセスポイントのこと．
-    - これらの機器はサプリカントと認証サーバとの認証結果を受けて，  - ネットワークへのアクセス制御を行う．Ciscoは有線/無線LANスイッチともにIEEE802.1Xに標準対応．
+    - サプリカントと認証サーバを仲介するネットワーク機器．IEEE802.1X対応のSWやAP．
+    - サプリカントと認証サーバとの認証結果を受けてネットワークへのアクセス制御を行う．
+    - Ciscoは有線/無線LANスイッチともにIEEE802.1Xに標準対応．
   - 認証サーバ(Authentication Server)
     - ユーザ認証を行うサーバのこと．IEEE802.1X/EAPに対応したRadiusサーバを使用する．
   - 認証に証明書を使う場合はCA(Certificate Authority)が必要．
@@ -978,7 +1288,7 @@
 
 ### config
 ```
-# AAAの有効化（設定済みである場合，設定は不要）
+# AAAの有効化
 (config)# aaa new-model
 # RADIUSサーバの登録
 (config)# radius server <config-name>
@@ -990,7 +1300,7 @@
 (config-sg-server)# server name <config-name>
 
 # IEEE802.1X - グローバルでの有効化
-# AAAの有効化（設定済みである場合，設定は不要）
+# AAAの有効化
 (config)# aaa new-model
 # IEEE802.1X認証リストの設定
 (config)# aaa authentication dot1x default group [radius | group-name]
@@ -1004,7 +1314,7 @@
 (config)# interface <interface-id>
 (config-if)# switchport mode access
 # IEEE802.1X認証をポートで有効化
-(config-if)# authentication port-control [ auto | force-authorized | force-unauthorized]
+(config-if)# authentication port-control [auto | force-authorized | force-unauthorized]
   - auto: 認証が成功すると許可ステート，失敗すると無許可ステート
   - force-authorized: 強制的に許可ステート
   - force-unauthorized: 強制的に無許可ステート
@@ -1041,7 +1351,7 @@
 (config)# ip dhcp snooping
 
 # DHCPスヌーピングを有効にするVLANの指定
-(config)# ip dhcp snooping vlan vlan-id [ smartlog]
+(config)# ip dhcp snooping vlan vlan-id [smartlog]
 #ドロップされたパケットの内容をNetFlowの収集装置に送信したい場合はsmartlogオプションを指定
 
 # DHCP option 82フィールドの挿入・削除の有効化
@@ -1055,7 +1365,7 @@
 # DHCPパケットの送信元MACアドレスのチェック
 (config)# ip dhcp snooping verify mac-address
 # Option82のデータ挿入で使用されるリモートIDの設定
-(config)# ip dhcp snooping information option format remote-id [ string ASCII-string | hostname]
+(config)# ip dhcp snooping information option format remote-id [string ASCII-string | hostname]
 # DHCPスヌーピングデータベースエージェントの指定
 (config)# ip dhcp snooping database <url>
 ```
@@ -1074,7 +1384,7 @@
 (config)# ip dhcp snooping
 
 # DHCPスヌーピングを有効にするVLANの指定
-(config)# ip dhcp snooping vlan vlan-id [ smartlog]
+(config)# ip dhcp snooping vlan vlan-id [smartlog]
 #ドロップされたパケットの内容をNetFlowの収集装置に送信したい場合はsmartlogオプションを指定
 
 # DHCP option 82フィールドの挿入・削除の有効化
@@ -1082,9 +1392,10 @@
 
 # 1 or 2でsouce guardを設定
 # 1. IPソースガードの有効化（ 送信元IPアドレスによるフィルタリング ）
-# 送信元IPアドレスがDHCPスヌーピングバインディングテーブルのエントリ，または，手動設定のバインディングテーブルのエントリに合致した場合に転送
+# 送信元IPアドレスがDHCPスヌーピングバインディングテーブルのエントリ，または，手動設定のバインディングテーブルのエントリにmatchした場合に転送
 (config-if)# ip verify source
-# 3. IPソースガードの有効化（ 送信元IPアドレスと送信元MACアドレスによるフィルタリング ）
+
+# 2. IPソースガードの有効化（ 送信元IPアドレスと送信元MACアドレスによるフィルタリング ）
 # 送信元IPアドレスだけでなく送信元MACアドレスの両方が合致した場合に転送
 # DHCPサーバは「DHCPオプション82」をサポートしている必要がある
 (config-if)# ip verify source port-security
@@ -1092,11 +1403,12 @@
 # Options: スタティックに「IPソースバインディング」を追加する場合には以下のコマンドで定義します．
 # DHCPスヌーピングを有効にするVLANの指定
 (config)# ip source binding <mac-address> vlan <vlan-id> <ip-address> inteface <interface-id>
-
 ```
+- `show ip source binding`
 
 ### Dynamic ARP Inspection(DAI)
 - 環境とrequirement
+  - アクセスポート、トランクポート、EtherChannelポート、プライベート VLANポートでサポート
   - DHCP環境
     - DHCP Snoopig有効化が必要
   - 非DHCP環境
@@ -1113,7 +1425,7 @@
 (config)# ip dhcp snooping
 
 # DHCPスヌーピングを有効にするVLANの指定
-(config)# ip dhcp snooping vlan vlan-id [ smartlog]
+(config)# ip dhcp snooping vlan vlan-id [smartlog]
 #ドロップされたパケットの内容をNetFlowの収集装置に送信したい場合はsmartlogオプションを指定
 
 # DAIをVLAN単位で有効化
@@ -1130,10 +1442,10 @@
 ```
 # ARP検査のためのARP ACLの定義
 (config)# arp access-list <acl-name>
-(config-arp-acl)# permit ip host <sender-ip> mac host <sender-mac> [ log]
+(config-arp-acl)# permit ip host <sender-ip> mac host <sender-mac> [log]
 
 # ARP ACLのVLANへの適用
-(config)# ip arp inspection filter <acl-name> vlan <vlan-range> [ static]
+(config)# ip arp inspection filter <acl-name> vlan <vlan-range> [static]
 - staticを指定するとARP ACLに合致しない場合にフレームを破棄．
 - static指定しない場合，ARP ACLに合致しない場合DHCPスヌーピングバインディングテーブルを参照して判断
 
@@ -1146,7 +1458,7 @@
   - arp inspectionする場合，untrustedポートでデフォルトで有効．DoS等の緩和のため．
 ```
 # 着信ARPパケットのレート制限(defalut: 5pps, burst interval 1sec)
-(config)# ip arp inspection limit [ rate pps [ burst interval seconds] | none]
+(config)# ip arp inspection limit [rate pps [burst interval seconds] | none]
 
 # rate-limitに引っかかるとerr-disableになる．
 # DAI の errdisableステートからのエラー回復をイネーブルにして，DAI の回復メカニズムで使用する変数を設定
@@ -1157,29 +1469,32 @@
 
 - その他
 ```
-# ARPパケットの妥当性のチェック
-(config)# ip arp inspection validate [ src-mac] [ dst-mac] [ ip]
+# ARPパケットの正当性check
+(config)# ip arp inspection validate [src-mac] [dst-mac] [ip]
   - src-mac: イーサネットヘッダーの送信元MACアドレスと，ARPの送信元MACアドレスを比較
   - dst-mac: イーサネットヘッダーの宛先MACアドレスと，ARPの宛先 MAC アドレスが比較
   - ip: ARP本文から，無効なIPアドレスや予期しないIPアドレスがないかを確認してチェック
 
-# ログバッファの設定
+# logging buffer系の設定
 ## レートとか
-(config)# ip arp inspection log-buffer [ entries number | logs number interval seconds]
+(config)# ip arp inspection log-buffer [entries number | logs number interval seconds]
   - デフォルトで破棄パケットをログする．
 
 # パケットのタイプを制御
-(config)# ip arp inspection vlan vlan-id logging [ acl-match [ matchlog | none] | dhcp-bindings [ all | none | permit]
+(config)# ip arp inspection vlan vlan-id logging [acl-match [matchlog | none] | dhcp-bindings [all | none | permit]
 ```
+
+- ref:
+  - [Security Configuration Guide, Cisco IOS XE Release 3E (Cisco WLC 5700 Series)  - Configuring Dynamic ARP Inspection [Cisco 5700 Series Wireless LAN Controllers] - Cisco](https://www.cisco.com/c/en/us/td/docs/wireless/controller/5700/software/release/3e/security/configuration-guide/b_sec_3e_5700_cg/b_sec_3e_5700_cg_chapter_01111.html)
 
 ## NTP
 - UDP: 123
-- 最上位のNTPサーバ: stratum1, stratum15まで同期可能．
+- 最上位のNTPサーバからstratum1からstratum15まで同期可能．
 - 1900年1月1日0時0分0秒（UTC）を起点とする32ビットの積算秒数で表す
   - 2036年問題
 - NTPv4だとv6も使える．セキュリティが向上．NTPv3と下位互換性あり．
 
-- 同期モード
+- 同期(peer)モード
   - server/clientモード
     - NTPクライアントがNTPサーバに対して一方的に同期を行うモード
   - Symmetric, Active／Passiveモード
@@ -1202,7 +1517,7 @@
 # システムクロックの時刻情報をハードウェアクロックの時刻情報に同期
 # clock update-calendar
 
-(config)# ntp server [ ip-address | hostname] [prefer]
+(config)# ntp server [ip-address | hostname] [prefer]
   - prefer: 優先して同期
 # NTPサーバと時刻同期する際に，送信元アドレスを指定
 (config)# ntp source <interface>
@@ -1230,7 +1545,7 @@
 (config)# ntp server <ip-address> key <key-number>
 
 # NTPに対するACL制御
-(config)# ntp access-group [ query-only | serve-only | serve | peer] <acl-number>
+(config)# ntp access-group [query-only | serve-only | serve | peer] <acl-number>
 
 # 特定インターフェースでのNTPサービスの無効化
 (config)# interface <interface-id>
@@ -1256,7 +1571,6 @@
 
 # facility指定
 (config)# logging facility <facility-type>
-
 ```
 - ログで邪魔されたくない
 ```
@@ -1273,19 +1587,27 @@
 
 - versions
 ```
-+----------+------------+-----------------------------------------------------------------+
-| SNMP ver | RFC        | Descriptions                                                    |
-+----------+------------+-----------------------------------------------------------------+
-| SNMPv1   | RFC 1157   | SNMPコミュニティによる平文認証．SNMPトラップにおける再送確認なし        |
-| SNMPv2c  | RFC 1901   | SNMPコミュニティによる平文認証．SNMPトラップにおける再送確認あり        |
-| SNMPv3   | RFC 2273-5 | ユーザ単位の暗号化されたパスワード認証．SNMPトラップにおける再送確認あり  |
-+----------+------------+-----------------------------------------------------------------+
++----------+------------+--------------+--------------+--------------------------------------------------------------+
+| SNMP ver | RFC        | Security     |  Encryption  | Descriptions                                                 |
++----------+------------+--------------+--------------+--------------------------------------------------------------+
+| SNMPv1   | RFC 1157   | noAuthNoPriv |     None     | SNMPコミュニティによる平文認証．SNMPトラップにおける再送確認なし     |
++----------+------------+--------------+--------------+--------------------------------------------------------------+
+| SNMPv2c  | RFC 1901   | noAuthNoPriv |     None     | SNMPコミュニティによる平文認証．SNMPトラップにおける再送確認あり     |
++----------+------------+--------------+--------------+--------------------------------------------------------------+
+| SNMPv3   | RFC 2273-5 | noAuthNoPriv |     None     | ユーザ名による認証．SNMPトラップにおける再送確認あり                |
+| SNMPv3   | RFC 2273-5 |  authNoPriv  |     None     | HMAC-MD5 or HMAC-SHAに基づく認証．SNMPトラップにおける再送確認あり |
+| SNMPv3   | RFC 2273-5 |   authPriv   | DES/3DES/AES | HMAC-MD5 or HMAC-SHAに基づく認証．SNMPトラップにおける再送確認あり |
++----------+------------+--------------+--------------+--------------------------------------------------------------+
 ```
   - v3ではセキュリティ等が強化
     - ユーザID/PWによる認証
       - コミュニティ名ではなくUSM（User-based Security-Model)でuser名/PWによる認証
     - VACM（View-based Access Control Model
-      - ユーザごとに可能なMIBの範囲を定義できる昨日
+      - ユーザごとに可能なMIBの範囲を定義できる機能
+    - SNMPv3における認証には下記のいずれかを利用
+      - ユーザ名
+      - HMAC-MD5
+      - HMAC-SHA
 
 - message
 ```
@@ -1309,14 +1631,21 @@
 
 (config)# snmp-server host <ip_addr> <community_name>
 (config)# snmp-server host <ip_addr> version 2c <community_name>
-(config)# snmp-server host address [ informs | traps] [ version 1 | 2c | 3 auth | noauth | priv] <community-string> [type]
+(config)# snmp-server host address [informs | traps] [version 1 | 2c | 3 auth | noauth | priv] <community-string> [type]
 
 (config)# snmp-server enable traps [notification-types]
 
 
 # SNMPv3 - SNMPグループの設定 - ユーザ作成
-(config)# snmp-server user username groupname [ remote address v3 [ encrypted]auth [ md5 | sha] auth-password [ priv [ des | 3des | aes [ 128 | 192 | 256] priv-password
+(config)# snmp-server user username groupname [remote address v3 [encrypted]auth [md5 | sha] auth-password [priv [des | 3des | aes [128 | 192 | 256] priv-password
 ```
+- `show snmp community`
+- `show snmp location`
+- `show snmp contact`
+- `show snmp host`: trap先
+- `show snmp`: snmpサーバの稼働状況(agent)
+- `show snmp group`
+- `show snmp user`
 
 - RMON(Remote Monitoring MIB)
 
@@ -1345,9 +1674,9 @@
 ```
 # インターフェースへのNetFlowの適用
 (config)# interface <interface-id>
-(config-if)# ip flow [ ingress | egress]
+(config-if)# ip flow [ingress | egress]
 
-(config)# ip flow-export version [ 1 | 5 | 9]　[ origin-as | peer-as] [ bgp-nexthop]
+(config)# ip flow-export version [1 | 5 | 9]　[origin-as | peer-as] [bgp-nexthop]
 (config)# ip flow-export destination <address> <port>
 (config)# ip flow-export source <interface>
 
@@ -1361,10 +1690,30 @@
 
 ## PCAP
 
-
-
 ## Misc.
 - ICMPリダイレクトの無効化
   - `(config-if)# no ip redirect`
   - たぶんL3インタフェースじゃないとだめ
 - DSCP値
+- DORA process: DHCPのリースプロセスのこと．discover, offer, requect, ack.
+- port fastしてloopにならないのか．BPDU受信したときは？
+- uplink fast, backbone fast, port fastもう一度
+- SLIP、PPP、ARA
+
+- Cisco Power Calculator?
+- storm-control default value
+  - lower threshold はデフォルトでupper threshold と同値．
+  - つまりupperを超えて発動し，upperを下回れば解除．
+- AEPとは
+- port id priority (STP)のかえかた．単位
+  - 16?
+- bridge priority 設定単位 on PVST+
+- Which feature best describes NTP versions 3 or 4?
+- MHSRP
+- vlan hoppingを防ぐ
+- BPDUガード，BPDUフィルタリング，ルートガード，ループガード．
+- HSRP, GLBPをもうすこしやったほうがいい
+- monitor sessionするとdefault はrx/tx?(bothが正解)
+- CDPv1/v2の違い
+- HSRPでprioが一緒の時は？
+- MSTの設定で必須のものは

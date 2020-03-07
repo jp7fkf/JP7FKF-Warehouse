@@ -1,7 +1,7 @@
 # Cisco - BGP
 
 ## About BGP
-- TCP 179 port
+- TCP: `179`
 - Classless
 - triggerd update(differenece update)
 
@@ -65,6 +65,18 @@
 (config-router)# timers bgp <keepalive_interval> <holdtime>
 
 (config-route-map)# aggregate-address <address> <mask> [as-set] [as-confed-set] [summary-only] [advertise-map name] [attribute-map name] [supress-map name]
+
+# peer-groupを使う場合
+(config-router)# neighbor <group_name> peer-group
+(config-router)# neighbor <peer_ip> peer-group <group_name>
+(config-router)# neighbor <group_name> remote-as <as_num>
+
+# outのポリシはpeer-groupを使う場合neighbor個別にはできない．グループ全体で一つ．
+(config-router)# neighbor <group_name> route-map <map_name> out
+
+# inboundポリシは個別設定できる．
+(config-router)# neighbor <peer_ip> route-map <map_name> in
+
 
 ```
 
