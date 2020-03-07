@@ -16,6 +16,7 @@ $ cat /proc/device-tree/model
 -  [Raspberry PiのSDカードが壊れた！寿命を延ばす方法 5+1選!【運用編を追加】 | IoT PLUS](https://iot-plus.net/make/raspi/extend-sdcard-lifetime-5plus1/)
 
 ## GNSS Stratum1 NTP
+
 ### References
 - [Raspberry Pi + GPS ModuleでStratum1なNTPサーバをつくる](raspintp.md)
 - [#2 Raspberry Piで作るStratum1 NTPサーバをベランダで動かすまで - 猫にジャズ](https://notchi.hatenablog.jp/entry/2019/05/06/165659)
