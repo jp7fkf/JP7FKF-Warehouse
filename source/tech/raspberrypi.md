@@ -26,3 +26,58 @@ $ cat /proc/device-tree/model
 ### きのこアンテナ
 - HP Symmetricom 58532A
 - [58532A | eBay](https://www.ebay.com/sch/i.html?_from=R40&_trksid=m570.l1313&_nkw=58532A&_sacat=0&LH_TitleDesc=0&_osacat=0&_odkw=symmetricom+58532A&LH_TitleDesc=0)
+
+## SDカードへのwriteを減らす取り組み
+
+### swapとめる
+- raspbian
+```
+sudo systemctl status dphys-swapfile.service
+sudo systemctl stop dphys-swapfile.service
+sudo systemctl disable dphys-swapfile.service
+```
+- ubuntu
+```
+% sudo swapoff -a
+% free
+              total        used        free      shared  buff/cache   available
+Mem:        3882424      275812     2606140        4088     1000472     3546192
+Swap:             0           0           0
+# あと/etc/fstab みておけばいい
+```
+
+### ramdisk
+```
+# /etc/fstab
+# tmpfile
+tmpfs /tmp     tmpfs defaults,size=64m,noatime,mode=1777  0       0
+tmpfs /var/tmp tmpfs defaults,size=32m,noatime,mode=1777  0       0
+# /var/log
+tmpfs /var/log tmpfs defaults,size=64m,noatime,mode=0755  0       0
+```
+```
+$ sudo rm -rf /tmp
+$ sudo rm -rf /var/tmp
+$ sudo shutdown -r now
+$ df -h
+```
+
+### /etc/rsyslog.conf をいいかんじに
+- 必要なものだけだそうな．
+
+### 起動時にlog directoryをつくる
+```
+$ cat /etc/rc.local
+#!/bin/sh -e
+# for ramdisk
+mkdir -p /var/log/zabbix-agent/
+chown zabbix:zabbix /var/log/zabbix-agent/
+
+exit 0
+```
+- [【新旧対応】Linuxでの自動起動の設定方法を解説](https://eng-entrance.com/linux_startup)
+
+### crontabにこんな感じでかくと起動時に実行する．
+```
+@reboot /bin/sh /home/jp7fkf/cmd_boot.sh
+```

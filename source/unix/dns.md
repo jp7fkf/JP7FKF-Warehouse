@@ -46,7 +46,7 @@ RFC3484にはこう書かれている．
     ```
 
   - この場合，SOAがns1なので，ns1がprimary と機能していると見ることができる．
-  
+
 ## ゾーン転送
   - `dig @<server> <domain> axfr`
 
@@ -150,6 +150,7 @@ RFC3484にはこう書かれている．
     - fastlyのunbound.confなんてmodule-config自体commented out されてたな :thinking_face:
     - `module-config: "iterator"` となっていればok
   - [DNSSECを無効にする方法 – 日本Unboundユーザー会](https://unbound.jp/unbound/howto_turnoff_dnssec/)
+  - [Ubuntu 18.04でnameserverが127.0.0.53になってしまう - 発声練習](http://next49.hatenadiary.jp/entry/20190418/1555568222)
 
 ## 基本config
 - このあたり書いておけばとりあえずresolverとしては動きそう．細かいことはgoogleって人がよく知っているので聞いてみるといい．
@@ -166,9 +167,49 @@ RFC3484にはこう書かれている．
 
 ### ログを取る
 ```
-server: 
+server:
   logfile: "/var/unbound/var/log/unbound.log"
   use-syslog: no
+```
+- 単にこうするだけだとapparmorに怒られる
+```
+# /var/log/syslog
+Mar 11 20:53:58 dns01 kernel: [ 1575.963648] audit: type=1400 audit(1583960038.020:22): apparmor="DENIED" operation="mkno
+d" profile="/usr/sbin/unbound" name="/var/log/unbound/unbound.log" pid=1761 comm="unbound" requested_mask="c" denied_mask
+="c" fsuid=111 ouid=111
+
+# apparmorにpolicyを書く
+$ vim /etc/apparmor.d/local/usr.sbin.unbound
+  /var/log/unbound/unbound.log rw, #これを書いておく．
+
+#よみなおして
+$ apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
+
+# unbound restart
+$ sudo systemctl restart unbound
+
+# にしても新規でunbound.logは作成できないので．
+$ sudo touch /var/log/unbound/unbound.log
+$ sudo chown /var/log/unbound/unbound.log
+は実施する必要がある．下記logrotateでは`create 0640 unbound unbound`しているので自動で作成されるはず．
+```
+
+- logrotateのexampleこんな感じかな
+  - デフォルトだと`/run/unbound.pid`としてpidファイルができる．
+```
+/var/log/unbound/unbound.log {
+    weekly
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 unbound unbound
+    sharedscripts
+    postrotate
+        [ -e /run/unbound.pid ] && invoke-rc.d unbound force-reload >/dev/null || true
+    endscript
+}
 ```
 
 ## localにかいとくとき．

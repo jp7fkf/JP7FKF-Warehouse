@@ -6,6 +6,12 @@
     - AH0CV (US)
   - Major
     - Networking, Electronics, Microwave Wireless Power Transfer
+  - Skills(少しでも触ったことがある．経験がある，おもしろいスキルなど)
+    - Make: NCフライス, ワイヤ放電加工機, ロボット溶接, ろう付け, 画像測定機, 3D printing
+    - Electronics: スパッタリング, 基盤加工機, 高周波回路
+    - Masurement: XRD, XPS, 高周波測定, Vector Nerwork Analyzer, Spectrum Analyzer
+    - Programming: C, C++, C#, Python, Ruby, Fortran95,
+    - Information Tech.: Networking, Ruby on Rails,
   - SNS etc
     - [Github](https://github.com/jp7fkf)
     - [Twitter](https://twitter.com/jp7fkf)
@@ -114,6 +120,7 @@
   - 2020/02  CCNP Switch(300-115) Pass(856/1000(boarder: 790))
   - 2020/02  CCNP Route(300-101) Fail(779/1000(boarder: 790))
   - 2020/02  危険物取扱者 乙種第4類 Pass(法令80%, 物理・化学100%, 性質・消火90%)
+  - 2020/04  危険物取扱者 乙種第4類 免状交付
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.

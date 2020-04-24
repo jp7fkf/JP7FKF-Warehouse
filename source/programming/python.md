@@ -67,18 +67,19 @@ print('Error: configuration failed', file=sys.stderr)
 
 - service fileを書く
 ```
-% cat /etc/systemd/system/testscript_py.service
+% cat /etc/systemd/system/fkfbot.service
 [Unit]
-Description = testscript_py
+Description = fkfbot
+After=network.target network-online.target
 
 [Service]
-ExecStart = /home/jp7fkf/testscript_py/run.py
+ExecStart = /home/jp7fkf/fkfbot/run.py
 Restart = always
+RestartSec=30
 Type = simple
 
 [Install]
 WantedBy = multi-user.target
-
 ```
 - おまじない
 ```

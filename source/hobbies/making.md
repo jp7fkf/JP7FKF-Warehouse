@@ -42,7 +42,7 @@
   - n秒ごとにステップ応答となるようにFETの抵抗値を制御．
   - オシロで測定対象の電源電圧，電流を測定することで電源の特性を見る．
 
-- 必要ピン数: 
+- 必要ピン数:
 - MCUから:
   - I2C for DAC: x2
   - LCD signal: x7
@@ -53,7 +53,7 @@
   - 電圧，電流監視(電流は足し算でいいとして．．．)x1pin電圧用？
 
 - 基板から
-  - 4パラFET構成．(司令電圧x1 + 電流センス差動x2) x4 
+  - 4パラFET構成．(司令電圧x1 + 電流センス差動x2) x4
   - LCD
 
 ## ネットワークアナライザ
@@ -63,7 +63,7 @@
   - [メモ帳:BEHRINGER MICROAMP HA400 - livedoor Blog（ブログ）](http://blog.livedoor.jp/r_ten/archives/51933905.html)
   - [ベリンガーヘッドフォンアンプHA400のオーディオ化改造](https://skeishi.web.fc2.com/audio/kaizou/HA400/HA400.html)
   - [HA400改造についての注意点：KAZNYANの備忘録](https://s.webry.info/sp/kunekune.at.webry.info/200903/article_5.html)
-  
+
 ## やっぱbt console需要あると
 - RN4020では無理．BT Classis使う．
 
@@ -88,6 +88,10 @@
   - dual ext. 出力したい場合は，MakerBot Desktopを使うといい．
   - [Installing MakerBot Desktop | MakerBot Desktop (Software) | MakerBot Support](https://support.makerbot.com/learn/makerbot-desktop-software/installation-and-setup/installing-makerbot-desktop_11222)
   - 無論2xも対応している．deviceから選択する．
+- PLAはノズルがつまりやすい．原因はまだ不明だがシリコンオイルを塗布してやると改善するよう．シリコンスプレーでいい．
+  - print中にいきなりエクストルーダがガチガチ言い出して樹脂を吐けなくなる．Fillament Unload/Loadしないと治らない．
+- Catalina からはMakerBot Desktopが動かなくなった．かなしい．Windows10ではまだ動くのでそっちでコード生成してる．
+- [How to Unclog a Nozzle | MakerBot Replicator 2X | MakerBot Support](https://support.makerbot.com/learn/makerbot-replicator-2x/extruders/how-to-unclog-a-nozzle_13469)
 
 ### 3D Printingの条件
 すくなくとも手持ちのReplicator 2xで良さげだと思われるパラメータを記載する．

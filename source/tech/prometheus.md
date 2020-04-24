@@ -16,6 +16,9 @@ sudo chown 65534:65534 /opt/prometheus/data
 - [PrometheusでNW機器のSNMP監視 - Qiita](https://qiita.com/paihu/items/80a95b2eaf3b17a921af)
 - [prometheusのsnmp exporterをdockerで動かす](https://hakengineer.xyz/2018/05/16/post-1202/)
 
+#### snmp-expoerterをcurlで叩く　
+- `curl -s '<snmp-exporter-ip>:9116/snmp?target=x.x.x.x&module=cisco'`
+
 ### prometheus misc
 - https://kazuhira-r.hatenablog.com/entry/2019/02/11/205455
 - [Prometheus 使ってみたメモ - ngyukiの日記](https://ngyuki.hatenablog.com/entry/2017/11/14/203554)

@@ -151,6 +151,9 @@
   - つーかkyuko-calのpromotionしたほうがいいんじゃ．
 - ナミヤ雑貨店の奇蹟
 - NW-L1な本を書いてみるとか．なかなかない．
+- モールスでニュース記事を読み上げる君
+- goでmibブラウザ
+- [AWS 認定 ソリューションアーキテクト - プロフェッショナル | AWS](https://pages.awscloud.com/TRAINCERT_GOTOPRO_Confirmation.html)
 
 ## blog
 - rfc3074の解説
