@@ -29,6 +29,7 @@ Welcome to JP7FKF-Warehouse!
   dialy/201912
   dialy/202001
   dialy/202002
+  dialy/202004
 
   todo
   programming/sh
@@ -60,6 +61,7 @@ Welcome to JP7FKF-Warehouse!
   tech/raspintp
   tech/raspberrypi
   tech/strongswan
+  tech/omron
   unix/iptables
   unix/namespace
   unix/nmap
