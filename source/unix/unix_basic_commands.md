@@ -561,3 +561,9 @@ da39a3ee5e6b4b0d3843bfef95601890afd80709  test
 % shasum -a 1 -c test.sha1
 test: OK
 ```
+
+## unixtimeからhuman readableな時刻に変換
+```
+$ date -r 156680063
+Mon Aug 26 15:23:56 JST 2019
+```

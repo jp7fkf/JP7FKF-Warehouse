@@ -94,48 +94,183 @@ proxy_set_header X-Real-IP $remote_addr;
   - [えっ！ wwwあり・なし両方は未対応 CPI SSLサーバー証明書 | サイト構築日記](http://memories.zal.jp/WP/blog/20180716_2979.html)
 
 ## h2o
-  - h2oをcentos7にいれる
-    - [GitHub - tatsushid/h2o-rpm: Unofficial H2O RPM for Fedora, RHEL/CentOS and OpenSUSE builder](https://github.com/tatsushid/h2o-rpm) を参考にyumでいれる．
-    ```
-    [jp7fkf@localhost]$ cat /etc/yum.repos.d/bintray-tatsushid-h2o-rpm.repo
-    #bintray-tatsushid-h2o-rpm - packages by tatsushid from Bintray
-    [bintray-tatsushid-h2o-rpm]
-    name=bintray-tatsushid-h2o-rpm
-    #If your system is CentOS
-    baseurl=https://dl.bintray.com/tatsushid/h2o-rpm/centos/$releasever/$basearch/
-    #If your system is Fedora
-    #baseurl=https://dl.bintray.com/tatsushid/h2o-rpm/fedora/$releasever/$basearch/
-    gpgcheck=0
-    repo_gpgcheck=0
-    enabled=1
-    ```
-    をかいて
-    - `yum install h2o` する．
-
-  - configをかいてstart/enable
+- h2oをcentos7にいれる
+  - [GitHub - tatsushid/h2o-rpm: Unofficial H2O RPM for Fedora, RHEL/CentOS and OpenSUSE builder](https://github.com/tatsushid/h2o-rpm) を参考にyumでいれる．
   ```
-  [root@localhost]# vim /etc/h2o/h2o.conf
-    # configを書く
-
-  [root@localhost]# systemctl restart h2o
-  [root@localhost]# systemctl status h2o
-  ● h2o.service - H2O - the optimized HTTP/1, HTTP/2 server
-     Loaded: loaded (/usr/lib/systemd/system/h2o.service; enabled; vendor preset: disabled)
-     Active: active (running) since Mon 2019-03-04 06:06:09 UTC; 1s ago
-    Process: 29122 ExecStop=/bin/kill -TERM ${MAINPID} (code=exited, status=1/FAILURE)
-   Main PID: 29980 (perl)
-     CGroup: /system.slice/h2o.service
-             ├─29980 perl -x /usr/share/h2o/start_server --pid-file=/var/run/h2o/h2o.pid --log-file=/var/log/h2o/error.log --port=0.0.0.0:443 --port=...
-             ├─29981 /usr/sbin/h2o -c /etc/h2o/h2o.conf
-             ├─29982 /usr/sbin/h2o -c /etc/h2o/h2o.conf
-             └─29986 perl -x /usr/share/h2o/annotate-backtrace-symbols
-
-  Mar 04 06:06:09 instance-1 systemd[1]: Started H2O - the optimized HTTP/1, HTTP/2 server.
-  Mar 04 06:06:09 instance-1 h2o[29980]: start_server (pid:29980) starting now...
+  [jp7fkf@localhost]$ cat /etc/yum.repos.d/bintray-tatsushid-h2o-rpm.repo
+  #bintray-tatsushid-h2o-rpm - packages by tatsushid from Bintray
+  [bintray-tatsushid-h2o-rpm]
+  name=bintray-tatsushid-h2o-rpm
+  #If your system is CentOS
+  baseurl=https://dl.bintray.com/tatsushid/h2o-rpm/centos/$releasever/$basearch/
+  #If your system is Fedora
+  #baseurl=https://dl.bintray.com/tatsushid/h2o-rpm/fedora/$releasever/$basearch/
+  gpgcheck=0
+  repo_gpgcheck=0
+  enabled=1
   ```
+  をかいて `yum install h2o` する．
 
-  - 残念ながらchromeなどではhttpsじゃないとhttp2にならずにhttp1.1で処理される．
+- configをかいてstart/enable
+```
+[root@localhost]# vim /etc/h2o/h2o.conf
+  # configを書く
 
+[root@localhost]# systemctl restart h2o
+[root@localhost]# systemctl status h2o
+● h2o.service - H2O - the optimized HTTP/1, HTTP/2 server
+   Loaded: loaded (/usr/lib/systemd/system/h2o.service; enabled; vendor preset: disabled)
+   Active: active (running) since Mon 2019-03-04 06:06:09 UTC; 1s ago
+  Process: 29122 ExecStop=/bin/kill -TERM ${MAINPID} (code=exited, status=1/FAILURE)
+ Main PID: 29980 (perl)
+   CGroup: /system.slice/h2o.service
+           ├─29980 perl -x /usr/share/h2o/start_server --pid-file=/var/run/h2o/h2o.pid --log-file=/var/log/h2o/error.log --port=0.0.0.0:443 --port=...
+           ├─29981 /usr/sbin/h2o -c /etc/h2o/h2o.conf
+           ├─29982 /usr/sbin/h2o -c /etc/h2o/h2o.conf
+           └─29986 perl -x /usr/share/h2o/annotate-backtrace-symbols
+
+Mar 04 06:06:09 instance-1 systemd[1]: Started H2O - the optimized HTTP/1, HTTP/2 server.
+Mar 04 06:06:09 instance-1 h2o[29980]: start_server (pid:29980) starting now...
+```
+- 残念ながらchromeなどではhttpsじゃないとhttp2にならずにhttp1.1で処理される．
+
+### h2oでbasic authをする
+
+```
+  "www.example.com:443":
+    listen:
+      port: 443
+      ssl:
+        minimum-version: TLSv1.2
+        certificate-file: /path/to/fullchain.pem
+        key-file: /path/to/privkey.pem
+    paths:
+      "/secretdir":
+        mruby.handler: |
+          require "htpasswd.rb"
+          Htpasswd.new("/path/to/.htpasswd", "reclaim-name")
+        file.dir: /path/to/secretdir
+        file.dirlisting: ON
+```
+
+このrequireはどこにあるかというと， `#{$H2O_ROOT}/share/h2o/mruby/htpasswd.rb` であり，
+h2o 2.0以降では `$LOAD_PATH` にこのパスが通る様になっている．
+通常何も指定しない場合，/usr/share/h2o配下にこのあたりのモジュールが入っている．
+
+```
+$ cat /usr/share/h2o/mruby/htpasswd.rb | head -50
+
+# based on public-domain code by cho45
+#
+# Copyright (c) 2015 DeNA Co., Ltd., Kazuho Oku
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+#
+class Htpasswd
+
+  attr_accessor :path
+  attr_accessor :realm
+
+  def initialize(path, realm)
+    @path = path
+    @realm = realm
+  end
+
+  def call(env)
+    if /\/\.ht/.match(env['PATH_INFO'])
+      return [ 404, { "Content-Type" => "text/plain" }, [ "not found" ] ]
+    end
+    auth = env['HTTP_AUTHORIZATION']
+    if auth
+      method, cred = *auth.split(' ')
+      if method.casecmp("basic") == 0
+        user, pass = cred.unpack("m")[0].split(':', 2)
+        begin
+          if lookup(user, pass)
+            return [ 399, { "x-fallthru-set-remote-user" => user }, [] ]
+          end
+        rescue => e
+          $stderr.puts "failed to validate password using file:#{@path}:#{e.message}"
+          return [ 500, { "Content-Type" => "text/plain" }, [ "Internal Server Error" ] ]
+        end
+      end
+```
+- ref:[h2o/htpasswd.rb at master · h2o/h2o · GitHub](https://github.com/h2o/h2o/blob/master/share/h2o/mruby/htpasswd.rb)
+`htpasswd -c -b /etc/httpd/conf/.htpasswd <username> <password>`
+
+- memo
+  - これはただのメモだけどbasic authの認証情報はブラウザがcacheするのが基本っぽい．
+  - なので検証したいときとかはincognitoモードをうまく使うとかやらないとハマりがち．
+  - 2020-05-14 21:07時点ではchromeではincognitoモードで起動しなおせばちゃんと再認証が求められる．
+    - しかしこのケースでも一旦認証すると再度incognitoモードで開き直さないと再認証は求められない．
+
+- References
+  - [Using Basic Authentication - Configure - H2O - the optimized HTTP/2 server](https://h2o.examp1e.net/configure/basic_auth.html)
+  - [Kazuho's Weblog: H2O version 1.7.0-beta1 released with enhanced mruby scripting, CGI, and much more](http://blog.kazuhooku.com/2016/01/h2o-version-170-beta1-released-with.html)
+  - [h2oでBasic認証を実装する - Qiita](https://qiita.com/VTRyo/items/dcb18f57c2748434d072)
+
+### nginxみたいにconfigの文法/loadチェックは `-t` でできる．
+```
+$ sudo h2o -t
+[OCSP Stapling] testing for certificate file:/path/to/fullchain.pem
+fetch-ocsp-response (using OpenSSL 1.1.1  11 Sep 2018)
+sending OCSP request to http://ocsp.int-x3.letsencrypt.org
+/path/to/fullchain.pem: good
+  This Update: May 12 18:00:00 2020 GMT
+  Next Update: May 19 18:00:00 2020 GMT
+verifying the response signature
+verify OK (used: -VAfile /tmp/yp4JpXw_Bx/issuer.crt)
+[OCSP Stapling] stapling works for file:/path/to/fullchain.pem
+[OCSP Stapling] testing for certificate file:/path/to/fullchain.pem
+fetch-ocsp-response (using OpenSSL 1.1.1  11 Sep 2018)
+sending OCSP request to http://ocsp.int-x3.letsencrypt.org
+/path/to/fullchain.pem: good
+  This Update: May 12 18:00:00 2020 GMT
+  Next Update: May 19 18:00:00 2020 GMT
+verifying the response signature
+verify OK (used: -VAfile /tmp/tNeG5H545D/issuer.crt)
+[OCSP Stapling] stapling works for file:/path/to/fullchain.pem
+[OCSP Stapling] testing for certificate file:/path/to/fullchain.pem
+fetch-ocsp-response (using OpenSSL 1.1.1  11 Sep 2018)
+sending OCSP request to http://ocsp.int-x3.letsencrypt.org
+/path/to/fullchain.pem: good
+  This Update: May 12 18:00:00 2020 GMT
+  Next Update: May 19 18:00:00 2020 GMT
+verifying the response signature
+verify OK (used: -VAfile /tmp/O1wciPVZvm/issuer.crt)
+[OCSP Stapling] stapling works for file:/path/to/fullchain.pem
+[OCSP Stapling] testing for certificate file:/path/to/fullchain.pem
+fetch-ocsp-response (using OpenSSL 1.1.1  11 Sep 2018)
+sending OCSP request to http://ocsp.int-x3.letsencrypt.org
+/path/to/fullchain.pem: good
+  This Update: May 12 18:00:00 2020 GMT
+  Next Update: May 19 18:00:00 2020 GMT
+verifying the response signature
+verify OK (used: -VAfile /tmp/4KgvYYetqh/issuer.crt)
+[OCSP Stapling] stapling works for file:/path/to/fullchain.pem
+configuration OK
+```
+- ssl証明書のチェックもしてくれるっぽい．ありがたい．
+
+### ディレクトリ構造を出したい
+- `file.dirlisting: ON` とする．indexが見えるようになる．
+- nginxで言う `autoindex on;` 相当
 
 ## Let's Encrypt
 
@@ -409,7 +544,7 @@ www.jp7fkf.dev = /path/to/document/root
 ## apache2 (ubuntu18?)
 ### apache2でdocument rootをredirectする．
 - たとえば `http:x.x.x.x/` を `http:x.x.x.x/git/` にリダイレクトしたければ，virtual hostなどに下記を書く．
-- `RedirectMatch ^/$ /git/` 
+- `RedirectMatch ^/$ /git/`
 
 ### `/etc/apache2/*-enabled` と `/etc/apache2/*-avaialable`
 - Q. なぜフォルダが2つあるのか(available, enabled)

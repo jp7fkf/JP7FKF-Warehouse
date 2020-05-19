@@ -39,3 +39,13 @@ LxW(mm),  呼び:(mm, inch)
 ```
 
 ## [Fetmet](https://www.muratasoftware.com/en/)
+
+## 起こしたい基板候補
+- イコライザ(slide volume)
+- 電子負荷装置
+- ESP系.02/32
+- D-Amp?
+- SWR meter?
+- RF Power Meter?
+- 電力監視
+- Signal Tower

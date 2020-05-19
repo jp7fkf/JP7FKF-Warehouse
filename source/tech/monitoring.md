@@ -28,6 +28,8 @@
 ### チケットシステム系
 - [PagerDuty](https://www.pagerduty.com/)
 - [Service Now](https://www.servicenow.com/)
+- [GitHub - Netflix/dispatch: All of the ad-hoc things you're doing to manage incidents today, done for you, and much more!](https://github.com/Netflix/dispatch)
+  - netflixがOSS化したtool．危機管理系．jiraやpagerdutyなどの各種saas等とも連携可能らしい．
 
 ### Flow
 - [GitHub - pmacct/pmacct: pmacct is a small set of multi-purpose passive network monitoring tools [NetFlow IPFIX sFlow libpcap BGP BMP RPKI IGP Streaming Telemetry].](https://github.com/pmacct/pmacct)
