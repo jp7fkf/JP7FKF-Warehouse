@@ -104,7 +104,7 @@ dc=example,dc=com
     └── cn=%group1
 ```
 ユーザのみであればだいたいこんなもんでいいのではなかろうか．機器系が入る場合は別にserver/networkなどを分けてあげればよさそう．
-ちなみにsssdはデフォルトでsudoはbasedir配下のsudoers配下を見る．これとは異なるsudoers dir構成にするならsss.confで明示指定が必要．
+ちなみにsssdはデフォルトでsudoは `ldap_search_base` 配下のsudoers配下を見る．これとは異なるsudoers dir構成にするなら `sssd.conf` で明示指定( `ldap_sudo_search_base` )が必要．
 
 ### openldap install buttle on ubuntu18.04
 ```
@@ -623,6 +623,114 @@ olcObjectClasses: {0}( 1.3.6.1.4.1.15953.9.2.1 NAME 'sudoRole' DESC 'Sudoer
       ```
     - 属性はこれ以外にもたせない．末尾にいろいろついてるけどいらないので消す
     - `ldapadd -Q -Y EXTERNAL -H ldapi:// -f sudoRole.ldif` でいれる．これでsudoRoleがつかえるようになる．
+- example
+```
+dn: cn=%sudo,ou=SUDOers,dc=example,dc=com
+cn: %sudo
+objectclass: top
+objectclass: sudoRole
+sudocommand: ALL
+sudohost: ALL
+sudooption: !authenticate
+sudorunasuser: ALL
+sudouser: %sudo
+```
+  - sudooptionをたとえば `!authenticate` とするとパスワード認証なしで実行できたりする．他にもoptionは様々ある．
+
+- sssでsudoを使う場合には `sssd.conf` で `sudo_provider   = ldap` などと指定する必要あり．
+```
+root@sssclient:/home/labuser# cat /etc/sssd/sssd.conf
+#[sssd]
+#services = nss, pam, ssh
+#config_file_version = 2
+#domains = default
+#
+#[sudo]
+#
+#[nss]
+#
+#[pam]
+#offline_credentials_expiration = 60
+#
+#[domain/default]
+##ldap_id_use_start_tls = True
+#cache_credentials = True
+#ldap_search_base = dc=example,dc=com
+#id_provider = ldap
+#auth_provider = ldap
+#chpass_provider = ldap
+#access_provider = ldap
+#ldap_uri = ldap:///
+#ldap_default_bind_dn = cn=Manager,dc=example,dc=com
+#ldap_default_authtok = passwd
+##ldap_tls_reqcert = demand
+##ldap_tls_cacert = /etc/ssl/certs/cacert.crt
+##ldap_tls_cacertdir = /etc/ssl/certs
+#ldap_search_timeout = 50
+#ldap_network_timeout = 60
+#ldap_access_order = filter
+#ldap_access_filter = (objectClass=posixAccount)
+#
+[sssd]
+
+debug_level         = 0
+config_file_version = 2
+services            = nss, pam, ssh, sudo
+domains             = default
+
+[domain/default]
+
+id_provider     = ldap
+auth_provider   = ldap
+chpass_provider = ldap
+sudo_provider   = ldap
+
+ldap_uri              = ldap://x.x.x.x/
+ldap_search_base      = dc=example,dc=com
+ldap_id_use_start_tls = False
+
+ldap_search_timeout              = 3
+ldap_network_timeout             = 3
+ldap_opt_timeout                 = 3
+ldap_enumeration_search_timeout  = 60
+ldap_enumeration_refresh_timeout = 300
+ldap_connection_expire_timeout   = 600
+
+ldap_sudo_smart_refresh_interval = 600
+ldap_sudo_full_refresh_interval  = 10800
+# ldap_sudo_search_base = dc=sudoers,dc=example,dc=com
+
+entry_cache_timeout = 1200
+cache_credentials   = True
+
+[nss]
+
+homedir_substring = /home
+
+entry_negative_timeout        = 20
+entry_cache_nowait_percentage = 50
+
+[pam]
+reconnection_retries = 3
+offline_credentials_expiration = 2
+offline_failed_login_attempts = 3
+offline_failed_login_delay = 5
+
+[sudo]
+
+[autofs]
+
+[ssh]
+
+[pac]
+
+[ifp]
+```
+
+-  References
+  - [None](https://kifarunix.com/how-to-configure-sudo-via-openldap-server/)
+  - [Sudoers LDAP Manual](https://www.sudo.ws/man/1.8.17/sudoers.ldap.man.html)
+  - [None](https://qrunch.net/@komu/entries/6k2cx7indCQYQAFy?ref=qrunch)
 
 ## ldap x freeradius
 ```
