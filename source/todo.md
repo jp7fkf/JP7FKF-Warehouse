@@ -157,7 +157,8 @@
 - [AWS 認定 ソリューションアーキテクト - プロフェッショナル | AWS](https://pages.awscloud.com/TRAINCERT_GOTOPRO_Confirmation.html)
 - [統計検定 1 級に合格する方法 - Qiita](https://qiita.com/drken/items/089b8443305df047b44e)
   - いつかチャレンジしてみたい
+- react
+- Open K-CO
 
 ## blog
-- zab agent bux fixのはなし
 - spectrum analyzer修理した話

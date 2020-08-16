@@ -215,8 +215,8 @@ output{
 ## logstash x grok
 - [LogstashでのGrokの始め方 - Qiita](https://qiita.com/tuneyukkie/items/75cbb4d44f901fec2188)
 
-
-# 概要
+## [Ubuntu18.04にELK Stackを構成する - JP7FKFの備忘録](https://jp7fkf.hatenablog.jp/entry/20200518/1589808230)
+### 概要
 - Ubuntu18.04に
 - Elasticsearch(7.7)まわりのdebパッケージを
 - aptレポジトリから引っ張ってきて
@@ -230,19 +230,19 @@ output{
 - [Install Elasticsearch with Debian Package | Elasticsearch Reference [7.7] | Elastic](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html)
 
 
-## Elastic Stack Install Battle
-### Install PGP key
+### Elastic Stack Install Battle
+#### Install PGP key
 ```
 $ wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 OK
 ```
-### add repository to apt source list
+#### add repository to apt source list
 ```
 $ echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 deb https://artifacts.elastic.co/packages/7.x/apt stable main
 ```
 
-### Install Elasticsearch
+#### Install Elasticsearch
 ```
 $ sudo apt update
 $ sudo apt install elasticsearch
@@ -408,7 +408,7 @@ dpkg: error processing package logstash (--configure):
 
 - ref: [OpenJDK: Download and install](https://openjdk.java.net/install/)
 
-### Install logstash and Kibana
+#### Install logstash and Kibana
 ```
 $ java -version
 openjdk version "1.8.0_252"
@@ -567,7 +567,7 @@ discover画面に行って確認すると，無事先ほどのloggerコマンド
 ```
 ここまでで一通りELKスタックを用いてsyslogをkibanaで見えるようになった．
 
-###　まとめ
+### まとめ
 - Ubuntu18.04にElastic Stack (ELK, Logstash, Elasticsearch, Kibana)をaptパッケージを用いて構築した
 - Logstash(log insert) -> Elasticsearch(processiog) <-> Kibana(visualize)のパイプラインにsyslogを投入しkibanaで観測した．
 
