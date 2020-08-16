@@ -8,6 +8,10 @@
   - `ldapadd -x -W -D {execrole_path} -f {ldif_file}`
   - `ldapdelete -x -D {execrole_path} -W {path}`
     - `ldapdelete -x -D cn=Manager,dc=example,dc=com -W uid=user1,ou=users,dc=example,dc=com`
+- 用語
+  - CN: Common Name
+  - OU: Organizational Unit
+  - DC: Domain Component
 
 ## 基本的なobjectsの登録example
 ```
@@ -85,6 +89,7 @@ mail: testuser1@example.com
 sshPublicKey: xxxxx
 userPassword: {SSHA}xxxxx
 ```
+ここで注意すべきはgid,uidが認証先(client)側のサーバのlocalと衝突しないような設計を行うこと．基本的に5000番以上などの高い数値域をldapに割り当てると良さそうだ．
 
 ## 概ねどんなツリーだとよさそうか
 ```
@@ -480,6 +485,7 @@ overlay unique
        unique_uri ldap:///?mail?sub?
 
 ```
+- [OSS EXPO: OpenLDAPのuniqueオーバーレイ](http://ossexpo.blogspot.com/2013/04/openldapunique.html)
 
 ## sudo schema の設定
 ```
@@ -731,6 +737,37 @@ offline_failed_login_delay = 5
   - [None](https://kifarunix.com/how-to-configure-sudo-via-openldap-server/)
   - [Sudoers LDAP Manual](https://www.sudo.ws/man/1.8.17/sudoers.ldap.man.html)
   - [None](https://qrunch.net/@komu/entries/6k2cx7indCQYQAFy?ref=qrunch)
+  - [OpenLDAPとSSSDを利用したユーザー認証 - Qiita](https://qiita.com/mypaceshun/items/9c3b3f0ef9580c6d60ea)
+
+### sssd client側で `groups: cannot find name for group ID` と言われる
+groupsとかidとか打つと `groups: cannot find name for group ID` 事象にあった．
+どうも発生起因はgidに対応するnameをldap側で変更した場合に生じる模様だということがわかった．
+原因はsssがcacheをもっていることのようだ．下記で対処可能．もしくはそもそもcacheをしないことなども対処のうちの一つとして考えられる．このあたりは運用方針等に依存するため適切に判断する．
+```
+root@ldaptest:/home/labuser# rm /var/lib/sss/db/
+cache_default.ldb              sssd.ldb
+cache_implicit_files.ldb       timestamps_default.ldb
+config.ldb                     timestamps_implicit_files.ldb
+root@ldaptest:/home/labuser# rm /var/lib/sss/db/cache_default.ldb
+root@ldaptest:/home/labuser# systemctl restart sssd
+```
+- ref: [1184069 – group names are not resolved for gid from sssd cache when using IPA backend](https://bugzilla.redhat.com/show_bug.cgi?id=1184069)
+```
+Steps to Reproduce:
+1. Install and configure ipa-client on RHEL 6.5/RHEL 6.6 machine with sssd-1.11.6-30.el6_6.3.x86_64 installed
+2. Create users and multiple (6 in my case) groups in IPA,and add user to it
+3. Do "id -g username" command on user from IPA, it will work correctly
+4. After 15 -20 hrs or few days do "id -Gn username" command again and it will not show group names for all the groups.
+5. "id -Gn username" will give error for gids which cannot be translated to group names.
+6. Do "rm /var/lib/sss/db/*.ldb"  and "rm /var/lib/sss/db/ccache*", restart sssd.
+7. You will see all group names correctly till next time, which could be few hours or 1-2 days.
+```
+- `sssd.conf` のこのあたりのパラメータでcacheの保持時間等が決められる．
+```
+cache_credentials = true
+account_cache_expiration = 7
+entry_cache_timeout = 14400
+```
 
 ## ldap x freeradius
 ```
@@ -758,6 +795,150 @@ root@ldaptest:/etc/freeradius/3.0/mods-enabled# less /usr/lib/freeradius/rlm_l
 rlm_ldap.so       rlm_linelog.so    rlm_logintime.so
 ```
 - [ldap | FreeRADIUS Documentation](https://networkradius.com/doc/3.0.10/raddb/mods-available/ldap.html)
+
+- radius認証としてldapをdefaultで使う
+```
+root@ldaptest:/home/labuser# cat /etc/freeradius/3.0/users
+DEFAULT Auth-Type := LDAP
+```
+これを追加
+
+- `/etc/freeradius/3.0/sites-enabled/default` でLDAPによる認証を設定
+```
+root@ldaptest:/home/labuser# cat /etc/freeradius/3.0/sites-enabled/default
+(...snip...)
+server default {
+listen {
+  #  Type of packets to listen for.
+  #  Allowed values are:
+  # auth  listen for authentication packets
+  # acct  listen for accounting packets
+  # proxy   IP to use for sending proxied packets
+  # detail  Read from the detail file.  For examples, see
+  #               raddb/sites-available/copy-acct-to-home-server
+  # status  listen for Status-Server packets.  For examples,
+  #   see raddb/sites-available/status
+  # coa     listen for CoA-Request and Disconnect-Request
+  #   packets.  For examples, see the file
+  #   raddb/sites-available/coa
+  #
+  type = auth
+(...snip...)
+  #
+  # ipv4addr = *
+  # ipv6addr = *
+  ipaddr = *
+
+  #  Port on which to listen.
+  #  Allowed values are:
+  # integer port number (1812)
+  # 0 means "use /etc/services for the proper port"
+  port = 0
+
+  #  Some systems support binding to an interface, in addition
+  #  to the IP address.  This feature isn't strictly necessary,
+  #  but for sites with many IP addresses on one interface,
+  #  it's useful to say "listen on all addresses for eth0".
+  #
+  #  If your system does not support this feature, you will
+  #  get an error if you try to use it.
+  #
+# interface = eth0
+(...snip...)
+  }
+}
+
+#
+#  This second "listen" section is for listening on the accounting
+#  port, too.
+#
+listen {
+  ipaddr = *
+  ipv6addr = ::
+  port = 0
+  type = acct
+# interface = eth0
+# clients = per_socket_clients
+(...snip...)
+  }
+}
+
+#  Authorization. First preprocess (hints and huntgroups files),
+#  then realms, and finally look in the "users" file.
+#
+#  Any changes made here should also be made to the "inner-tunnel"
+#  virtual server.
+#
+#  The order of the realm modules will determine the order that
+#  we try to find a matching realm.
+#
+#  Make *sure* that 'preprocess' comes before any realm if you
+#  need to setup hints for the remote radius server
+authorize {
+(...snip...)
+  #
+  #  The ldap module reads passwords from the LDAP database.
+  -ldap
+(...snip...)
+}
+
+(...snip...)
+
+authenticate {
+(...snip...)
+  #  Uncomment it if you want to use ldap for authentication
+  #
+  #  Note that this means "check plain-text password against
+  #  the ldap database", which means that EAP won't work,
+  #  as it does not supply a plain-text password.
+  #
+  #  We do NOT recommend using this.  LDAP servers are databases.
+  #  They are NOT authentication servers.  FreeRADIUS is an
+  #  authentication server, and knows what to do with authentication.
+  #  LDAP servers do not.
+  #
+  Auth-Type LDAP {
+    ldap
+  }
+(...snip...)
+}
+
+
+#
+#  Pre-accounting.  Decide which accounting type to use.
+#
+preacct {
+(...snip...)
+}
+
+#
+#  Accounting.  Log the accounting data.
+#
+accounting {
+(...snip...)
+}
+
+
+#  Post-Authentication
+#  Once we KNOW that the user has been authenticated, there are
+#  additional steps we can take.
+post-auth {
+(...snip...)
+  #
+  #  Un-comment the following if you want to modify the user's object
+  #  in LDAP after a successful login.
+  #
+  ldap
+  if (LDAP-Group == "users") {
+    update reply {
+      cisco-avpair = "shell:priv-lvl=15"
+    }
+  }
+(...snip...)
+}
+
+(...snip...)
+```
 
 - この辺は使い方に応じて適切に．
 ```
@@ -821,6 +1002,8 @@ post-auth{
 
 ## todo
 - group nameをsss client側/ldap client側で出したい場合どうすればいいの．gidはclientでもててるがnameにmapできてない．
+- ldapではpassword等の秘匿すべきデータのやりとりをするので，基本的に暗号化通信が必須．ldaps等を利用する必要がある．
+- radiusprofileをつかってみる
 
 ## References
 - [freeradius/openldap.schema at master · redBorder/freeradius · GitHub](https://github.com/redBorder/freeradius/blob/master/doc/schemas/ldap/openldap.schema)
@@ -836,3 +1019,11 @@ post-auth{
 - [None](https://www.adimian.com/blog/2014/10/how-to-enable-memberof-using-openldap/)
 - [FreeRADIUS Post Authentication – Bliss](https://jbliss.net/2019/04/freeradius-post-authentication/)
 - [modules/Rlm_ldap](https://wiki.freeradius.org/modules/Rlm_ldap)
+- [OpenLDAP Server 日本語訳 - Qiita](https://qiita.com/JhonnyBravo/items/b18341b4cf20b9d865e4)
+- [りなっくすなう。: LDIFによるLDAPサーバへのデータ登録](http://tanyaolinux.blogspot.com/2014/04/openldap-ldif.html)
+- [Linux(CentOS)のユーザ管理 OpenLDAPでユーザ認証](https://usado.jp/spdsk/2018/07/23/post-4144/#LDAP)
+- [OpenLDAPサーバ ユーザ設定 | CentOS7](https://www.tanchallenge-glory40.com/ldap_useradd/)
+- [Linuxエンジニア日記 LDAPとRADIUSの連携](http://raymonmon.blog38.fc2.com/blog-entry-14.html)
+- [LDAPとSSH認証について - Qiita](https://qiita.com/kamihork/items/8ba9484f2d175aed40f2)
+- [OpenLDAPでユーザー認証までやってみる - Qiita](https://qiita.com/toshihirock/items/fc6ba5b6be8040e69ac9)
+- [LDAP構築 まとめ | CentOS7](https://www.tanchallenge-glory40.com/ldap_command/)

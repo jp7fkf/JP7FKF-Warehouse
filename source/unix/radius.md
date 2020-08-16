@@ -94,3 +94,6 @@ cisco-sw#
 - ref: [Cisco IOS and Radius](https://wiki.freeradius.org/vendor/Cisco)
 - ref: [AAA Interface Administration and Reference, StarOS Release 21.3  - RADIUS Dictionaries and Attribute Definitions [Cisco ASR 5000 Series] - Cisco](https://www.cisco.com/c/en/us/td/docs/wireless/asr_5000/21-3_N5-5/AAA/21-3-AAA-Reference/21-AAA-Reference_chapter_01110.html#reference_eadf5559-d5f8-40d6-a3d0-c9d117f108de)
   - radius dictionary example of cisco devide
+
+## References
+- [Ubuntu18.04でFreeRADIUSサーバセットアップ part1 | 北館テック.com](https://kitakantech.com/ubuntu18-freeradius-part1/)
