@@ -134,3 +134,30 @@ https://qiita.com/hirotaka-tajiri/items/fa8a6dbaf1ddf1b59cdd
 
 ## folum
 - [Forums -  ZABBIX Forums](https://www.zabbix.com/forum/)
+
+## iloの温度
+```
+## Critical
+Title:
+System-{#SNMPINDEX}: Temperature is above critical threshold
+Problem:
+{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}>{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()} and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}<>0 or {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}>{$TEMP_CRIT:"System"} and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}=0
+Recovery:
+{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}<{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}-3 and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}<>0 or {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}<{$TEMP_CRIT:"System"}-3 and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}=0
+
+## Warning
+Title:
+System-{#SNMPINDEX}: Temperature is above warning threshold
+Problem:
+{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}>{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}*0.9 and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}<>0 or {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}>{$TEMP_WARN:"System"}*0.9 and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}=0
+Recovery:
+{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}<{Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}*0.9-3 and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}<>0 or {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}<{$TEMP_WARN:"System"}-3 and {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureThreshold.System.{#SNMPINDEX}].last()}=0
+
+## 簡易的には下記
+### Critical
+Problem: {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}>{$TEMP_CRIT:"System"}
+Recovery: {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].max(5m)}<{$TEMP_CRIT:"System"}-3
+### Warning
+Problem: {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].avg(5m)}>{$TEMP_WARN:"System"}
+Recovery: {Template Server HP iLO SNMPv2:sensor.temp.value[cpqHeTemperatureCelsius.System.{#SNMPINDEX}].max(5m)}<{$TEMP_WARN:"System"}-3
+```
