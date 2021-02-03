@@ -97,31 +97,36 @@
 - 経路可視化面白そう．GoBGPあたり連携してできないかな．
 
 ## 資格
-- CCNP
+- 潜水士
+- Xray作業主任
+- FP2級
+- 簿記2級
 - 電験3種
+- エンベデットシステムスペシャリスト
+- CCNP
 - 危険物甲種まで
 - 一総通
 - 2級ボイラー技士
-- 潜水士
-- Xray作業主任
 - G検定
-- 簿記3級
 - FE/PE試験を受けたい
 - 救命講習？
 - Oracle master
 - ワインエキスパート
 - LPIC(もうとらなくていいか...) -> LinuC?
-- エンベデットシステムスペシャリスト
 - Cカード
 - AWS系資格(AWS Solution Arch. Assoc.?はとりたい．)
+- 日本さかな検定
+- ハーブ検定
 - 身に付けたい能力
   - 手話技能検定/手話通訳士
   - スペイン語 or フランス語
+
 - 長期的に
   - 放射線取扱主任者
   - 弁理士
   - 社会保険労務士
   - 証券アナリスト
+  - 気象予報士
   - 統計検定1級
   - 医療情報技師検定試験
   - comptia?([CompTIA CTT+ (TK0-201)　類似問題：解答｜CompTIA JAPAN (コンプティア 日本支局)](https://www.comptia.jp/cert_about/samplequestion/comptia_ctt/tk0-201_answer.html))
