@@ -250,3 +250,13 @@ $ git config receive.denynonfastforwards false
 
 - ref: [Git ファイルの履歴を完全に削除する · GitHub](https://gist.github.com/ktx2207/3167fa69531bdd6b44f1#file-git_-md)
 - ref: [機密データをリポジトリから削除する - GitHub ヘルプ](https://help.github.com/ja/github/authenticating-to-github/removing-sensitive-data-from-a-repository)
+
+## git のコミット履歴をすべて消す
+```
+git checkout --orphan tmp # orphanオプションは孤立branchとして作成(branch派生をしない)
+git commit -m "Initial Commit"
+git checkout -B master # Bオプションは上書き．masterをtmpに上書きする
+git branch -d tmp
+```
+- Reference
+  - [git のコミット履歴をすべて消す（現時点の状態の1コミットだけにする） - Qiita](https://qiita.com/okashoi/items/6b1a8ca9a4b001200167)
