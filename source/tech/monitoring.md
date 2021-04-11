@@ -60,6 +60,13 @@
 - [Telegraf Open Source Server Agent | InfluxData](https://www.influxdata.com/time-series-platform/telegraf/)
   - [GitHub - influxdata/telegraf: The plugin-driven server agent for collecting & reporting metrics.](https://github.com/influxdata/telegraf)
 - [Netdata](https://www.netdata.cloud/)
+- [GitHub - VictoriaMetrics/VictoriaMetrics: VictoriaMetrics: fast, cost-effective monitoring solution and time series database](https://github.com/VictoriaMetrics/VictoriaMetrics)
+- [GitHub - thanos-io/thanos: Highly available Prometheus setup with long term storage capabilities. A CNCF Incubating project.](https://github.com/thanos-io/thanos)
+- [GitHub - open-fresh/avalanche: Prometheus/OpenMetrics endpoint series generator for load testing.](https://github.com/open-fresh/avalanche)
+- [Welcome to Apache Solr - Apache Solr](https://solr.apache.org/)
+
+### messaging
+- [XMPP | XMPP Main](https://xmpp.org/)
 
 ## ref
 - [OSSのおすすめ監視サーバ・監視ツール比較17選 | OSSでのシステム構築・デージーネット](https://www.designet.co.jp/ossinfo/selection/monitoring-server.html)

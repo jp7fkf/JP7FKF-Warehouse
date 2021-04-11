@@ -4,6 +4,70 @@
 
 ## nginx
 
+### Configuration
+```
+user www www
+worker_processes 2;
+events {
+    worker_connections  512;
+}
+http {
+    server_tokens off; # サーバ情報を隠蔽(version etc)
+    upstream target.jp7fkf.dev{
+        server 10.0.0.1:10080;
+    }
+    server {
+        server_name target.jp7fkf.dev;
+        listen 80;
+        client_max_body_size 20M;
+        error_page 404   /404.html
+        error_page 500 502 503 504   /50x.html
+        client_max_body_size 8M;
+        access_log /var/log/nginx/target.jp7fkf.dev.log;
+        error_log /var/log/nginx/target.jp7fkf.dev.error.log;
+
+        location / {
+            proxy_pass http://target.jp7fkf.dev;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Server   $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+    }
+    server {
+        listen       80  default_server;
+        server_name  _;
+        return       444;
+    }
+}
+```
+- `server_name`ディレクティブではHTTPの`Host`とのmatchを見る．matchしない場合はdefaultに振り分けられる．
+  - `Host`って
+    - そもそも1IPで複数webサーバを運用するという思想が当初なかった．IPアドレス資源の有効利用等の観点から1IPアドレスで複数のwebサイトにアクセスしたくなった．そこでIPアドレスの他にバーチャルホストを表現するフィールドとして`Host`ヘッダが導入された．
+    - References
+      - [httpリクエストのHostヘッダ - ITエンジニアの技術メモ](https://akrad.hatenablog.com/entry/2019/02/24/012752)
+      - [HTTPリクエストのヘッダフィールド「Host」について - Qiita](https://qiita.com/katu_/items/42bc1bce5daa1be7748f)
+  - サブドメイン等にマッチさせる場合は `*.example.com`などとワイルドカード指定および正規表現指定(`~^www\d+\.example\.com$;`)が可能．
+  - 複数指定する場合は半角スペース区切りで記載する．
+- `default_server` ディレクティブはどの`server`ディレクティブにもmatchしなかったものを吸うために使える．(listen directiveで指定)
+  - `0.8.21`以前では`default server`ディレクティブでは指定できないので`default`を用いる．
+- `location`の指定では最も限定されたリテラルなロケーションを検索し，次に正規表現によって表現されたロケーションを上から順に選択する．正規表現によるロケーションにマッチした場合はそれが採用される．すべてのロケーションはクエリ文字列を除いたURIで検索される．
+- `error_page`ディレクティブでは当該エラーコードを返却する際に特定のページを表示することができる．
+- upstreamディレクティブでは複数のsvを1つにみなせる．
+- `return 444;` はhttp status codeではなくnginx固有のconfig. 何も返却せずにconnection closeする．
+
+- その他
+```
+autoindex on;
+location /foo{
+    allow 127.0.0.1;
+    deny all;
+    root /path/to/foo;
+}
+```
+- Reference: [nginx documentation](https://nginx.org/en/docs/)
+
 ### nginxでhttps化のためにSSL証明書を設定する．
   - 鍵をつくる
     ```
@@ -92,6 +156,34 @@ proxy_set_header X-Real-IP $remote_addr;
 - SANs, 2way
   - 1つの証明書で複数のcommon nameに対応
   - [えっ！ wwwあり・なし両方は未対応 CPI SSLサーバー証明書 | サイト構築日記](http://memories.zal.jp/WP/blog/20180716_2979.html)
+
+### docker-compose nginxでコンテナ間リバプロ
+```
+fkflab@docker01:~/nginx-proxy$ cat conf.d/target.conf
+upstream target.jp7fkf.dev{
+    server 10.0.0.1:;
+}
+
+server {
+    server_name target.jp7fkf.dev;
+    listen 80;
+    client_max_body_size 8M;
+    access_log /var/log/nginx/target.jp7fkf.dev.log;
+    error_log /var/log/nginx/target.jp7fkf.dev.error.log;
+
+    location / {
+        proxy_pass http://target.jp7fkf.dev;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server   $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+- References
+  - [docker-composeのNginxから複数の別composeにリバースプロキシする | Akashic Records](https://a-records.info/multiple-docker-compose-with-nginx-reverse-proxy/)
+  - [GitHub - jp7fkf/dc-nginx-proxy: nginx-proxy using docker-compose](https://github.com/jp7fkf/dc-nginx-proxy)
 
 ## h2o
 - h2oをcentos7にいれる
@@ -565,3 +657,5 @@ a2dismod <filename>
 a2enconf <filename>
 a2disconf <filename>
 ```
+
+## Multipart Format/MIME boundary

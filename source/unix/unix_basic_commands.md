@@ -149,6 +149,8 @@ passwd <user> でパス変更しておこう
 # bobはaliceとして閲覧コマンドを実行できる
  $ bob ALL=(alice) /bin/ls, /bin/cat
 ```
+- アスタリスクをワイルドカードとして指定できる．
+`zabbix ALL=(ALL) NOPASSWD: /sbin/ip netns exec test hoge *, /sbin/ip netns exec test huga *`
 
 ### groups
 - ユーザのグループ確認

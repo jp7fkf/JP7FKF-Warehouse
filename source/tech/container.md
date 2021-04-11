@@ -434,29 +434,29 @@ docker container cp <id or name>:/path/to/target_file /コピー先/ディレク
   ```
 
 ## docker にnetnsでnic生やす
-  - 生やしたいこともある．netns, iplink勉強しなきゃね．
-  ```
-    sudo docker network create --driver=bridge --subnet=172.16.156.0/24 --gateway=172.16.156.1 -o "com.docker.network.bridge.name=br_eth1" br_eth1
-    sudo docker run -it -d --name hoge --network="br_eth1" --ip=172.16.156.40 test_probe /bin/bash
-    sudo docker start hoge
-    sudo brctl addif br_eth1 eth1
-  ```
+- 生やしたいこともある．netns, iplink勉強しなきゃね．
+```
+  sudo docker network create --driver=bridge --subnet=172.16.156.0/24 --gateway=172.16.156.1 -o "com.docker.network.bridge.name=br_eth1" br_eth1
+  sudo docker run -it -d --name hoge --network="br_eth1" --ip=172.16.156.40 test_probe /bin/bash
+  sudo docker start hoge
+  sudo brctl addif br_eth1 eth1
+```
 
-  ```
-      #!/bin/bash -eux
-      CONTAINER_ID=$1
-      IP_CONTAINER=$2
-      IP_HOST=$3
-      NIC_NAME=$4
+```
+    #!/bin/bash -eux
+    CONTAINER_ID=$1
+    IP_CONTAINER=$2
+    IP_HOST=$3
+    NIC_NAME=$4
 
-      sudo yum -y install bridge-utils
-      sudo yum -y install git
-      sudo git clone https://github.com/jpetazzo/pipework.git /usr/pipewor
-      sudo ln -s ~/pipework/pipework /usr/bin/pipework
-      pipework br0 $CONTAINER_ID $IP_CONTAINER
-      ip addr add $IP_HOST dev br0
-      brctl addif br0 $NIC_NAME
-  ```
+    sudo yum -y install bridge-utils
+    sudo yum -y install git
+    sudo git clone https://github.com/jpetazzo/pipework.git /usr/pipewor
+    sudo ln -s ~/pipework/pipework /usr/bin/pipework
+    pipework br0 $CONTAINER_ID $IP_CONTAINER
+    ip addr add $IP_HOST dev br0
+    brctl addif br0 $NIC_NAME
+```
 
 ### [pypework](https://github.com/jpetazzo/pipework/blob/master/pipework)
 - dockerにhostのinterfaceを直接生やせたりいろいろできる．
@@ -709,7 +709,6 @@ docker container cp <id or name>:/path/to/target_file /コピー先/ディレク
 ## コンテナ技術入門
 - [コンテナ技術入門 - 仮想化との違いを知り、要素技術を触って学ぼう - エンジニアHub｜若手Webエンジニアのキャリアを考える！](https://employment.en-japan.com/engineerhub/entry/2019/02/05/103000)
 
-
 ## docker installation on ubuntu18.04
 ```
 sudo apt-get install -y     apt-transport-https     ca-certificates     curl
@@ -749,3 +748,41 @@ $ export DOCKER_BUILDKIT=1
 ## dockerdot
 - [GitHub - po3rin/dockerdot: dockerdot shows dockerfile dependenciy graph. This is useful to understand how build dockerfile. This uses Go WebAssembly + BuildKit package.](https://github.com/po3rin/dockerdot)
   - Dockerfile入力からBuildKit LLBに変換，このLLBをdot言語に変換，viz.jsでグラフ化．
+
+## systemdとdocker-composeを組み合わせる
+docker-composeのありかを指定しつつrootでsystemdであげる感じだと下記．これを`/etc/systemd/system/nginx.service`等においておき，`sudo systemctl daemon-reload`して利用できるようになる．
+```
+lab@docker01:~/nginx$ cat nginx.service
+[Unit]
+Description=docker-compose nginx service
+Requires=docker.service
+
+[Service]
+User=root
+Type=simple
+
+Environment=COMPOSE_FILE=/home/lab/nginx/docker-compose.yml
+
+#ExecStartPre=/usr/bin/docker-compose -f ${COMPOSE_FILE} kill
+#ExecStartPre=/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
+ExecStartPre=/usr/bin/docker-compose -f ${COMPOSE_FILE} down
+
+ExecStart=/usr/bin/docker-compose -f ${COMPOSE_FILE} up --force-recreate --abort-on-container-exit
+
+#ExecStop=/usr/bin/docker-compose -f ${COMPOSE_FILE} stop
+#ExecStopPost=/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
+ExecStopPost=/usr/bin/docker-compose -f ${COMPOSE_FILE} down
+
+Restart=always
+RestartSec=180s
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### References
+- [Systemdとdocker-composeでカジュアルにdockerを運用する - Qiita](https://qiita.com/kanga/items/5f956bc47068c9774522)
+
+## volume
+- `docker-compose rm -v`ではanonymous volumeのみが削除され，named volumeはそのまま残る．DB永続化等はこれで残せる．
+- `docker-compose down -v`だとnamed volumeも削除されてしまうので注意する必要がある．

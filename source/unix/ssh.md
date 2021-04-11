@@ -141,3 +141,23 @@ ubuntu@lab1:~$ ssh admin@10.10.10.1
 
 ## sshの known_hostsから消す
 - `ssh-keygen -f "/home/jp7fkf/.ssh/known_hosts" -R "10.255.255.1`
+
+## その他のssh config
+```
+# IdentityFile で指定した秘密鍵でのみ認証を試みる
+IdentitiesOnly yes
+
+# 圧縮転送．
+Compression yes
+
+# keepalive
+ServerAliveInterval 15
+# max回失敗で切断
+ServerAliveCountMax 3
+
+# フォワーディング失敗時にExitする
+# ExitOnForwardFailure yes
+
+# 接続試行回数
+ConnectionAttempts 3
+```

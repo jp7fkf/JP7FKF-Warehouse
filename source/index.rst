@@ -40,6 +40,8 @@ Welcome to JP7FKF-Warehouse!
   dialy/202012
   dialy/202101
   dialy/202102
+  dialy/202103
+  dialy/202104
   todo
   programming/sh
   programming/go
@@ -49,6 +51,7 @@ Welcome to JP7FKF-Warehouse!
   programming/python
   programming/r
   programming/debug
+  tech/terraform
   tech/react
   tech/jenkins
   tech/container
@@ -65,6 +68,7 @@ Welcome to JP7FKF-Warehouse!
   tech/git
   tech/ldap
   tech/ssl_tls
+  tech/smtp
   tech/devops
   tech/prometheus
   tech/netbox
@@ -72,6 +76,7 @@ Welcome to JP7FKF-Warehouse!
   tech/raspberrypi
   tech/strongswan
   tech/omron
+  tech/tools
   unix/iptables
   unix/namespace
   unix/nmap
@@ -96,6 +101,7 @@ Welcome to JP7FKF-Warehouse!
   unix/httpd
   unix/ubuntu
   unix/syslog
+  unix/systemctl
   unix/fail2ban
   network/ipv6
   network/l1

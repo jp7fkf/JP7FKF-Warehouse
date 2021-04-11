@@ -1,6 +1,24 @@
 # settings
 
 ## mac
+- 基本`.Brewfile`，`brew bundle`で主要なものは入れるようにしてる．
+- あとはdotfilesを引っ張ってsetup scriptをまわす．
+- これ以外のものが下記
+  - google chrome
+  - postman
+  - sublime text3
+  - wireshark
+  - docker
+  - Amphetamine
+  - todoist
+  - pyenv/goenv/rbenv/nodebrew
+- あとは必要に応じて下記
+  - texlive
+  - fusion360
+  - arduino
+  - stm32cubemx
+  - kicad
+
 ```
 % brew list
 autoconf    htop      libmpc      openblas    readline
