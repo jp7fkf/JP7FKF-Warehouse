@@ -658,4 +658,31 @@ a2enconf <filename>
 a2disconf <filename>
 ```
 
-## Multipart Format/MIME boundary
+## MIME
+- そもそもMIMEとは
+  - Multipurpose Internet Mail Extensionsの略
+  - ASCIIだけでいろいろ表現する．多言語，画像，音声など．
+  - base64とかでencodeされることがほとんど．
+  - 複数のファイルとかを扱うべく，MIME multipartという拡張仕様がある．これによりメール本文とは別に複数の添付ファイル等を埋め込むことができる．
+  - MIMEはメールヘッダに`Content-Type`を含む．このしくみがHTTPとかのformのPOSTとかにも流用されている．
+    - media typeはRFCや3GPPで標準化され，IANAで管理されている[Media Types](http://www.iana.org/assignments/media-types/media-types.xhtml)
+    - treeに含めるにはIANAの登録手続きが必要とされている．
+  - 暗号化，デジタル署名を用いたS/MIME(Secure MIME)と呼ばれる方式も存在する．公開鍵暗号の仕組みを利用し，暗号化，電子署名を行っている．
+
+### Multipart Format/boundary
+- MIMEのcontent-typeとしてmultipartを利用する場合，各contentの区切りの表現が必要となる．これを表現するのがboundaryである．
+- たとえば`Content-Type: multipart/form-data; boundary=--HogeBoundaryHogeHoge`というcontent-typeが指定されている場合，`--HogeBoundaryHogeHoge`をコンテンツの区切りとして解釈する．したがって．
+```
+--HogeBoundaryHogeHoge
+Content-Disposition: form-data; name="textform01"
+
+Hoge
+--HogeBoundaryHogeHoge
+Content-Disposition: form-data; name="file"; filename="huga.txt"
+Content-Type: text/plain
+
+Huga
+--HogeBoundaryHogeHoge
+```
+のように各コンテンツの境界を`--HogeBoundaryHogeHoge`で表現し，区切られた各コンテンツについて改めて内部でそのコンテンツを示すヘッダ，及びコンテンツ本体が表現される．
+これによって複数のコンテンツを交換する事が可能となっている．

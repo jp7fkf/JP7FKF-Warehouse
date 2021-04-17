@@ -64,6 +64,8 @@
 - [GitHub - thanos-io/thanos: Highly available Prometheus setup with long term storage capabilities. A CNCF Incubating project.](https://github.com/thanos-io/thanos)
 - [GitHub - open-fresh/avalanche: Prometheus/OpenMetrics endpoint series generator for load testing.](https://github.com/open-fresh/avalanche)
 - [Welcome to Apache Solr - Apache Solr](https://solr.apache.org/)
+- [StackStorm - StackStorm](https://stackstorm.com/)
+  - イベントドリブンな自動化ツール
 
 ### messaging
 - [XMPP | XMPP Main](https://xmpp.org/)
@@ -71,3 +73,7 @@
 ## ref
 - [OSSのおすすめ監視サーバ・監視ツール比較17選 | OSSでのシステム構築・デージーネット](https://www.designet.co.jp/ossinfo/selection/monitoring-server.html)
 - [手軽なメトリクス視覚化ツールを探して (Netdata, Prometheus, Telegraf) - Qiita](https://qiita.com/kikuchi_kentaro/items/8ab93b73012ee8aea717)
+
+## 課題とかアイディア
+- 階層型の監視システム？
+- 監視システム自体の監視

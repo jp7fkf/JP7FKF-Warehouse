@@ -1,5 +1,9 @@
 # SMTP
 
+## basic
+- [RFC 5321 - Simple Mail Transfer Protocol](https://tools.ietf.org/html/rfc5321)
+  - リプライコードとかコマンドみるならここ．
+
 ## telnetでemailを送る
 telnetでsmtpサーバに接続してsmtp formatに従ってメッセージを送ることができる．
 ```

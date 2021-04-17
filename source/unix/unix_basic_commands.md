@@ -614,3 +614,111 @@ Light Gray  0;37     White         1;37
 ## netcatでhttp server
 - `while true; do; echo -e "HTTP/1.1 200 OK\n\n $(date)" | nc -l 8080; done`
   - 終了するときは`C-z`して`kill`する必要あり．
+
+## pathの優先順位
+- pathは先頭(左側)から優先される．
+- sbin系はsystemに関わるコマンド(管理コマンド)
+  -> 自ずとsudoしないといけない系が入る．
+- /(s)binはシングルユーザモードで利用するものをいれる．誰でも系．rootだろうか一般ユーザだろうが関係なし．
+- /usr/配下は一般ユーザ向け．シングルユーザモードで利用しないもの．package managerとか使って入るのはここに入る．
+- /usr/local/配下はuserが独自にinstallしたりしたものを入れるdirs.
+  -> 自ずとbuiltinよりも優先したくなるはずなので優先度が高くなっている．
+- ただ最近は/binとか/use/binとか区別しなくなってきててシンボリックリンクになってる
+  - [いつの間にかLinuxの/bin関係が/usrへのシンボリックリンクへ変わっていた話 - 拾い物のコンパス](http://poppycompass.hatenablog.jp/entry/2017/12/21/004636)
+### References
+- ubuntu docker imageのpath
+```
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+```
+- ubuntu 18.04のdefault
+```
+jp7fkf@lab01:~$ cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=18.04
+DISTRIB_CODENAME=bionic
+DISTRIB_DESCRIPTION="Ubuntu 18.04.5 LTS"
+jp7fkf@lab01:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+# つまり下記の順位
+# /usr/local/sbin
+# /usr/local/bin
+# /usr/sbin
+# /usr/bin
+# /sbin
+# /bin
+# /usr/games
+# /usr/local/games
+# /snap/bin
+```
+
+## /tmpと/var/tmp
+- `/tmp`のほうが頻繁にクリーンアップされる．
+- `/var/tmp`もクリーンアップされるが，一般に`/tmp`よりは保持期間を長く設定する．
+- クリーンアップには，古めだとtmpwatchをcronで回す方法，新しめだとsystemdによるものが採用されている．
+- tmpwatch
+```
+# /etc/cron.daily/tmpwatch
+/usr/sbin/tmpwatch 240 /tmp
+/usr/sbin/tmpwatch 720 /var/tmp
+for d in /var/{cache/man,catman}/{cat?,X11R6/cat?,local/cat?}; do
+    if [ -d "$d" ]; then
+            /usr/sbin/tmpwatch -f 720 $d
+    fi
+done
+```
+- systemd
+```
+jp7fkf@lab01:~$ sudo systemctl cat systemd-tmpfiles-clean.timer
+[sudo] password for jp7fkf:
+# /lib/systemd/system/systemd-tmpfiles-clean.timer
+#  SPDX-License-Identifier: LGPL-2.1+
+#
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+[Unit]
+Description=Daily Cleanup of Temporary Directories
+Documentation=man:tmpfiles.d(5) man:systemd-tmpfiles(8)
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=1d
+
+jp7fkf@lab01:~$ cat /usr/lib/tmpfiles.d/tmp.conf
+#  This file is part of systemd.
+#
+#  systemd is free software; you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation; either version 2.1 of the License, or
+#  (at your option) any later version.
+
+# See tmpfiles.d(5) for details
+
+# Clear tmp directories separately, to make them easier to override
+D /tmp 1777 root root -
+#q /var/tmp 1777 root root 30d
+
+# Exclude namespace mountpoints created with PrivateTmp=yes
+x /tmp/systemd-private-%b-*
+X /tmp/systemd-private-%b-*/tmp
+x /var/tmp/systemd-private-%b-*
+X /var/tmp/systemd-private-%b-*/tmp
+
+# Remove top-level private temporary directories on each boot
+R! /tmp/systemd-private-*
+R! /var/tmp/systemd-private-*
+```
+`man tmpfiles.d` とかでconfigのやりかたがわかる．
+
+- References
+  - [/tmp/ディレクトリ下のファイルはいつ削除される？ - ITmedia エンタープライズ](https://www.itmedia.co.jp/help/tips/linux/l0609.html)

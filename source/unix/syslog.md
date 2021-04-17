@@ -1,26 +1,54 @@
 # syslog
 
+## basic
+- IETF，BSDが主なフォーマット
+  - [RFC 3164 - The BSD Syslog Protocol](https://tools.ietf.org/html/rfc3164)
+    - legacy formatとも呼ばれる．
+  - [RFC 5424 - The Syslog Protocol](https://tools.ietf.org/html/rfc5424)
+    - BSDを拡張したもの．
+- syslog messageの中身については特に規定がないが，csvだったりCEFだったりいろいろある．
+
 ## rsyslog
+- [GitHub - rsyslog/rsyslog: a Rocket-fast SYStem for LOG processing](https://github.com/rsyslog/rsyslog)
 - [rsyslogでシステムログ管理 - Qiita](https://qiita.com/tasakii/items/10db42392c487d5276da)
 - [rsyslogの最低限の設定 – おぼえがきつめあわせ](http://www.no1497.com/?p=326)
 
-## `/etc/rsyslog.d/hoge.conf` でdiscard
+### configuration
+#### `/etc/rsyslog.d/hoge.conf` でdiscard
 - その下にはログは行かない．つまり，一番下に書いても意味はない．順序大事．
 ```
 #discard loadbalancer messages
 :msg, contains, "[disrard_regexp]" ~
 ```
 
-## syslogをテスト的に投げたいperl
-- [リモートsyslog送信スクリプト - mikedaの日記](https://mikeda.hatenablog.com/entry/20101123/1290529356)
-- 結局logger commandでいい気がする．
-
-## rsyslogのproperties: [rsyslog Properties — rsyslog 8.1911.0 documentation](https://www.rsyslog.com/doc/v8-stable/configuration/properties.html)
+#### rsyslogのproperties: [rsyslog Properties — rsyslog 8.1911.0 documentation](https://www.rsyslog.com/doc/v8-stable/configuration/properties.html)
 ```
 $template MyTemplate,
 "%TIMESTAMP:::date-rfc3339%|%syslogpriority-text%|%HOSTNAME%|%msg:::sp-if-no-1st-sp%%msg:::drop-last-lf%\n"
 $ActionFileDefaultTemplate MyTemplate
 ```
+#### rsyslogでホストごとに
+- `%hostname%`: ログのhostname fieldに入っているhostname
+- `%fromhost-ip%`: 送信元IP
+- `%fromhost%`: 送信元IPを逆引きしたhostname
+
+この辺のプロパティを利用して分ける．
+- ex.)
+```
+$template logFileName,"/var/log/syslog/%hostname%/%$year%%$month%%$day%.log"
+
+if $fromhost-ip == ['192.168.0.1' , '192.168.0.2' ] then {
+  /var/log/specified_ips.log
+  stop
+}
+# & ~で止めるのは2021/04現在推奨されていない．かわりにstopを使う．"& stop"とか．
+
+```
+
+
+## syslogをテスト的に投げたいperl
+- [リモートsyslog送信スクリプト - mikedaの日記](https://mikeda.hatenablog.com/entry/20101123/1290529356)
+- 結局logger commandでいい気がする．
 
 ## facility
 A facility code is used to specify the type of program that is logging the message. Messages with different facilities may be handled differently.[5] The list of facilities available is defined by the standard:[2]:9
@@ -67,7 +95,3 @@ The list of severities is also defined by the standard:[2]:10
 +-------+---------------+---------+-----------------------------------+-------------------------------------------------------------------------------------------+
 ```
 - ref: [syslog - Wikipedia](https://en.wikipedia.org/wiki/Syslog)
-
-## [RFC 5424 - The Syslog Protocol](https://tools.ietf.org/html/rfc5424)
-
-## [RFC 3164 - The BSD Syslog Protocol](https://tools.ietf.org/html/rfc3164)
