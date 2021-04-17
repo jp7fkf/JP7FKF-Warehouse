@@ -20,6 +20,7 @@ root@elk:/usr/share/logstash/bin# ./logstash-plugin install logstash-output-slac
 Validating logstash-output-slack
 Installing logstash-output-slack
 ```
+
 ####  cisco log
 - [Logstash: Processing Cisco Logs](https://gist.github.com/justinjahn/85305bc7b7df9a6412baedce5f1a0ece)
 
