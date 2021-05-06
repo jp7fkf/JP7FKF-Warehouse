@@ -40,7 +40,6 @@
 144MHz
 430MHz
 
-
 ## RTTY
 - 諸元
   - 方式: AFSK/FSK
@@ -52,8 +51,8 @@
 - memo
   - 周波数繊維幅は副搬送波周波数±偏移周波数なので仮に85Hzの繊維周波数だとしたら周波数繊維幅は170Hz
 
-
-- ex1. file:///Users/yudaihashimoto/Downloads/FuzokuShogen.pdf
+- ex1.
+```
 RTTY
 (注 1)
 方式 AFSK,FSK 第 1 装置
@@ -65,15 +64,17 @@ MFSK:±117.1875Hz (最大ｷｬﾘｱ数：16 ｷｬﾘｱ間隔：±15.625Hz)
 符号構成 RTTY:BAUDOT FSK/GMSK:VARICODE JA MFSK:MFSK-VARICODE
 装置出力最高周波数 AFSK:2,310Hz (A2B 時 1,000Hz)
 電波型式 SSB/F1B FM/F2B AM/A2B (注 2)
+```
 
-- ex2. http://www.maroon.dti.ne.jp/k3is/syogenh.htm
+- ex2. [諸元表](http://www.maroon.dti.ne.jp/k3is/syogenh.htm)
+```
 RTTY 方式  AFSK/FSK　
 通信速度  45～110ボー
 副搬送波周波数 500Hz～2,210Hz（但しA2Bのみ500～1,200Hz）
 周波数偏移幅  ±170Hz　
 符号構成  BAUDOT　
 電波型式  F1B,A2B,F2B
-
+```
 - ex3. https://blogs.yahoo.co.jp/je1ngi599/GALLERY/show_image.html?id=10185504&no=0
 
 ## 東北総合通信局に書いてあること
@@ -101,3 +102,7 @@ FSK441装置 → WSJT
 - 一昔前は DigTRXが使われていた．RDFT方式と呼ばれる変調方式を採用．作者のPCがクラッシュして開発中止になったらしい．ウケる．
 - いまは，HamPAL/EasyPALが主流になっている．変調方式はDRM (Digital Radio Mondiale)．
 - ref. http://www.ne.jp/asahi/jh1htq/machida/sstv/digital/digital.html
+
+## misc
+- [アンテナケーブル、他 / 横浜システムマリン](http://www.ysmweb.co.jp/mail_order/sub_12.html)
+- マグネチックループ造りたい．shielded magnetic loopがよさそう．ポータブル，マルチマッチングにできないか．

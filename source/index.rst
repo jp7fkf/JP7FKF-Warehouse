@@ -150,6 +150,7 @@ Welcome to JP7FKF-Warehouse!
   hobbies/mobile_communication
   hobbies/outdoor
   hobbies/trip
+  hobbies/survival
   settings
   electronics/electronics
 
