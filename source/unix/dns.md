@@ -44,11 +44,16 @@ RFC3484にはこう書かれている．
     ```
       # example.com.   180 IN  SOA ns1.example.com. hoge.example.com. ...
     ```
-
-  - この場合，SOAがns1なので，ns1がprimary と機能していると見ることができる．
+  - この場合，SOAがns1なので，ns1をprimaryとしてそうだと見ることができる．(実際にゾーン転送におけるmaster/slaveとしてどう運用されているかはこれではわからない．zone転送元となるmasterは隠されている可能性もある．)
 
 ## ゾーン転送
+- IXFRとAXFRがある．AXFRはそのリクエストで該当のゾーン情報すべてを取得するが，IXFRではいわゆる差分アップデートのように動作する．
+  - IXFRについてはRFC1995を参照
+    - [RFC 1995 - Incremental Zone Transfer in DNS](https://tools.ietf.org/html/rfc1995)
+- commands
   - `dig @<server> <domain> axfr`
+- DNS NOTIFYについてはRFC1996を参照
+  - [RFC 1996 - A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)](https://tools.ietf.org/html/rfc1996)
 
 ## bindのlogging
 - [BINDのlogを適切に設定して攻撃の予兆を察知しよう | OXY NOTES](https://oxynotes.com/?p=7469)
@@ -278,3 +283,32 @@ unbound-host/bionic 1.6.7-1ubuntu2 amd64
 - [dnsperf で DNS DoS(違) ベンチマーク – Yut@rommx.com](https://yutarommx.com/?p=318)
 - [dnsperf | DNS-OARC](https://www.dns-oarc.net/tools/dnsperf)
 - [DNSに負荷をかけるテスト - kinneko@転職先募集中の日記](https://kinneko.hatenadiary.org/entry/20161220/p1)
+
+## SOAのシリアル番号を小さくする方法
+- [RFC 1912 - Common DNS Operational and Configuration Errors](https://tools.ietf.org/html/rfc1912)
+```
+   If you make a mistake and increment the serial number too high, and
+   you want to reset the serial number to a lower value, use the
+   following procedure:
+
+      Take the `incorrect' serial number and add 2147483647 to it.  If
+      the number exceeds 4294967296, subtract 4294967296.  Load the
+      resulting number.  Then wait 2 refresh periods to allow the zone
+      to propagate to all servers.
+
+      Repeat above until the resulting serial number is less than the
+      target serial number.
+
+      Up the serial number to the target serial number.
+```
+  - 現在のシリアル番号に2147483647を足した値を新しいシリアル番号とするが，その結果が4294967296よりも大きくなる場合には、4294967296を引いた値を新しいシリアル番号とする．
+
+## References
+- [DNSの仕組み完全解説](http://www.tatsuyababa.com/NW-DNS/NW-200212-DNS05.pdf)
+- [Knot DNSを使ってみた - DNS Summer Days 2014(mikit-san)](https://dnsops.jp/event/20140627/20140627-dns-summer-knotdns-mikit-3.pdf)
+- [DNS温泉番外編(2016)](http://www.e-ontap.com/dns/onsenextra2016/)
+- [Web-based DNS Randomness Test](http://entropy.dns-oarc.net/)
+  - `dig +short porttest.dns-oarc.net TXT`
+- Unboundのunwanted-reply-thresholdオプション
+- https://jprs.jp/tech/security/2014-04-30-poisoning-countermeasure-resolver-1.pdf
+- https://www.janog.gr.jp/meeting/janog31.5/doc/janog31.5_dns-open-resolver-maz.pdf
