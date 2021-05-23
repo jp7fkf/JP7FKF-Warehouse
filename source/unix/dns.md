@@ -312,3 +312,33 @@ unbound-host/bionic 1.6.7-1ubuntu2 amd64
 - Unboundのunwanted-reply-thresholdオプション
 - https://jprs.jp/tech/security/2014-04-30-poisoning-countermeasure-resolver-1.pdf
 - https://www.janog.gr.jp/meeting/janog31.5/doc/janog31.5_dns-open-resolver-maz.pdf
+
+## 特定のzoneの問い合わせ先を指定したい場合(stub zone)
+### unbound
+```
+stub-zone:
+        name:"example.com"
+        stub-addr:192.168.0.11
+        stub-addr:192.168.0.12
+stub-zone:
+        name: "0.168.192.in-addr.arpa"
+        stub-addr:192.168.0.11
+        stub-addr:192.168.0.12
+```
+
+### powerdns recursor
+
+- forward-zonesあたりを使うことになる．
+```
+forward-zones=example.com=192.168.0.11;192.168.0.12,0.168.192.in-addr.arpa=192.168.0.11;192.168.0.12
+```
+
+### knot resolver
+```
+# define list of internal-only domains
+internalDomains = policy.todnames({'example.com', '0.168.192.in-addr.arpa'})
+
+# forward all queries belonging to domains in the list above
+policy.add(policy.suffix(policy.FLAGS({'NO_CACHE'}), internalDomains))
+policy.add(policy.suffix(policy.STUB({'192.168.0.11', '192.168.0.12'}), internalDomains))
+```
