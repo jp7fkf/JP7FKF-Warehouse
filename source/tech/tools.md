@@ -7,3 +7,6 @@
 -  [Wiki.js](https://js.wiki/)
 -  [Crowi](https://site.crowi.wiki/)
 -  [Knowledge - Free knowledge base system](https://information-knowledge.support-project.org/ja/)
+
+## Video Conference
+- [Free Video Conferencing Software for Web & Mobile | Jitsi](https://jitsi.org/)

@@ -1,10 +1,10 @@
 # ssh
+
 ## 鍵ペアをつくる
 - RSA でビット長4096なやつ
 ```
 ssh-keygen -t rsa -b 4096 {-C "email@example.com"} //コメントつけたければつける
 ```
-
 
 ## どんな鍵だったっけ
 ```
@@ -26,6 +26,15 @@ ssh-keygen -l -v -f ~/.ssh/id_rsa.pub
 ```
 $ ssh -L <localport>:<forwarded_host>:<forwarded_port> <username>@<dst_host>
 ```
+- `-L`でその先にいけたり`-R`でバックドア的なの作れたり．autossh便利
+- FW/NAT配下からの簡易バックドア
+  - `ssh -R 10022:localhost:22 user@x.x.x.x`
+  - これでx.x.x.xの10022にsshするとssh元のhostに入れる．
+- [GitHub - jnovack/autossh: Heavily customizable AutoSSH Docker container](https://github.com/jnovack/autossh)
+- [SSHポートフォワード（トンネリング）を使って、遠隔地からLAN内のコンピュータにログインする - 2014-09-12 - ククログ](https://www.clear-code.com/blog/2014/9/12.html)
+- [楽しいトンネルの掘り方(オプション: -L, -R, -f, -N -g) — 京大マイコンクラブ (KMC)](https://www.kmc.gr.jp/advent-calendar/ssh/2013/12/09/tunnel2.html)
+- [SSHクライアントのproxy越えの設定方法](https://www.bigbang.mydns.jp/sshproxy-x.htm)
+- [踏み台経由のSSH接続する場合に便利な設定 - Fact of Life](http://www.fact-of-life.com/entry/2016/08/05/103951)
 
 ## sshconfig
 ```
@@ -160,4 +169,25 @@ ServerAliveCountMax 3
 
 # 接続試行回数
 ConnectionAttempts 3
+```
+
+## GCPにOS_Login用の鍵を登録する
+- 登録
+  - `gcloud compute os-login ssh-keys add --key-file=/home/user/.ssh/id_rsa.pub`
+  - `gcloud compute os-login ssh-keys add --key=<raw_key_string>`
+- リスト表示
+  - `gcloud compute os-login ssh-keys list --format=yaml`
+- [gcloud compute os-login ssh-keys add  |  Cloud SDK Documentation](https://cloud.google.com/sdk/gcloud/reference/compute/os-login/ssh-keys/add)
+
+## sshの-Jオプションが便利
+- BSD sshのmanualより抜粋
+```
+     -J destination
+             Connect to the target host by first making a ssh connection to the jump host
+             described by destination and then establishing a TCP forwarding to the ultimate
+             destination from there.  Multiple jump hops may be specified separated by comma
+             characters.  This is a shortcut to specify a ProxyJump configuration directive.
+             Note that configuration directives supplied on the command-line generally apply to
+             the destination host and not any specified jump hosts.  Use ~/.ssh/config to spec-
+             ify configuration for jump hosts.
 ```

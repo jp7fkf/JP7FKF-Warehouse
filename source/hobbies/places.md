@@ -17,6 +17,9 @@
 - [神楽坂の小さなスコティッシュパブ　The Royal Scotsman | クラフトビールとウイスキー、おいしい英国料理が自慢のパブ](https://www.royalscotsman.jp/blog/)
 - [うなぎ 和友 （かずとも） - 新小岩/うなぎ [食べログ]](https://tabelog.com/tokyo/A1312/A131204/13044020/)
 
+### アキバのda le de mo racerにいってみたい
+- driving simulator
+
 ## Hokkaido
 - sapporo
   - 白樺山荘: https://tabelog.com/grouplst/G00564/

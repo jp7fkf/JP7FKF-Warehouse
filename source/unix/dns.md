@@ -1,4 +1,5 @@
 # DNS
+
 ## DNSに関するRFC
 RFC1034, RFC1035, RFC1912, RFC2181あたりをざっくりと
 RFC3484にはこう書かれている．
@@ -15,14 +16,14 @@ RFC3484にはこう書かれている．
 - [RFC 1912 -  Common DNS Operational and Configuration Errors](https://www.ietf.org/rfc/rfc1912.txt)
 
 ## 代表的なdns ソフトウェア
-- Bind
+- Bind (Internet Systems Consortium)
   - 有名．脆弱性がちょっと多い印象．
-- Power DNS
+- Power DNS (PowerDNS)
   - Web GUIがあり，レコード登録などの取り扱いがやりやすい．
-- Unbound
+- Unbound (NLnet Labs)
   - DNSキャッシュサーバ．コンテンツサーバにはなれない．
   - DNSキャッシュサーバとしては，BINDを完全に置き換えることができる程度の機能は実装されている．
-- Knot DNS
+- Knot DNS (CZ.NIC)
   - 権威DNS（コンテンツサーバ）専用
   - キャッシュサーバ(resolver)として使いたい場合は`Knot DNS resolver` というものもある．
     - cloudflare(1.1.1.1)で使われているらしい．
