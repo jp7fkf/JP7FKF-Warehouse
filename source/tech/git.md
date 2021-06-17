@@ -260,3 +260,19 @@ git branch -d tmp
 ```
 - Reference
   - [git のコミット履歴をすべて消す（現時点の状態の1コミットだけにする） - Qiita](https://qiita.com/okashoi/items/6b1a8ca9a4b001200167)
+
+## `git merge -X <ours/theirs> <branch>`
+- conflictが発生した場合にour/theirsを強制的に採用する
+
+## `git merge -s <ours/theirs> <branch>`
+- theirs/oursのcommitを採用したmerge commitのみを作成する
+  - 実態は変更されない
+  - merge"した体にする"ときに使える
+- ref
+  - [Git - 高度なマージ手法](https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E3%83%84%E3%83%BC%E3%83%AB-%E9%AB%98%E5%BA%A6%E3%81%AA%E3%83%9E%E3%83%BC%E3%82%B8%E6%89%8B%E6%B3%95#r_manual_remerge)
+```
+MERGE STRATEGIES
+       The merge mechanism (git merge and git pull commands) allows the backend merge strategies
+       to be chosen with -s option. Some strategies can also take their own options, which can be
+       passed by giving -X<option> arguments to git merge and/or git pull.
+```

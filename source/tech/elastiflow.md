@@ -57,3 +57,5 @@ jp7fkf@elk01:~/elastiflow/elastiflow-master$ sudo cp -r logstash.service.d/elast
 jp7fkf@elk01:~/elastiflow/elastiflow-master$ sudo less /etc/systemd/system/logstash.service.d/elastiflow.conf
 jp7fkf@elk01:~/elastiflow/elastiflow-master$ sudo systemctl daemon-reload
 ```
+- [ElastiFlowでNetFlow(Frotigate)を視覚化 - 備忘録／にわかエンジニアが好きなように書く](https://www.n-novice.com/entry/2020/05/06/000000)
+- [ElastiFlowによるインターネットトラフィックの可視化 - LINE ENGINEERING](https://engineering.linecorp.com/ja/blog/internet-traffic-by-elastiflow/)
