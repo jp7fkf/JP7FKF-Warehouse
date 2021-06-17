@@ -30,12 +30,10 @@ System Name
 System Contact
 
 System Location
-
 ```
-> Bootloader version : 2.0.14
-なので `x510-5.4.8-2.9a.rel` をあてる．
+`Bootloader version : 2.0.14` なので `x510-5.4.8-2.9a.rel` をあてる．
 
-空き容量チェック
+- 空き容量チェック
 ```
 awplus#show file systems
 
@@ -54,13 +52,12 @@ awplus#show file systems
       -        -   rsync     rw  rsync:     -       network    -
 ```
 
-転送
+- 転送
 ```
 % scp x510-5.4.8-2.9a.rel manager@10.0.0.1:x510-5.4.8-2.9a.rel
 Password:
 x510-5.4.8-2.9a.rel                                    100%   25MB 389.0KB/s   01:06
 ```
-
 ```
 awplus#show file sys
 
@@ -85,7 +82,7 @@ awplus#dir
 ```
 転送ok
 
-verup
+- verup
 ```
 awplus#show boot
 Boot configuration
@@ -118,10 +115,9 @@ awplus#reboot
 reboot system? (y/n): y
 ```
 
-起動シーケンス
+- 起動シーケンス
 ```
 Machine Restart
-�
 Bootloader 2.0.14 loaded
 Press <Ctrl+B> for the Boot Menu
 
@@ -162,7 +158,6 @@ Flushing file system buffers...reboot: Restarting system
 Unmounting any remaining filesystems...
 Machine Restart
 Please stand by while rebooting the system...
-�
 Bootloader 2.0.36 loaded
 Press <Ctrl+B> for the Boot Menu
 
@@ -190,7 +185,6 @@ Checking flash filesystem...                            [  OK  ]
 ...
 ```
 bootloaderがverupされた．
-
 ```
 awplus#show system  | inc Boot
 Bootloader version : 2.0.36
@@ -265,13 +259,14 @@ awplus#dir
  24319922 -rw- Nov 19 2015 08:53:23  x510-5.4.4-3.10.rel
 ```
 
-firm転送
+- firm転送
 ```
 % scp x510-5.5.1-0.1.rel manager@10.0.0.1:x510-5.5.1-0.1.rel
 Password:
 x510-5.5.1-0.1.rel                                     100%   25MB 564.5KB/s   00:46
 ```
 
+- verup
 ```
 awplus#dir
  26639992 -rw- Jun 17 2021 16:08:05  x510-5.5.1-0.1.rel
@@ -307,11 +302,9 @@ awplus(config)# exit
 awplus#reboot
 reboot system? (y/n): y
 ```
-
 あがってくる
 ```
 Machine Restart
-�
 Bootloader 2.0.36 loaded
 Press <Ctrl+B> for the Boot Menu
 
