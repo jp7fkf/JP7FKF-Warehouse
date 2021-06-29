@@ -339,27 +339,57 @@ Mounting NVS filesystem...                              [  OK  ]
 ```
 
 ## fan静音化
-- 'edit fan.sh' して書きを記述．C-k,s でsave, C-cでexit．
+- `edit fan.sh`してeditorが開くので下記を記述．C-k,s でsave, C-cでexit．
 ```
+awplus#show file fan.sh
 #!/bin/sh
 
-# 低回転エラー避け
+# avoid low speed error
 echo 1000 > /sys/class/hwmon/hwmon0/fan1_min
 
-# 回転速度を0-255で指定
+# specify 0-255 for fan speed
 echo 64 > /sys/class/hwmon/hwmon0/pwm1_auto_point1_pwm
 echo 64 > /sys/class/hwmon/hwmon0/pwm1_auto_point2_pwm
 
-# 以下、メモ
-#cat /sys/class/hwmon/hwmon0/device/pwm1_auto_channels_temp
-#cat /sys/class/hwmon/hwmon0/device/pwm1_auto_point1_pwm
-#cat /sys/class/hwmon/hwmon0/device/pwm1_auto_point2_pwm
-#cat /sys/class/hwmon/hwmon0/device/pwm1_enable
-#cat /sys/class/hwmon/hwmon0/device/pwm1_freq
-#cat /sys/class/hwmon/hwmon0/device/pwm1
+awplus#
 ```
 シェルスクリプトを走らせる
 ```
+awplus#show system env
+Environment Monitoring Status
+
+Overall Status: ***Fault***
+
+Resource ID: 1  Name: RPS 1 ()
+ID  Sensor (Units)                      Reading  Low Limit High Limit Status
+1   Device Present                          Yes        -          -       Ok
+2   PSU Power Output                        Yes        -          -       Ok
+
+Resource ID: 2  Name: RPS 2 ()
+ID  Sensor (Units)                      Reading  Low Limit High Limit Status
+1   Device Present                          Yes        -          -       Ok
+2   PSU Power Output                         No        -          -    FAULT
+
+Resource ID: 3  Name: x510-28GTX
+ID  Sensor (Units)                      Reading  Low Limit High Limit Status
+1   Fan: Fan 1 (Rpm)                       4309       3000        -       Ok
+2   Voltage: 1.8V (Volts)                 1.813      1.612      1.975     Ok
+3   Voltage: 1.0V (Volts)                 0.999      0.891      1.090     Ok
+4   Voltage: 3.3V (Volts)                 3.278      3.028      3.562     Ok
+5   Voltage: 5.0V (Volts)                 5.066      4.503      5.498     Ok
+6   Voltage: 1.2V (Volts)                 1.184      1.046      1.292     Ok
+7   Temp: CPU (Degrees C)                    51        -11         80     Ok
+awplus#show file fan.sh
+#!/bin/sh
+
+# avoid low speed error
+echo 1000 > /sys/class/hwmon/hwmon0/fan1_min
+
+# specify 0-255 for fan speed
+echo 64 > /sys/class/hwmon/hwmon0/pwm1_auto_point1_pwm
+echo 64 > /sys/class/hwmon/hwmon0/pwm1_auto_point2_pwm
+
+awplus#
 awplus#activate fan.sh
 awplus#show sys env
 Environment Monitoring Status
@@ -386,3 +416,36 @@ ID  Sensor (Units)                      Reading  Low Limit High Limit Status
 6   Voltage: 1.2V (Volts)                 1.184      1.046      1.292     Ok
 7   Temp: CPU (Degrees C)                    49        -11         80     Ok
 ```
+
+### memo
+```
+awplus#show file show.sh
+#!/bin/sh
+
+# memo
+set -x
+cat /sys/class/hwmon/hwmon0/pwm1_auto_channels_temp
+cat /sys/class/hwmon/hwmon0/pwm1_auto_point1_pwm
+cat /sys/class/hwmon/hwmon0/pwm1_auto_point2_pwm
+cat /sys/class/hwmon/hwmon0/pwm1_enable
+cat /sys/class/hwmon/hwmon0/pwm1_freq
+cat /sys/class/hwmon/hwmon0/pwm1
+awplus#activate show.sh
++ cat /sys/class/hwmon/hwmon0/pwm1_auto_channels_temp
+2
++ cat /sys/class/hwmon/hwmon0/pwm1_auto_point1_pwm
+128
++ cat /sys/class/hwmon/hwmon0/pwm1_auto_point2_pwm
+255
++ cat /sys/class/hwmon/hwmon0/pwm1_enable
+2
++ cat /sys/class/hwmon/hwmon0/pwm1_freq
+22500
++ cat /sys/class/hwmon/hwmon0/pwm1
+128
+awplus#
+```
+
+## 強制初期化
+- PWがわからなくあんったときとか
+  - [AlliedTelesis AT系機器初期化方法 | ほげほげ備忘録](http://edcv.net/network/allied-initialization/)
