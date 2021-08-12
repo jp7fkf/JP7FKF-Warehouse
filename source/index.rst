@@ -156,6 +156,7 @@ Welcome to JP7FKF-Warehouse!
   hobbies/outdoor
   hobbies/trip
   hobbies/survival
+  hobbies/bucket_list
   settings
   electronics/electronics
 
