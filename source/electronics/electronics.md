@@ -44,8 +44,15 @@ LxW(mm),  呼び:(mm, inch)
 - イコライザ(slide volume)
 - 電子負荷装置
 - ESP系.02/32
-- D-Amp?
-- SWR meter?
+- tandem SWR meter
 - RF Power Meter?
 - 電力監視
-- Signal Tower
+- FAST-mini
+- matrix mixer
+- selecter/monitor
+- breadboard power(omake)
+- ClassDamp?
+- STM32/ESP board(omake
+- nano keyer
+- raspi console server
+- rest api physical pad(esp-wroom-02)

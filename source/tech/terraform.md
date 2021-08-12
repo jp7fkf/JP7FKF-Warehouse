@@ -19,3 +19,62 @@
 
 - References
   - [既存のAWS環境を後からTerraformでコード化する | DevelopersIO](https://dev.classmethod.jp/articles/aws-with-terraform/)
+
+## terraformのversion変更にはtfenvが便利
+- homebrewからinstallできる
+  - `brew install tfenv`
+  - https://github.com/tfutils/tfenv
+```
+% tfenv --help
+Usage: tfenv <command> [<options>]
+
+Commands:
+   install       Install a specific version of Terraform
+   use           Switch a version to use
+   uninstall     Uninstall a specific version of Terraform
+   list          List all installed versions
+   list-remote   List all installable versions
+   version-name  Print current version
+   init          Update environment to use tfenv correctly.
+```
+- `tfnev local x.x.x` はないのか？
+  - ない．かわりに `.terraform-version` で指定させることができる．
+```
+$ cat .terraform-version
+0.6.16
+```
+こんなやつをterraformリソースのrootあたりにいれておけばいい．近い階層のやつの`.terraform-version`に記載されたversionが採用される．
+
+## version系をかためる
+- terraform versionは `required_version` でかためれる．
+- 各種providerも `version` として記述してかためれる．
+```
+provider "google" {
+  project = "myproject"
+  region  = var.region
+}
+
+terraform {
+  required_version = "1.0.0"
+  backend "gcs" {
+    bucket = "my-tfstate-bucket"
+  }
+
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "3.73.0"
+    }
+  }
+}
+```
+
+## play/apply のtargetを指定して範囲を限定する
+- 全部さらうのが理想的だが時間の関係などで非効率的な場合，変更範囲が掌握されていて限定的な場合に有効．
+```
+terraform apply --target=resource01 --target=resource02
+```
+
+## parallelismの値で並列数をあげて高速化とか
+- apply, planで `--parallelism=30` みたいにする．defaultで10．
+  - `export TF_CLI_ARGS_plan="--parallelism=30"` とかでも指定できるのでdefault値として変更したければshellのrcとかに書いておくもの良い．

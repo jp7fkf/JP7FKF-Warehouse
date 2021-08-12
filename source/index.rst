@@ -44,6 +44,8 @@ Welcome to JP7FKF-Warehouse!
   dialy/202104
   dialy/202105
   dialy/202106
+  dialy/202107
+  dialy/202108
   todo
   programming/sh
   programming/go
@@ -83,6 +85,7 @@ Welcome to JP7FKF-Warehouse!
   unix/iptables
   unix/namespace
   unix/nmap
+  unix/logrotate
   unix/centos7
   unix/vim
   unix/ssh

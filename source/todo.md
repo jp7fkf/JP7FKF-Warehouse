@@ -9,6 +9,14 @@
 - English
 
 ## Make
+- 配達物IoT/Logger
+  - 特に国際郵便/貨物などで複数の配送業者を経由する場合内容物の状況といつ，どの時点でそうなったかという情報を知りたい
+  - 荷物にGPSと各種センサ（加速度，ジャイロ，ひずみ，温度，湿度，光など）をつけて荷物が自分の想定通りの環境を保って配送されたかを確認できるソリューションがあってもよくないか
+  - 特に高価なもの，複数の配送業者を経由するものなどでは十分需要があるのではないか．
+  - LTE等を利用したリアルタイムトラッキングは貨物要件(航空機)等の需要で厳しい可能性はあるが，電池動作でGPS等は受信のみなので電波を発しない部分だけでも良い気がする．
+- ESP-WROOM-02でAPIがうてる物理リモコン
+- ESP-WROOM-02 x SSR API switching
+- 郵便到着通知IoT
 - ガフガン3D
 - 光ピロピロ，普通のピロピロ．トーンプローブ．イベント会場で紐の行き先がわからなくなる．
   - [Pro3000™ Tone and Probe Series | Fluke Networks](https://jp.flukenetworks.com/datacom-cabling/installation-tools/Pro3000-Analog-Tone-and-Probe)

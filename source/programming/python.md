@@ -100,3 +100,31 @@ WantedBy = multi-user.target
 
 ## Tips
 -  [Pythonの相対インポートで上位ディレクトリ・サブディレクトリを指定 | note.nkmk.me](https://note.nkmk.me/python-relative-import/)
+
+## error handlingとtraceのプラクティス
+### methodの戻り値
+- 返り値の第1要素はそのmethodから得られる活用される値．第2要素はerror要素であり，code, message, traceを含むように返す．
+  - 正常応答の場合はerror要素はNoneとすることで成功か失敗かを判定する(-> goっぽい感じ)
+  - error要素がnoneの場合はそのメソッドから得たい値(返り値の第1要素)はそのメソッドが返す正常応答値を返却する．正常応答値はあらゆる値をとりうる(None可)．
+  - traceにはそのmethodが他のmethodをcallし，errorを受けた場合にcall先のerrorを内包させる．これによってroot callerまで末端のerrorを浮かびあがらせることができ，debugが用意になり，testも単純になる．
+    - error発生点が自methodの場合はtraceは空arrayとすればよい
+```
+return (None, {"code": -1, "message": "unexpected error.", "trace": []})
+return (None, {"code": -1, "message": "unexpected error.", "trace": [_err]+_err.pop("trace")})
+```
+- error要素に含まれるcodeやmessageは任意とすることができる．
+  - codeはunit testのassertionや，debug用としてerorr箇所を一意に定めるために活用することができる．
+    - 当初汎用errorを-1とする．
+    - HTTP errorの場合などはHTTP status codeをそのまま挿入することも有効である．
+  - messageは基本的に自method名を含めるとtraceに挿入されたときにたどることが容易となる．
+    - 複数のerror点がある場合はカッコ書き等で詳細を補足するとerror箇所の特定が容易となる．
+```
+return (None, {"code": -1, "message": "unexpected error(unexpected exception).", "trace": []})
+return (None, {"code": -1, "message": "unexpected error(xx api error).", "trace": [_err]+_err.pop("trace")})
+```
+
+### mockを用いたunittest
+- mockを用いたtestはテスト対象が他のmethodをcallする部分をmockすることを基本とする．
+- callするmethod先で用いられているmockをapplyすることは極力避けるが，例外は存在する．
+  - methodの繰り返し呼び出しがありうるためmock箇所の断定が難しくなるなどの理由による．
+  - 影響範囲が小さく断定が容易な場合などは例外としてもよいが，極力避ける．
