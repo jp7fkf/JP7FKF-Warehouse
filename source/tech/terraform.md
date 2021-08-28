@@ -78,3 +78,5 @@ terraform apply --target=resource01 --target=resource02
 ## parallelismの値で並列数をあげて高速化とか
 - apply, planで `--parallelism=30` みたいにする．defaultで10．
   - `export TF_CLI_ARGS_plan="--parallelism=30"` とかでも指定できるのでdefault値として変更したければshellのrcとかに書いておくもの良い．
+
+## [terraform-provider-esxi を使って自宅 ESXi サーバに VM を立てよう - Qiita](https://qiita.com/entertvl/items/16789d7cb330450c4f27)

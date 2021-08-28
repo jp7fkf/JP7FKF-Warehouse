@@ -166,3 +166,5 @@ iSCSIを有効にし，CHAP認証を利用する場合はCHAPを有効化して�
 ### References
 - [DiskStation Manager - Knowledge Base | Synology Inc.](https://www.synology.com/ja-jp/knowledgebase/DSM/tutorial/Virtualization/How_to_set_up_Synology_NAS_as_VMware_server_datastore)
 - [VMware Knowledge Base](https://kb.vmware.com/s/article/2045040)
+
+## [terraform-provider-esxi を使って自宅 ESXi サーバに VM を立てよう - Qiita](https://qiita.com/entertvl/items/16789d7cb330450c4f27)

@@ -154,3 +154,6 @@
 
   マークダウン記法
   This formula `$ y=\sum_{i=1}^n g(x_i) $`
+
+``` important:: Its a note! in markdown! - thisis
+```
