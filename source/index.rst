@@ -67,7 +67,6 @@ Welcome to JP7FKF-Warehouse!
   tech/mac_commands
   tech/ansible
   tech/zabbix
-  tech/eveng
   tech/sphinx
   tech/elastic_stack
   tech/gatling
