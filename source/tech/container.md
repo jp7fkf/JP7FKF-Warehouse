@@ -786,3 +786,6 @@ WantedBy=multi-user.target
 ## volume
 - `docker-compose rm -v`ではanonymous volumeのみが削除され，named volumeはそのまま残る．DB永続化等はこれで残せる．
 - `docker-compose down -v`だとnamed volumeも削除されてしまうので注意する必要がある．
+
+## k8s
+- `$ kubectl describe pods my_namespace -n my_pod`

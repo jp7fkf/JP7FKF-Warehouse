@@ -128,3 +128,48 @@ return (None, {"code": -1, "message": "unexpected error(xx api error).", "trace"
 - callするmethod先で用いられているmockをapplyすることは極力避けるが，例外は存在する．
   - methodの繰り返し呼び出しがありうるためmock箇所の断定が難しくなるなどの理由による．
   - 影響範囲が小さく断定が容易な場合などは例外としてもよいが，極力避ける．
+
+## asyncio.gatherのexception handling
+```
+>>> async def waiting_for_hoge(hoge=None):
+>>>     print("start")
+>>>     await asyncio.sleep(1)
+>>>     print(hoge[0])
+>>>     print("end")
+>>>
+>>> results = await asyncio.gather(*[waiting_for_hoge(hoge=["1"]),
+>>>                                 waiting_for_hoge(hoge=None),
+>>>                                 waiting_for_hoge(hoge=["3"])],
+>>>                                 return_exceptions=True)
+... print(results)
+start
+start
+start
+1
+end
+3
+end
+[None, TypeError("'NoneType' object is not subscriptable"), None]
+>>>
+
+>>> results = await asyncio.gather(*[waiting_for_hoge(hoge=["1"]),
+>>>                                  waiting_for_hoge(hoge=None),
+>>>                                  waiting_for_hoge(hoge=["3"])],
+>>>                                return_exceptions=False)
+... print(results)
+...
+start
+start
+start
+1
+end
+3
+end
+
+!!! Script runtime error !!!
+  File "<stdin>",line 5, in waiting_for_hoge
+                                        waiting_for_hoge(hoge=["3"])],
+TypeError:'NoneType' object is not subscriptable
+>>>
+```
+例外objectが返ってくるか，そのままraiseされてくるかの違い．

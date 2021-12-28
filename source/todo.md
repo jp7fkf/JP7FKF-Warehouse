@@ -8,6 +8,18 @@
 - AWS
 - English
 
+## やってみる
+- 実装がなかったら実装する
+- EVPN(PBB, MPLS, VXLAN)
+- TI-LFA/FRR
+- GRE BGP/OSPF
+- Bird/GoBGP/Exabgp/FRR
+- VPLS/VPWS w MPLS
+- MPLS TE
+- RSVP
+- ISIS
+- MPLS IP-VPN
+
 ## Make
 - 配達物IoT/Logger
   - 特に国際郵便/貨物などで複数の配送業者を経由する場合内容物の状況といつ，どの時点でそうなったかという情報を知りたい
@@ -177,7 +189,6 @@
 - [統計検定 1 級に合格する方法 - Qiita](https://qiita.com/drken/items/089b8443305df047b44e)
   - いつかチャレンジしてみたい
 - react
-- FAST
 - zookeeper
 - hadoop
 - etcd
@@ -185,5 +196,4 @@
 - kafka
 
 ## blog
-- FASTの話
 - spectrum analyzer修理した話
