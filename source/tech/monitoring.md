@@ -66,6 +66,7 @@
 - [Welcome to Apache Solr - Apache Solr](https://solr.apache.org/)
 - [StackStorm - StackStorm](https://stackstorm.com/)
   - イベントドリブンな自動化ツール
+- [Amixr Incident Management for DevOps and SRE inside Slack](https://amixr.io/)
 
 ### messaging
 - [XMPP | XMPP Main](https://xmpp.org/)

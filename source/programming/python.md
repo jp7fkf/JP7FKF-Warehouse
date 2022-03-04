@@ -173,3 +173,43 @@ TypeError:'NoneType' object is not subscriptable
 >>>
 ```
 例外objectが返ってくるか，そのままraiseされてくるかの違い．
+
+## yes no prompt
+```
+while True:
+  choice = input("Continue? [y/N]: ").lower()
+  if choice in ['y', 'ye', 'yes']:
+    break
+  elif choice in ['n', 'no']:
+    logger.info('Break.')
+    sys.exit(1)
+```
+
+## pythonのlog出力template
+```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import os
+import logging
+
+filename = os.path.basename(__file__)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+logging_handler = logging.FileHandler(filename=f"{os.path.splitext(filename)[0]}.log")
+logging_handler.setFormatter(logging.Formatter('%(asctime)s:%(message)s'))
+logging_handler.setLevel(logging.DEBUG)
+logger.addHandler(logging_handler)
+
+logging_stream_handler = logging.StreamHandler()
+logging_stream_handler.setFormatter(logging.Formatter('%(asctime)s:%(message)s'))
+logging_stream_handler.setLevel(logging.INFO)
+logger.addHandler(logging_stream_handler)
+
+if __name__ == '__main__':
+    logger.info('infomational log')
+    logger.debug('debug log')
+```
+
+## [ゼロから学ぶPython](https://kaityo256.github.io/python_zero/index.html)
