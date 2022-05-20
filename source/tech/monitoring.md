@@ -67,6 +67,7 @@
 - [StackStorm - StackStorm](https://stackstorm.com/)
   - イベントドリブンな自動化ツール
 - [Amixr Incident Management for DevOps and SRE inside Slack](https://amixr.io/)
+- [GridDB Developers](https://griddb.net/ja/)
 
 ### messaging
 - [XMPP | XMPP Main](https://xmpp.org/)
@@ -74,6 +75,7 @@
 ## ref
 - [OSSのおすすめ監視サーバ・監視ツール比較17選 | OSSでのシステム構築・デージーネット](https://www.designet.co.jp/ossinfo/selection/monitoring-server.html)
 - [手軽なメトリクス視覚化ツールを探して (Netdata, Prometheus, Telegraf) - Qiita](https://qiita.com/kikuchi_kentaro/items/8ab93b73012ee8aea717)
+- [GitHub - kahun/awesome-sysadmin: A curated list of amazingly awesome open source sysadmin resources inspired by Awesome PHP.](https://github.com/kahun/awesome-sysadmin)
 
 ## 課題とかアイディア
 - 階層型の監視システム？

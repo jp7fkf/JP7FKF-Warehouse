@@ -138,9 +138,9 @@ return (None, {"code": -1, "message": "unexpected error(xx api error).", "trace"
 >>>     print("end")
 >>>
 >>> results = await asyncio.gather(*[waiting_for_hoge(hoge=["1"]),
->>>                                 waiting_for_hoge(hoge=None),
->>>                                 waiting_for_hoge(hoge=["3"])],
->>>                                 return_exceptions=True)
+>>>                                  waiting_for_hoge(hoge=None),
+>>>                                  waiting_for_hoge(hoge=["3"])],
+>>>                                return_exceptions=True)
 ... print(results)
 start
 start
@@ -213,3 +213,13 @@ if __name__ == '__main__':
 ```
 
 ## [ゼロから学ぶPython](https://kaityo256.github.io/python_zero/index.html)
+
+## argparser
+```
+parser = argparse.ArgumentParser(description='description of my self')
+parser.add_argument('--h', '--hogehoge', help=hogehoge, default='hugahuga')
+args = parser.parse_args()
+
+print(args.hogehoge)
+```
+

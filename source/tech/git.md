@@ -188,21 +188,6 @@ ref: [Gitリポジトリからファイルを削除したい [QumaWiki]](https:/
 - 詳細情報まで見たい
   - `git show <tag_name>`
 
-## github
-- commitメッセージとして`close #<issue_no>`があると，そのissueはcloseされる．
-  - ほかには以下のキーワードの後に Issue 番号を入れると，その Issue がクローズされる．
-    - close
-    - closes
-    - closed
-    - fix
-    - fixes
-    - fixed
-    - 解決
-    - resolves
-    - resolved
-  - プルリクのメッセージでも同様の機能が使えて，プルリクの場合にはマージされたタイミングでcloseされる．
-  - ref: [キーワードを使って Issue をクローズする - GitHub ヘルプ](https://help.github.com/ja/github/managing-your-work-on-github/closing-issues-using-keywords)
-
 ## 過去のコミットを消す
 - rebaseしてreflog削除する
   - `git rebase -i hogehoge`
@@ -276,3 +261,34 @@ MERGE STRATEGIES
        to be chosen with -s option. Some strategies can also take their own options, which can be
        passed by giving -X<option> arguments to git merge and/or git pull.
 ```
+
+## `git update-index`
+```
+git update-index --skip-worktree
+git update-index --no-skip-worktree
+git update-index --assume-unchanged
+git update-index --no-assume-unchanged
+```
+- ref
+  - [Git - git-update-index Documentation](https://git-scm.com/docs/git-update-index)
+
+## github
+- commitメッセージとして`close #<issue_no>`があると，そのissueはcloseされる．
+  - ほかには以下のキーワードの後に Issue 番号を入れると，その Issue がクローズされる．
+    - close
+    - closes
+    - closed
+    - fix
+    - fixes
+    - fixed
+    - 解決
+    - resolves
+    - resolved
+  - プルリクのメッセージでも同様の機能が使えて，プルリクの場合にはマージされたタイミングでcloseされる．
+  - ref: [キーワードを使って Issue をクローズする - GitHub ヘルプ](https://help.github.com/ja/github/managing-your-work-on-github/closing-issues-using-keywords)
+
+## github actions
+- workflowを記述するとイベントトリガ的にactionを実行できる．
+  - CI/CD系とかlint系とかいろいろ応用でできる．
+- ``.github/workflows` 配下にaction workflowを記述したyamlを置く
+- default branchにあるやつが発火する．

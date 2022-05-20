@@ -51,6 +51,10 @@ Welcome to JP7FKF-Warehouse!
   dialy/202111
   dialy/202112
   dialy/202201
+  dialy/202202
+  dialy/202203
+  dialy/202204
+  dialy/202205
   todo
   programming/sh
   programming/go
@@ -86,6 +90,7 @@ Welcome to JP7FKF-Warehouse!
   tech/omron
   tech/tools
   tech/elastiflow
+  tech/frontend
   unix/iptables
   unix/namespace
   unix/nmap
@@ -161,6 +166,7 @@ Welcome to JP7FKF-Warehouse!
   hobbies/trip
   hobbies/survival
   hobbies/bucket_list
+  hobbies/tax_return_jp
   settings
   electronics/electronics
 
