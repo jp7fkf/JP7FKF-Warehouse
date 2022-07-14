@@ -68,6 +68,12 @@
   - イベントドリブンな自動化ツール
 - [Amixr Incident Management for DevOps and SRE inside Slack](https://amixr.io/)
 - [GridDB Developers](https://griddb.net/ja/)
+- [GitHub - perfsonar/owamp: A tool for performing one-way or two-way active measurements](https://github.com/perfsonar/owamp)
+- [システム運用管理ならNRIのSenju Family](https://senjufamily.nri.co.jp/)
+- [統合運用管理ソフトウェア WebSAM: ソフトウェア | NEC](https://jpn.nec.com/websam/index.html)
+- [Hinemosとは | Hinemos](https://www.hinemos.info/hinemos)
+- [統合システム運用管理 JP1：日立](https://www.hitachi.co.jp/Prod/comp/soft1/jp1/index.html)
+- [統合運用管理 Systemwalker｜ソフトウェア : 富士通](https://www.fujitsu.com/jp/products/software/middleware/business-middleware/systemwalker/)
 
 ### messaging
 - [XMPP | XMPP Main](https://xmpp.org/)

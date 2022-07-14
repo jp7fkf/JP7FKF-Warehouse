@@ -10,3 +10,8 @@
 
 ## Video Conference
 - [Free Video Conferencing Software for Web & Mobile | Jitsi](https://jitsi.org/)
+
+## LDAP
+- [Welcome to Apache Directory Studio — Apache Directory](https://directory.apache.org/studio/)
+
+## [Ghidra](https://ghidra-sre.org/)

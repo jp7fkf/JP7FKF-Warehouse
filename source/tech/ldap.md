@@ -1028,3 +1028,4 @@ post-auth{
 - [LDAPとSSH認証について - Qiita](https://qiita.com/kamihork/items/8ba9484f2d175aed40f2)
 - [OpenLDAPでユーザー認証までやってみる - Qiita](https://qiita.com/toshihirock/items/fc6ba5b6be8040e69ac9)
 - [LDAP構築 まとめ | CentOS7](https://www.tanchallenge-glory40.com/ldap_command/)
+- [Welcome to Apache Directory Studio — Apache Directory](https://directory.apache.org/studio/)

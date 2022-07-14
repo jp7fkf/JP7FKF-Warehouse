@@ -34,6 +34,8 @@
 - [銀座　岡半本店 | 金田中](https://www.kanetanaka.co.jp/restaurant/okahan/)
   - [岡半 本店 （オカハン） - 銀座/鉄板焼き | 食べログ](https://tabelog.com/tokyo/A1301/A130101/13002562/)
 - [東京食肉市場直送 肉焼屋 D-29 広尾店 - 広尾/焼肉/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1307/A130703/13269923/)
+- [まんてん鮨](https://www.manten-sushi.com/)
+- [大和寿司 - 市場前/寿司/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1313/A131307/13227265/)
 
 ### アキバのda le de mo racerにいってみたい
 - driving simulator
@@ -44,3 +46,6 @@
 
 ## Kyoto
 - [京都　四条　すがり　もつつけ麺](https://tabelog.com/kyoto/A2601/A260201/26006820/)
+
+## 北陸
+- [【公式】まつさき｜金沢辰口温泉｜温泉付きの客室が人気の料理自慢の宿](https://www.matsusaki.jp/)

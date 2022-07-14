@@ -106,7 +106,7 @@
 ### 3D Printingの条件
 すくなくとも手持ちのReplicator 2xで良さげだと思われるパラメータを記載する．
 - ABS:: head:230℃, heatbed: 110℃
-- PLA:: ??
+- PLA:: head:220℃, heatbed: 60℃ # わりとやわやわ
 - 積層ピッチは0.2mmがきれいでよい
 
 - サポートの条件
