@@ -25,7 +25,7 @@ from recommonmark.transform import AutoStructify
 # -- Project information -----------------------------------------------------
 
 project = 'JP7FKF-Warehouse'
-copyright = '2018-2020, Yudai Hashimoto'
+copyright = '2018-2022, Yudai Hashimoto'
 author = 'Yudai Hashimoto'
 
 html_title = project
