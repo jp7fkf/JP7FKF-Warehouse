@@ -74,6 +74,7 @@
 - [Hinemosとは | Hinemos](https://www.hinemos.info/hinemos)
 - [統合システム運用管理 JP1：日立](https://www.hitachi.co.jp/Prod/comp/soft1/jp1/index.html)
 - [統合運用管理 Systemwalker｜ソフトウェア : 富士通](https://www.fujitsu.com/jp/products/software/middleware/business-middleware/systemwalker/)
+- [GitHub - theonedev/onedev: Self-hosted Git Server with CI/CD and Kanban](https://github.com/theonedev/onedev)
 
 ### messaging
 - [XMPP | XMPP Main](https://xmpp.org/)

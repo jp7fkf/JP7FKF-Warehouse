@@ -15,3 +15,5 @@
 - [Welcome to Apache Directory Studio — Apache Directory](https://directory.apache.org/studio/)
 
 ## [Ghidra](https://ghidra-sre.org/)
+
+## [GitHub - theonedev/onedev: Self-hosted Git Server with CI/CD and Kanban](https://github.com/theonedev/onedev)
