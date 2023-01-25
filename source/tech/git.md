@@ -292,3 +292,13 @@ git update-index --no-assume-unchanged
   - CI/CD系とかlint系とかいろいろ応用でできる．
 - ``.github/workflows` 配下にaction workflowを記述したyamlを置く
 - default branchにあるやつが発火する．
+
+## git bisectのコツ
+- とりあえず `git bisect start <bad_commit> <good_commit...> [-- <specific_path>]`
+  - `git bisect` だけ打って対話するっていう手もあるが，こっちのほうが早い(当社比)．
+- scriptでbad/goodする場合は，goodの場合は0, badの場合は1-124の値を返却するように作る．
+  - help参照だが，125がtest不可(=skip)，126/127はそれぞれPOSIXでcommand not found/comand found but not executableに割り当てられている．
+- ex:
+  - buildが通らないなら: `git bisect run make build`
+  - testが通らないなら: `git bisect run make test`
+  - script fileを作るまででもない時: `git bisect run sh -c "grep -r hoge . && exit 0;exit 1"`
