@@ -62,6 +62,9 @@ Welcome to JP7FKF-Warehouse!
   dialy/202210
   dialy/202211
   dialy/202212
+  dialy/202301
+  dialy/202302
+  dialy/202303
   todo
   programming/sh
   programming/go
