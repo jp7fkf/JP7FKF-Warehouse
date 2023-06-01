@@ -143,6 +143,7 @@
   - 中国語，スペイン語 or フランス語
 - [パンシェルジュ検定 公式サイト](https://www.kentei-uketsuke.com/pancierge/)
 - [星検（星空宇宙天文検定）：星検協会（一般社団法人星空宇宙天文検定協会）が主催する検定試験](https://www.hoshiken.org/)
+- [旅行地理検定](https://www.chirikentei.jp/)
 
 ### 長期的に
   - 2級鍵師
