@@ -105,6 +105,8 @@ Welcome to JP7FKF-Warehouse!
   tech/elastiflow
   tech/frontend
   tech/ipsec
+  tech/bluetooth
+  tech/satellite_orbit
   unix/iptables
   unix/namespace
   unix/nmap
