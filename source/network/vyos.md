@@ -77,3 +77,7 @@
 ## vxlan on vyos
 - [VyOS で VXLAN を使ってみる - ジェダイさんのブログ](https://jedipunkz.github.io/blog/2014/12/16/vyos-vxlan/)
 - [VyOS Users Meeting #2, VyOSのVXLANの話](https://www.slideshare.net/upaa/vyos-users-meeting-2-vyosvxlan)
+
+## build
+- `docker run --rm -it --privileged -v $(pwd):/vyos -w /vyos vyos-builder bash ./configure --architecture amd64 --build-by "jp7fkf@example.com" --build-type release --version 1.2.8 && make iso`
+- ref: [技術メモメモ: VyOS 1.2.xをソースからビルドして、ISOイメージを作成する](https://tech-mmmm.blogspot.com/2020/05/vyos-12xiso.html)
