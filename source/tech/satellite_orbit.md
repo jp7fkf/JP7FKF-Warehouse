@@ -83,4 +83,8 @@
 ## [Search Satellite Database](https://www.n2yo.com/database/)
 
 ## [Welcome to the NSSDCA](https://nssdc.gsfc.nasa.gov/)
+- [NASA - NSSDCA - Master Catalog - Spacecraft Query](https://nssdc.gsfc.nasa.gov/nmc/SpacecraftQuery.jsp)
 
+## [国際衛星識別符号 - Wikipedia](https://ja.wikipedia.org/wiki/%E5%9B%BD%E9%9A%9B%E8%A1%9B%E6%98%9F%E8%AD%98%E5%88%A5%E7%AC%A6%E5%8F%B7)
+
+## [高軌道 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%AB%98%E8%BB%8C%E9%81%93)
