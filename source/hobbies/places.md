@@ -36,6 +36,10 @@
 - [東京食肉市場直送 肉焼屋 D-29 広尾店 - 広尾/焼肉/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1307/A130703/13269923/)
 - [まんてん鮨](https://www.manten-sushi.com/)
 - [大和寿司 - 市場前/寿司/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1313/A131307/13227265/)
+- [鮨 竜太 - 乃木坂/寿司 | 食べログ](https://tabelog.com/tokyo/A1307/A130701/13285051/)
+- [山形牛一頭買いITAMAE焼肉 美美 - 北千住/焼肉/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1324/A132402/13175136/)
+- [喫茶店ピノキオ｜株式会社フジオフードシステム](https://cafe-pinokio.com/)
+- [二◯加屋長介 大手町店 （にわかやちょうすけ） - 大手町/居酒屋/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1302/A130201/13204741/)
 
 ### アキバのda le de mo racerにいってみたい
 - driving simulator

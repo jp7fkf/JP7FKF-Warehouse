@@ -113,3 +113,24 @@
 ```eval_rst
 .. image:: ../resources/images/3dprint_setting_01.png
 ```
+
+## firmとか
+- [ReplicatorG is a simple, open source 3D printing program - ReplicatorG](http://replicat.org/)
+  - [Google Code Archive - Long-term storage for Google Code Project Hosting.](https://code.google.com/archive/p/replicatorg/downloads)
+- [SCons: A software construction tool - SCons](https://scons.org/)
+- [GitHub - markwal/GPX: Gcode to x3g conversion post processor](https://github.com/markwal/GPX)
+- [GitHub - jetty840/Sailfish-MightyBoardFirmware: Sailfish, faster than a Marlin](https://github.com/jetty840/Sailfish-MightyBoardFirmware)
+- [Sailfish Firmware by jetty - Thingiverse](https://www.thingiverse.com/thing:32084)
+
+## 3d bency
+- No.1:
+  - firmwarereplicator2x 7.6
+    - [Support Community](https://support.makerbot.com/s/article/Replicator-2X-Firmware)
+  - 吸湿してそうなフィラメント
+  - 温度230/110
+- No.2: diffだけかいていく
+  - 吸湿してなそうなフィラメント
+- No.3:
+  - No.1のフィラメント
+  - sailfish for replicator2x
+    - Sailfish 7.7 (r1432)

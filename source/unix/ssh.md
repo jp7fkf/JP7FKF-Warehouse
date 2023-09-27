@@ -190,3 +190,12 @@ ConnectionAttempts 3
              the destination host and not any specified jump hosts.  Use ~/.ssh/config to spec-
              ify configuration for jump hosts.
 ```
+
+## ControlMaster
+```
+Host *
+  ControlMaster auto
+  ControlPath   /tmp/%r@%h:%p
+```
+TODO: itermでsshしているときにどのsessionがmasterなのかわかるようにしたい．titleにだすとかで．
+
