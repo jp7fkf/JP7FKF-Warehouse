@@ -789,3 +789,18 @@ WantedBy=multi-user.target
 
 ## k8s
 - `$ kubectl describe pods my_namespace -n my_pod`
+### GKE upgrade
+```
+export GKE_CHANNEL=REGULAR
+export GKE_VER=1.25.10-gke.2700
+export GKE_REGION=asia-northeast1
+export GKE_CLUSTER=my-dev-master
+export GKE_NODEPOOL=my-dev-pool
+
+gcloud container get-server-config --flatten="channels" --filter="channels.channel=${GKE_CHANNEL}" --format="yaml(channels.channel,channels.validVersions)" --region=${GKE_REGION}
+gcloud container clusters list
+gcloud container node-pools list --cluster=${GKE_CLUSTER} --region=${GKE_REGION}
+kubectl get nodes
+gcloud container clusters upgrade ${GKE_CLUSTER} --master --cluster-version ${GKE_VER} --region=${GKE_REGION}
+gcloud container clusters upgrade ${GKE_CLUSTER} --node-pool=${GKE_NODEPOOL} --cluster-version ${GKE_VER} --region=${GKE_REGION}
+```

@@ -102,6 +102,8 @@
   - print中にいきなりエクストルーダがガチガチ言い出して樹脂を吐けなくなる．Fillament Unload/Loadしないと治らない．
 - Catalina からはMakerBot Desktopが動かなくなった．かなしい．Windows10ではまだ動くのでそっちでコード生成してる．
 - [How to Unclog a Nozzle | MakerBot Replicator 2X | MakerBot Support](https://support.makerbot.com/learn/makerbot-replicator-2x/extruders/how-to-unclog-a-nozzle_13469)
+- extは右が0, 左が1
+- ext間隔は35mm
 
 ### 3D Printingの条件
 すくなくとも手持ちのReplicator 2xで良さげだと思われるパラメータを記載する．
@@ -134,3 +136,11 @@
   - No.1のフィラメント
   - sailfish for replicator2x
     - Sailfish 7.7 (r1432)
+- No.4
+  - prusa slicerでreplicator 2x rev0.1
+  - infill 20%
+  - layer 0.3mm
+- No.5
+  - prusa slicerでreplicator 2x rev0.1
+  - infill 10%
+  - layer 0.2mm

@@ -44,6 +44,15 @@ zabbix=# select datname, blks_hit * 100.0 / (blks_read + blks_hit) AS cache_hit,
 (1 row)
 ```
 
+## backup
+- ```pg_dump -cU $POSTGRES_USER $POSTGRES_DB' > `date +%Y%m%d-%H%M%S`_`hostname`_pg_dump_${POSTGRES_DB}.sql```
+- ```pg_dump -cU $POSTGRES_USER $POSTGRES_DB' | gzip > `date +%Y%m%d-%H%M%S`_`hostname`_pg_dump_${POSTGRES_DB}.sql.gz```
+- ```sudo -u postgres pg_dumpall > `date +%Y%m%d-%H%M%S`_`hostname`_pg_dump.sql```
+- ```sudo -u postgres pg_dumpall | gzip > `date +%Y%m%d-%H%M%S`_`hostname`_pg_dump.sql.gz```
+
+## restore
+- `cat backup.sql | psql -U $POSTGRES_USER`
+
 ## References
 - [PostgresのRDSチューニング - Qiita](https://qiita.com/awakia/items/9981f37d5cbcbcd155eb)
 - [PostgreSQLをwarmupするツール(pg_warmup)作りました - y-asaba@hatenablog](https://y-asaba.hatenablog.com/entry/2014/02/14/221751)

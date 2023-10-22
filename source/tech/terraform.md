@@ -82,3 +82,6 @@ terraform apply --target=resource01 --target=resource02
 ## [terraform-provider-esxi を使って自宅 ESXi サーバに VM を立てよう - Qiita](https://qiita.com/entertvl/items/16789d7cb330450c4f27)
 
 ## [Terraform職人入門: 日々の運用で学んだ知見を淡々とまとめる - Qiita](https://qiita.com/minamijoyo/items/1f57c62bed781ab8f4d7)
+
+## [Pluralith · GitHub](https://github.com/Pluralith)
+- terraformから構成図をgenearteできるくん
