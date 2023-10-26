@@ -49,16 +49,15 @@
     ```
     - [signal - How does a cable tone-and-probe kit work? - Electrical Engineering Stack Exchange](https://electronics.stackexchange.com/questions/144267/how-does-a-cable-tone-and-probe-kit-work)
     - 仕組み的には上記っぽい．
-
 - [VisiFault™ 可視光源 - 光ケーブル導通テスター | フルーク・ネットワークス](https://jp.flukenetworks.com/datacom-cabling/fiber-testing/VisiFault-Visual-Fault-Locator)
-    - だいたい下記くらいのspecificationっぽい．レンズで十分集光してfibreの中に突っ込まないとダメそう．
-      ```
-      波長: 650 nm （可視波長）
-      レーザーの安全等級: クラスII
-      出力: < 1.3 mW
-      出力モード: 連続（一定）およびフラッシュ（2 ～ 3Hz パルス）
-      ```
-    - たぶんfs.comで3000円くらいの光源買ったほうがいい．
+  - だいたい下記くらいのspecificationっぽい．レンズで十分集光してfibreの中に突っ込まないとダメそう．
+    ```
+    波長: 650 nm （可視波長）
+    レーザーの安全等級: クラスII
+    出力: < 1.3 mW
+    出力モード: 連続（一定）およびフラッシュ（2 ～ 3Hz パルス）
+    ```
+  - たぶんfs.comで3000円くらいの光源買ったほうがいい．
 - 電源をモニタリングする何か．電源品質，電圧電流がwebでグラフ化できるとか．周波数とかも．
 - 望遠鏡
 - カンバン方式なブレインストーミングツール
@@ -89,7 +88,6 @@
       - オープンチケット，割り当てチケットの表示
       - チケット絞り込み機能実装
       - message と連携．ticketクリックしたらちゃんと関連のmessagesがソートされて出てくるように．
-
     - vacance
       - 見た目一旦調整
       - placeもdraggableに
@@ -98,7 +96,6 @@
       - server sideリファクタ
       - client side リファクタ
       - websocket実装
-
     - QSO-Logging
       - 見た目
       - validation 追加
@@ -108,7 +105,6 @@
       - Operator list 自動生成
       - contest スコアリングsystem実装
       - slimを用いて書き直す．
-
 - AD8362を用いたパワーセンサ設計
 - 回路設計: D-amp, イコライザ，ヘッドホンアンプ
 - 電子負荷装置回路設計
