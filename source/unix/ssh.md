@@ -196,6 +196,20 @@ ConnectionAttempts 3
 Host *
   ControlMaster auto
   ControlPath   /tmp/%r@%h:%p
+  # ControlPersist 600
+  # ControlPersist 5m
 ```
-TODO: itermでsshしているときにどのsessionがmasterなのかわかるようにしたい．titleにだすとかで．
+- sshセッションへのunix domain socketが生える．パーミッションはdefalt 0600(ControlPersistで変更可能)．
+- rootユーザなどはこのソケットが見えてしまうし，扱えるので利用上は留意する必要がある．
+- [入門OpenSSH | 新山 祐介 |本 | 通販 | Amazon](http://amazon.co.jp/dp/479801348X)
+- TODO: itermでsshしているときにどのsessionがmasterなのかわかるようにしたい．titleにだすとかで．
 
+## `authorized_keys` に接続後実行するコマンドがかける
+- 接続後lsする
+```
+# ~/.ssh/authorized_keys
+command="ls" ssh-rsa AAA...xxx
+```
+- これ以外にもoptionがある．
+  - [Detailed Description of How to Configure Authorized Keys for OpenSSH](https://www.ssh.com/academy/ssh/authorized-keys-openssh)
+  - 活用できそうなのは `command`, `environment` くらいか．

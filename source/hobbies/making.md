@@ -117,6 +117,11 @@
 - [GitHub - jetty840/Sailfish-MightyBoardFirmware: Sailfish, faster than a Marlin](https://github.com/jetty840/Sailfish-MightyBoardFirmware)
 - [Sailfish Firmware by jetty - Thingiverse](https://www.thingiverse.com/thing:32084)
 
+## replicatorGでサポートしてるGコード/Mコード
+- [G Codes - ReplicatorG](http://replicat.org/gcodes)
+- [M Codes - ReplicatorG](http://replicat.org/mcodes)
+- [G-code - RepRap](https://reprap.org/wiki/G-code)
+
 ## 3d bency
 - No.1:
   - firmwarereplicator2x 7.6

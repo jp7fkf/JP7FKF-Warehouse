@@ -4,7 +4,41 @@
   - [MacにPostgreSQLをインストール - Qiita](https://qiita.com/_daisuke/items/13996621cf51f835494b)
 
 ## Commands
-  - [PostgreSQLの基本的なコマンド - Qiita](https://qiita.com/H-A-L/items/fe8cb0e0ee0041ff3ceb)
+- connect use database form psql
+  - `psql <DB_NAME>`
+  - `psql -U <USER_NAME> <DB_NAME>`
+- exit database
+  `\q`
+- list databases
+  `\l`
+- connect database
+  `\c <DB_NAME>`
+  `\connect <DB_NAME>`
+- list tables
+  `\d`
+  `\dt`
+- show shemas
+  `\d <TABLE_NAME>`
+  `\dn`
+- show table permission
+  `\z <TABLE_NAME>`
+- show view
+  `\dv`
+- show view definition
+  `select definition from pg_views where viewname = '<VIEW_NAME>';`
+- show current user
+  `select current_user;`
+- show user roles
+  `\du`
+- show user info
+  `select * from pg_user;`
+- grant access to user
+  - `grant select, insert, update, delete on <TABLE_NAME> to <USER_NAME>;`
+- revoke access to user
+  - `revoke select, insert, update, delete on <TABLE_NAME>　from <USER_NAME>;`
+
+### References
+- [PostgreSQLの基本的なコマンド - Qiita](https://qiita.com/H-A-L/items/fe8cb0e0ee0041ff3ceb)
 
 ## cache hit ratioがよくない
 - まずは `postgresql.conf` まわりでtuning
