@@ -142,3 +142,18 @@
   - prusa slicerでreplicator 2x rev0.1
   - infill 10%
   - layer 0.2mm
+
+## max speed
+- feed: 120mm/s
+- travel: 150mm/s
+
+## フィラメント在庫
+- PLA 1.75mm 透明(natural) MakerBot
+- ABS 1.75mm Green 謎メーカー
+- PLA 1.75mm 透明(natural) MakerBot
+- PVA 1.75mm WATER SOLUBLE MakerBot
+- PLA 1.75mm TrueRed MakerBot
+- [Amazon.co.jp: OVERTURE ABS フィラメント 3Dプリンター用素材 3D印刷 3Dプリンター フィラメント 1.75mm 1kgスプール 高い寸法精度 高密度 環境保護 ほとんどのFDMプリンターに適合 (ブラック) : 産業・研究開発用品](https://www.amazon.co.jp/gp/product/B08LNCPR9F/)
+  - ABS 1.75mm Black
+- [Amazon.co.jp: OVERTURE PETG フィラメント PETG 3Dプリンター用素材 3D印刷 3Dプリンター フィラメント 1.75mm 1kgスプール 高い寸法精度 高密度 環境保護 ほとんどのFDMプリンターに適合 (ブラック) : 産業・研究開発用品](https://www.amazon.co.jp/gp/product/B08LNBS1F8/)
+  - PETG 1.75mm Black

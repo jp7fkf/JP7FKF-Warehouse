@@ -43,16 +43,33 @@ LxW(mm),  呼び:(mm, inch)
 ## 起こしたい基板候補
 - イコライザ(slide volume)
 - 電子負荷装置
-- ESP系.02/32
 - tandem SWR meter
 - RF Power Meter?
 - 電力監視
 - FAST-mini
 - matrix mixer
-- selecter/monitor
-- breadboard power(omake)
 - ClassDamp?
 - STM32/ESP board(omake
 - nano keyer
-- raspi console server
+
+## Projects
+- 電子負荷装置proto
+  - IO: ロタコン，ボタン系
+- bluetooth serial, logger, bt multi, bt audio, proto
+  - I2C, I2S, LiPo charge-discharge test
+  - TiのI2S codec IC
+  - 面実装レバースイッチ
+  - USB-C
+  - ICL3232CVZ
+  - TRX ACT LED by P-FET
+  - I2C 16x2 backlight LCD
+- audio-master proto
+  - YDA142 test, matrix switch test
+  - JRCのマトリクススイッチIC: NJU7275
+  - LED付きスイッチ
+- raspi console server hat proto
+  - USB HUB IC
+  - CH340K
+- majika iris hack proto
+- SFP hacker
 - rest api physical pad(esp-wroom-02)
