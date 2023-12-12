@@ -40,6 +40,7 @@
 - [山形牛一頭買いITAMAE焼肉 美美 - 北千住/焼肉/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1324/A132402/13175136/)
 - [喫茶店ピノキオ｜株式会社フジオフードシステム](https://cafe-pinokio.com/)
 - [二◯加屋長介 大手町店 （にわかやちょうすけ） - 大手町/居酒屋/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1302/A130201/13204741/)
+- [目黒フレンチ ビストロエガリテ | Meguro French BistroEgalite Tokyo Meguro](https://www.bistroegalite.com/)
 
 ### アキバのda le de mo racerにいってみたい
 - driving simulator

@@ -29,3 +29,11 @@
 - インターネット通信を評価する基準．
   - RTT(latency), throughput, tcp, udp, prptocol?(IPSec,IKEとか通る？とか)
   - OP53Bとか，123Portとかどうするの，とか．
+
+## Wi-Fi
+- 2.4G
+  - 2.4G帯は実質下記のch組でデザインすることになる．
+    - 1, 6, 11ch
+    - 2, 7, 12ch
+    - 3, 8, 13ch
+  - 22MHz帯域で5MHz間隔なので，5ch離す．
