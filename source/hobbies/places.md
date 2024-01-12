@@ -54,3 +54,5 @@
 
 ## 北陸
 - [【公式】まつさき｜金沢辰口温泉｜温泉付きの客室が人気の料理自慢の宿](https://www.matsusaki.jp/)
+- [寿司処 松の](https://matsuno.main.jp/)
+
