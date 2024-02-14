@@ -804,3 +804,15 @@ kubectl get nodes
 gcloud container clusters upgrade ${GKE_CLUSTER} --master --cluster-version ${GKE_VER} --region=${GKE_REGION}
 gcloud container clusters upgrade ${GKE_CLUSTER} --node-pool=${GKE_NODEPOOL} --cluster-version ${GKE_VER} --region=${GKE_REGION}
 ```
+
+## Dockerfileでdocker run
+```
+#!/usr/bin/env -S bash -c "docker run -p 8080:8080 -it --rm \$(docker build \$(for arg in \$*; do echo --build-arg \$arg; done) --progress plain -f \$0 . 2>&1 | tee /dev/stderr | grep -oP 'sha256:[0-9a-f]*')"
+
+```
+```
+chmod +x ./Dockerfile
+./Dockerfile hoge=huga
+# ARG hoge=huga
+```
+ - [#!/usr/bin/env docker run · GitHub](https://gist.github.com/adtac/595b5823ef73b329167b815757bbce9f)

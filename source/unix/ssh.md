@@ -51,7 +51,23 @@ Host proxy_target
    HostName target.co.jp
    User hoge
    ProxyCommand ssh -W %h:%p server
-   ```
+```
+
+## Proxy経由でのssh
+```
+# http(nc)
+ssh -o ProxyCommand='nc -X connect -x proxy.example.jp:8888 %h %p' user@example.jp
+
+# http(ncat)
+ssh -o ProxyCommand='ncat --proxy-type http --proxy proxy.example.jp:8888 %h %p' user@example.jp
+
+# socks5
+ssh -o ProxyCommand='nc -X 5 -x proxy.example.jp:8888 %h %p' user@example.jp
+```
+- ref
+  - [sshをproxy経由でつなぐ - @znz blog](https://blog.n-z.jp/blog/2018-08-12-ssh-over-proxy.html)
+  - [Mac OSXでHTTP Proxy経由でSSH #Mac - Qiita](https://qiita.com/yuyhiraka/items/30766c69fb605fc5f182)
+  - [macOS Catalina から Proxy 経由で SSH 接続する #SSH - Qiita](https://qiita.com/fala/items/e4200ff707f83313e4a1)
 
 ## agent transfer
 - [多段sshを行うときに、ローカルの秘密鍵を参照し続ける - Qiita](https://qiita.com/ymd_/items/5eb833ad757bd8b3e6c3)
