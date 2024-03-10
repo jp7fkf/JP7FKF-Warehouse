@@ -41,6 +41,14 @@
 - [喫茶店ピノキオ｜株式会社フジオフードシステム](https://cafe-pinokio.com/)
 - [二◯加屋長介 大手町店 （にわかやちょうすけ） - 大手町/居酒屋/ネット予約可 | 食べログ](https://tabelog.com/tokyo/A1302/A130201/13204741/)
 - [目黒フレンチ ビストロエガリテ | Meguro French BistroEgalite Tokyo Meguro](https://www.bistroegalite.com/)
+- udon
+  - ① 甚六(新宿御苑)
+  - ② 花山うどん(銀座)
+  - ③ 新堀(代々木)
+  - ④ 香川一福(神田)
+  - ⑤ 丸香(神保町)
+  - ⑥ 花は咲く(中野)
+  - ⑦ 佐藤養助(銀座)
 
 ### アキバのda le de mo racerにいってみたい
 - driving simulator
@@ -55,4 +63,3 @@
 ## 北陸
 - [【公式】まつさき｜金沢辰口温泉｜温泉付きの客室が人気の料理自慢の宿](https://www.matsusaki.jp/)
 - [寿司処 松の](https://matsuno.main.jp/)
-

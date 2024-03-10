@@ -55,6 +55,7 @@
   - 2022/10  三級ファイナンシャル・プランニング技能士(個人資産相談業務)
   - 2022/12  エンベデッドシステムスペシャリスト
   - 2023/03  [Google Cloud Certified - Professional Cloud Developer](https://www.credential.net/7a47ef77-5429-4fd6-8bd4-2be7991a6863)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Network Engineer](https://www.credential.net/b0d9ce8b-755a-4e60-be38-c7426cb0264a)
   - TOEICは最高でも700ptsに満たない程度です．
 
 ## Life Events
@@ -137,6 +138,8 @@
   - 2022/10  三級ファイナンシャル・プランニング技能士(個人資産相談業務)
   - 2022/12  エンベデッドシステムスペシャリスト試験　合格(免除, 76.00, 67, 65)
   - 2023/03  [Google Cloud Certified - Professional Cloud Developer](https://www.credential.net/7a47ef77-5429-4fd6-8bd4-2be7991a6863)
+  - 2023/06  Interop Tokyo 2023, ShowNet Team Memberとして参加．
+  - 2024/03  [Google Cloud Certified - Professional Cloud Network Engineer](https://www.credential.net/b0d9ce8b-755a-4e60-be38-c7426cb0264a)
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.
