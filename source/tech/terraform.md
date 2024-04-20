@@ -85,3 +85,7 @@ terraform apply --target=resource01 --target=resource02
 
 ## [Pluralith · GitHub](https://github.com/Pluralith)
 - terraformから構成図をgenearteできるくん
+
+## provider cache
+- [TerraformのProvider Plugin Cacheを試す - CLOVER🍀](https://kazuhira-r.hatenablog.com/entry/2024/02/11/192735)
+- [CLI Configuration | Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/cli/v1.7.x/config/config-file#provider-plugin-cache)

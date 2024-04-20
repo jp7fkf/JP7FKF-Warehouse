@@ -59,6 +59,7 @@
   - 2024/03  [Google Cloud Certified - Professional Google Workspace Administrator](https://www.credential.net/e8e7465c-7f69-4463-9230-ac5ab5ff284a)
   - 2024/03  [Google Cloud Certified - Professional Cloud DevOps Engineer](https://www.credential.net/cbec123b-1df4-491c-9b00-db5b1a367179)
   - 2024/03  [Google Cloud Certified - Professional Cloud Database Engineer](https://www.credential.net/ffa40606-8992-4a27-9d9c-d05527c5b801)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credential.net/8937c8c6-e68a-423e-a3a6-2d1e89bf59d0)
   - TOEICは最高でも700ptsに満たない程度です．
 
 ## Life Events
@@ -146,6 +147,7 @@
   - 2024/03  [Google Cloud Certified - Professional Google Workspace Administrator](https://www.credential.net/e8e7465c-7f69-4463-9230-ac5ab5ff284a)
   - 2024/03  [Google Cloud Certified - Professional Cloud DevOps Engineer](https://www.credential.net/cbec123b-1df4-491c-9b00-db5b1a367179)
   - 2024/03  [Google Cloud Certified - Professional Cloud Database Engineer](https://www.credential.net/ffa40606-8992-4a27-9d9c-d05527c5b801)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credential.net/8937c8c6-e68a-423e-a3a6-2d1e89bf59d0)
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.
