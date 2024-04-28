@@ -259,3 +259,35 @@ func main () {
 
 }
 ```
+
+## バイナリサイズを小さくする
+- `go build -ldflags="-s -w" -trimpath`
+```
+% go tool link --help 2>&1 | rg '(\-s\t|\-w\t)'
+  -s  disable symbol table
+  -w  disable DWARF generation
+% go help build 2>&1 | rg -A4 trimpath
+  -trimpath
+    remove all file system paths from the resulting executable.
+    Instead of absolute file system paths, the recorded file names
+    will begin either a module path@version (when using modules),
+    or a plain import path (when using the standard library, or GOPATH).
+```
+
+## `gofmt -l -s -w .`
+- `go fmt ./...` でもよいが，`go fmt` は結局`gofmt`をcallしている
+
+
+## `assignment to entry in nil map`
+- nil mapには値を追加できない．-> 初期化しましょう．
+  - 宣言だけだとNULLポインタ状態になる．
+- 下記3つはすべて同じ意味．#1か#3が楽かな．
+```
+// #1
+test_map := make(map[string]int)
+// #2
+var test_map map[string]int
+test_map = map[string]int{}
+// #3
+test_map := map[string]int{}
+```

@@ -220,3 +220,34 @@ $ terraform init -migrate-state
 ```
 - ref
   - [tfstateをローカルとS3間で移行してみた | DevelopersIO](https://dev.classmethod.jp/articles/tfstate-s3-local-migration-method/)
+
+## meta arguments
+- [Resources Overview - Configuration Language | Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/language/resources)
+- `depends_on`: 依存関係を明示指定する．基本的にterraformが自ずと解決するので，使いたくない．
+- `count`: nコ作れる
+- `for_each`: `count`と似ているがk/v map/setで別名をつけつつ作ったりできる．
+- `provider`
+- `lifecycle`
+  - `create_before_destroy`: replaceするときとかに消す前に作る(他リソースとの依存関係がある場合など)
+  - `prevent_destroy`: 消させない/destroyさせない
+  - `ignore_changes`: remote changesをignoreする
+  - `replace_triggered_by`: ここで指定した値が変わったらreplaceする
+
+## [Terraform 1.5 で追加された import ブロックと HCL 自動生成オプションの組合せが便利](https://zenn.dev/cloud_ace/articles/usage-terraform-import-block)
+- > Note: Import blocks are only available in Terraform v1.5.0 and later.
+- import.tfを書く
+  ```
+  import {
+    id = {id}
+    to = {resource}+{resource_name}
+  }
+  ```
+- `terraform plan -generate-config-out=generated.tf`
+  - `generated.tf` が作られる．import相当のデータをもとにtfファイルができる．
+  - int/stringの識別がうまくないと`jsonencode()`的に出力されることがある．適宜修正．
+- `terraform plan`
+  - importのplanをしてみる．importのみが実行予定となるはず．
+- `terraform apply`
+  - import実行．stateファイルにはこの段階で書かれる．
+- `terraform plan`
+  - no changesのはず．
