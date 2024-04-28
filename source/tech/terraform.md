@@ -89,3 +89,134 @@ terraform apply --target=resource01 --target=resource02
 ## provider cache
 - [TerraformのProvider Plugin Cacheを試す - CLOVER🍀](https://kazuhira-r.hatenablog.com/entry/2024/02/11/192735)
 - [CLI Configuration | Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/cli/v1.7.x/config/config-file#provider-plugin-cache)
+
+## terraform bundle と terraform providers mirror
+- [Terraform v1.0.0 で開発が終了した terraform-bundle の代替手段 #Terraform - Qiita](https://qiita.com/ryysud/items/e6e0d1701dc27ceec171)
+
+## tfstateの移行
+- aws s3からgoogle cloud storageにうつしたいとか，bucketを変更したいとかもこれと同様にlocalに一旦持ってきてからbackendを切り替えることで実施できる．
+```
+## GCSからLocalにもってくる
+# backupをとる(optional)
+$ terraform state pull >> terraform.tfstate.backup
+
+# ======
+# terraform {
+# #  backend "gcs" {
+# #    bucket = "dev-tfstate"
+# #  }
+# ...
+# }
+# ======
+
+# bucketセクションをコメントアウトしてplanを実行すると怒られる．initが必要．
+$ terraform plan
+ ╷
+ │ Error: Backend initialization required, please run "terraform init"
+ │
+ │ Reason: Unsetting the previously set backend "gcs"
+ │
+ │ The "backend" is the interface that Terraform uses to store state,
+ │ perform operations, etc. If this message is showing up, it means that the
+ │ Terraform configuration you're using is using a custom configuration for
+ │ the Terraform backend.
+ │
+ │ Changes to backend configurations require reinitialization. This allows
+ │ Terraform to set up the new configuration, copy existing state, etc. Please run
+ │ "terraform init" with either the "-reconfigure" or "-migrate-state" flags to
+ │ use the current configuration.
+ │
+ │ If the change reason above is incorrect, please verify your configuration
+ │ hasn't changed and try again. At this point, no changes to your existing
+ │ configuration or state have been made.
+
+# migrateするためには -migrate-stateオプションが必要と言われる
+# -reconfigureでもよいが，既存状態のことを考えずに今が正義になるので注意．強め．
+$ terraform init
+ Initializing the backend...
+ ╷
+ │ Error: Backend configuration changed
+ │
+ │ A change in the backend configuration has been detected, which may require migrating existing
+ │ state.
+ │
+ │ If you wish to attempt automatic migration of the state, use "terraform init -migrate-state".
+ │ If you wish to store the current configuration with no changes to the state, use "terraform
+ │ init -reconfigure".
+ ╵
+
+# -migrate-state オプションをつけると，gcsからlocalにstate backendを変更する旨の確認が出る．yesでlocalにstateが来る．
+$ terraform init -migrate-state
+
+ Initializing the backend...
+ Terraform has detected you're unconfiguring your previously set "gcs" backend.
+ Do you want to copy existing state to the new backend?
+   Pre-existing state was found while migrating the previous "gcs" backend to the
+   newly configured "local" backend. No existing state was found in the newly
+   configured "local" backend. Do you want to copy this state to the new "local"
+   backend? Enter "yes" to copy and "no" to start with an empty state.
+
+   Enter a value: yes
+
+ Successfully unset the backend "gcs". Terraform will now operate locally.
+
+ Initializing provider plugins...
+ - Reusing previous version of jp7fkf.dev/dev/dev-terraform-provider from the dependency lock file
+ - Using previously-installed jp7fkf.dev/dev/dev-terraform-provider v0.0.1
+
+ Terraform has been successfully initialized!
+
+ You may now begin working with Terraform. Try running "terraform plan" to see
+ any changes that are required for your infrastructure. All Terraform commands
+ should now work.
+
+ If you ever set or change modules or backend configuration for Terraform,
+ rerun this command to reinitialize your working directory. If you forget, other
+ commands will detect it and remind you to do so if necessary.
+
+# これでlocalにstate変更が完了
+
+
+## LocalからGCSにもっていく
+# backupとかは省略．概ね逆手順で実行できる．
+
+# backendを記載する．
+# ======
+# terraform {
+#   backend "gcs" {
+#     bucket = "dev-tfstate"
+#   }
+# ...
+# }
+# ======
+
+# 同様に-migrate-steteを付与してinitをすると，localからgcsにbackendを変更する旨の確認が出る．yesでマイグレ．
+$ terraform init -migrate-state
+ Initializing the backend...
+ Do you want to copy existing state to the new backend?
+   Pre-existing state was found while migrating the previous "local" backend to the
+   newly configured "gcs" backend. No existing state was found in the newly
+   configured "gcs" backend. Do you want to copy this state to the new "gcs"
+   backend? Enter "yes" to copy and "no" to start with an empty state.
+
+   Enter a value: yes
+
+ Successfully configured the backend "gcs"! Terraform will automatically
+ use this backend unless the backend configuration changes.
+
+ Initializing provider plugins...
+ - Reusing previous version of jp7fkf.dev/dev/dev-terraform-provider from the dependency lock file
+ - Using previously-installed jp7fkf.dev/dev/dev-terraform-provider v0.0.1
+
+ Terraform has been successfully initialized!
+
+ You may now begin working with Terraform. Try running "terraform plan" to see
+ any changes that are required for your infrastructure. All Terraform commands
+ should now work.
+
+ If you ever set or change modules or backend configuration for Terraform,
+ rerun this command to reinitialize your working directory. If you forget, other
+ commands will detect it and remind you to do so if necessary.
+```
+- ref
+  - [tfstateをローカルとS3間で移行してみた | DevelopersIO](https://dev.classmethod.jp/articles/tfstate-s3-local-migration-method/)

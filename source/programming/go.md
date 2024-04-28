@@ -237,3 +237,25 @@ Use "go help <topic>" for more information about that topic.
 ## Play Sound by Golang
 - [GitHub - faiface/beep: A little package that brings sound to any Go application. Suitable for playback and audio-processing.](https://github.com/faiface/beep)
 - [GitHub - hajimehoshi/oto: ♪ A low-level library to play sound on multiple platforms ♪](https://github.com/hajimehoshi/oto)
+
+## goreleaser
+- [goreleaserを使ってGoで書いたツールのバイナリをGithub Releasesで配布する - $shibayu36->blog;](https://blog.shibayu36.org/entry/2017/10/04/193000)
+
+## version
+```
+import (
+  "fmt"
+  "runtime/debug"
+)
+var version string
+func main () {
+  if version != "" {
+    fmt.Println(version)  // ldfragsで設定した場合
+  }
+  if buildInfo, ok := debug.ReadBuildInfo(); ok {
+    fmt.Println(buildInfo.Main.Version)  // buildInfo.Main.Versionにはvcsの最終tag or なければdevelが入る
+  }
+...
+
+}
+```
