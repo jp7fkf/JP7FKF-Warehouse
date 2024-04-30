@@ -243,20 +243,19 @@ Use "go help <topic>" for more information about that topic.
 
 ## version
 ```
-import (
-  "fmt"
-  "runtime/debug"
-)
-var version string
-func main () {
-  if version != "" {
-    fmt.Println(version)  // ldfragsで設定した場合
-  }
-  if buildInfo, ok := debug.ReadBuildInfo(); ok {
-    fmt.Println(buildInfo.Main.Version)  // buildInfo.Main.Versionにはvcsの最終tag or なければdevelが入る
-  }
-...
+import "runtime/debug"
+var Version string
 
+func version() string {
+  if Version != "" {
+    return Version // ldfragsで設定した場合
+  }
+
+  info, ok := debug.ReadBuildInfo() // buildInfo.Main.Versionにはvcsの最終tag or なければdevelが入る
+  if !ok {
+    return "(devel)"
+  }
+  return info.Main.Version
 }
 ```
 
