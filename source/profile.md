@@ -173,7 +173,7 @@
   11. Yudai Hashimoto, Qiaowei YUAN, Takumi Aoki, Drone Driven by Microwave, 2018 Asia-Pacific Microwave Conference (APMC2018), AP2017-187, Nov. 2018.
 
 ## 特許
-  1. [特許2019-043111(2019/03/08) - ゲートウェイ装置、ネットワークシステム、制御方法、及びプログラム](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-7249820/15/ja)
+  1. [特許7249820(2023.3.23) - ゲートウェイ装置、ネットワークシステム、制御方法、及びプログラム](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-7249820/15/ja)
 
 ## 自分向け
   -  [toggle](https://toggl.com/app/timer)
