@@ -43,7 +43,7 @@
   - 2018/09  .com Master ADVANCE, ADVANCE★★ 取得
   - 2018/10  CCNA Routing and Switching(200-125) (expired)
   - 2018/12  技術士補（電気電子部門）
-  - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credly.com/earner/earned/badge/977644b6-81ac-4cfb-8ce2-b5497bab81ae) (expired)
+  - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credly.com/badges/977644b6-81ac-4cfb-8ce2-b5497bab81ae/public_url) (expired)
   - 2019/06  情報処理安全確保支援士試験
   - 2020/02  CCNP Switch(300-115) Pass(856/1000(boarder: 790))
   - 2020/02  危険物取扱者 乙種第4類 Pass(法令80%, 物理・化学100%, 性質・消火90%)
@@ -54,17 +54,17 @@
   - 2022/05  [Scrum Alliance - Certified ScrumMaster® (CSM®)](https://bcert.me/suqwrpjkm)
   - 2022/10  三級ファイナンシャル・プランニング技能士(個人資産相談業務)
   - 2022/12  エンベデッドシステムスペシャリスト
-  - 2023/03  [Google Cloud Certified - Professional Cloud Developer](https://www.credly.com/earner/earned/badge/4ba7dc11-d007-4f93-b808-2faef1a1986a)
-  - 2024/03  [Google Cloud Certified - Professional Cloud Network Engineer](https://www.credly.com/earner/earned/badge/30e18ec1-18aa-47f3-aa96-98fd978987f9)
-  - 2024/03  [Google Cloud Certified - Professional Google Workspace Administrator](https://www.credly.com/earner/earned/badge/33d22117-f324-47d0-8828-ed133f0bf609)
-  - 2024/03  [Google Cloud Certified - Professional Cloud DevOps Engineer](https://www.credly.com/earner/earned/badge/ed1612e8-d062-4ef2-bfb3-d1ad68c07282)
-  - 2024/03  [Google Cloud Certified - Professional Cloud Database Engineer](https://www.credly.com/earner/earned/badge/ede9b39f-4e93-474a-b7a7-84722f5498f9)
-  - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credly.com/earner/earned/badge/9af6b69e-2ead-47b7-8930-e2202942e3da)
-  - 2024/07  [Google Cloud Certified - Professional Data Engineer](https://www.credly.com/earner/earned/badge/e68cadb8-bb38-4d66-8181-6984352dfa55)
-  - 2024/07  [Google Cloud Certified - Professional Professional Cloud Architect](https://www.credly.com/earner/earned/badge/50032a51-f3c4-41fa-bfd6-dd7933dee71d)
-  - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/earner/earned/badge/8d85405c-c4c5-4826-b63c-b7740ed389ed)
-  - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/earner/earned/badge/cbd547e3-a4d1-4c68-b133-31f18eecc5ee)
-  - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/earner/earned/badge/5701e777-fc0e-40fa-92ce-49d5386f2f1f)
+  - 2023/03  [Google Cloud Certified - Professional Cloud Developer](https://www.credly.com/badges/4ba7dc11-d007-4f93-b808-2faef1a1986a/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Network Engineer](https://www.credly.com/badges/30e18ec1-18aa-47f3-aa96-98fd978987f9/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Google Workspace Administrator](https://www.credly.com/badges/33d22117-f324-47d0-8828-ed133f0bf609/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud DevOps Engineer](https://www.credly.com/badges/ed1612e8-d062-4ef2-bfb3-d1ad68c07282/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Database Engineer](https://www.credly.com/badges/ede9b39f-4e93-474a-b7a7-84722f5498f9/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credly.com/badges/9af6b69e-2ead-47b7-8930-e2202942e3da/public_url)
+  - 2024/07  [Google Cloud Certified - Professional Data Engineer](https://www.credly.com/badges/e68cadb8-bb38-4d66-8181-6984352dfa55/public_url)
+  - 2024/07  [Google Cloud Certified - Professional Professional Cloud Architect](https://www.credly.com/badges/50032a51-f3c4-41fa-bfd6-dd7933dee71d/public_url)
+  - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/badges/8d85405c-c4c5-4826-b63c-b7740ed389ed/public_url)
+  - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/badges/cbd547e3-a4d1-4c68-b133-31f18eecc5ee/public_url)
+  - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/badges/5701e777-fc0e-40fa-92ce-49d5386f2f1f/public_url)
   - TOEICは最高でも700ptsに満たない程度です．
 
 ## Life Events
@@ -132,7 +132,7 @@
   - 2018/09  .com Master ADVANCE, ADVANCE★★ 取得
   - 2018/10  CCNA Routing and Switching(200-125) 取得
   - 2018/12  技術士補（電気電子部門）
-  - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credly.com/earner/earned/badge/977644b6-81ac-4cfb-8ce2-b5497bab81ae) (expired)
+  - 2019/04  [Google Cloud Certified - Professional Cloud Architect](https://www.credly.com/badges/977644b6-81ac-4cfb-8ce2-b5497bab81ae/public_url) (expired)
   - 2019/06  情報処理安全確保支援士試験　合格
   - 2020/02  CCNP Route(300-101) Fail(667/1000(boarder: 790))
   - 2020/02  CCNP Switch(300-115) Pass(856/1000(boarder: 790))
@@ -146,18 +146,18 @@
   - 2022/05  [Scrum Alliance - Certified ScrumMaster® (CSM®)](https://bcert.me/suqwrpjkm)
   - 2022/10  三級ファイナンシャル・プランニング技能士(個人資産相談業務)
   - 2022/12  エンベデッドシステムスペシャリスト試験　合格(免除, 76.00, 67, 65)
-  - 2023/03  [Google Cloud Certified - Professional Cloud Developer](https://www.credly.com/earner/earned/badge/4ba7dc11-d007-4f93-b808-2faef1a1986a)
+  - 2023/03  [Google Cloud Certified - Professional Cloud Developer](https://www.credly.com/badges/4ba7dc11-d007-4f93-b808-2faef1a1986a/public_url)
   - 2023/06  Interop Tokyo 2023, ShowNet Team Memberとして参加．
-  - 2024/03  [Google Cloud Certified - Professional Cloud Network Engineer](https://www.credly.com/earner/earned/badge/30e18ec1-18aa-47f3-aa96-98fd978987f9)
-  - 2024/03  [Google Cloud Certified - Professional Google Workspace Administrator](https://www.credly.com/earner/earned/badge/33d22117-f324-47d0-8828-ed133f0bf609)
-  - 2024/03  [Google Cloud Certified - Professional Cloud DevOps Engineer](https://www.credly.com/earner/earned/badge/ed1612e8-d062-4ef2-bfb3-d1ad68c07282)
-  - 2024/03  [Google Cloud Certified - Professional Cloud Database Engineer](https://www.credly.com/earner/earned/badge/ede9b39f-4e93-474a-b7a7-84722f5498f9)
-  - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credly.com/earner/earned/badge/9af6b69e-2ead-47b7-8930-e2202942e3da)
-  - 2024/07  [Google Cloud Certified - Professional Data Engineer](https://www.credly.com/earner/earned/badge/e68cadb8-bb38-4d66-8181-6984352dfa55)
-  - 2024/07  [Google Cloud Certified - Professional Professional Cloud Architect](https://www.credly.com/earner/earned/badge/50032a51-f3c4-41fa-bfd6-dd7933dee71d)
-  - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/earner/earned/badge/8d85405c-c4c5-4826-b63c-b7740ed389ed)
-  - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/earner/earned/badge/cbd547e3-a4d1-4c68-b133-31f18eecc5ee)
-  - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/earner/earned/badge/5701e777-fc0e-40fa-92ce-49d5386f2f1f)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Network Engineer](https://www.credly.com/badges/30e18ec1-18aa-47f3-aa96-98fd978987f9/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Google Workspace Administrator](https://www.credly.com/badges/33d22117-f324-47d0-8828-ed133f0bf609/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud DevOps Engineer](https://www.credly.com/badges/ed1612e8-d062-4ef2-bfb3-d1ad68c07282/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Database Engineer](https://www.credly.com/badges/ede9b39f-4e93-474a-b7a7-84722f5498f9/public_url)
+  - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credly.com/badges/9af6b69e-2ead-47b7-8930-e2202942e3da/public_url)
+  - 2024/07  [Google Cloud Certified - Professional Data Engineer](https://www.credly.com/badges/e68cadb8-bb38-4d66-8181-6984352dfa55/public_url)
+  - 2024/07  [Google Cloud Certified - Professional Professional Cloud Architect](https://www.credly.com/badges/50032a51-f3c4-41fa-bfd6-dd7933dee71d/public_url)
+  - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/badges/8d85405c-c4c5-4826-b63c-b7740ed389ed/public_url)
+  - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/badges/cbd547e3-a4d1-4c68-b133-31f18eecc5ee/public_url)
+  - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/badges/5701e777-fc0e-40fa-92ce-49d5386f2f1f/public_url)
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.
