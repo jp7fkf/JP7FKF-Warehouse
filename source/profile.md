@@ -62,6 +62,9 @@
   - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credly.com/earner/earned/badge/9af6b69e-2ead-47b7-8930-e2202942e3da)
   - 2024/07  [Google Cloud Certified - Professional Data Engineer](https://www.credly.com/earner/earned/badge/e68cadb8-bb38-4d66-8181-6984352dfa55)
   - 2024/07  [Google Cloud Certified - Professional Professional Cloud Architect](https://www.credly.com/earner/earned/badge/50032a51-f3c4-41fa-bfd6-dd7933dee71d)
+  - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/earner/earned/badge/8d85405c-c4c5-4826-b63c-b7740ed389ed)
+  - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/earner/earned/badge/cbd547e3-a4d1-4c68-b133-31f18eecc5ee)
+  - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/earner/earned/badge/5701e777-fc0e-40fa-92ce-49d5386f2f1f)
   - TOEICは最高でも700ptsに満たない程度です．
 
 ## Life Events
@@ -152,6 +155,9 @@
   - 2024/03  [Google Cloud Certified - Professional Cloud Security Engineer](https://www.credly.com/earner/earned/badge/9af6b69e-2ead-47b7-8930-e2202942e3da)
   - 2024/07  [Google Cloud Certified - Professional Data Engineer](https://www.credly.com/earner/earned/badge/e68cadb8-bb38-4d66-8181-6984352dfa55)
   - 2024/07  [Google Cloud Certified - Professional Professional Cloud Architect](https://www.credly.com/earner/earned/badge/50032a51-f3c4-41fa-bfd6-dd7933dee71d)
+  - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/earner/earned/badge/8d85405c-c4c5-4826-b63c-b7740ed389ed)
+  - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/earner/earned/badge/cbd547e3-a4d1-4c68-b133-31f18eecc5ee)
+  - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/earner/earned/badge/5701e777-fc0e-40fa-92ce-49d5386f2f1f)
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.
