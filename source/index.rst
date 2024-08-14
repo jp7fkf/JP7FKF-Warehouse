@@ -11,6 +11,7 @@ Welcome to JP7FKF-Warehouse!
   :caption: Contents:
 
   profile
+  dialy/life
   dialy/201809
   dialy/201810
   dialy/201811
