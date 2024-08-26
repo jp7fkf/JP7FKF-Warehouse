@@ -788,7 +788,18 @@ WantedBy=multi-user.target
 - `docker-compose down -v`だとnamed volumeも削除されてしまうので注意する必要がある．
 
 ## k8s
-- `$ kubectl describe pods my_namespace -n my_pod`
+- `kubectl describe pods -n my_namespace my_pod`
+- `kubectl logs -l app=web -n my_namespace -f --prefix`
+  - ラベルによるfilter
+  - 複数レプリカがいる場合に全体をみれるので便利
+    ```
+    --prefix=false:
+      Prefix each log line with the log source (pod name and container name)
+    -l, --selector='':
+      Selector (label query) to filter on, supports '=', '==', and
+      '!='.(e.g. -l key1=value1,key2=value2). Matching objects must satisfy
+      all of the specified label constraints.
+    ```
 ### GKE upgrade
 ```
 export GKE_CHANNEL=REGULAR
