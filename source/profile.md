@@ -65,7 +65,8 @@
   - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/badges/8d85405c-c4c5-4826-b63c-b7740ed389ed/public_url)
   - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/badges/cbd547e3-a4d1-4c68-b133-31f18eecc5ee/public_url)
   - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/badges/5701e777-fc0e-40fa-92ce-49d5386f2f1f/public_url)
-  - TOEICは最高でも700ptsに満たない程度です．
+  - 2024/11  [Google Cloud Certified - Associate Data Practitioner](https://www.credly.com/badges/3958e787-b52a-408c-a7f2-4dc1604805f1/public_url)
+  - TOEIC L&R 700台
 
 ## Life Events
   - 2011/03  仙台市立五城中学校卒業
@@ -158,6 +159,7 @@
   - 2024/07  [Google Cloud Certified - Professional Machine Learning Engineer](https://www.credly.com/badges/8d85405c-c4c5-4826-b63c-b7740ed389ed/public_url)
   - 2024/07  [Google Cloud Certified - Associate Cloud Engineer](https://www.credly.com/badges/cbd547e3-a4d1-4c68-b133-31f18eecc5ee/public_url)
   - 2024/07  [Google Cloud Certified - Cloud Digital Leader](https://www.credly.com/badges/5701e777-fc0e-40fa-92ce-49d5386f2f1f/public_url)
+  - 2024/11  [Google Cloud Certified - Associate Data Practitioner](https://www.credly.com/badges/3958e787-b52a-408c-a7f2-4dc1604805f1/public_url)
 
 ## 論文/発表
   1. 橋本雄大, 袁巧微, "CNC装置を用いたホーンアンテナの製作," 平成28年度東北地区高等専門学校専攻科産学連携シンポジウム, T16-P-50, Nov. 2016.

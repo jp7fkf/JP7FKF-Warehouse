@@ -47,6 +47,7 @@
   - ⑤ 丸香(神保町)
   - ⑥ 花は咲く(中野)
   - ⑦ 佐藤養助(銀座)
+- [東京巣鴨の極上癒し温泉「SAKURA」(サクラ) | 東京巣鴨の極上癒し温泉SAKURA,染井吉野発祥の地に立地する癒しの天然温泉、お勤め帰りのOLの方も是非ご利用下さい。](https://www.sakura-2005.com/)
 
 ### アキバのda le de mo racerにいってみたい
 - driving simulator
@@ -61,3 +62,4 @@
 ## 北陸
 - [【公式】まつさき｜金沢辰口温泉｜温泉付きの客室が人気の料理自慢の宿](https://www.matsusaki.jp/)
 - [寿司処 松の](https://matsuno.main.jp/)
+
