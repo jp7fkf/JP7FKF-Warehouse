@@ -117,11 +117,14 @@
 - FP2級
 - 簿記2級
 - 2級ボイラー技士
+- CKA
+- CISSP
+- 技術士
 - 一総通
 - 気象予報士
 - [公益社団法人日本サウナ・スパ協会のホームページ](https://www.sauna.or.jp/adviser/)
-- CCNP
-- 危険物甲種まで
+- CCNP/CCIE
+- 危険物甲種
 - ワインエキスパート
 - Oracle master
 - LPIC(もうとらなくていいか...) -> LinuC?
