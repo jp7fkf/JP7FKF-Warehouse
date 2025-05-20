@@ -471,3 +471,9 @@ node1  50       secondary            yes     no       None
 ## juniperのpvst
 - vstpと言う名前らしい．
 - [Configuring VSTP Protocol - TechLibrary - Juniper Networks](https://www.juniper.net/documentation/en_US/junos/topics/topic-map/spanning-tree-configuring-vstp.html)
+
+## 消す系
+- reset configボタンを押す: rescue config, rollback configを含むconfigが消える．
+- `# delete`, `# commit`: (configuration modeでdeleteのみを打ってcommit．running configだけ消える(factory default configになる，ではなく全部消える)．
+- `# load factory default`, `# commit`: factory default configをloadしてcommit. rescue configとかrollback configはのこる．
+- `> request system zeronize`: 全部消す，ログとかライセンスとかsnapshotとか全部消える．(installされているosは(当然)のこる)．
