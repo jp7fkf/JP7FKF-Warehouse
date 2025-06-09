@@ -23,3 +23,4 @@
 - RJ45 connector
   - [MTJ-88ARX1-LH Adam Tech | コネクタ、相互接続 | DigiKey](https://www.digikey.jp/ja/products/detail/adam-tech/MTJ-88ARX1-LH/9832414?s=N4IgTCBcDaILIBUBSBaAHGgggJQBoEYUAZACRAF0BfIA)
   - LEDをtx/rx indicatorとして利用する
+- [理想ダイオード機能搭載 ロードスイッチ(半導体スイッチ) XC8111AA01MR-G: 半導体 秋月電子通商-電子部品・ネット通販](https://akizukidenshi.com/catalog/g/g130281/)
