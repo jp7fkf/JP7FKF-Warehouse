@@ -241,6 +241,11 @@ $ terraform init -migrate-state
     id = {id}
     to = {resource}+{resource_name}
   }
+
+  import {
+    id = "12345678-1234-1234-1234-1234567890a1"
+    to = sample_resource.sample
+  }
   ```
 - `terraform plan -generate-config-out=generated.tf`
   - `generated.tf` が作られる．import相当のデータをもとにtfファイルができる．
